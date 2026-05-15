@@ -35,6 +35,7 @@
     <link href="{{ asset('assets-admin/css/pagination.css') }}" rel="stylesheet">
     <link href="{{ asset('assets-admin/css/pss.css') }}" rel="stylesheet">
     <link href="{{ asset('assets-admin/css/topbar.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets-admin/css/profile.css') }}" rel="stylesheet">
     <link href="{{ asset('assets-admin/css/dark-mode.css') }}" rel="stylesheet">
 
     @stack('styles')

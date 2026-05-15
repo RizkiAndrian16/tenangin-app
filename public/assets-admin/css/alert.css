@@ -68,3 +68,45 @@
 .dark-mode .alert-soft-danger p {
     color: #FCA5A5 !important;
 }
+
+/* ======================================
+   PROFILE ALERT
+====================================== */
+
+.profile-alert-card {
+    background: #ECFDF5;
+    border: 1px solid #BBF7D0 !important;
+}
+
+.profile-alert-card h6 {
+    color: #166534;
+}
+
+.profile-alert-card p {
+    color: #15803D !important;
+}
+
+/* DARK MODE */
+
+.dark-mode .profile-alert-card {
+    background-color: #163828 !important;
+
+    border: 1px solid #1F5138 !important;
+}
+
+.dark-mode .profile-alert-card h6 {
+    color: #BBF7D0 !important;
+}
+
+.dark-mode .profile-alert-card p {
+    color: #86EFAC !important;
+}
+
+/* ======================================
+   PROFILE ALERT ICON
+====================================== */
+
+.profile-alert-card .icon-box-success {
+    background-color: #c2f7db;
+    color: #15803D;
+}

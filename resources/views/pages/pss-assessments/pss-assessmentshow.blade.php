@@ -2,7 +2,6 @@
 @section('title', 'Detail PSS Assessment - Tenangin App')
 @section('content')
 
-    {{-- HEADER --}}
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <h1 class="h3 fw-bold mb-1">Detail PSS Assessment</h1>
@@ -14,14 +13,9 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    {{-- CARD DASAR --}}
     <div class="card border-0 shadow-sm rounded-4 mb-4">
         <div class="card-body p-4 pb-4">
-
-            {{-- 3 CARD DI DALAM --}}
             <div class="row g-4 mb-4 align-items-stretch">
-
-                {{-- SCORE HERO CARD --}}
                 <div class="col-md-4">
                     <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
                         <div
@@ -69,7 +63,6 @@
                     </div>
                 </div>
 
-                {{-- TENTANG SKOR --}}
                 <div class="col-md-4">
                     <div class="card border-0 shadow-sm rounded-4 h-100">
                         <div class="card-body p-4 d-flex flex-column">
@@ -122,16 +115,13 @@
                                     </p>
                                 @endif
                             </div>
-
                         </div>
                     </div>
                 </div>
 
-                {{-- INTERPRETASI --}}
                 <div class="col-md-4">
                     <div class="card border-0 shadow-sm rounded-4 h-100">
                         <div class="card-body p-4 d-flex flex-column">
-
                             <div class="d-flex align-items-center gap-2 mb-3">
                                 <div
                                     class="icon-box-soft
@@ -171,14 +161,11 @@
                                     Temukan rekomendasi aktivitas relaksasi yang disesuaikan dengan tingkat stres Anda. 🎯
                                 </p>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
             </div>
 
-            {{-- TOMBOL NAVIGASI DI DALAM CARD DASAR --}}
             <div class="d-flex justify-content-between align-items-center border-top"
                 style="padding-top: 28px; padding-bottom: 4px;">
                 <a href="{{ route('pss-assessments.index') }}"
@@ -195,5 +182,4 @@
 
         </div>
     </div>
-
 @endsection

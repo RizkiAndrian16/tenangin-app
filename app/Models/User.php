@@ -53,6 +53,15 @@ class User extends Authenticatable
         return $this->role === 'mahasiswa';
     }
 
+    public function getProfilePhotoUrlAttribute()
+    {
+        if ($this->profile_photo) {
+            return asset('storage/' . $this->profile_photo);
+        }
+
+        return null;
+    }
+
     public function preferences()
     {
         return $this->hasMany(UserPreference::class);
@@ -61,8 +70,7 @@ class User extends Authenticatable
     public function activePreference()
     {
         return $this->hasOne(UserPreference::class)
-            ->where('is_active', true)
-            ->latest('created_at');
+            ->where('is_active', true);
     }
 
     public function pssAssessments()

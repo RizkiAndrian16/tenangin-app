@@ -46,9 +46,9 @@ class ProfileUpdateRequest extends FormRequest
 
             'phone_number' => [
                 'nullable',
-                'string',
+                'regex:/^([0-9\s\-\+\(\)]*)$/',
+                'min:10',
                 'max:20',
-                'regex:/^[0-9+\-\s]+$/'
             ],
 
             'university' => [
@@ -79,6 +79,7 @@ class ProfileUpdateRequest extends FormRequest
                 'nullable',
                 'image',
                 'mimes:jpg,jpeg,png',
+                'extensions:jpg,jpeg,png',
                 'max:2048'
             ],
         ];

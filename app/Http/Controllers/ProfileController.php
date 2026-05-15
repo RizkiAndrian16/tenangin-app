@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,46 +12,89 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
+        return view('profile.profiledit', [
             'user' => $request->user(),
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request): JsonResponse
     {
+        $validated = $request->validate([
+            'name'         => ['required', 'string', 'max:255'],
+            'gender'       => ['nullable', 'in:Laki-Laki,Perempuan'],
+            'age'          => ['nullable', 'integer', 'min:1', 'max:99'],
+            'phone_number' => ['nullable', 'string', 'max:20'],
+        ]);
+
         $user = $request->user();
 
-        $validated = $request->validated();
+        $user->fill($validated)->save();
 
-        if ($request->hasFile('profile_photo')) {
+        return response()->json([
+            'success' => true,
+            'message' => 'Informasi pribadi berhasil diperbarui!',
+            'data'    => [
+                'name'         => $user->name,
+                'gender'       => $user->gender,
+                'age'          => $user->age,
+                'phone_number' => $user->phone_number,
+            ],
+        ]);
+    }
 
-            if ($user->profile_photo) {
-                Storage::disk('public')->delete($user->profile_photo);
-            }
+    public function updateUniversity(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'university'       => ['nullable', 'string', 'max:255'],
+            'major'            => ['nullable', 'string', 'max:255'],
+            'semester'         => ['nullable', 'integer', 'min:1', 'max:14'],
+            'residence_status' => ['nullable', 'in:Kos,Kontrak,Rumah Sendiri,Menumpang,Asrama'],
+        ]);
 
-            $validated['profile_photo'] = $request
-                ->file('profile_photo')
-                ->store('profile-photos', 'public');
+        $user = $request->user();
+
+        $user->fill($validated)->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Informasi universitas berhasil diperbarui!',
+            'data'    => [
+                'university'       => $user->university,
+                'major'            => $user->major,
+                'semester'         => $user->semester,
+                'residence_status' => $user->residence_status,
+            ],
+        ]);
+    }
+
+    public function updatePhoto(Request $request): JsonResponse
+    {
+        $request->validate([
+            'profile_photo' => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+        ]);
+
+        $user = $request->user();
+
+        if ($user->profile_photo) {
+            Storage::disk('public')->delete($user->profile_photo);
         }
 
-        $user->fill($validated);
+        $path = $request
+            ->file('profile_photo')
+            ->store('profile-photos', 'public');
 
-        if ($user->isDirty('email')) {
-            $user->email_verified_at = null;
-        }
-
+        $user->profile_photo = $path;
         $user->save();
 
-        return Redirect::route('profile.edit')
-            ->with('status', 'profile-updated');
+        return response()->json([
+            'success' => true,
+            'message' => 'Foto profil berhasil diperbarui!',
+            'data'    => [
+                'profile_photo_url' => asset('storage/' . $path),
+            ],
+        ]);
     }
 
     public function destroy(Request $request): RedirectResponse
@@ -71,7 +114,6 @@ class ProfileController extends Controller
         $user->delete();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         return Redirect::to('/');

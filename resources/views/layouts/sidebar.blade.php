@@ -15,9 +15,10 @@
                 </a>
             </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-profile.html">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+            <li class="sidebar-item {{ request()->routeIs('profile.*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('profile.edit') }}">
+                    <i class="align-middle" data-feather="user"></i>
+                    <span class="align-middle">Profile</span>
                 </a>
             </li>
 
