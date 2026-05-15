@@ -1,0 +1,249 @@
+/* =========================
+   FILTER CARD
+========================= */
+
+.filter-card {
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+/* KECILKAN CARD BODY */
+.filter-card .card-body {
+    padding: 16px 20px !important;
+}
+
+/* =========================
+   FILTER WRAPPER
+========================= */
+.filter-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 14px;
+}
+
+.filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+/* =========================
+   FILTER LABEL
+========================= */
+.filter-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748B;
+    margin-left: 4px;
+}
+
+/* =========================
+   FILTER INPUT
+========================= */
+.filter-input {
+    height: 30px !important;
+    min-width: 140px;
+    border: 1px solid #D1D5DB !important;
+    border-radius: 8px !important;
+    padding: 0 12px !important;
+    font-size: 12px !important;
+    background-color: #FFFFFF !important;
+    color: #374151 !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+/* SELECT WIDTH */
+.filter-input.form-select {
+    width: 170px !important;
+}
+
+/* DATE WIDTH */
+input[type="date"].filter-input {
+    width: 145px !important;
+}
+
+/* DATE INPUT */
+input[type="date"] {
+    cursor: pointer;
+}
+
+/* DATE PICKER ICON */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+}
+
+/* FOCUS */
+.filter-input:focus {
+    border-color: #86B7FE !important;
+    box-shadow: 0 0 0 0.10rem rgba(13,110,253,.10) !important;
+}
+
+/* ======================================
+   RESET BUTTON
+====================================== */
+
+#btnResetFilter {
+    height: 30px;
+
+    padding: 0 18px !important;
+
+    font-size: 13px !important;
+
+    font-weight: 550;
+
+    border-radius: 8px !important;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+/* =========================
+   FILTER CONTAINER
+========================= */
+
+.filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+/* =========================
+   SHOW ENTRIES
+========================= */
+
+.show-entries-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.show-entries-text {
+    font-size: 13px;
+    color: #64748B;
+    font-weight: 500;
+     margin: 0 6px;
+}
+
+.show-entries-select {
+    width: 58px !important;
+    min-width: 58px !important;
+
+    height: 32px !important;
+
+    padding: 0 8px !important;
+
+    font-size: 13px !important;
+
+    border-radius: 6px !important;
+    cursor: pointer;
+}
+
+/* =========================
+   TABLE TOOLBAR
+========================= */
+
+.table-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 8px;
+}
+
+/* =========================
+   TABLE CARD BODY
+========================= */
+
+.table-card-body {
+    padding: 16px 20px !important;
+}
+
+/* =========================
+   SEARCH INPUT
+========================= */
+
+.search-input:focus {
+    border-color: #86B7FE !important;
+
+    box-shadow: 0 0 0 0.10rem rgba(13,110,253,.10) !important;
+}
+
+/* =========================
+   SEARCH INPUT
+========================= */
+
+.search-wrapper {
+    position: relative;
+    width: 303px;
+}
+
+.search-icon {
+    position: absolute;
+
+    top: 50%;
+    left: 12px;
+
+    width: 16px;
+    height: 16px;
+
+    transform: translateY(-50%);
+
+    color: #94A3B8;
+
+    pointer-events: none;
+}
+
+.search-input {
+    height: 32px !important;
+
+    padding-left: 38px !important;
+
+    border-radius: 8px !important;
+
+    font-size: 13px !important;
+
+    border: 1px solid #D1D5DB !important;
+
+    box-shadow: none !important;
+}
+
+/* =========================
+   TOOLBAR ACTIONS
+========================= */
+
+.toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+/* BULK DELETE BUTTON */
+
+#btnBulkDelete {
+    flex-shrink: 0;
+    display: none;        /* tetap none by default */
+    align-items: center;  /* tambahkan ini */
+    justify-content: center;
+}
+
+.filter-card {
+    border-radius: 0.75rem !important;
+}
+
+.card {
+    border-radius: 0.75rem !important;
+}

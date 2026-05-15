@@ -1,0 +1,70 @@
+/* ======================================
+   BUTTON
+====================================== */
+
+.btn-soft-info {
+    background-color: #E0F7FA;
+    color: #0891B2;
+    border: 1px solid transparent;
+    font-weight: 550;
+}
+
+.btn-soft-info:hover {
+    background-color: #CFF1F5;
+    color: #0E7490;
+}
+
+.btn-soft-danger {
+    background-color: #FFE5E5;
+    color: #E53935;
+    border: 1px solid transparent;
+    font-weight: 550;
+}
+
+.btn-soft-danger:hover {
+    background-color: #FFD6D6;
+    color: #D32F2F;
+}
+
+.btn-soft-success {
+    background-color: #DCFCE7;
+    color: #16A34A;
+    border: 1px solid transparent;
+    font-weight: 550;
+}
+
+.btn-soft-success:hover {
+    background-color: #C9F7D8;
+    color: #15803D;
+}
+
+.btn-soft-warning {
+    background-color: #FEF3C7;
+    color: #D97706;
+    border: 1px solid transparent;
+    font-weight: 550;
+}
+
+.btn-soft-warning:hover {
+    background-color: #FDE68A;
+    color: #B45309;
+}
+
+.btn-soft-secondary {
+    background-color: #F1F5F9;
+    color: #475569;
+    border: 1px solid transparent;
+    font-weight: 550;
+}
+
+.btn-soft-secondary:hover {
+    background-color: #E2E8F0;
+    color: #334155;
+}
+
+.show-entries-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 8px;
+}

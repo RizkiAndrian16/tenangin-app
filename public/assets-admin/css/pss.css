@@ -1,0 +1,288 @@
+/* ======================================
+   PSS ASSESSMENT
+====================================== */
+
+.question-card {
+    background-color: #fdfdfd;
+}
+
+.question-error {
+    border: 1px solid #FCA5A5 !important;
+    transition: all 0.2s ease;
+}
+
+.pss-option {
+    border: 1px solid #D1D5DB;
+    background-color: #FFFFFF;
+    color: #374151;
+    transition: all 0.2s ease;
+}
+
+.pss-option:hover {
+    background-color: #F3F4F6;
+    color: #111827;
+}
+
+.btn-check:checked + .pss-option {
+    background-color: #ECFDF5;
+    border-color: #A7F3D0;
+    color: #047857;
+    font-weight: 600;
+}
+
+/* =========================
+   SCORE HERO
+========================= */
+
+.score-hero-bg {
+    background: #ffffff;
+}
+
+.score-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 4px 20px rgba(22, 163, 74, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.score-circle-inner {
+    text-align: center;
+}
+
+.score-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #16a34a;
+    line-height: 1;
+}
+
+.score-max {
+    display: block;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-top: 4px;
+}
+
+/* =========================
+   ICON BOX
+========================= */
+
+.icon-box-soft {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.icon-box-soft svg {
+    width: 16px;
+    height: 16px;
+}
+
+.icon-box-success {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.icon-box-warning {
+    background: #fef9c3;
+    color: #ca8a04;
+}
+
+.icon-box-danger {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+/* =========================
+   TIPS LIST
+========================= */
+
+.tips-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tips-list li {
+    font-size: 13.5px;
+    color: #374151;
+    padding: 10px 14px;
+    background: #f8fafc;
+    border-radius: 10px;
+}
+
+/* =========================
+   FONT SIZE FIX
+========================= */
+
+/* Interpretasi & Tips text */
+.tips-list li {
+    font-size: 15px;  /* naikkan dari 13.5px */
+}
+
+/* Alert soft text */
+.alert-soft-success p,
+.alert-soft-warning p,
+.alert-soft-danger p {
+    font-size: 14.5px !important;
+}
+
+/* Alert soft title */
+.alert-soft-success h6,
+.alert-soft-warning h6,
+.alert-soft-danger h6 {
+    font-size: 16px !important;
+}
+
+/* Rekomendasi description */
+.card-body .text-muted.small {
+    font-size: 14px !important;
+}
+
+/* Tanggal & Waktu label */
+.score-hero-bg .text-muted.small {
+    font-size: 13px !important;
+}
+
+/* Tanggal & Waktu value */
+.score-hero-bg .fw-semibold {
+    font-size: 15px !important;
+}
+
+/* Tingkat Stres label */
+.score-hero-bg p.text-muted.small.mb-2 {
+    font-size: 13px !important;
+}
+
+/* Badge stress level */
+.score-hero-bg .badge {
+    font-size: 15px !important;
+}
+
+/* Skor PSS-10 Anda label */
+.score-circle + p {
+    font-size: 13.5px !important;
+}
+
+/* =========================
+   SCORE RANGE
+========================= */
+
+.score-range-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.score-range-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: #f8fafc;
+    border-radius: 10px;
+    font-size: 14px;
+    border: 2px solid transparent;
+}
+
+.range-label {
+    font-weight: 600;
+    color: #374151;
+}
+
+.range-desc {
+    color: #6b7280;
+}
+
+.active-range-success {
+    background: #dcfce7;
+    border-color: #86efac;
+}
+
+.active-range-success .range-label,
+.active-range-success .range-desc {
+    color: #15803d;
+    font-weight: 600;
+}
+
+.active-range-warning {
+    background: #fef9c3;
+    border-color: #fde68a;
+}
+
+.active-range-warning .range-label,
+.active-range-warning .range-desc {
+    color: #92400e;
+    font-weight: 600;
+}
+
+.active-range-danger {
+    background: #fee2e2;
+    border-color: #fca5a5;
+}
+
+.active-range-danger .range-label,
+.active-range-danger .range-desc {
+    color: #991b1b;
+    font-weight: 600;
+}
+
+/* Score circle - Rendah */
+.score-circle-rendah {
+    box-shadow: 0 4px 20px rgba(134, 239, 172, 0.4);
+}
+.score-number-rendah {
+    color: #16A34A;
+}
+
+/* Score circle - Sedang */
+.score-circle-sedang {
+    box-shadow: 0 4px 20px rgba(253, 224, 71, 0.4);
+}
+.score-number-sedang {
+    color: #D97706;
+}
+
+/* Score circle - Tinggi */
+.score-circle-tinggi {
+    box-shadow: 0 4px 20px rgba(252, 165, 165, 0.4);
+}
+.score-number-tinggi {
+    color: #d64848;
+}
+
+/* Lebih melengkung */
+.rounded-4 {
+    border-radius: 0.75rem !important;
+}
+
+/* Shadow inner cards */
+.card .card {
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08) !important;
+}
+
+.alert-soft-success,
+.alert-soft-warning,
+.alert-soft-danger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.alert-soft-success,
+.alert-soft-warning,
+.alert-soft-danger {
+    border-radius: 0.75rem !important;
+}

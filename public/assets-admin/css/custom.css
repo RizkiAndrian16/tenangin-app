@@ -1,0 +1,251 @@
+/* ======================================
+   GLOBAL
+====================================== */
+
+body,
+.wrapper,
+.main,
+.content,
+.navbar,
+.navbar-bg,
+.sidebar,
+.sidebar-content,
+.card,
+.card-header,
+.card-body {
+    transition:
+        background-color 0.18s ease,
+        color 0.18s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ======================================
+   EFFECT
+====================================== */
+
+.btn-soft-info,
+.btn-soft-danger,
+.btn-soft-success,
+.btn-soft-warning,
+.btn-soft-secondary {
+    transition: all 0.2s ease;
+}
+
+.btn-soft-info:hover,
+.btn-soft-danger:hover,
+.btn-soft-success:hover,
+.btn-soft-warning:hover,
+.form-check-input,
+.btn-soft-secondary:hover {
+    transform: translateY(-1px);
+    cursor: pointer;
+}
+
+/* =========================
+   SIDEBAR LIGHT MODE
+========================= */
+
+/* Background sidebar */
+.sidebar,
+.sidebar-content {
+    background: #ffffff !important;
+}
+
+/* Link sidebar */
+.sidebar-link,
+a.sidebar-link {
+    background: #ffffff !important;
+    color: #000000 !important;
+}
+
+/* Icon sidebar */
+.sidebar-link i,
+.sidebar-link svg,
+a.sidebar-link i,
+a.sidebar-link svg {
+    color: #000000 !important;
+}
+
+/* Hover */
+.sidebar-link:hover,
+.sidebar-link:hover i,
+.sidebar-link:hover svg {
+    color: #374151 !important;
+    background: #E5E7EB !important;
+}
+
+/* Active item */
+.sidebar-item.active > .sidebar-link {
+    background: #DCFCE7 !important;
+    color: #15803D !important;
+}
+
+/* Active icon */
+.sidebar-item.active > .sidebar-link i,
+.sidebar-item.active > .sidebar-link svg {
+    color: #15803D !important;
+}
+
+/* Active menu text */
+.sidebar-item.active > .sidebar-link span {
+    color: #15803D !important;
+
+    font-weight: 600 !important;
+}
+
+/* Active menu icon */
+.sidebar-item.active > .sidebar-link i,
+.sidebar-item.active > .sidebar-link svg {
+    color: #15803D !important;
+
+    stroke-width: 2.3 !important;
+}
+
+/* Brand */
+.sidebar-brand {
+    color: #000000 !important;
+}
+
+/* Header */
+.sidebar-header {
+    color: #6B7280 !important;
+}
+
+/* Border */
+.sidebar-content {
+    border-right: 1px solid #E5E7EB !important;
+}
+
+/* Remove icon background on hover */
+.sidebar-link:hover i,
+.sidebar-link:hover svg {
+    background: transparent !important;
+
+    box-shadow: none !important;
+
+    border-radius: 0 !important;
+}
+
+/* =========================
+   SIDEBAR DARK MODE
+========================= */
+
+.dark-mode .sidebar,
+.dark-mode .sidebar-content {
+    background: #0F172A !important;
+}
+
+/* Text */
+.dark-mode .sidebar-link,
+.dark-mode a.sidebar-link {
+    background: transparent !important;
+    color: #E2E8F0 !important;
+}
+
+/* Icon */
+.dark-mode .sidebar-link i,
+.dark-mode .sidebar-link svg {
+    color: #CBD5E1 !important;
+}
+
+/* Hover */
+.dark-mode .sidebar-link:hover {
+    background: #1E293B !important;
+    color: #86EFAC !important;
+}
+
+/* Active menu */
+.dark-mode .sidebar-item.active > .sidebar-link {
+    background: #14532D !important;
+    color: #bfe9ce !important;
+}
+
+/* Active menu text */
+.dark-mode .sidebar-item.active > .sidebar-link span {
+    color: #bfe9ce !important;
+}
+
+/* Active icon */
+.dark-mode .sidebar-item.active > .sidebar-link i,
+.dark-mode .sidebar-item.active > .sidebar-link svg {
+    color: #4ADE80 !important;
+}
+
+/* Brand */
+.dark-mode .sidebar-brand {
+    color: #F8FAFC !important;
+}
+
+/* Header */
+.dark-mode .sidebar-header {
+    color: #94A3B8 !important;
+}
+
+/* Border */
+.dark-mode .sidebar-content {
+    border-right: 1px solid #1E293B !important;
+}
+
+/* Remove icon background on hover */
+.dark-mode .sidebar-link:hover i,
+.dark-mode .sidebar-link:hover svg {
+    background: transparent !important;
+
+    box-shadow: none !important;
+
+    border-radius: 0 !important;
+}
+
+/* Sidebar toggle hover */
+.sidebar-toggle:hover .hamburger,
+.sidebar-toggle:hover .hamburger::before,
+.sidebar-toggle:hover .hamburger::after {
+    background-color: #16A34A !important;
+}
+
+/* =========================
+   SHOW ENTRIES
+========================= */
+
+.form-select {
+    background-position: right 0.45rem center !important;
+
+    padding-right: 2rem !important;
+}
+
+/* =========================
+   MOBILE SEARCH FIX
+========================= */
+
+@media (max-width: 768px) {
+
+    .search-wrapper {
+        width: 100% !important;
+    }
+
+    .search-input {
+        width: 100% !important;
+
+        min-width: 100% !important;
+    }
+
+    .d-flex.justify-content-between.align-items-center.mb-3 {
+        flex-direction: column !important;
+
+        align-items: stretch !important;
+
+        gap: 12px;
+    }
+}
+
+/* =========================
+   CUSTOM CARD SHADOW
+========================= */
+
+.custom-card-shadow {
+    box-shadow:
+        0 10px 28px rgba(15, 23, 42, 0.10) !important;
+}

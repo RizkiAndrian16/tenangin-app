@@ -1,0 +1,84 @@
+/* =========================
+   PAGINATION
+========================= */
+
+/* Fix Pagination Layout */
+.pagination-wrapper {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    flex-direction: row !important;
+}
+
+.pagination-wrapper .pagination {
+    margin-bottom: 0 !important;
+    flex-wrap: nowrap !important;
+}
+
+.pagination-wrapper p {
+    margin-bottom: 0 !important;
+    flex-shrink: 0 !important;
+}
+
+.pagination-wrapper ul.pagination {
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 4px !important;
+}
+
+/* Pagination Soft Success */
+.pagination .page-link,
+.pagination .page-item:first-child .page-link,
+.pagination .page-item:last-child .page-link {
+
+    border: none;
+
+    border-radius: 10px !important;
+
+    overflow: hidden;
+
+    color: #16A34A;
+
+    background-color: #DCFCE7;
+
+    padding: 0.55rem 0.9rem;
+
+    transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+
+    font-weight: 550;
+}
+
+.pagination .page-link:hover {
+    background-color: #C9F7D8;
+    color: #15803D;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #5bca84;
+    color: white;
+    box-shadow: 0 4px 10px rgba(22,163,74,0.25);
+}
+
+.pagination .page-item.disabled .page-link {
+    background-color: #F0FDF4;
+    color: #86EFAC;
+}
+
+/* =========================
+   PAGINATION CONTAINER
+========================= */
+
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0 12px 0;  /* atas bawah sama */
+    margin-top: 0;
+}

@@ -1,0 +1,70 @@
+/* ======================================
+   ALERT
+====================================== */
+
+/* SUCCESS */
+.alert-soft-success {
+    background-color: #DCFCE7;
+    color: #166534;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+/* WARNING */
+.alert-soft-warning {
+    background-color: #FEF3C7;
+    color: #D97706;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+/* DANGER */
+.alert-soft-danger {
+    background-color: #FEE2E2;
+    color: #e03f3f;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+/* ======================================
+   ALERT DARK MODE
+====================================== */
+
+/* SUCCESS */
+.dark-mode .alert-soft-success {
+    background-color: rgba(34, 197, 94, 0.12);
+    color: #86EFAC;
+}
+
+/* WARNING */
+.dark-mode .alert-soft-warning {
+    background-color: rgba(245, 158, 11, 0.12);
+    color: #FCD34D;
+}
+
+/* DANGER */
+.dark-mode .alert-soft-danger {
+    background-color: rgba(239, 68, 68, 0.12);
+    color: #FCA5A5;
+}
+
+/* SUCCESS TEXT */
+.dark-mode .alert-soft-success p {
+    color: #86EFAC !important;
+}
+
+/* WARNING TEXT */
+.dark-mode .alert-soft-warning p {
+    color: #FCD34D !important;
+}
+
+/* DANGER TEXT */
+.dark-mode .alert-soft-danger p {
+    color: #FCA5A5 !important;
+}

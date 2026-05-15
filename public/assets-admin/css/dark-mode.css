@@ -1,0 +1,760 @@
+/* ======================================
+   MODERN DARK MODE
+====================================== */
+
+.dark-mode {
+    background-color: #0F172A;
+    color: #E5E7EB;
+}
+
+/* ======================================
+   LAYOUT
+====================================== */
+
+.dark-mode .wrapper,
+.dark-mode .main,
+.dark-mode .content {
+    background-color: #0F172A !important;
+}
+
+/* ======================================
+   NAVBAR
+====================================== */
+
+.dark-mode .navbar,
+.dark-mode .navbar-bg {
+    background-color: #162033 !important;
+    border-bottom: 1px solid #374151;
+}
+
+/* ======================================
+   SIDEBAR
+====================================== */
+
+.dark-mode .sidebar {
+    backdrop-filter: blur(10px);
+}
+
+.dark-mode .sidebar,
+.dark-mode .sidebar-content {
+    background-color: #162033 !important;
+    border-right: 1px solid rgba(255,255,255,0.05);
+    box-shadow: none;
+}
+
+/* Remove Dark Gray Blocks */
+
+.dark-mode .sidebar-nav,
+.dark-mode .sidebar-item,
+.dark-mode .sidebar-link {
+    background: transparent !important;
+}
+
+/* Sidebar Menu */
+
+.dark-mode .sidebar-link,
+.dark-mode .sidebar-brand,
+.dark-mode .sidebar-header {
+    color: #D1D5DB !important;
+}
+
+.dark-mode .sidebar-link:hover {
+    background-color: rgba(96,165,250,0.10) !important;
+    color: #FFFFFF !important;
+}
+
+/* Active Menu */
+
+.dark-mode .sidebar-item.active .sidebar-link {
+    background-color: rgba(96,165,250,0.22) !important;
+    color: #DBEAFE !important;
+
+    border-left: 3px solid #60A5FA;
+
+    box-shadow: none !important;
+}
+
+/* ======================================
+   CARD
+====================================== */
+
+.dark-mode .card {
+    background-color: #162033 !important;
+
+    border-color: rgba(255,255,255,0.05) !important;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.18),
+        0 1px 2px rgba(0,0,0,0.10) !important;
+}
+
+.dark-mode .card-header {
+    background-color: #162033 !important;
+
+    border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+
+    color: #F9FAFB !important;
+}
+
+.dark-mode .card-body {
+    color: #E5E7EB !important;
+}
+
+/* ======================================
+   TEXT
+====================================== */
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6,
+.dark-mode p,
+.dark-mode label,
+.dark-mode .text-dark {
+    color: #F9FAFB !important;
+}
+
+.dark-mode .text-muted {
+    color: #9CA3AF !important;
+}
+
+/* ======================================
+   TABLE
+====================================== */
+
+.dark-mode .table {
+    color: #E5E7EB !important;
+}
+
+.dark-mode .table th {
+    background-color: #0F172A !important;
+
+    color: #F9FAFB !important;
+
+    border-color: rgba(255,255,255,0.08) !important;
+}
+
+.dark-mode .table td {
+    border-color: rgba(255,255,255,0.08) !important;
+}
+
+.dark-mode .table thead th {
+    background-color: #0F172A !important;
+}
+
+.dark-mode .table tbody tr:hover {
+    background-color: rgba(255,255,255,0.025) !important;
+
+    color: #E5E7EB !important;
+}
+
+.dark-mode .table tbody tr:hover td {
+    color: #F9FAFB !important;
+}
+
+/* ======================================
+   FORM
+====================================== */
+
+.dark-mode .form-control,
+.dark-mode .form-select {
+    background-color: #0F172A !important;
+
+    border: 1px solid #374151 !important;
+
+    color: #F9FAFB !important;
+}
+
+.dark-mode .form-control:focus,
+.dark-mode .form-select:focus {
+    border-color: #3B82F6 !important;
+
+    box-shadow: 0 0 0 0.2rem rgba(59,130,246,.25);
+}
+
+/* ======================================
+   DROPDOWN
+====================================== */
+
+.dark-mode .dropdown-menu {
+    background-color: #162033 !important;
+
+    border: 1px solid #374151 !important;
+}
+
+.dark-mode .dropdown-item {
+    color: #E5E7EB !important;
+}
+
+.dark-mode .dropdown-item:hover {
+    background-color: #374151 !important;
+}
+
+/* ======================================
+   FOOTER
+====================================== */
+
+.dark-mode footer {
+    background-color: #162033 !important;
+
+    color: #9CA3AF !important;
+}
+
+/* ======================================
+   PSS ASSESSMENT
+====================================== */
+
+.dark-mode .question-card {
+    background-color: #0F172A !important;
+
+    border: 1px solid rgba(255,255,255,0.06);
+
+    box-shadow: none !important;
+}
+
+.dark-mode .pss-option {
+    background-color: #162033 !important;
+
+    border: 1px solid #374151 !important;
+
+    color: #E5E7EB !important;
+}
+
+.dark-mode .pss-option:hover {
+    background-color: #1E293B !important;
+
+    color: #FFFFFF !important;
+}
+
+.dark-mode .btn-check:checked + .pss-option {
+    background-color: #ECFDF5 !important;
+
+    border-color: #A7F3D0 !important;
+
+    color: #047857 !important;
+
+    font-weight: 600;
+}
+
+/* ======================================
+   BUTTON
+====================================== */
+
+.dark-mode .btn-soft-info {
+    background-color: #E0F7FA;
+    color: #0891B2;
+    border: 1px solid transparent;
+}
+
+.dark-mode .btn-soft-info:hover {
+    background-color: #CFF1F5;
+    color: #0E7490;
+}
+
+.dark-mode .btn-soft-success {
+    background-color: #DCFCE7;
+    color: #16A34A;
+    border: 1px solid transparent;
+}
+
+.dark-mode .btn-soft-success:hover {
+    background-color: #C9F7D8;
+    color: #15803D;
+}
+
+.dark-mode .btn-soft-danger {
+    background-color: #FEE2E2;
+    color: #DC2626;
+    border: 1px solid transparent;
+}
+
+.dark-mode .btn-soft-danger:hover {
+    background-color: #FFD6D6;
+    color: #D32F2F;
+}
+
+/* ======================================
+   TOPBAR ICON
+====================================== */
+
+.dark-mode #darkModeToggle,
+.dark-mode .nav-icon {
+    color: #E5E7EB !important;
+}
+
+/* Navbar Icons */
+
+.dark-mode .navbar .nav-icon,
+.dark-mode .navbar .nav-link,
+.dark-mode .navbar i {
+    color: #F9FAFB !important;
+}
+
+/* Hamburger Menu */
+.dark-mode .hamburger,
+.dark-mode .hamburger:before,
+.dark-mode .hamburger:after,
+.dark-mode .hamburger-inner,
+.dark-mode .hamburger-inner::before,
+.dark-mode .hamburger-inner::after {
+    background-color: #E5E7EB !important;
+}
+
+/* Hamburger Default */
+.dark-mode .hamburger,
+.dark-mode .hamburger:before,
+.dark-mode .hamburger:after,
+.dark-mode .hamburger-inner,
+.dark-mode .hamburger-inner::before,
+.dark-mode .hamburger-inner::after {
+    background-color: #E5E7EB !important;
+
+    transition: all 0.2s ease;
+}
+
+/* Hamburger Hover */
+.dark-mode .sidebar-toggle:hover .hamburger,
+.dark-mode .sidebar-toggle:hover .hamburger:before,
+.dark-mode .sidebar-toggle:hover .hamburger:after,
+.dark-mode .sidebar-toggle:hover .hamburger-inner,
+.dark-mode .sidebar-toggle:hover .hamburger-inner::before,
+.dark-mode .sidebar-toggle:hover .hamburger-inner::after {
+    background-color: #4ADE80 !important;
+}
+
+/* ======================================
+   DARK MODE PAGINATION
+====================================== */
+
+.dark-mode .pagination .page-link {
+    background-color: #1E293B !important;
+    border-color: #334155 !important;
+    color: #CBD5E1 !important;
+
+    box-shadow: none !important;
+}
+
+.dark-mode .pagination .page-link:hover {
+    background-color: #334155 !important;
+    color: #FFFFFF !important;
+}
+
+/* ACTIVE */
+
+.dark-mode .pagination .page-item.active .page-link,
+.dark-mode .pagination .page-item.active .page-link:hover {
+    background-color: #166534 !important;
+border-color: #166534 !important;
+    color: #FFFFFF !important;
+
+    box-shadow: none !important;
+}
+
+/* DISABLED */
+
+.dark-mode .pagination .page-item.disabled .page-link {
+    background-color: #0F172A !important;
+    border-color: #1E293B !important;
+    color: #475569 !important;
+}
+
+/* ======================================
+   FILTER
+====================================== */
+
+.dark-mode .filter-card {
+    background-color: #162033 !important;
+
+    border-color: #374151 !important;
+
+    box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+}
+
+.dark-mode .filter-label {
+    color: #CBD5E1;
+}
+
+.dark-mode .filter-input {
+    background-color: #0F172A !important;
+
+    border-color: #374151 !important;
+
+    color: #F9FAFB !important;
+}
+
+.dark-mode .filter-input::placeholder {
+    color: #9CA3AF !important;
+}
+
+.dark-mode input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+
+    opacity: 0.85;
+}
+
+.dark-mode .form-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23F9FAFB' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+}
+
+.dark-mode .filter-input:focus {
+    border-color: #3B82F6 !important;
+
+    box-shadow: 0 0 0 0.10rem rgba(59,130,246,.16) !important;
+}
+
+/* ======================================
+   ALERT
+====================================== */
+
+.dark-mode .alert,
+.dark-mode .alert-success,
+.dark-mode .alert-danger,
+.dark-mode .alert-warning,
+.dark-mode .alert-info {
+    color: #FFFFFF !important;
+}
+
+/* ======================================
+   DARK MODE BUTTON
+====================================== */
+
+.dark-mode .btn-soft-success {
+    background-color: #163828 !important;
+    color: #86EFAC !important;
+    border-color: #1F5138 !important;
+}
+
+.dark-mode .btn-soft-success:hover {
+    background-color: #1D4D36 !important;
+    color: #BBF7D0 !important;
+}
+
+.dark-mode .btn-soft-danger {
+    background-color: #3A1F1F !important;
+    color: #FCA5A5 !important;
+    border-color: #5B2B2B !important;
+}
+
+.dark-mode .btn-soft-danger:hover {
+    background-color: #4A2525 !important;
+    color: #FECACA !important;
+}
+
+.dark-mode .btn-soft-warning {
+    background-color: #3A2F1F !important;
+    color: #FCD34D !important;
+    border-color: #5B4720 !important;
+}
+
+.dark-mode .btn-soft-warning:hover {
+    background-color: #4A3B25 !important;
+    color: #FDE68A !important;
+}
+
+.dark-mode .btn-soft-info {
+    background-color: #1E3442 !important;
+    color: #7DD3FC !important;
+    border-color: #27485A !important;
+}
+
+.dark-mode .btn-soft-info:hover {
+    background-color: #254152 !important;
+    color: #BAE6FD !important;
+}
+
+.dark-mode .btn-soft-secondary {
+    background-color: #1E293B !important;
+    color: #CBD5E1 !important;
+    border-color: #334155 !important;
+}
+
+.dark-mode .btn-soft-secondary:hover {
+    background-color: #334155 !important;
+    color: #F8FAFC !important;
+}
+
+/* ======================================
+   DARK MODE BADGE
+====================================== */
+
+.dark-mode .badge-soft-success {
+    background-color: #163828 !important;
+    color: #86EFAC !important;
+}
+
+.dark-mode .badge-soft-warning {
+    background-color: #3A2F1F !important;
+    color: #FCD34D !important;
+}
+
+.dark-mode .badge-soft-danger {
+    background-color: #3A1F1F !important;
+    color: #FCA5A5 !important;
+}
+
+/* ======================================
+   DARK MODE BUTTON SECONDARY
+====================================== */
+
+.dark-mode .btn-soft-secondary {
+    background-color: #334155 !important;
+    border: 1px solid #334155 !important;
+    color: #E2E8F0 !important;
+}
+
+.dark-mode .btn-soft-secondary:hover {
+    background-color: #334155 !important;
+    border-color: #475569 !important;
+    color: #FFFFFF !important;
+}
+
+/* =========================
+   DARK MODE SEARCH INPUT
+========================= */
+
+.dark-mode .search-input {
+    background-color: #1E293B !important;
+
+    color: #FFFFFF !important;
+
+    border-color: #334155 !important;
+}
+
+.dark-mode .search-input::placeholder {
+    color: #94A3B8 !important;
+}
+
+.dark-mode .search-icon {
+    color: #CBD5E1;
+}
+
+/* =========================
+   DARK MODE SHOW ENTRIES
+========================= */
+
+.dark-mode .show-entries-text {
+    color: #94A3B8 !important;
+}
+
+.dark-mode .show-entries-select {
+    background-color: #1E293B !important;
+    color: #FFFFFF !important;
+    border-color: #334155 !important;
+}
+
+/* ======================================
+   PSS ASSESSMENT SHOW DARK MODE
+====================================== */
+
+/* Hero Card */
+.dark-mode .score-hero-bg {
+    background: #14213D !important;
+}
+
+/* Hero Text */
+.dark-mode .score-hero-bg .text-muted {
+    color: #94A3B8 !important;
+}
+
+.dark-mode .score-hero-bg .fw-semibold {
+    color: #F8FAFC !important;
+}
+
+/* Card */
+.dark-mode .card {
+    background: #14213D !important;
+}
+
+/* Card Title */
+.dark-mode .card h5,
+.dark-mode .card h6 {
+    color: #F8FAFC !important;
+}
+
+/* Paragraph */
+.dark-mode .card p {
+    color: #CBD5E1;
+}
+
+/* Divider */
+.dark-mode hr {
+    border-color: #22304D !important;
+}
+
+.dark-mode .custom-top-divider {
+    border-top: 1px solid #545c6b !important;
+}
+
+/* Score Range Default */
+.dark-mode .score-range-item {
+    background: #14213D !important;
+    color: #CBD5E1 !important;
+
+    border: 1px solid #22304D !important;
+}
+
+.dark-mode .score-range-item .range-label,
+.dark-mode .score-range-item .range-desc {
+    color: #CBD5E1 !important;
+}
+
+/* Active Success */
+.dark-mode .active-range-success {
+    background: rgba(34, 197, 94, 0.15) !important;
+    border: 1px solid #22C55E !important;
+}
+
+.dark-mode .active-range-success .range-label,
+.dark-mode .active-range-success .range-desc {
+    color: #86EFAC !important;
+}
+
+/* Active Warning */
+.dark-mode .active-range-warning {
+    background: rgba(245, 158, 11, 0.15) !important;
+    border: 1px solid #F59E0B !important;
+}
+
+.dark-mode .active-range-warning .range-label,
+.dark-mode .active-range-warning .range-desc {
+    color: #FCD34D !important;
+}
+
+/* Active Danger */
+.dark-mode .active-range-danger {
+    background: rgba(239, 68, 68, 0.15) !important;
+    border: 1px solid #EF4444 !important;
+}
+
+.dark-mode .active-range-danger .range-label,
+.dark-mode .active-range-danger .range-desc {
+    color: #FCA5A5 !important;
+}
+
+/* Score Circle */
+.dark-mode .score-circle {
+    background: #14213D !important;
+}
+
+/* Score Max */
+.dark-mode .score-max {
+    color: #94A3B8 !important;
+}
+
+.dark-mode .border-top {
+    border-color: #2d3f52 !important;
+}
+
+/* ======================================
+   PSS ASSESSMENT SHOW DARK MODE
+====================================== */
+
+/* Hero Card */
+.dark-mode .score-hero-bg {
+    background: #14213D !important;
+}
+
+/* Main Card */
+.dark-mode .card {
+    background: #14213D !important;
+}
+
+/* Title */
+.dark-mode .card h5,
+.dark-mode .card h6 {
+    color: #F8FAFC !important;
+}
+
+/* About Score Text */
+.dark-mode .score-range-item .range-label,
+.dark-mode .score-range-item .range-desc,
+.dark-mode .custom-top-divider p,
+.dark-mode .about-score-text {
+    color: #E5E7EB !important;
+}
+
+/* Muted Text */
+.dark-mode .text-muted {
+    color: #94A3B8 !important;
+}
+
+.dark-mode .custom-dark-text {
+    color: #E5E7EB !important;
+}
+
+.dark-mode .score-hero-bg .custom-dark-text {
+    color: #E5E7EB !important;
+}
+
+/* Date & Time */
+.dark-mode .fw-semibold {
+    color: #F8FAFC !important;
+}
+
+/* Divider */
+.dark-mode .border-top,
+.dark-mode .custom-top-divider {
+    border-color: #2D3F52 !important;
+}
+
+/* Score Range */
+.dark-mode .score-range-item {
+    background: #14213D !important;
+
+    border: 1px solid #22304D !important;
+}
+
+/* Default Text */
+.dark-mode .score-range-item .range-label,
+.dark-mode .score-range-item .range-desc,
+.dark-mode .custom-top-divider p {
+    color: #E5E7EB !important;
+}
+
+/* Active Success */
+.dark-mode .active-range-success {
+    background: rgba(34,197,94,0.15) !important;
+
+    border: 1px solid #22C55E !important;
+}
+
+.dark-mode .active-range-success .range-label,
+.dark-mode .active-range-success .range-desc {
+    color: #86EFAC !important;
+}
+
+/* Active Warning */
+.dark-mode .active-range-warning {
+    background: rgba(245,158,11,0.15) !important;
+
+    border: 1px solid #F59E0B !important;
+}
+
+.dark-mode .active-range-warning .range-label,
+.dark-mode .active-range-warning .range-desc {
+    color: #FCD34D !important;
+}
+
+/* Active Danger */
+.dark-mode .active-range-danger {
+    background: rgba(239,68,68,0.15) !important;
+
+    border: 1px solid #EF4444 !important;
+}
+
+.dark-mode .active-range-danger .range-label,
+.dark-mode .active-range-danger .range-desc {
+    color: #FCA5A5 !important;
+}
+
+/* Score Circle */
+.dark-mode .score-circle {
+    background: #14213D !important;
+}
+
+/* Score Max */
+.dark-mode .score-max {
+    color: #94A3B8 !important;
+}

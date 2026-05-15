@@ -1,0 +1,134 @@
+@extends('layouts.main')
+@section('title', 'PSS-10 - Tenangin App')
+@section('content')
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h3 fw-bold mb-1">PSS-10 Assessment</h1>
+            <p class="text-muted mb-0">Riwayat hasil PSS-10 assessment tingkat stres pengguna.</p>
+        </div>
+        <div>
+            <a href="{{ route('pss-assessments.create') }}" class="btn btn-soft-success rounded-pill px-4 py-2">
+                Mulai PSS-10 Assessment
+            </a>
+
+        </div>
+    </div>
+
+    @if (session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
+    <form id="filterForm" method="GET" action="{{ route('pss-assessments.index') }}">
+        <div class="card filter-card mb-2">
+            <div class="card-body">
+                <x-filter-table :showStressLevel="true" :showDate="true" />
+            </div>
+        </div>
+    </form>
+
+    <div class="card">
+        <div class="card-body table-card-body">
+            <div class="table-toolbar">
+                <x-show-entries />
+                <div class="toolbar-actions">
+                    <button type="button" id="btnBulkDelete"
+                        class="btn btn-soft-danger btn-sm rounded-pill px-3 py-2 align-items-center gap-1"
+                        style="display: none;">
+                        <i data-feather="trash-2"></i>
+                    </button>
+
+                    <div class="search-wrapper">
+                        <i data-feather="search" class="search-icon"></i>
+                        <input type="text" name="search" value="{{ request('search') }}"
+                            class="form-control search-input" placeholder="Search..." form="filterForm">
+                    </div>
+                </div>
+            </div>
+
+            <form id="bulkDeleteForm" action="{{ route('pss-assessments.bulk-destroy') }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle">
+                        <thead class="table-light">
+                            <tr class="text-center">
+                                <th width="3%"><input type="checkbox" id="checkAll" class="form-check-input"></th>
+                                <th width="3%">No</th>
+                                <th>Tanggal</th>
+                                <th>Tingkat Stres</th>
+                                <th>Skor PSS-10</th>
+                                <th width="20%" class="text-center">Aksi</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @forelse ($assessments as $assessment)
+                                <tr class="text-center">
+                                    <td>
+                                        <input type="checkbox" name="ids[]" value="{{ $assessment->id }}"
+                                            class="form-check-input check-item">
+                                    </td>
+                                    <td>
+                                        {{ $assessments->firstItem() + $loop->index }}
+                                    </td>
+                                    <td data-date="{{ $assessment->created_at->format('Y-m-d') }}">
+                                        {{ $assessment->created_at->translatedFormat('l, d-m-Y') }}
+                                    </td>
+                                    <td>
+
+                                        @if ($assessment->stress_level == 'Rendah')
+                                            <span class="badge badge-soft-success rounded-pill" data-stress="Rendah">
+                                                Rendah</span>
+                                        @elseif ($assessment->stress_level == 'Sedang')
+                                            <span class="badge badge-soft-warning rounded-pill" data-stress="Sedang">
+                                                Sedang
+                                            </span>
+                                        @else
+                                            <span class="badge badge-soft-danger rounded-pill" data-stress="Tinggi">
+                                                Tinggi
+                                            </span>
+                                        @endif
+                                    </td>
+
+                                    <td><strong>{{ $assessment->total_score }}</strong> / 40</td>
+
+                                    <td class="text-center">
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <a href="{{ route('pss-assessments.show', $assessment->id) }}"
+                                                class="btn btn-soft-info btn-sm rounded-pill px-3 py-2 d-inline-flex align-items-center gap-1">
+                                                <span>Detail</span>
+                                                <i data-feather="eye"></i>
+                                            </a>
+
+                                            <button type="button" onclick="deleteSingle({{ $assessment->id }})"
+                                                class="btn btn-soft-danger btn-sm rounded-pill px-3 py-2 d-inline-flex align-items-center gap-1">
+                                                <span>Hapus</span>
+                                                <i data-feather="trash-2"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted py-4">
+                                        Belum ada data PSS-10 Assessment.
+                                    </td>
+                                </tr>
+                            @endforelse
+
+                            <tr id="emptyFilterRow" style="display: none;">
+                                <td colspan="6" class="text-center text-muted py-4">
+                                    Tidak ada data PSS-10 Assessment yang sesuai.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+            <div class="pagination-container">
+                {{ $assessments->links('vendor.pagination.bootstrap-5') }}
+            </div>
+        </div>
+    </div>
+@endsection
