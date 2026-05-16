@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PssAssessmentController;
 
@@ -20,13 +19,9 @@ Route::middleware(['auth'])->group(function () {
     // ======================================
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('/profile/university', [ProfileController::class, 'updateUniversity'])->name('profile.university.update');
-
     Route::put('/profile/photo', [ProfileController::class, 'updatePhoto'])->name('profile.photo.update');
 
     // ======================================
@@ -34,15 +29,10 @@ Route::middleware(['auth'])->group(function () {
     // ======================================
 
     Route::get('/pss-assessments', [PssAssessmentController::class, 'index'])->name('pss-assessments.index');
-
     Route::get('/pss-assessments/create', [PssAssessmentController::class, 'create'])->name('pss-assessments.create');
-
     Route::post('/pss-assessments', [PssAssessmentController::class, 'store'])->name('pss-assessments.store');
-
     Route::get('/pss-assessments/{pssAssessment}', [PssAssessmentController::class, 'show'])->name('pss-assessments.show');
-
     Route::delete('/pss-assessments', [PssAssessmentController::class, 'bulkDestroy'])->name('pss-assessments.bulk-destroy');
-
     Route::delete('/pss-assessments/{pssAssessment}', [PssAssessmentController::class, 'destroy'])->name('pss-assessments.destroy');
 });
 

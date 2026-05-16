@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'PSS-10 - Tenangin App')
+@section('title', 'PSS-10 - Tenangin.')
 @section('content')
 
     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -16,7 +16,18 @@
     </div>
 
     @if (session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
+        <div class="profile-success-alert mb-4" id="successAlert">
+            <div class="d-flex align-items-start gap-3">
+                <div class="profile-success-icon">
+                    <i data-feather="check-circle"></i>
+                </div>
+
+                <div>
+                    <h6 class="fw-bold mb-1">Sukses!</h6>
+                    <p class="mb-0">{{ session('success') }}</p>
+                </div>
+            </div>
+        </div>
     @endif
 
     <form id="filterForm" method="GET" action="{{ route('pss-assessments.index') }}">

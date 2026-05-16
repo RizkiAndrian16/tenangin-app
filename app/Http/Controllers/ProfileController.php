@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +18,7 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function update(Request $request): JsonResponse
+    public function update(Request $request): RedirectResponse
     {
         $validated = $request->validate([
             'name'         => ['required', 'string', 'max:255'],
@@ -32,44 +31,34 @@ class ProfileController extends Controller
 
         $user->fill($validated)->save();
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Informasi pribadi berhasil diperbarui!',
-            'data'    => [
-                'name'         => $user->name,
-                'gender'       => $user->gender,
-                'age'          => $user->age,
-                'phone_number' => $user->phone_number,
-            ],
-        ]);
+        return redirect()
+            ->route('profile.edit')
+            ->with('success', 'Informasi pribadi berhasil diperbarui.');
     }
 
-    public function updateUniversity(Request $request): JsonResponse
+    public function updateUniversity(Request $request): RedirectResponse
     {
         $validated = $request->validate([
             'university'       => ['nullable', 'string', 'max:255'],
             'major'            => ['nullable', 'string', 'max:255'],
             'semester'         => ['nullable', 'integer', 'min:1', 'max:14'],
-            'residence_status' => ['nullable', 'in:Kos,Kontrak,Rumah Sendiri,Menumpang,Asrama'],
+            'residence_status' => ['nullable', 'string', 'max:255'],
         ]);
+
+        if ($request->residence_status === 'Lainnya' && $request->filled('residence_status_other')) {
+            $validated['residence_status'] = $request->residence_status_other;
+        }
 
         $user = $request->user();
 
         $user->fill($validated)->save();
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Informasi universitas berhasil diperbarui!',
-            'data'    => [
-                'university'       => $user->university,
-                'major'            => $user->major,
-                'semester'         => $user->semester,
-                'residence_status' => $user->residence_status,
-            ],
-        ]);
+        return redirect()
+            ->route('profile.edit')
+            ->with('success', 'Informasi universitas berhasil diperbarui.');
     }
 
-    public function updatePhoto(Request $request): JsonResponse
+    public function updatePhoto(Request $request): RedirectResponse
     {
         $request->validate([
             'profile_photo' => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
@@ -88,13 +77,9 @@ class ProfileController extends Controller
         $user->profile_photo = $path;
         $user->save();
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Foto profil berhasil diperbarui!',
-            'data'    => [
-                'profile_photo_url' => asset('storage/' . $path),
-            ],
-        ]);
+        return redirect()
+            ->route('profile.edit')
+            ->with('success', 'Foto profil berhasil diperbarui.');
     }
 
     public function destroy(Request $request): RedirectResponse

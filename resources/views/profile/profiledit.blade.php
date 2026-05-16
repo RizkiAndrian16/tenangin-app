@@ -1,10 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Profil Pengguna - Tenangin App')
-
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
-@endpush
-
+@section('title', 'Profil Pengguna - Tenangin.')
 @section('content')
 
     {{-- HEADER --}}
@@ -15,6 +10,21 @@
         </div>
     </div>
 
+    @if (session('success'))
+        <div class="profile-success-alert mb-4" id="successAlert">
+            <div class="d-flex align-items-start gap-3">
+                <div class="profile-success-icon">
+                    <i data-feather="check-circle"></i>
+                </div>
+
+                <div>
+                    <h6 class="fw-bold mb-1">Sukses!</h6>
+                    <p class="mb-0">{{ session('success') }}</p>
+                </div>
+            </div>
+        </div>
+    @endif
+
     {{-- CARD DASAR --}}
     <div class="card border-0 shadow-sm rounded-4">
         <div class="card-body p-4">
@@ -22,7 +32,7 @@
 
                 {{-- CARD 1: INFORMASI PENTING --}}
                 <div class="col-12">
-                    <div class="profile-alert-card rounded-4 p-4 shadow-sm w-100">
+                    <div class="profile-alert-card alert-soft-success rounded-4 p-3 shadow-sm w-100">
                         <div class="d-flex gap-3 align-items-start">
                             <div class="icon-box-soft icon-box-success flex-shrink-0">
                                 <i data-feather="info"></i>
@@ -30,11 +40,9 @@
                             <div>
                                 <h6 class="fw-bold mb-2">Informasi Penting</h6>
                                 <p class="mb-0 fs-6">
-                                    Bantu kami mendapatkan hasil riset yang akurat
-                                    dengan melengkapi data pribadi Anda.
-                                    Jangan khawatir, keamanan dan privasi data Anda
-                                    adalah prioritas utama kami dan hanya digunakan
-                                    untuk kepentingan analisis penelitian.
+                                    Lengkapi profil agar sistem dapat mengenalmu lebih baik dan memberikan
+                                    pengalaman penggunaan yang lebih nyaman. Tenang, seluruh data yang kamu isi akan dijaga
+                                    kerahasiaannya dan privasimu tetap aman.
                                 </p>
                             </div>
                         </div>
@@ -44,11 +52,10 @@
                 {{-- CARD 2: PROFILE HERO --}}
                 <div class="col-12">
                     <div class="card border-0 shadow-sm rounded-4">
-                        <div class="card-body p-4">
+                        <div class="card-body py-4 px-5 profile-hero-body">
                             <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
-
                                 <div class="d-flex align-items-center gap-3">
-                                    @if (auth()->user()->profile_photo_url)
+                                    @if (auth()->user()->profile_photo)
                                         <img src="{{ auth()->user()->profile_photo_url }}" alt="Profile"
                                             class="profile-avatar" id="heroAvatar">
                                     @else
@@ -57,9 +64,11 @@
                                         </div>
                                     @endif
                                     <div class="ms-2">
-                                        <h5 class="fw-bold mb-1" id="heroName">{{ auth()->user()->name }}</h5>
-                                        <span class="text-success-emphasis fw-semibold">
-                                            {{ ucfirst(str_replace('_', ' ', auth()->user()->role)) }}
+                                        <h5 class="fw-bold mb-2 profile-user-name" id="heroName">
+                                            {{ auth()->user()->name }}
+                                        </h5>
+                                        <span class="profile-user-role">
+                                            {{ ucwords(str_replace('_', ' ', auth()->user()->role)) }}
                                         </span>
                                     </div>
                                 </div>
@@ -69,7 +78,6 @@
                                     <i data-feather="camera"></i>
                                     <span>Ubah Foto Profil</span>
                                 </button>
-
                             </div>
                         </div>
                     </div>
@@ -118,7 +126,7 @@
                                         <div class="col-5"><small class="text-muted">Umur</small></div>
                                         <div class="col-7">
                                             <p class="fw-semibold mb-0" id="displayAge">
-                                                {{ auth()->user()->age ? auth()->user()->age . ' tahun' : '-' }}
+                                                {{ auth()->user()->age ? auth()->user()->age . ' Tahun' : '-' }}
                                             </p>
                                         </div>
                                     </div>
@@ -141,7 +149,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -150,7 +157,6 @@
                 <div class="col-lg-6">
                     <div class="card border-0 shadow-sm rounded-4 h-100">
                         <div class="card-body p-4 d-flex flex-column">
-
                             <div class="d-flex justify-content-between align-items-center mb-4">
                                 <div class="d-flex align-items-center gap-2">
                                     <div class="icon-box-soft icon-box-success">
@@ -204,11 +210,9 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -266,11 +270,16 @@
                     </div>
 
                     <div class="col-12">
+                        <label class="form-label fw-semibold" for="inputEmail">Alamat Email</label>
+                        <input type="email" id="inputEmail" class="form-control custom-input"
+                            value="{{ auth()->user()->email }}" disabled>
+                    </div>
+
+                    <div class="col-12">
                         <label class="form-label fw-semibold" for="inputPhone">Nomor Telepon</label>
                         <input type="tel" id="inputPhone" name="phone_number" class="form-control custom-input"
                             value="{{ auth()->user()->phone_number }}">
                     </div>
-
                 </div>
 
                 <div class="d-flex justify-content-end gap-3 mt-5">
@@ -284,7 +293,6 @@
                         <span>Simpan Perubahan</span>
                     </button>
                 </div>
-
             </form>
         </div>
     </div>
@@ -327,30 +335,26 @@
 
                     <div class="col-md-6">
                         <label class="form-label fw-semibold" for="inputSemester">Semester</label>
-                        <select id="inputSemester" name="semester" class="form-select custom-input">
-                            <option value="">— Pilih Semester —</option>
-                            @for ($s = 1; $s <= 14; $s++)
-                                <option value="{{ $s }}"
-                                    {{ auth()->user()->semester == $s ? 'selected' : '' }}>
-                                    Semester {{ $s }}
-                                </option>
-                            @endfor
-                        </select>
+                        <input type="number" id="inputSemester" name="semester" class="form-control custom-input"
+                            min="1" max="14" value="{{ auth()->user()->semester }}">
                     </div>
 
                     <div class="col-md-6">
                         <label class="form-label fw-semibold" for="inputResidence">Status Tempat Tinggal</label>
-                        <select id="inputResidence" name="residence_status" class="form-select custom-input">
+                        <select id="inputResidence" name="residence_status" class="form-select custom-input"
+                            data-current="{{ auth()->user()->residence_status }}">
                             <option value="">— Pilih Status —</option>
-                            @foreach (['Kos', 'Kontrak', 'Rumah Sendiri', 'Menumpang', 'Asrama'] as $status)
+                            @foreach (['Rumah Orang Tua', 'Kos', 'Asrama', 'Kontrakan', 'Lainnya'] as $status)
                                 <option value="{{ $status }}"
                                     {{ auth()->user()->residence_status === $status ? 'selected' : '' }}>
                                     {{ $status }}
                                 </option>
                             @endforeach
                         </select>
+                        <input type="text" id="inputResidenceOther" name="residence_status_other"
+                            class="form-control custom-input mt-3" placeholder="Tuliskan status tempat tinggal Anda..."
+                            style="display:none;">
                     </div>
-
                 </div>
 
                 <div class="d-flex justify-content-end gap-3 mt-5">
@@ -418,26 +422,8 @@
                         <span>Upload Foto</span>
                     </button>
                 </div>
-
             </form>
         </div>
     </div>
 
-    {{-- TOAST CONTAINER --}}
-    <div class="toast-container-custom" id="toastContainer"></div>
-
 @endsection
-
-@push('scripts')
-    <script src="{{ asset('js/profile.js') }}"></script>
-    @if (session('success'))
-        <script>
-            document.addEventListener('DOMContentLoaded', () => showToast("{{ session('success') }}", 'success'));
-        </script>
-    @endif
-    @if (session('error'))
-        <script>
-            document.addEventListener('DOMContentLoaded', () => showToast("{{ session('error') }}", 'error'));
-        </script>
-    @endif
-@endpush

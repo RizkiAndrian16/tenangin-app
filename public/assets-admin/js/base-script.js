@@ -389,7 +389,7 @@ if (searchInput) {
 
 //
 // ======================================
-// PROFILE PAGE — profile.js
+// PROFILE PAGE
 // ======================================
 //
 
@@ -425,6 +425,13 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => closeModal(btn.dataset.target));
     });
 
+    document.querySelectorAll('button[type="submit"]').forEach(btn => {
+        btn.addEventListener('mousedown', function() {
+            this.classList.add('force-focus');
+            setTimeout(() => this.classList.remove('force-focus'), 300);
+        });
+    });
+
     document.querySelectorAll('.custom-popup-overlay').forEach(overlay => {
         overlay.addEventListener('click', e => {
             if (e.target === overlay) closeModal(overlay.id);
@@ -437,29 +444,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .forEach(el => closeModal(el.id));
     });
 
-    function showToast(message, type = 'success') {
-        const container = document.getElementById('toastContainer');
-        if (!container) return;
-
-        const toast = document.createElement('div');
-        toast.className = `toast-item ${type}`;
-        const icon = type === 'success' ? 'check-circle' : 'alert-circle';
-        toast.innerHTML = `
-            <i data-feather="${icon}" style="width:16px;height:16px;flex-shrink:0;"></i>
-            <span>${message}</span>
-        `;
-        container.appendChild(toast);
-        if (window.feather) feather.replace();
-
-        setTimeout(() => {
-            toast.style.transition = 'opacity 0.4s ease';
-            toast.style.opacity = '0';
-            setTimeout(() => toast.remove(), 400);
-        }, 3500);
-    }
-
-    window.showToast = showToast;
-
+    // PHOTO DROP ZONE
     const photoInput     = document.getElementById('photoInput');
     const photoDropZone  = document.getElementById('photoDropZone');
     const photoPreview   = document.getElementById('photoPreviewImg');
@@ -469,17 +454,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handlePhotoFile(file) {
         if (!file) return;
-
         const allowed = ['image/png', 'image/jpeg', 'image/jpg'];
         if (!allowed.includes(file.type)) {
-            showToast('Format tidak didukung. Gunakan PNG atau JPG.', 'error');
+            alert('Format tidak didukung. Gunakan PNG atau JPG.');
             return;
         }
         if (file.size > 2 * 1024 * 1024) {
-            showToast('Ukuran file maksimal 2 MB.', 'error');
+            alert('Ukuran file maksimal 2 MB.');
             return;
         }
-
         const reader = new FileReader();
         reader.onload = e => {
             photoPreview.src = e.target.result;
@@ -493,18 +476,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     photoDropZone?.addEventListener('click', () => photoInput?.click());
-
     photoInput?.addEventListener('change', () => handlePhotoFile(photoInput.files[0]));
 
     photoDropZone?.addEventListener('dragover', e => {
         e.preventDefault();
         photoDropZone.classList.add('dragover');
     });
-
     photoDropZone?.addEventListener('dragleave', () => {
         photoDropZone.classList.remove('dragover');
     });
-
     photoDropZone?.addEventListener('drop', e => {
         e.preventDefault();
         photoDropZone.classList.remove('dragover');
@@ -524,82 +504,63 @@ document.addEventListener('DOMContentLoaded', () => {
         if (photoInput)       photoInput.value = '';
     });
 
-    async function handleFormSubmit(form, onSuccess) {
-        const btn = form.querySelector('[type="submit"]');
-        const originalHtml = btn.innerHTML;
-        btn.disabled = true;
-        btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>Menyimpan...`;
+    // RESIDENCE STATUS — LAINNYA
+    const selectResidence = document.getElementById('inputResidence');
+    const inputOther      = document.getElementById('inputResidenceOther');
 
-        try {
-            const res  = await fetch(form.action, {
-                method: 'POST',
-                body: new FormData(form),
-                headers: { 'X-Requested-With': 'XMLHttpRequest' },
-            });
-            const json = await res.json();
-
-            if (res.ok && json.success) {
-                showToast(json.message ?? 'Data berhasil disimpan!', 'success');
-                onSuccess(json.data ?? {});
-                const overlay = form.closest('.custom-popup-overlay');
-                if (overlay) closeModal(overlay.id);
-            } else {
-                showToast(json.message ?? 'Terjadi kesalahan.', 'error');
-            }
-        } catch {
-            showToast('Koneksi gagal. Periksa jaringan Anda.', 'error');
-        } finally {
-            btn.disabled = false;
-            btn.innerHTML = originalHtml;
-            if (window.feather) feather.replace();
+    if (selectResidence) {
+        const fixedOptions = ['Rumah Orang Tua', 'Kos', 'Asrama', 'Kontrakan', 'Lainnya', ''];
+        const currentVal   = selectResidence.dataset.current ?? '';
+        if (currentVal && !fixedOptions.includes(currentVal)) {
+            selectResidence.value = 'Lainnya';
+            inputOther.style.display = 'block';
+            inputOther.value = currentVal;
         }
     }
 
-    document.getElementById('profileForm')?.addEventListener('submit', e => {
-        e.preventDefault();
-        handleFormSubmit(e.target, data => {
-            if (data.name)   {
-                document.getElementById('displayName')?.replaceChildren(document.createTextNode(data.name));
-                document.getElementById('heroName')?.replaceChildren(document.createTextNode(data.name));
-            }
-            if (data.gender)       setText('displayGender', data.gender);
-            if (data.age)          setText('displayAge', data.age + ' tahun');
-            if (data.phone_number) setText('displayPhone', data.phone_number);
-        });
+    selectResidence?.addEventListener('change', () => {
+        if (selectResidence.value === 'Lainnya') {
+            inputOther.style.display = 'block';
+            inputOther.required = true;
+        } else {
+            inputOther.style.display = 'none';
+            inputOther.required = false;
+            inputOther.value = '';
+        }
     });
 
-    document.getElementById('universityForm')?.addEventListener('submit', e => {
-        e.preventDefault();
-        handleFormSubmit(e.target, data => {
-            if (data.university)       setText('displayUniversity', data.university);
-            if (data.major)            setText('displayMajor', data.major);
-            if (data.semester)         setText('displaySemester', 'Semester ' + data.semester);
-            if (data.residence_status) setText('displayResidence', data.residence_status);
-        });
-    });
+});
 
-    document.getElementById('photoForm')?.addEventListener('submit', e => {
-        e.preventDefault();
-        handleFormSubmit(e.target, data => {
-            if (!data.profile_photo_url) return;
-            const placeholder = document.getElementById('heroAvatarPlaceholder');
-            const existing    = document.getElementById('heroAvatar');
-            if (existing) {
-                existing.src = data.profile_photo_url;
-            } else if (placeholder) {
-                const img = document.createElement('img');
-                img.src = data.profile_photo_url;
-                img.alt = 'Profile';
-                img.className = 'profile-avatar';
-                img.id = 'heroAvatar';
-                placeholder.replaceWith(img);
-            }
-        });
-    });
+//
+// ======================================
+// AUTO HIDE SUCCESS ALERT
+// ======================================
+//
 
-    function setText(id, value) {
-        const el = document.getElementById(id);
-        if (el) el.textContent = value;
-    }
+document.addEventListener('DOMContentLoaded', () => {
+
+    const alert =
+        document.getElementById('successAlert');
+
+    if (!alert) return;
+
+    setTimeout(() => {
+
+        alert.style.transition =
+            'all 0.4s ease';
+
+        alert.style.opacity =
+            '0';
+
+        alert.style.transform =
+            'translateY(-10px)';
+
+        setTimeout(() => {
+
+            alert.remove();
+
+        }, 400);
+
+    }, 3000);
 
 });

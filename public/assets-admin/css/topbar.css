@@ -21,6 +21,68 @@
 
 #darkModeToggle:hover,
 .nav-icon:hover {
-    background-color: rgba(59,130,246,0.12);
-    color: #3B82F6 !important;
+    background-color: rgba(34,197,94,0.10);
+    color: #22C55E !important;
+}
+
+/* =========================
+   TOPBAR AVATAR
+========================= */
+
+.topbar-avatar {
+    width: 38px;
+    height: 38px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.topbar-avatar-initial {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #475569;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+/* Wrapper nama dan avatar */
+.nav-link.dropdown-toggle {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px;
+}
+
+.navbar {
+    position: sticky !important;
+    top: 0;
+    z-index: 1030;
+}
+
+/* ======================================
+   MOBILE TOPBAR
+====================================== */
+
+@media (max-width: 768px) {
+
+    .navbar-nav {
+        gap: 4px !important;
+    }
+
+    .topbar-avatar,
+    .topbar-avatar-initial {
+        width: 34px;
+        height: 34px;
+    }
+
+    .nav-icon,
+    #darkModeToggle {
+        width: 34px;
+        height: 34px;
+    }
 }

@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Detail PSS Assessment - Tenangin App')
+@section('title', 'Detail PSS Assessment - Tenangin.')
 @section('content')
 
     <div class="d-flex justify-content-between align-items-center mb-4">

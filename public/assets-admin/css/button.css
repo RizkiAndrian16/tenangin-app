@@ -68,3 +68,7 @@
     gap: 14px;
     margin-top: 8px;
 }
+
+.btn-soft-success.force-focus {
+    box-shadow: 0 0 0 3px #C7D2FE !important;
+}

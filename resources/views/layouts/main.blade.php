@@ -12,10 +12,11 @@
 
     {{-- FONTS --}}
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
 
     {{-- FAVICON --}}
-    <link rel="shortcut icon" href="{{ asset('assets-admin/img/icons/icon-48x48.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('assets-admin/img/logo/LogoSistem.png') }}" type="image/png">
 
     <script>
         if (localStorage.getItem('theme') === 'dark') {

@@ -203,7 +203,7 @@ a.sidebar-link svg {
 .sidebar-toggle:hover .hamburger,
 .sidebar-toggle:hover .hamburger::before,
 .sidebar-toggle:hover .hamburger::after {
-    background-color: #16A34A !important;
+    background-color: #22C55E !important;
 }
 
 /* =========================
@@ -248,4 +248,39 @@ a.sidebar-link svg {
 .custom-card-shadow {
     box-shadow:
         0 10px 28px rgba(15, 23, 42, 0.10) !important;
+}
+
+.custom-sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px 8px 24px;
+    text-decoration: none;
+}
+
+.sidebar-logo {
+    width: 44px;
+    height: 48px;
+    object-fit: contain;
+    flex-shrink: 0;
+    border-radius: 8px;
+    margin-left: -4px;
+}
+
+.sidebar-brand-text {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #0F172A;
+    line-height: 1.2;
+    white-space: nowrap;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.dark-mode .sidebar-brand-text {
+    color: #FFFFFF;
+}
+
+.main {
+    overflow: visible !important;
 }

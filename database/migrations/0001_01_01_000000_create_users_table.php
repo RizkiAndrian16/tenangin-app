@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->enum('role', ['super_admin', 'admin', 'mahasiswa'])->default('mahasiswa');
 
-            $table->enum('gender', ['Laki-laki', 'Perempuan'])->nullable();
+            $table->enum('gender', ['Laki-Laki', 'Perempuan'])->nullable();
 
             $table->integer('age')->nullable();
             $table->string('phone_number')->nullable();
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('university')->nullable();
             $table->string('major')->nullable();
             $table->integer('semester')->nullable();
-            $table->enum('residence_status', ['Rumah Orang Tua', 'Kos', 'Asrama', 'Kontrakan', 'Lainnya'])->nullable();
+            $table->string('residence_status')->nullable();
 
             $table->rememberToken();
 

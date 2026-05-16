@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Form PSS-10 - Tenangin App')
+@section('title', 'Form PSS-10 - Tenangin.')
 @section('content')
 
     <div class="row justify-content-center">

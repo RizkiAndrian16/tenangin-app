@@ -118,9 +118,9 @@
 /* INPUT */
 
 .custom-input {
-    height: 56px;
+    height: 43px;
 
-    border-radius: 16px;
+    border-radius: 12px;
 }
 
 /* DARK MODE */
@@ -136,65 +136,15 @@
 }
 
 /* ALERT CARD */
-.profile-alert-card {
-    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-    border: 1px solid #bbf7d0;
-}
 
 /* AVATAR */
 .profile-avatar {
-    width: 64px;
-    height: 64px;
+    width: 82px;
+    height: 82px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #d1fae5;
     flex-shrink: 0;
-}
-
-/* ICON BOX */
-.icon-box-soft {
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.icon-box-soft svg {
-    width: 18px;
-    height: 18px;
-}
-
-.icon-box-success {
-    background: #dcfce7;
-    color: #16a34a;
-}
-
-/* BUTTONS */
-.btn-soft-secondary {
-    background: #f3f4f6;
-    color: #374151;
-    border: none;
-    transition: background 0.2s;
-}
-
-.btn-soft-secondary:hover {
-    background: #e5e7eb;
-    color: #111827;
-}
-
-.btn-soft-success {
-    background: #dcfce7;
-    color: #15803d;
-    border: none;
-    transition: background 0.2s, color 0.2s;
-}
-
-.btn-soft-success:hover {
-    background: #10b981;
-    color: #fff;
 }
 
 /* PHOTO DROP ZONE */
@@ -255,10 +205,6 @@
 }
 
 /* DARK MODE */
-.dark-mode .profile-alert-card {
-    background: linear-gradient(135deg, #052e16 0%, #14532d 100%);
-    border-color: #166534;
-}
 
 .dark-mode .photo-upload-area {
     border-color: #374151;
@@ -268,4 +214,136 @@
 .dark-mode .photo-upload-area.dragover {
     border-color: #10b981;
     background: #052e16;
+}
+
+.custom-input:disabled {
+    background-color: #FFFFFF;
+    color: #94A3B8;
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+.form-select.custom-input {
+    cursor: pointer;
+}
+
+/* ======================================
+   PROFILE SUCCESS ALERT
+====================================== */
+
+.profile-success-alert {
+    background: #F0FDF4;
+
+    border: 1px solid #22C55E;
+
+    border-radius: 16px;
+
+    padding: 12px 14px;
+
+    width: 100%;
+
+    animation: fadeSlideDown 0.3s ease;
+}
+
+/* ICON */
+
+.profile-success-icon {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    background: rgba(34, 197, 94, 0.12);
+
+    color: #16A34A;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+/* TITLE */
+
+.profile-success-alert h6 {
+    color: #166534;
+
+    font-size: 14px;
+
+    margin-bottom: 2px;
+}
+
+/* TEXT */
+
+.profile-success-alert p {
+    color: #15803D;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+/* DARK MODE */
+
+.dark-mode .profile-success-alert {
+    background: rgba(22, 163, 74, 0.08);
+
+    border: 1px solid rgba(34, 197, 94, 0.35);
+}
+
+.dark-mode .profile-success-alert h6 {
+    color: #BBF7D0;
+}
+
+.dark-mode .profile-success-alert p {
+    color: #86EFAC;
+}
+
+.dark-mode .profile-success-icon {
+    background: rgba(34, 197, 94, 0.15);
+
+    color: #86EFAC;
+}
+
+.profile-hero-body {
+    min-height: 120px;
+}
+
+.profile-user-name {
+    font-size: 16px;
+
+    font-weight: 700;
+}
+
+.profile-user-role {
+    font-size: 13px;
+
+    color: #6B7280;
+
+    font-weight: 515;
+}
+
+.profile-user-name {
+    letter-spacing: 0.1px;
+}
+
+.profile-user-role {
+    letter-spacing: 0.2px;
+}
+
+/* ======================================
+   RADIO BUTTON SOFT GREEN
+====================================== */
+
+.form-check-input:checked {
+    background-color: #22C55E !important;
+
+    border-color: #22C55E !important;
+}
+
+.form-check-input:focus {
+    border-color: #86EFAC !important;
+
+    box-shadow: 0 0 0 0.15rem rgba(34, 197, 94, 0.18) !important;
 }

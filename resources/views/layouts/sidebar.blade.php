@@ -1,7 +1,8 @@
 <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
-        <a class="sidebar-brand" href="{{ route('dashboard') }}">
-            <span class="align-middle">Tenangin-App</span>
+        <a class="sidebar-brand custom-sidebar-brand" href="{{ route('dashboard') }}">
+            <img src="{{ asset('assets-admin/img/logo/LogoSistem.png') }}" alt="Logo" class="sidebar-logo">
+            <span class="sidebar-brand-text">Tenangin.</span>
         </a>
 
         <ul class="sidebar-nav">

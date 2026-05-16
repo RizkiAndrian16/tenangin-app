@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Dashboard - Tenangin App')
+@section('title', 'Dashboard - Tenangin.')
 
 @section('content')
 
@@ -15,7 +15,7 @@
 
         <p class="text-muted mb-0">
 
-            Selamat datang kembali di Tenangin-App 👋
+            Selamat datang kembali di Tenangin. 👋
 
         </p>
 
