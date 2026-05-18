@@ -1,6 +1,8 @@
 @props([
     'showStressLevel' => true,
     'showDate' => true,
+    'showStatus' => false,
+    'resetRoute' => null,
 ])
 
 <div class="filter-container">
@@ -14,9 +16,7 @@
             @if ($showStressLevel)
                 <div class="d-flex flex-column gap-1">
 
-                    <label class="filter-label">
-                        Tingkat Stres
-                    </label>
+                    <label class="filter-label">Tingkat Stres</label>
 
                     <select id="filterStressLevel" name="stress_level" class="form-select filter-input auto-submit-filter">
 
@@ -45,13 +45,46 @@
             @if ($showDate)
                 <div class="d-flex flex-column gap-1">
 
-                    <label class="filter-label">
-                        Tanggal
-                    </label>
+                    <label class="filter-label">Tanggal</label>
 
                     <input type="date" id="filterDateFrom" name="date" value="{{ request('date') }}"
                         class="form-control filter-input auto-submit-filter">
 
+                </div>
+            @endif
+
+            {{-- FILTER STATUS REKOMENDASI --}}
+            @if ($showStatus)
+                <div class="d-flex flex-column gap-1">
+
+                    <label class="filter-label">Status Rekomendasi</label>
+
+                    <select name="status" class="form-select filter-input filter-status auto-submit-filter">
+
+                        <option value="">
+                            Semua Status
+                        </option>
+
+                        <option value="Direkomendasikan"
+                            {{ request('status') == 'Direkomendasikan' ? 'selected' : '' }}>
+                            Direkomendasikan
+                        </option>
+
+                        <option value="Direkomendasikan terbatas"
+                            {{ request('status') == 'Direkomendasikan terbatas' ? 'selected' : '' }}>
+                            Direkomendasikan terbatas
+                        </option>
+
+                        <option value="Tidak direkomendasikan"
+                            {{ request('status') == 'Tidak direkomendasikan' ? 'selected' : '' }}>
+                            Tidak direkomendasikan
+                        </option>
+
+                        <option value="Perlu perhatian" {{ request('status') == 'Perlu perhatian' ? 'selected' : '' }}>
+                            Perlu perhatian
+                        </option>
+
+                    </select>
                 </div>
             @endif
 
@@ -60,11 +93,9 @@
     </div>
 
     {{-- RESET BUTTON --}}
-    <a href="{{ route('pss-assessments.index') }}" id="btnResetFilter"
+    <a href="{{ $resetRoute }}" id="btnResetFilter"
         class="btn btn-soft-secondary px-4
-        {{ !request('stress_level') && !request('date') && !request('per_page') ? 'pe-none' : '' }}">
-
+    {{ !request()->hasAny(['stress_level', 'date', 'status', 'search', 'per_page']) ? 'pe-none' : '' }}">
         Reset Filter
-
     </a>
 </div>

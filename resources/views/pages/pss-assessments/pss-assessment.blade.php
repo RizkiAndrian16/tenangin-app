@@ -33,7 +33,7 @@
     <form id="filterForm" method="GET" action="{{ route('pss-assessments.index') }}">
         <div class="card filter-card mb-2">
             <div class="card-body">
-                <x-filter-table :showStressLevel="true" :showDate="true" />
+                <x-filter-table :showStressLevel="true" :showDate="true" :resetRoute="route('pss-assessments.index')" />
             </div>
         </div>
     </form>
@@ -64,12 +64,12 @@
                     <table class="table table-bordered table-hover align-middle">
                         <thead class="table-light">
                             <tr class="text-center">
-                                <th width="3%"><input type="checkbox" id="checkAll" class="form-check-input"></th>
-                                <th width="3%">No</th>
+                                <th width="2.5%"><input type="checkbox" id="checkAll" class="form-check-input"></th>
+                                <th width="3.5%">No</th>
                                 <th>Tanggal</th>
                                 <th>Tingkat Stres</th>
                                 <th>Skor PSS-10</th>
-                                <th width="20%" class="text-center">Aksi</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
 
@@ -120,6 +120,7 @@
                                         </div>
                                     </td>
                                 </tr>
+
                             @empty
                                 <tr>
                                     <td colspan="6" class="text-center text-muted py-4">

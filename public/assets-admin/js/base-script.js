@@ -529,6 +529,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // ACTIVITY DETAIL POPUP
+    document.querySelectorAll('.js-open-activity').forEach(btn => {
+        btn.addEventListener('click', function() {
+
+            const stress = this.dataset.stress;
+            let stressLabel = stress;
+            if (stress === 'Rendah,Sedang,Tinggi') stressLabel = 'Rendah,Sedang,Tinggi';
+            else if (stress === 'Rendah,Sedang') stressLabel = 'Rendah & Sedang';
+            else if (stress === 'Sedang,Tinggi') stressLabel = 'Sedang & Tinggi';
+
+            const status = this.dataset.status;
+
+            document.getElementById('popupTitleDetail').textContent  = this.dataset.title;
+            document.getElementById('popupType').textContent         = this.dataset.type;
+            document.getElementById('popupDuration').textContent     = this.dataset.duration;
+            document.getElementById('popupIntensity').textContent    = this.dataset.intensity;
+            document.getElementById('popupStress').textContent       = stressLabel;
+            document.getElementById('popupStatusText').textContent   = status;
+            document.getElementById('popupDescription').textContent  = this.dataset.description;
+
+            document.getElementById('popupInstruction').textContent =
+                this.dataset.instruction
+                    ? this.dataset.instruction
+                    : 'Belum ada instruksi aktivitas yang ditambahkan.';
+
+                        openModal('activityModal');
+        });
+    });
+
 });
 
 //
@@ -564,3 +593,50 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3000);
 
 });
+
+//
+// ======================================
+// RESET FILTER ON HARD RELOAD
+// ======================================
+//
+
+window.addEventListener('load', () => {
+
+    const navigationEntries =
+        performance.getEntriesByType('navigation');
+
+    if (!navigationEntries.length) return;
+
+    const navigationType =
+        navigationEntries[0].type;
+
+    if (navigationType !== 'reload') return;
+
+    const url = new URL(window.location.href);
+
+    const currentPage =
+        url.searchParams.get('page');
+
+    const hasFilter =
+        url.searchParams.has('stress_level') ||
+        url.searchParams.has('date') ||
+        url.searchParams.has('status') ||
+        url.searchParams.has('search') ||
+        url.searchParams.has('per_page');
+
+    if (!hasFilter) return;
+
+    url.searchParams.delete('stress_level');
+    url.searchParams.delete('date');
+    url.searchParams.delete('status');
+    url.searchParams.delete('search');
+    url.searchParams.delete('per_page');
+
+    if (currentPage) {
+        url.searchParams.set('page', currentPage);
+    }
+
+    window.location.replace(url.toString());
+
+});
+

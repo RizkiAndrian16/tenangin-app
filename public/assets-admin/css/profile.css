@@ -116,11 +116,14 @@
 }
 
 /* INPUT */
-
 .custom-input {
     height: 43px;
-
     border-radius: 12px;
+}
+
+textarea.custom-input {
+    height: auto;
+    resize: vertical;
 }
 
 /* DARK MODE */
@@ -221,6 +224,12 @@
     color: #94A3B8;
     cursor: not-allowed;
     opacity: 1;
+}
+
+.custom-input[readonly] {
+    background-color: #FFFFFF !important;
+    color: #374151 !important;
+    opacity: 1 !important;
 }
 
 .form-select.custom-input {
@@ -342,8 +351,39 @@
     border-color: #22C55E !important;
 }
 
+.form-check-input:indeterminate {
+    background-color: #22C55E !important;
+
+    border-color: #22C55E !important;
+}
+
 .form-check-input:focus {
     border-color: #86EFAC !important;
 
     box-shadow: 0 0 0 0.15rem rgba(34, 197, 94, 0.18) !important;
+}
+
+/* ======================================
+   ACTIVITY POPUP
+====================================== */
+
+.activity-popup {
+    max-width: 700px !important;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.activity-popup-card {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+    border: 1.5px solid #86EFAC !important;
+}
+
+.popup-grid-cell {
+    word-break: break-word;
+    hyphens: auto;
+    min-width: 0;
+}
+
+.dark-mode .card.activity-popup-card {
+    border: 1.5px solid #86EFAC !important;
 }

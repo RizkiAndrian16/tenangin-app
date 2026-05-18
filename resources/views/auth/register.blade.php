@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Register - StressCheck</title>
+    <title>Register - Tenangin</title>
 
     <!-- ADMIN KIT CSS -->
     <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">

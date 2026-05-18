@@ -12,7 +12,8 @@
 
             <li class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('dashboard') }}">
-                    <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+                    <i class="align-middle" data-feather="sliders"></i>
+                    <span class="align-middle">Dashboard</span>
                 </a>
             </li>
 
@@ -25,8 +26,15 @@
 
             <li class="sidebar-item {{ request()->routeIs('pss-assessments.*') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('pss-assessments.index') }}">
-                    <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">PSS-10
-                        Assessments</span>
+                    <i class="align-middle" data-feather="clipboard"></i>
+                    <span class="align-middle">PSS-10</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item {{ request()->routeIs('activities.*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('activities.index') }}">
+                    <i class="align-middle" data-feather="grid"></i>
+                    <span class="align-middle">Katalog Aktivitas</span>
                 </a>
             </li>
 
