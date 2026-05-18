@@ -36,7 +36,7 @@
             <div class="card-body p-4">
                 <div class="row g-4">
                     <div class="col-12">
-                        <label class="form-label fw-semibold">Nama Aktivitas</label>
+                        <label class="form-label fw-bold">Nama Aktivitas</label>
 
                         <input type="text" name="title" value="{{ old('title', $activity->title) }}"
                             class="form-control custom-input @error('title') is-invalid @enderror"
@@ -44,14 +44,14 @@
                     </div>
 
                     <div class="col-12">
-                        <label class="form-label fw-semibold">Deskripsi Aktivitas</label>
+                        <label class="form-label fw-bold">Deskripsi Aktivitas</label>
 
                         <textarea name="description" rows="5" class="form-control custom-input @error('description') is-invalid @enderror"
                             placeholder="Masukkan deskripsi aktivitas relaksasi">{{ old('description', $activity->description) }}</textarea>
                     </div>
 
-                    <div class="col-6">
-                        <label class="form-label fw-semibold">Jenis Aktivitas</label>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Jenis Aktivitas</label>
 
                         <input type="text" name="activity_type"
                             value="{{ old('activity_type', $activity->activity_type) }}"
@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label fw-semibold">Kategori Durasi Aktivitas</label>
+                        <label class="form-label fw-bold">Kategori Durasi Aktivitas</label>
 
                         <select name="duration_category"
                             class="form-select custom-input @error('duration_category') is-invalid @enderror">
@@ -84,7 +84,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label fw-semibold">Tingkat Intensitas Aktivitas</label>
+                        <label class="form-label fw-bold">Tingkat Intensitas Aktivitas</label>
 
                         <select name="intensity_level"
                             class="form-select custom-input @error('intensity_level') is-invalid @enderror">
@@ -104,7 +104,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label fw-semibold">Target Tingkat Stres</label>
+                        <label class="form-label fw-bold">Target Tingkat Stres</label>
 
                         <select name="stress_level_target"
                             class="form-select custom-input @error('stress_level_target') is-invalid @enderror">
@@ -134,7 +134,7 @@
                     </div>
 
                     <div class="col-12">
-                        <label class="form-label fw-semibold">Status Rekomendasi Aktivitas</label>
+                        <label class="form-label fw-bold">Status Rekomendasi Aktivitas</label>
 
                         <select name="status" class="form-select custom-input @error('status') is-invalid @enderror">
 
@@ -163,7 +163,7 @@
                     </div>
 
                     <div class="col-12">
-                        <label class="form-label fw-semibold">Instruksi dan Konteks Pelaksanaan Aktivitas</label>
+                        <label class="form-label fw-bold">Instruksi dan Konteks Pelaksanaan Aktivitas</label>
                         <textarea name="instruction" rows="5"
                             class="form-control custom-input
                         @error('instruction') is-invalid @enderror"

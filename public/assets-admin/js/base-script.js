@@ -535,7 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const stress = this.dataset.stress;
             let stressLabel = stress;
-            if (stress === 'Rendah,Sedang,Tinggi') stressLabel = 'Rendah,Sedang,Tinggi';
+            if (stress === 'Rendah,Sedang,Tinggi') stressLabel = 'Rendah, Sedang, Tinggi';
             else if (stress === 'Rendah,Sedang') stressLabel = 'Rendah & Sedang';
             else if (stress === 'Sedang,Tinggi') stressLabel = 'Sedang & Tinggi';
 

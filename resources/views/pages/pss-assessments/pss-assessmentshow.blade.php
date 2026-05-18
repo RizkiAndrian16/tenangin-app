@@ -175,7 +175,7 @@
                 </a>
 
                 <button class="btn btn-soft-success rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2">
-                    <span>Lihat Rekomendasi Aktivitas</span>
+                    <span>Lanjutkan Rekomendasi</span>
                     <i data-feather="arrow-right"></i>
                 </button>
             </div>

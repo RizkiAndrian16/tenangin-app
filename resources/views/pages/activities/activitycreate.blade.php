@@ -50,7 +50,7 @@
                             placeholder="Masukkan deskripsi aktivitas relaksasi">{{ old('description') }}</textarea>
                     </div>
 
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <label class="form-label fw-bold">Jenis Aktivitas</label>
 
                         <input type="text" name="activity_type" value="{{ old('activity_type') }}"
