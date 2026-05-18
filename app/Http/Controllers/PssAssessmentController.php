@@ -15,16 +15,11 @@ class PssAssessmentController extends Controller
             ->where('user_id', Auth::id());
 
         if (request('stress_level')) {
-
-            $query->where(
-                'stress_level',
-                request('stress_level')
-            );
+            $query->where('stress_level', request('stress_level'));
         }
 
         if (request('search')) {
-
-            $search = strtolower(request('search'));
+            $search = request('search');
 
             $days = [
                 'senin' => 'Monday',
@@ -36,46 +31,22 @@ class PssAssessmentController extends Controller
                 'minggu' => 'Sunday',
             ];
 
-            $englishDay = $days[$search] ?? null;
+            $searchLower = strtolower($search);
+            $englishDay = $days[$searchLower] ?? null;
 
             $query->where(function ($q) use ($search, $englishDay) {
-
-                $q->whereRaw(
-                    'LOWER(stress_level) LIKE ?',
-                    ['%' . $search . '%']
-                )
-
-                    ->orWhereRaw(
-                        'CAST(total_score AS CHAR) LIKE ?',
-                        ['%' . $search . '%']
-                    )
-
-                    ->orWhereRaw(
-                        "DATE_FORMAT(created_at, '%d-%m-%Y') LIKE ?",
-                        ['%' . $search . '%']
-                    )
-
-                    ->orWhereRaw(
-                        "DATE_FORMAT(created_at, '%Y-%m-%d') LIKE ?",
-                        ['%' . $search . '%']
-                    );
+                $q->where('stress_level', 'like', "%{$search}%")
+                    ->orWhere('total_score', 'like', "%{$search}%")
+                    ->orWhere('created_at', 'like', "%{$search}%");
 
                 if ($englishDay) {
-
-                    $q->orWhereRaw(
-                        'DAYNAME(created_at) = ?',
-                        [$englishDay]
-                    );
+                    $q->orWhereRaw('DAYNAME(created_at) = ?', [$englishDay]);
                 }
             });
         }
 
         if (request('date')) {
-
-            $query->whereDate(
-                'created_at',
-                request('date')
-            );
+            $query->whereDate('created_at', request('date'));
         }
 
         $perPage = request('per_page', 10);
@@ -87,6 +58,7 @@ class PssAssessmentController extends Controller
 
         return view('pages.pss-assessments.pss-assessment', compact('assessments'));
     }
+
 
     public function create()
     {

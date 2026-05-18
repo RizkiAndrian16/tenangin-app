@@ -15,28 +15,11 @@ class ActivityController extends Controller
             $search = strtolower(request('search'));
 
             $query->where(function ($q) use ($search) {
-
-                $q->whereRaw('LOWER(title) LIKE ?', ['%' . $search . '%'])
-
-                    ->orWhereRaw(
-                        'LOWER(activity_type) LIKE ?',
-                        ['%' . $search . '%']
-                    )
-
-                    ->orWhereRaw(
-                        'LOWER(stress_level_target) LIKE ?',
-                        ['%' . $search . '%']
-                    )
-
-                    ->orWhereRaw(
-                        'LOWER(duration_category) LIKE ?',
-                        ['%' . $search . '%']
-                    )
-
-                    ->orWhereRaw(
-                        'LOWER(intensity_level) LIKE ?',
-                        ['%' . $search . '%']
-                    );
+                $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('activity_type', 'like', "%{$search}%")
+                    ->orWhere('duration_category', 'like', "%{$search}%")
+                    ->orWhere('intensity_level', 'like', "%{$search}%")
+                    ->orWhere('status', 'like', "%{$search}%");
             });
         }
 
