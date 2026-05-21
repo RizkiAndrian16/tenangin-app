@@ -57,7 +57,8 @@
                 </div>
             </div>
 
-            <form id="bulkDeleteForm" action="{{ route('pss-assessments.bulk-destroy') }}" method="POST">
+            <form id="bulkDeleteForm" action="{{ route('pss-assessments.bulk-destroy') }}" method="POST"
+                class="form-table-wrapper">
                 @csrf
                 @method('DELETE')
                 <div class="table-responsive">

@@ -4,7 +4,7 @@
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h1 class="h3 fw-bold mb-1">Detail PSS Assessment</h1>
+            <h1 class="h3 fw-bold mb-1">Detail PSS-10 Assessment</h1>
             <p class="text-muted mb-0">Hasil pengukuran tingkat stres menggunakan PSS-10.</p>
         </div>
     </div>
@@ -174,10 +174,14 @@
                     <span>Kembali</span>
                 </a>
 
-                <button class="btn btn-soft-success rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2">
+                <a href="{{ route('recommendations.index', $pssAssessment->id) }}"
+                    class="btn btn-soft-success rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2">
+
                     <span>Lanjutkan Rekomendasi</span>
+
                     <i data-feather="arrow-right"></i>
-                </button>
+
+                </a>
             </div>
 
         </div>

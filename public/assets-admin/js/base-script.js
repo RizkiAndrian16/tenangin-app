@@ -222,6 +222,55 @@ if (window.pssForm) {
 
 //
 // ======================================
+// PREFERENCE FORM VALIDATION
+// ======================================
+//
+
+if (window.preferenceForm) {
+
+    preferenceForm.onsubmit = e => {
+
+        const type = document.querySelector(
+            'select[name="preferred_activity_type"]'
+        ).value;
+
+        const duration = document.querySelector(
+            'select[name="preferred_duration"]'
+        ).value;
+
+        const intensity = document.querySelector(
+            'select[name="preferred_intensity"]'
+        ).value;
+
+        const alertBox = document.getElementById('preferenceAlert');
+
+        // Jika ada satu saja yang belum dipilih
+        if (!type || !duration || !intensity) {
+
+            e.preventDefault();
+
+            alertBox.style.display = 'block';
+
+            alertBox.scrollIntoView({
+
+                behavior: 'smooth',
+                block: 'center'
+
+            });
+
+        } else {
+
+            // Sembunyikan alert jika sudah lengkap
+            alertBox.style.display = 'none';
+
+        }
+
+    };
+
+}
+
+//
+// ======================================
 // BULK DELETE
 // ======================================
 //
@@ -558,6 +607,58 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // RULE BASED DETAIL POPUP
+    document.querySelectorAll('.js-open-rule').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const stress = this.dataset.stress;
+            let badge = '';
+            if (stress === 'Rendah') {
+                badge = `
+                    <span class="badge badge-soft-success rounded-pill px-3 py-1">
+                        Rendah
+                    </span>
+                `;
+
+            } else if (stress === 'Sedang') {
+                badge = `
+                    <span class="badge badge-soft-warning rounded-pill px-3 py-1">
+                        Sedang
+                    </span>
+                `;
+
+            } else {
+                badge = `
+                    <span class="badge badge-soft-danger rounded-pill px-3 py-1">
+                        Tinggi
+                    </span>
+                `;
+            }
+
+            document.getElementById(
+                'popupRuleStressBadge'
+            ).innerHTML = badge;
+
+            document.getElementById(
+                'popupRuleActivity'
+            ).textContent = this.dataset.activity;
+
+            document.getElementById(
+                'popupRuleType'
+            ).textContent = this.dataset.type;
+
+            document.getElementById(
+                'popupRuleIntensity'
+            ).textContent = this.dataset.intensity;
+
+            document.getElementById(
+                'popupRuleDescription'
+            ).textContent = this.dataset.description;
+
+            openModal('ruleBasedRuleModal');
+
+        });
+    });
+
 });
 
 //
@@ -621,6 +722,7 @@ window.addEventListener('load', () => {
         url.searchParams.has('stress_level') ||
         url.searchParams.has('date') ||
         url.searchParams.has('status') ||
+        url.searchParams.has('intensity_level') ||
         url.searchParams.has('search') ||
         url.searchParams.has('per_page');
 
@@ -629,6 +731,7 @@ window.addEventListener('load', () => {
     url.searchParams.delete('stress_level');
     url.searchParams.delete('date');
     url.searchParams.delete('status');
+    url.searchParams.delete('intensity_level');
     url.searchParams.delete('search');
     url.searchParams.delete('per_page');
 
@@ -640,3 +743,48 @@ window.addEventListener('load', () => {
 
 });
 
+//
+// ======================================
+// SHOW MORE / SHOW LESS RECOMMENDATIONS
+// ======================================
+//
+
+const btnShowMore = document.getElementById('btnShowMore');
+
+if (btnShowMore) {
+    let isExpanded = false; // Penanda status awal (sedang ditutup)
+
+    btnShowMore.addEventListener('click', () => {
+        // Cari semua elemen rekomendasi yang disembunyikan
+        const hiddenItems = document.querySelectorAll('.hidden-recommendation');
+
+        if (!isExpanded) {
+            // JIKA SEDANG DITUTUP -> TAMPILKAN SEMUA
+            hiddenItems.forEach(item => item.classList.remove('d-none'));
+
+            // Ubah tombol jadi "Tampilkan lebih sedikit" dengan panah ke atas
+            btnShowMore.innerHTML = `
+                <span>Tampilkan lebih sedikit</span>
+                <i data-feather="chevron-up"></i>
+            `;
+            isExpanded = true; // Update status
+
+        } else {
+            // JIKA SEDANG DIBUKA -> SEMBUNYIKAN KEMBALI
+            hiddenItems.forEach(item => item.classList.add('d-none'));
+
+            // Kembalikan tombol ke bentuk semula dengan panah ke bawah
+            btnShowMore.innerHTML = `
+                <span>Lihat rekomendasi lainnya</span>
+                <i data-feather="chevron-down"></i>
+            `;
+            isExpanded = false; // Update status
+
+            // Menggulir layar sedikit ke arah tombol agar transisinya mulus (layar tidak loncat)
+            btnShowMore.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+
+        // Karena kita menyuntikkan icon baru via innerHTML, kita harus memanggil ulang feather
+        if (window.feather) feather.replace();
+    });
+}

@@ -17,6 +17,10 @@
                 </a>
             </li>
 
+            <li class="sidebar-header fw-bold">
+                USER
+            </li>
+
             <li class="sidebar-item {{ request()->routeIs('profile.*') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('profile.edit') }}">
                     <i class="align-middle" data-feather="user"></i>
@@ -24,11 +28,29 @@
                 </a>
             </li>
 
-            <li class="sidebar-item {{ request()->routeIs('pss-assessments.*') ? 'active' : '' }}">
+            <li
+                class="sidebar-item {{ request()->routeIs('pss-assessments.*') || request()->routeIs('recommendations.index') || request()->routeIs('recommendations.final') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('pss-assessments.index') }}">
                     <i class="align-middle" data-feather="clipboard"></i>
                     <span class="align-middle">PSS-10</span>
                 </a>
+            </li>
+
+            <li class="sidebar-item {{ request()->routeIs('recommendations.history') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('recommendations.history') }}">
+                    <i class="align-middle" data-feather="clock"></i>
+                    <span class="align-middle">Riwayat Rekomendasi</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item {{ request()->routeIs('#.*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="#">
+                    <i class="align-middle" data-feather="message-circle"></i>
+                    <span class="align-middle"> Feedback </span> </a>
+            </li>
+
+            <li class="sidebar-header fw-bold">
+                RELAKSASI
             </li>
 
             <li class="sidebar-item {{ request()->routeIs('activities.*') ? 'active' : '' }}">
@@ -38,72 +60,10 @@
                 </a>
             </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-sign-in.html">
-                    <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Sign In</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-sign-up.html">
-                    <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Sign
-                        Up</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-blank.html">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
-                </a>
-            </li>
-
-            <li class="sidebar-header fw-bold">
-                Tools & Components
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="ui-buttons.html">
-                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Buttons</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="ui-forms.html">
-                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Forms</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="ui-cards.html">
-                    <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Cards</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="ui-typography.html">
-                    <i class="align-middle" data-feather="align-left"></i> <span class="align-middle">Typography</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="icons-feather.html">
-                    <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span>
-                </a>
-            </li>
-
-            <li class="sidebar-header fw-bold">
-                Plugins & Addons
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="charts-chartjs.html">
-                    <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Charts</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="maps-google.html">
-                    <i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span>
+            <li class="sidebar-item {{ request()->routeIs('rule-based-rules.*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('rule-based-rules.index') }}">
+                    <i class="align-middle" data-feather="git-branch"></i>
+                    <span class="align-middle">Aturan Rekomendasi</span>
                 </a>
             </li>
         </ul>

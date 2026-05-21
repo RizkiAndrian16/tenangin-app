@@ -213,7 +213,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .search-input {
-    height: 32px !important;
+    height: 36px !important;
 
     padding-left: 38px !important;
 

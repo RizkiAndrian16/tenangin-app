@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PssAssessmentController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\RuleBasedRuleController;
+use App\Http\Controllers\RecommendationController;
 
 Route::get('/', function () {
     return view('landing.index');
@@ -35,7 +37,16 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/pss-assessments/{pssAssessment}', [PssAssessmentController::class, 'destroy'])->name('pss-assessments.destroy');
 
     // ======================================
-    // Activity (Katalog Aktivitas Relaksasi)
+    // RECOMMENDATIONS
+    // ======================================
+    Route::get('/recommendations/{pssAssessment}', [RecommendationController::class, 'index'])->name('recommendations.index');
+    Route::post('/recommendations/{pssAssessment}/preferences', [RecommendationController::class, 'processPreferences'])->name('recommendations.preferences');
+    Route::get('/recommendations/{pssAssessment}/final', [RecommendationController::class, 'generateFinalRecommendation'])->name('recommendations.final');
+
+    Route::get('/recommendations-history', [RecommendationController::class, 'history'])->name('recommendations.history');
+
+    // ======================================
+    // ACTIVITY (KATALOG AKTIVITAS RELAKSASI)
     // ======================================
     Route::get('/activities', [ActivityController::class, 'index'])->name('activities.index');
     Route::get('/activities/create', [ActivityController::class, 'create'])->name('activities.create');
@@ -45,6 +56,17 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/activities/{activity}', [ActivityController::class, 'update'])->name('activities.update');
     Route::delete('/activities', [ActivityController::class, 'bulkDestroy'])->name('activities.bulk-destroy');
     Route::delete('/activities/{activity}', [ActivityController::class, 'destroy'])->name('activities.destroy');
+
+    // ======================================
+    // ATURAN RULE BASED RULES
+    // ======================================
+    Route::get('/rule-based-rules', [RuleBasedRuleController::class, 'index'])->name('rule-based-rules.index');
+    Route::get('/rule-based-rules/create', [RuleBasedRuleController::class, 'create'])->name('rule-based-rules.create');
+    Route::post('/rule-based-rules', [RuleBasedRuleController::class, 'store'])->name('rule-based-rules.store');
+    Route::get('/rule-based-rules/{ruleBasedRule}/edit', [RuleBasedRuleController::class, 'edit'])->name('rule-based-rules.edit');
+    Route::put('/rule-based-rules/{ruleBasedRule}', [RuleBasedRuleController::class, 'update'])->name('rule-based-rules.update');
+    Route::delete('/rule-based-rules', [RuleBasedRuleController::class, 'bulkDestroy'])->name('rule-based-rules.bulk-destroy');
+    Route::delete('/rule-based-rules/{ruleBasedRule}', [RuleBasedRuleController::class, 'destroy'])->name('rule-based-rules.destroy');
 });
 
 require __DIR__ . '/auth.php';

@@ -40,6 +40,14 @@ class ActivityController extends Controller
             );
         }
 
+        if (request('intensity_level')) {
+
+            $query->where(
+                'intensity_level',
+                request('intensity_level')
+            );
+        }
+
         $perPage = request('per_page', 10);
 
         $activities = $query

@@ -33,7 +33,7 @@
     <form id="filterForm" method="GET" action="{{ route('activities.index') }}">
         <div class="card filter-card mb-2">
             <div class="card-body">
-                <x-filter-table :showStressLevel="true" :showDate="false" :showStatus="true" :resetRoute="route('activities.index')" />
+                <x-filter-table :showStressLevel="true" :showDate="false" :showStatus="true" :showIntensity="true" :resetRoute="route('activities.index')" />
             </div>
         </div>
     </form>
@@ -60,7 +60,8 @@
                 </div>
             </div>
 
-            <form id="bulkDeleteForm" action="{{ route('activities.bulk-destroy') }}" method="POST">
+            <form id="bulkDeleteForm" action="{{ route('activities.bulk-destroy') }}" method="POST"
+                class="form-table-wrapper">
                 @csrf
                 @method('DELETE')
                 <div class="table-responsive">

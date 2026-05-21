@@ -15,9 +15,7 @@
                 <i data-feather="alert-circle"></i>
 
                 <div>
-                    <h6 class="fw-bold mb-2">
-                        Validasi gagal
-                    </h6>
+                    <h6 class="fw-bold mb-2">Validasi gagal</h6>
 
                     <ul class="mb-0 ps-3">
                         @foreach ($errors->all() as $error)
@@ -181,7 +179,7 @@
                         <button type="submit"
                             class="btn btn-soft-success rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2">
                             <i data-feather="save"></i>
-                            <span>Simpan Perubahan</span>
+                            <span>Simpan</span>
                         </button>
                     </div>
                 </div>

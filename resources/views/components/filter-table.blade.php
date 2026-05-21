@@ -2,6 +2,7 @@
     'showStressLevel' => true,
     'showDate' => true,
     'showStatus' => false,
+    'showIntensity' => false,
     'resetRoute' => null,
 ])
 
@@ -53,6 +54,30 @@
                 </div>
             @endif
 
+            {{-- FILTER INTENSITAS --}}
+            @if ($showIntensity)
+                <div class="d-flex flex-column gap-1">
+
+                    <label class="filter-label">Intensitas</label>
+
+                    <select name="intensity_level" class="form-select filter-input auto-submit-filter">
+
+                        <option value="">
+                            Semua Intensitas
+                        </option>
+
+                        <option value="Ringan" {{ request('intensity_level') == 'Ringan' ? 'selected' : '' }}>
+                            Ringan
+                        </option>
+
+                        <option value="Sedang" {{ request('intensity_level') == 'Sedang' ? 'selected' : '' }}>
+                            Sedang
+                        </option>
+
+                    </select>
+                </div>
+            @endif
+
             {{-- FILTER STATUS REKOMENDASI --}}
             @if ($showStatus)
                 <div class="d-flex flex-column gap-1">
@@ -95,7 +120,7 @@
     {{-- RESET BUTTON --}}
     <a href="{{ $resetRoute }}" id="btnResetFilter"
         class="btn btn-soft-secondary px-4
-    {{ !request()->hasAny(['stress_level', 'date', 'status', 'search', 'per_page']) ? 'pe-none' : '' }}">
+    {{ !request()->hasAny(['stress_level', 'date', 'status', 'intensity_level', 'search', 'per_page']) ? 'pe-none' : '' }}">
         Reset Filter
     </a>
 </div>

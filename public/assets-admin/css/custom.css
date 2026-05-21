@@ -222,21 +222,40 @@ a.sidebar-link svg {
 
 @media (max-width: 768px) {
 
+    /* 1. Ubah susunan toolbar menjadi atas-bawah dan PAKSA rata kiri */
+    .table-toolbar {
+        flex-direction: column !important;
+        align-items: flex-start !important; /* !important akan menarik semua elemen ke kiri */
+        gap: 12px;
+    }
+
+    /* Pengunci tambahan agar Show Entries pasti di kiri dan spasinya rapi */
+    .show-entries-wrapper {
+        align-self: flex-start !important; /* Garansi 100% rata kiri */
+        margin-bottom: 0 !important;       /* Hapus spasi bawah bawaan agar tidak bentrok dengan gap 12px */
+    }
+
+    /* 2. Container aksi (Trash + Search) mengambil lebar penuh */
+    .toolbar-actions {
+        width: 100%;
+        margin-bottom: 0;
+    }
+
+    /* 3. Kotak Search mengisi sisa ruang secara dinamis di sebelah tombol Hapus */
     .search-wrapper {
-        width: 100% !important;
+        width: auto !important;
+        flex-grow: 1;
     }
 
     .search-input {
         width: 100% !important;
-
         min-width: 100% !important;
     }
 
+    /* Tetap pertahankan perbaikan flex bawaan Anda sebelumnya */
     .d-flex.justify-content-between.align-items-center.mb-3 {
         flex-direction: column !important;
-
         align-items: stretch !important;
-
         gap: 12px;
     }
 }
@@ -283,4 +302,40 @@ a.sidebar-link svg {
 
 .main {
     overflow: visible !important;
+}
+
+/* ======================================
+   TABLE & FORM WRAPPER FIX (MOBILE)
+====================================== */
+
+.form-table-wrapper {
+    width: 100%;
+    max-width: 100%;
+}
+
+.table-card-body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+/* =========================
+   BORDER HIJAU SOFT
+========================= */
+.border-soft-success {
+    border: 1px solid #A7F3D0 !important;
+}
+
+/* ==========================================
+   HALAMAN KANDIDAT AKTIVITAS (CLEAN STYLE)
+============================================ */
+
+/* Style untuk kartu individu kandidat aktivitas */
+.activity-item-card {
+    background-color: #fdfdfd !important;
+    border: 1px solid #f1f5f9 !important;
+}
+
+/* Kerapian tipografi judul aktivitas (Modern Optical Kerning) */
+.activity-item-title {
+    letter-spacing: -0.3px;
 }
