@@ -12,7 +12,7 @@ class ActivityController extends Controller
         $query = Activity::query();
 
         if (request('search')) {
-            $search = strtolower(request('search'));
+            $search = strtolower((string) request('search'));
 
             $query->where(function ($q) use ($search) {
                 $q->where('title', 'like', "%{$search}%")
@@ -28,7 +28,7 @@ class ActivityController extends Controller
             $query->where(
                 'stress_level_target',
                 'LIKE',
-                '%' . request('stress_level') . '%'
+                '%' . (string) request('stress_level') . '%'
             );
         }
 
@@ -36,7 +36,7 @@ class ActivityController extends Controller
 
             $query->where(
                 'status',
-                request('status')
+                (string) request('status')
             );
         }
 
@@ -44,7 +44,7 @@ class ActivityController extends Controller
 
             $query->where(
                 'intensity_level',
-                request('intensity_level')
+                (string) request('intensity_level')
             );
         }
 

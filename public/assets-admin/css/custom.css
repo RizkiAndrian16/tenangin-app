@@ -339,3 +339,23 @@ a.sidebar-link svg {
 .activity-item-title {
     letter-spacing: -0.3px;
 }
+
+/* =========================
+   EMPTY STATE ICON
+========================= */
+.empty-state-icon {
+    width: 48px !important;
+    height: 48px !important;
+}
+
+/* =========================
+   CUSTOM ICON SIZES & OFFSETS
+========================= */
+.icon-16 {
+    width: 16px !important;
+    height: 16px !important;
+}
+
+.list-icon-offset {
+    margin-top: -2px;
+}

@@ -199,7 +199,7 @@
                     <div class="col-12">
                         <div class="p-5 text-center">
                             <div class="mb-3 text-muted">
-                                <i data-feather="info" style="width: 48px; height: 48px;"></i>
+                                <i data-feather="info" class="empty-state-icon"></i>
                             </div>
                             <h5 class="fw-bold mb-2">Kandidat Aktivitas Belum Tersedia</h5>
                             <p class="text-muted mb-0">
@@ -217,7 +217,7 @@
          CARD 3: FORM PREFERENSI AKTIVITAS
     =============================================== --}}
 
-    <div id="preferenceAlert" class="alert-soft-danger rounded-3 p-3 mb-4" style="display: none;">
+    <div id="preferenceAlert" class="alert-soft-danger rounded-3 p-3 mb-4">
         Harap lengkapi semua pilihan preferensi aktivitas anda sebelum melanjutkan.
     </div>
 

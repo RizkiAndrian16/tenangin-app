@@ -19,7 +19,7 @@ class PssAssessmentController extends Controller
         }
 
         if (request('search')) {
-            $search = request('search');
+            $search = (string) request('search');
 
             $days = [
                 'senin' => 'Monday',

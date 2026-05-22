@@ -7,8 +7,6 @@ use App\Models\RuleBasedRule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\UserPreference;
-use App\Models\Activity;
-use Illuminate\Support\Collection;
 use App\Models\Recommendation;
 use App\Models\RecommendationItem;
 
@@ -29,10 +27,7 @@ class RecommendationController extends Controller
 
             ->whereHas('activity', function ($query) {
 
-                $query->whereIn('status', [
-                    'Direkomendasikan',
-                    'Direkomendasikan terbatas'
-                ]);
+                $query->whereIn('status', ['Direkomendasikan', 'Direkomendasikan terbatas']);
             });
 
         // ======================================
@@ -45,10 +40,7 @@ class RecommendationController extends Controller
 
             $query->whereHas('activity', function ($query) {
 
-                $query->where(
-                    'intensity_level',
-                    'Ringan'
-                );
+                $query->where('intensity_level', 'Ringan');
             });
         }
 
@@ -58,19 +50,13 @@ class RecommendationController extends Controller
 
             $query->whereHas('activity', function ($query) {
 
-                $query->whereIn('intensity_level', [
-                    'Ringan',
-                    'Sedang'
-                ]);
+                $query->whereIn('intensity_level', ['Ringan', 'Sedang']);
             });
         }
 
         // IF tingkat stres = rendah
         // THEN rekomendasikan aktivitas dengan variasi lebih luas
         else {
-
-            // tidak perlu filter intensitas
-
         }
 
         $rules = $query
@@ -80,10 +66,8 @@ class RecommendationController extends Controller
         return view('pages.recommendations.recommendation', compact('pssAssessment', 'rules', 'stressLevel'));
     }
 
-    public function processPreferences(
-        Request $request,
-        PssAssessment $pssAssessment
-    ) {
+    public function processPreferences(Request $request, PssAssessment $pssAssessment)
+    {
         if ($pssAssessment->user_id !== Auth::id()) {
 
             abort(403);
@@ -91,26 +75,16 @@ class RecommendationController extends Controller
 
         $validated = $request->validate([
 
-            'preferred_activity_type' => [
-                'required',
-                'string'
-            ],
-
-            'preferred_duration' => [
-                'required',
-                'string'
-            ],
-
-            'preferred_intensity' => [
-                'required',
-                'string'
-            ],
+            'preferred_activity_type' => ['required', 'string'],
+            'preferred_duration' => ['required', 'string'],
+            'preferred_intensity' => ['required', 'string'],
 
         ]);
 
         UserPreference::where(
             'user_id',
             Auth::id()
+
         )->update([
             'is_active' => false
         ]);
@@ -134,15 +108,11 @@ class RecommendationController extends Controller
 
         return redirect()
             ->route('recommendations.final', $pssAssessment->id)
-            ->with(
-                'success',
-                'Preferensi aktivitas berhasil disimpan.'
-            );
+            ->with('success', 'Preferensi aktivitas berhasil disimpan.');
     }
 
-    public function generateFinalRecommendation(
-        PssAssessment $pssAssessment
-    ) {
+    public function generateFinalRecommendation(PssAssessment $pssAssessment)
+    {
         if ($pssAssessment->user_id !== Auth::id()) {
 
             abort(403);
@@ -162,10 +132,7 @@ class RecommendationController extends Controller
 
             return redirect()
                 ->route('recommendations.index', $pssAssessment->id)
-                ->with(
-                    'error',
-                    'Preferensi aktivitas belum dipilih.'
-                );
+                ->with('error', 'Preferensi aktivitas belum dipilih.');
         }
 
         // ======================================
@@ -178,10 +145,7 @@ class RecommendationController extends Controller
 
             ->whereHas('activity', function ($query) {
 
-                $query->whereIn('status', [
-                    'Direkomendasikan',
-                    'Direkomendasikan terbatas'
-                ]);
+                $query->whereIn('status', ['Direkomendasikan', 'Direkomendasikan terbatas']);
             });
 
         // stres tinggi
@@ -189,10 +153,7 @@ class RecommendationController extends Controller
 
             $query->whereHas('activity', function ($query) {
 
-                $query->where(
-                    'intensity_level',
-                    'Ringan'
-                );
+                $query->where('intensity_level', 'Ringan');
             });
         }
 
@@ -201,10 +162,7 @@ class RecommendationController extends Controller
 
             $query->whereHas('activity', function ($query) {
 
-                $query->whereIn('intensity_level', [
-                    'Ringan',
-                    'Sedang'
-                ]);
+                $query->whereIn('intensity_level', ['Ringan', 'Sedang']);
             });
         }
 
@@ -224,11 +182,6 @@ class RecommendationController extends Controller
 
             $score = 0;
 
-            // ======================================
-            // JENIS AKTIVITAS
-            // BOBOT = 3
-            // ======================================
-
             if (
                 $activity->activity_type ==
                 $activePreference->preferred_activity_type
@@ -237,11 +190,6 @@ class RecommendationController extends Controller
                 $score += 3;
             }
 
-            // ======================================
-            // DURASI
-            // BOBOT = 2
-            // ======================================
-
             if (
                 $activity->duration_category ==
                 $activePreference->preferred_duration
@@ -249,11 +197,6 @@ class RecommendationController extends Controller
 
                 $score += 2;
             }
-
-            // ======================================
-            // INTENSITAS
-            // BOBOT = 2
-            // ======================================
 
             if (
                 $activity->intensity_level ==
@@ -273,9 +216,7 @@ class RecommendationController extends Controller
             $recommendations->push([
 
                 'activity' => $activity,
-
                 'similarity_score' => $similarityScore,
-
                 'matching_score' => $score,
 
             ]);
@@ -313,9 +254,7 @@ class RecommendationController extends Controller
             $recommendation = Recommendation::create([
 
                 'user_id' => Auth::id(),
-
                 'pss_assessment_id' => $pssAssessment->id,
-
                 'user_preference_id' => $activePreference->id,
 
             ]);
@@ -345,31 +284,18 @@ class RecommendationController extends Controller
             }
         }
 
-        return view(
-            'pages.recommendations.final-recommendation',
-            compact(
-                'pssAssessment',
-                'stressLevel',
-                'activePreference',
-                'finalRecommendations'
-            )
-        );
+        return view('pages.recommendations.final-recommendation', compact('pssAssessment', 'stressLevel', 'activePreference', 'finalRecommendations'));
     }
 
     public function history()
     {
-        $recommendations = Recommendation::with([
-            'pssAssessment',
-            'userPreference',
-            'recommendationItems'
-        ])
-            ->where('user_id', Auth::id())
-            ->latest()
-            ->paginate(10);
+        $recommendations = Recommendation::with(['pssAssessment', 'userPreference', 'recommendationItems'])
 
-        return view(
-            'pages.recommendations.historyrecommendation',
-            compact('recommendations')
-        );
+            ->where('user_id, Auth::id()')
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('pages.recommendations.historyrecommendation', compact('recommendations'));
     }
 }

@@ -781,7 +781,7 @@ if (btnShowMore) {
             isExpanded = false; // Update status
 
             // Menggulir layar sedikit ke arah tombol agar transisinya mulus (layar tidak loncat)
-            btnShowMore.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            btnShowMore.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
         // Karena kita menyuntikkan icon baru via innerHTML, kita harus memanggil ulang feather

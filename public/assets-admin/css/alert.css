@@ -103,3 +103,10 @@
     background-color: #c2f7db;
     color: #15803D;
 }
+
+/* ======================================
+   PREFERENCE ALERT (HIDDEN BY DEFAULT)
+====================================== */
+#preferenceAlert {
+    display: none;
+}

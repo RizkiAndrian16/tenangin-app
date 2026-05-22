@@ -49,8 +49,7 @@
 
                 {{-- Kolom 2: Preferensi Pengguna --}}
                 <div class="col-lg-8">
-                    <div class="card border-0 shadow-sm rounded-4 h-100"
-                        style="background-color: #fdfdfd; border: 1px solid #f1f5f9 !important;">
+                    <div class="card border-0 shadow-sm rounded-4 h-100 activity-item-card">
                         <div class="card-body p-4 p-xl-5 d-flex flex-column justify-content-center">
                             <div class="row align-items-center g-4">
 
@@ -114,8 +113,7 @@
     <div class="card border-0 shadow-sm rounded-4 mb-4">
         <div class="card-body p-4">
 
-            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4"
-                style="background-color: #fdfdfd; border: 1px solid #f1f5f9 !important;">
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 activity-item-card">
                 {{-- Bagian Atas: Ikon dan Judul Sejajar --}}
                 <div class="d-flex align-items-center gap-2 mb-3">
                     <div class="icon-box-soft icon-box-success flex-shrink-0">
@@ -147,17 +145,6 @@
                                 {{-- HEADER --}}
                                 <div class="mb-3 border-bottom pb-3 d-flex justify-content-between align-items-start gap-3">
                                     <div>
-                                        {{-- <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-                                            @if ($index == 0)
-                                                <span class="badge bg-success rounded-pill px-3 py-1">
-                                                    🏆 Top Recommendation
-                                                </span>
-                                            @endif
-                                            <span class="badge badge-soft-primary rounded-pill px-3 py-1">
-                                                Rank #{{ $index + 1 }}
-                                            </span>
-                                        </div> --}}
-
                                         <h5 class="fw-bold mb-1 text-dark activity-item-title">{{ $activity->title }}</h5>
                                         <p class="text-muted small mb-0">{{ $activity->activity_type }}</p>
                                     </div>
@@ -200,23 +187,6 @@
                                     </div>
                                 </div>
 
-                                {{-- DESCRIPTION & INSTRUCTION --}}
-                                {{-- <div class="mb-3">
-                                    <p class="fw-bold mb-1">Deskripsi Aktivitas</p>
-                                    <p class="text-muted small mb-0">
-                                        {{ $activity->description }}
-                                    </p>
-                                </div> --}}
-
-                                {{-- @if ($activity->instruction)
-                                    <div class="mb-3">
-                                        <p class="fw-bold mb-1">Instruksi Aktivitas</p>
-                                        <p class="text-muted small mb-0">
-                                            {{ $activity->instruction }}
-                                        </p>
-                                    </div>
-                                @endif --}}
-
                                 @if ($activity->instruction)
                                     <div class="mt-4 pt-3 border-top">
                                         <p class="fw-bold mb-3">Tips dan Konteks Pelaksanaan Aktivitas:</p>
@@ -227,15 +197,12 @@
                                             );
                                         @endphp
 
-                                        {{-- Ubah gap-2 menjadi gap-3 agar jarak antar poin lebih bernapas --}}
                                         <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
                                             @foreach ($steps as $step)
                                                 <li class="d-flex align-items-start gap-3 text-muted small">
 
-                                                    {{-- Gunakan margin-top negatif untuk menarik ikon ke atas --}}
-                                                    <div class="text-success flex-shrink-0" style="margin-top: -0.25px;">
-                                                        <i data-feather="check-circle"
-                                                            style="width: 16px; height: 16px;"></i>
+                                                    <div class="text-success flex-shrink-0 list-icon-offset">
+                                                        <i data-feather="check-circle" class="icon-16"></i>
                                                     </div>
 
                                                     <span class="lh-base">{{ $step }}.</span>
@@ -261,7 +228,7 @@
                     <div class="col-12">
                         <div class="p-5 text-center">
                             <div class="mb-3 text-muted">
-                                <i data-feather="info" style="width: 48px; height: 48px;"></i>
+                                <i data-feather="info" class="empty-state-icon"></i>
                             </div>
                             <h5 class="fw-bold mb-2">Final Recommendation Tidak Tersedia</h5>
                             <p class="text-muted mb-0">
@@ -273,7 +240,7 @@
             </div>
 
             {{-- TOMBOL LIHAT LAINNYA --}}
-            @if ($finalRecommendations->count() > 3)
+            @if ($finalRecommendations->count() > 2)
                 <div class="text-center mt-4 mb-4" id="showMoreContainer">
                     <button type="button" id="btnShowMore"
                         class="btn btn-soft-secondary rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2">
