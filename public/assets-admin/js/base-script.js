@@ -751,7 +751,8 @@ window.addEventListener('load', () => {
 
 const btnShowMore = document.getElementById('btnShowMore');
 
-if (btnShowMore) {
+if (btnShowMore)
+{
     let isExpanded = false; // Penanda status awal (sedang ditutup)
 
     btnShowMore.addEventListener('click', () => {
@@ -788,3 +789,21 @@ if (btnShowMore) {
         if (window.feather) feather.replace();
     });
 }
+
+// ======================================
+// MOBILE OVERLAY CLICK TO CLOSE SIDEBAR
+// ======================================
+document.addEventListener('click', function(e) {
+    if (window.innerWidth <= 991.98) {
+        const sidebar = document.getElementById('sidebar');
+        const toggleBtn = document.querySelector('.js-sidebar-toggle');
+        // Jika sidebar SEDANG TERBUKA (di mobile, class 'collapsed' berarti terbuka)
+        if (sidebar && sidebar.classList.contains('collapsed')) {
+            // Jika area yang diklik BUKAN sidebar dan BUKAN tombol hamburger
+            if (!sidebar.contains(e.target) && (!toggleBtn || !toggleBtn.contains(e.target))) {
+                e.preventDefault(); // Cegah klik tembus ke elemen di bawahnya
+                if (toggleBtn) toggleBtn.click(); // Tutup sidebar
+            }
+        }
+    }
+});

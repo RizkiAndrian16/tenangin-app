@@ -1,77 +1,151 @@
 @extends('layouts.main')
 @section('title', 'Riwayat Rekomendasi - Tenangin.')
 @section('content')
-
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
         <div>
             <h1 class="h3 fw-bold mb-1">Riwayat Rekomendasi</h1>
-            <p class="text-muted mb-0">
-                Riwayat hasil rekomendasi aktivitas relaksasi pengguna.
-            </p>
+            <p class="text-muted mb-0">Riwayat hasil rekomendasi aktivitas relaksasi pengguna.</p>
         </div>
     </div>
+    @if (session('success'))
+        <div class="profile-success-alert mb-4" id="successAlert">
+            <div class="d-flex align-items-start gap-3">
+                <div class="profile-success-icon">
+                    <i data-feather="check-circle"></i>
+                </div>
+                <div>
+                    <h6 class="fw-bold mb-1">Sukses!</h6>
+                    <p class="mb-0">{{ session('success') }}</p>
+                </div>
+            </div>
+        </div>
+    @endif
+    <form id="filterForm" method="GET" action="{{ route('recommendations.history') }}">
+        <div class="card filter-card mb-2">
+            <div class="card-body">
+                <x-filter-table :showStressLevel="true" :showDate="true" :showStatus="false" :showIntensity="false" :resetRoute="route('recommendations.history')" />
+            </div>
+        </div>
+    </form>
+    <div class="card">
+        <div class="card-body table-card-body">
+            <div class="table-toolbar">
+                <x-show-entries />
+                <div class="toolbar-actions">
+                    <!-- Tombol Bulk Delete (Otomatis muncul dari JS jika ada checkbox yang dicentang) -->
+                    <button type="button" id="btnBulkDelete"
+                        class="btn btn-soft-danger btn-sm rounded-pill px-3 py-2 align-items-center gap-1"
+                        style="display: none;">
+                        <i data-feather="trash-2"></i>
+                    </button>
+                    <div class="search-wrapper">
+                        <i data-feather="search" class="search-icon"></i>
+                        <input type="text" name="search" value="{{ request('search') }}"
+                            class="form-control search-input" placeholder="Search..." form="filterForm">
+                    </div>
+                </div>
+            </div>
 
-    <div class="card border-0 shadow-sm rounded-4">
-        <div class="card-body p-0">
-            <div class="table-responsive">
-                <table class="table align-middle mb-0">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Tingkat Stres</th>
-                            <th>Preference</th>
-                            <th>Total Aktivitas</th>
-                            <th>Tanggal</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @forelse ($recommendations as $recommendation)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-
-                                <td>
-                                    @if ($recommendation->pssAssessment)
-                                        {{ $recommendation->pssAssessment->stress_level }}
-                                    @else
-                                        <span class="text-muted">Tidak tersedia</span>
-                                    @endif
-                                </td>
-
-                                <td>
-                                    @if ($recommendation->userPreference)
-                                        {{ $recommendation->userPreference->preferred_activity_type }}
-                                        /
-                                        {{ $recommendation->userPreference->preferred_duration }}
-                                    @else
-                                        <span class="text-muted">
-                                            Preference tidak tersedia
-                                        </span>
-                                    @endif
-                                </td>
-
-                                <td>
-                                    {{ $recommendation->recommendationItems->count() }}
-                                </td>
-
-                                <td>
-                                    {{ $recommendation->created_at->format('d M Y H:i') }}
-                                </td>
+            <!-- Bungkus tabel dengan Form Bulk Delete -->
+            <form id="bulkDeleteForm" action="{{ route('recommendations.bulk-destroy') }}" method="POST"
+                class="form-table-wrapper">
+                @csrf
+                @method('DELETE')
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle">
+                        <thead class="table-light">
+                            <tr class="text-center">
+                                <!-- Checkbox All -->
+                                <th width="2.5%"><input type="checkbox" id="checkAll" class="form-check-input"></th>
+                                <th width="3.5%">No</th>
+                                <th>Tanggal</th>
+                                <th>Tingkat Stres</th>
+                                <th>Preferensi Aktivitas</th>
+                                <th>Total Aktivitas</th>
+                                <th>Aksi</th>
                             </tr>
-                        @empty
+                        </thead>
+                        <tbody>
+                            @forelse ($recommendations as $recommendation)
+                                <tr class="text-center">
+                                    <!-- Checkbox Satuan -->
+                                    <td>
+                                        <input type="checkbox" name="ids[]" value="{{ $recommendation->id }}"
+                                            class="form-check-input check-item">
+                                    </td>
+                                    <td>{{ $recommendations->firstItem() + $loop->index }}</td>
+                                    <td data-date="{{ $recommendation->created_at->format('Y-m-d') }}">
+                                        {{ $recommendation->created_at->translatedFormat('l, d-m-Y') }}</td>
+                                    <td>
+                                        @if ($recommendation->pssAssessment)
+                                            @if ($recommendation->pssAssessment->stress_level == 'Rendah')
+                                                <span class="badge badge-soft-success rounded-pill"
+                                                    data-stress="Rendah">Rendah</span>
+                                            @elseif ($recommendation->pssAssessment->stress_level == 'Sedang')
+                                                <span class="badge badge-soft-warning rounded-pill"
+                                                    data-stress="Sedang">Sedang</span>
+                                            @else
+                                                <span class="badge badge-soft-danger rounded-pill"
+                                                    data-stress="Tinggi">Tinggi</span>
+                                            @endif
+                                        @else
+                                            <span class="text-muted">Tidak tersedia</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($recommendation->userPreference)
+                                            {{ $recommendation->userPreference->preferred_activity_type }} /
+                                            {{ $recommendation->userPreference->preferred_duration }} /
+                                            {{ $recommendation->userPreference->preferred_intensity }}
+                                        @else
+                                            <span class="text-muted">Preference tidak tersedia</span>
+                                        @endif
+                                    </td>
+                                    <td><strong>{{ $recommendation->recommendationItems->count() }}</strong> Aktivitas</td>
+                                    <td class="text-center">
+                                        <div class="d-flex justify-content-center gap-2">
+                                            @if ($recommendation->pssAssessment)
+                                                <a href="{{ route('recommendations.history.show', $recommendation->id) }}"
+                                                    class="btn btn-soft-info btn-sm rounded-pill px-3 py-2 d-inline-flex align-items-center gap-1">
+                                                    <span>Detail</span>
+                                                    <i data-feather="eye"></i>
+                                                </a>
+                                            @else
+                                                <button
+                                                    class="btn btn-soft-secondary btn-sm rounded-pill px-3 py-2 d-inline-flex align-items-center gap-1"
+                                                    disabled>
+                                                    <span>Detail</span>
+                                                    <i data-feather="eye-off"></i>
+                                                </button>
+                                            @endif
 
-                            <tr>
-                                <td colspan="5" class="text-center py-5">Belum ada riwayat rekomendasi.</td>
+                                            <!-- Tombol Hapus Satuan -->
+                                            <button type="button" onclick="deleteSingle({{ $recommendation->id }})"
+                                                class="btn btn-soft-danger btn-sm rounded-pill px-3 py-2 d-inline-flex align-items-center gap-1">
+                                                <span>Hapus</span>
+                                                <i data-feather="trash-2"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center text-muted py-4">Belum ada data riwayat
+                                        rekomendasi.
+                                    </td>
+                                </tr>
+                            @endforelse
+                            <tr id="emptyFilterRow" style="display: none;">
+                                <td colspan="7" class="text-center text-muted py-4">Tidak ada data riwayat rekomendasi
+                                    yang sesuai.</td>
                             </tr>
-                        @endforelse
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+            <div class="pagination-container">
+                {{ $recommendations->links('vendor.pagination.bootstrap-5') }}
             </div>
         </div>
     </div>
-
-    <div class="mt-4">
-        {{ $recommendations->links() }}
-    </div>
-
 @endsection

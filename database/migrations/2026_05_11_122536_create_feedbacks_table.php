@@ -9,20 +9,23 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('feedbacks', function (Blueprint $table) {
-
             $table->id();
 
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
 
             $table->foreignId('recommendation_item_id')->constrained()->cascadeOnDelete();
 
-            $table->boolean('activity_completed')->default(false);
+            $table->boolean('is_completed')->default(false);
 
-            $table->integer('benefit_rating')->nullable();
+            $table->boolean('is_helpful')->nullable();
 
-            $table->integer('calmness_before')->nullable();
+            $table->integer('calmness_score')->nullable();         // Seberapa tenang?
 
-            $table->integer('calmness_after')->nullable();
+            $table->integer('comfort_score')->nullable();          // Seberapa nyaman?
+
+            $table->integer('stress_reduction_score')->nullable(); // Membantu mengurangi stres?
+
+            $table->integer('willingness_score')->nullable();      // Bersedia mengulang? (Untuk penalti/reward)
 
             $table->text('notes')->nullable();
 

@@ -13,18 +13,22 @@ class Feedback extends Model
     protected $fillable = [
         'user_id',
         'recommendation_item_id',
-        'activity_completed',
-        'benefit_rating',
-        'calmness_before',
-        'calmness_after',
+        'is_completed',
+        'is_helpful',
+        'calmness_score',
+        'comfort_score',
+        'stress_reduction_score',
+        'willingness_score',
         'notes',
     ];
 
     protected $casts = [
-        'activity_completed' => 'boolean',
-        'benefit_rating' => 'integer',
-        'calmness_before' => 'integer',
-        'calmness_after' => 'integer',
+        'is_completed' => 'boolean',
+        'is_helpful' => 'boolean',
+        'calmness_score' => 'integer',
+        'comfort_score' => 'integer',
+        'stress_reduction_score' => 'integer',
+        'willingness_score' => 'integer',
     ];
 
     public function user()

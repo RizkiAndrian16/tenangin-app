@@ -136,8 +136,7 @@ class PssAssessmentController extends Controller
         }
 
         return redirect()
-            ->route('pss-assessments.show', $assessment->id)
-            ->with('success', 'Assessment berhasil disimpan.');
+            ->route('pss-assessments.show', $assessment->id);
     }
 
     public function show(PssAssessment $pssAssessment)

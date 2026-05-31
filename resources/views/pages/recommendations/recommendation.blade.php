@@ -5,7 +5,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <h1 class="h3 fw-bold mb-1">Kandidat Aktivitas Relaksasi</h1>
-            <p class="text-muted mb-0">Daftar kandidat aktivitas berdasarkan hasil PSS-10 dan aturan sistem rekomendasi.</p>
+            <p class="text-muted mb-0">Daftar kandidat aktivitas berdasarkan hasil pengukuran tingkat stres anda.</p>
         </div>
     </div>
 

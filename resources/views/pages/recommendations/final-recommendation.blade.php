@@ -252,7 +252,7 @@
 
             {{-- NAVIGASI KEMBALI --}}
             <div class="d-flex justify-content-center align-items-center flex-wrap gap-2 border-top pt-4">
-                <a href="{{ route('pss-assessments.show', $pssAssessment->id) }}"
+                <a href="{{ route('pss-assessments.index') }}"
                     class="btn btn-soft-secondary rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2">
                     <i data-feather="arrow-left"></i>
                     <span>Kembali</span>

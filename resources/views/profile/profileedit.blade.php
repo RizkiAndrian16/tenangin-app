@@ -40,7 +40,7 @@
                             <div>
                                 <h6 class="fw-bold mb-2">Informasi Penting</h6>
                                 <p class="mb-0 fs-6">
-                                    Lengkapi profil agar sistem dapat mengenalmu lebih baik dan memberikan
+                                    Lengkapi profil anda agar sistem dapat mengenal lebih baik dan memberikan
                                     pengalaman penggunaan yang lebih nyaman. Tenang, seluruh data yang kamu isi akan dijaga
                                     kerahasiaannya dan privasimu tetap aman.
                                 </p>

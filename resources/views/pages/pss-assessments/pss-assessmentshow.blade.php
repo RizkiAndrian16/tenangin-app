@@ -50,15 +50,10 @@
                             <div class="d-flex gap-4 mt-2 justify-content-center">
                                 <div class="text-center">
                                     <p class="text-muted small mb-1">Tanggal</p>
-                                    <p class="fw-semibold mb-0">
+                                    <p class="fw-bold mb-0">
                                         {{ $pssAssessment->created_at->translatedFormat('l, d F Y') }}</p>
                                 </div>
-                                <div class="text-center">
-                                    <p class="text-muted small mb-1">Waktu</p>
-                                    <p class="fw-semibold mb-0">{{ $pssAssessment->created_at->format('H:i') }} WIB</p>
-                                </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

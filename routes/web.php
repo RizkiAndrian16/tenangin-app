@@ -43,6 +43,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/recommendations/{pssAssessment}/preferences', [RecommendationController::class, 'processPreferences'])->name('recommendations.preferences');
     Route::get('/recommendations/{pssAssessment}/final', [RecommendationController::class, 'generateFinalRecommendation'])->name('recommendations.final');
     Route::get('/recommendations-history', [RecommendationController::class, 'history'])->name('recommendations.history');
+    Route::get('/recommendations/history/{recommendation}/detail', [RecommendationController::class, 'showHistory'])->name('recommendations.history.show');
+    Route::delete('/recommendations/bulk-destroy', [RecommendationController::class, 'bulkDestroy'])->name('recommendations.bulk-destroy');
 
     // ======================================
     // ACTIVITY (KATALOG AKTIVITAS RELAKSASI)
