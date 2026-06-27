@@ -82,3 +82,32 @@
     padding: 12px 0 12px 0;  /* atas bawah sama */
     margin-top: 0;
 }
+
+/* ======================================
+   RESPONSIVE PAGINATION (MOBILE)
+====================================== */
+@media (max-width: 575.98px) {
+    /* 1. Mengubah susunan dari menyamping menjadi atas-bawah */
+    .pagination-wrapper {
+        flex-direction: column !important;
+        justify-content: center !important;
+        gap: 14px !important; /* Memberikan jarak napas antara teks dan tombol */
+    }
+
+    /* 2. Memastikan teks "Showing..." rata tengah */
+    .pagination-wrapper p {
+        text-align: center !important;
+    }
+
+    /* 3. Memastikan kumpulan tombol angka rata tengah */
+    .pagination-wrapper ul.pagination {
+        justify-content: center !important;
+        width: 100% !important;
+    }
+
+    /* 4. Memusatkan wadah utama */
+    .pagination-container {
+        justify-content: center !important;
+    }
+}
+

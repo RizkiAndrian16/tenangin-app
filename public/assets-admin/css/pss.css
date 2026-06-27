@@ -30,6 +30,16 @@
     font-weight: 600;
 }
 
+/* ======================================
+   RADIO BUTTON NEGATIF (MERAH SOFT)
+====================================== */
+#completed_no:checked + .pss-option,
+#helpful_no:checked + .pss-option {
+    background-color: #FEE2E2 !important; /* Background merah soft */
+    border-color: #FCA5A5 !important;     /* Border garis merah */
+    color: #DC2626 !important;            /* Teks merah menyala */
+}
+
 /* =========================
    SCORE HERO
 ========================= */
@@ -285,4 +295,159 @@
 .alert-soft-warning,
 .alert-soft-danger {
     border-radius: 0.75rem !important;
+}
+
+/* ======================================
+   FEEDBACK SHOW STYLES (LIGHT MODE)
+====================================== */
+
+/* Kotak Info Biru */
+.icon-box-primary {
+    background: #E0F2FE;
+    color: #0284C7;
+}
+
+/* Card untuk menampung skor dan informasi */
+.feedback-stat-card {
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
+}
+
+/* Lingkaran PSS-10 Mini di Feedback Show */
+.score-circle-mini {
+    background: #ffffff;
+    color: #16a34a;
+    border: 2px solid #DCFCE7;
+}
+
+/* Kotak Hasil Umpan Balik (Background Putih & Outline Hijau) */
+.feedback-result-box {
+    background-color: #FFFFFF;
+    border: 1px solid #A7F3D0; /* Garis tepi warna hijau soft */
+}
+
+/* ======================================
+   PSS: LIKERT SCORE (Clean & Responsive)
+====================================== */
+/* Container: Paksa agar tidak pernah turun ke bawah */
+.score-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px; /* Sedikit dirapatkan agar muat di semua layar */
+    flex-wrap: nowrap !important; /* Mencegah turun ke bawah */
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Lingkaran: Izinkan menyusut agar tidak keluar kotak */
+.likert-circle {
+    /* Gunakan flex agar lingkaran bisa menyusut/membesar sesuai ruang */
+    flex: 1;
+
+    /* Ukuran maksimal tetap 40px, tapi biarkan mengecil jika layar sempit */
+    max-width: 40px;
+    min-width: 28px; /* Jangan mengecil di bawah 28px agar angka tetap terlihat */
+
+    /* Menjaga tetap bulat */
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    font-weight: 600 !important;
+    font-size: 14px !important; /* Sedikit dikecilkan agar font tidak kepotong */
+    border: 1px solid #D1D5DB;
+    box-sizing: border-box !important;
+
+    /* PENTING: Izinkan lingkaran menyusut jika tidak muat */
+    flex-shrink: 1 !important;
+    transition: all 0.2s ease;
+}
+
+/* Warna Saat Aktif */
+.likert-active {
+    background-color: #ECFDF5 !important;
+    border-color: #A7F3D0 !important;
+    color: #047857 !important;
+}
+
+/* Warna Saat Tidak Aktif */
+.likert-inactive {
+    background-color: #FFFFFF !important;
+    border-color: #D1D5DB !important;
+    color: #374151 !important;
+}
+
+/* ======================================
+   FEEDBACK CREATE (EVALUASI AKTIVITAS)
+====================================== */
+
+/* Teks Info Panduan Likert */
+.likert-info-text {
+    line-height: 1.5;
+    font-size: 14px;
+    padding-top: 5px;
+}
+
+/* Lingkaran Pilihan Angka 1-5 (Bisa menyusut di HP) */
+.likert-choice-circle {
+    width: 45px !important;
+    height: 45px !important;
+    max-width: 12vw;
+    max-height: 12vw;
+    flex-shrink: 0;
+    padding: 0 !important;
+}
+
+/* Pembungkus Label Bintang */
+.star-rating-label {
+    cursor: pointer;
+    flex: 1 1 auto;
+    max-width: 45px;
+}
+
+/* Ikon Bintang Default */
+.star-rating-icon {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+    color: #cbd5e1;
+    transition: all 0.2s ease;
+}
+
+/* ======================================
+   FEEDBACK SHOW (READONLY STARS)
+====================================== */
+
+.star-rating-readonly {
+    width: 20px;
+    height: 20px;
+}
+
+.star-rating-readonly.filled {
+    color: #F59E0B !important;
+    fill: #F59E0B !important;
+}
+
+.star-rating-readonly.empty {
+    color: #cbd5e1 !important;
+    fill: none !important;
+}
+
+/* ======================================
+   PSS ASSESSMENT SHOW (DETAIL)
+====================================== */
+
+/* Jarak padding khusus untuk footer navigasi */
+.footer-navigation-padding {
+    padding-top: 28px !important;
+    padding-bottom: 4px !important;
+}
+
+/* Ukuran Teks Sangat Kecil (Micro) */
+.text-11 {
+    font-size: 11px !important;
 }

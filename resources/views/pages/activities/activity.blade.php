@@ -2,13 +2,13 @@
 @section('title', 'Katalog Aktivitas - Tenangin.')
 @section('content')
 
-    <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
+    <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center gap-2 gap-sm-3 mb-3 mb-sm-4">
         <div>
             <h1 class="h3 fw-bold mb-1">Katalog Aktivitas Relaksasi</h1>
             <p class="text-muted mb-0">Katalog aktivitas relaksasi untuk membantu mengurangi tingkat stres pengguna.</p>
         </div>
 
-        <div>
+        <div class="d-grid d-sm-block">
             <a href="{{ route('activities.create') }}" class="btn btn-soft-success rounded-pill px-4 py-2">
                 Tambah Aktivitas Relaksasi
             </a>
@@ -30,25 +30,34 @@
         </div>
     @endif
 
-    <form id="filterForm" method="GET" action="{{ route('activities.index') }}">
-        <div class="card filter-card mb-2">
-            <div class="card-body">
-                <x-filter-table :showStressLevel="true" :showDate="false" :showStatus="true" :showIntensity="true" :resetRoute="route('activities.index')" />
+    <div class="collapse d-sm-block" id="collapseFilter">
+        <form id="filterForm" method="GET" action="{{ route('activities.index') }}">
+            <div class="card filter-card mb-2">
+                <div class="card-body">
+                    <x-filter-table :showStressLevel="true" :showDate="false" :showStatus="true" :showIntensity="true"
+                        :resetRoute="route('activities.index')" />
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 
     <div class="card">
         <div class="card-body table-card-body">
-
             <div class="table-toolbar">
+                <div class="d-flex justify-content-between align-items-center align-self-stretch">
+                    <x-show-entries />
 
-                <x-show-entries />
+                    <button
+                        class="btn btn-soft-secondary d-inline-flex d-sm-none justify-content-center align-items-center rounded-3"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilter" aria-expanded="false"
+                        aria-controls="collapseFilter">
+                        <i data-feather="filter" class="icon-16"></i>
+                    </button>
+                </div>
 
                 <div class="toolbar-actions">
                     <button type="button" id="btnBulkDelete"
-                        class="btn btn-soft-danger btn-sm rounded-pill px-3 py-2 align-items-center gap-1"
-                        style="display: none;">
+                        class="btn btn-soft-danger btn-sm rounded-pill px-3 py-2 align-items-center gap-1">
                         <i data-feather="trash-2"></i>
                     </button>
 
@@ -97,7 +106,7 @@
                                     <td>{{ $activity->status }}</td>
 
                                     <td>
-                                        <div class="d-flex justify-content-center gap-2 flex-wrap">
+                                        <div class="d-flex justify-content-center gap-2 flex-nowrap">
                                             <button type="button"
                                                 class="btn btn-soft-info btn-sm rounded-pill px-3 py-2 d-inline-flex align-items-center gap-1 js-open-activity"
                                                 data-id="{{ $activity->id }}" data-title="{{ $activity->title }}"
@@ -118,8 +127,8 @@
                                                 <i data-feather="edit"></i>
                                             </a>
 
-                                            <button type="button" onclick="deleteSingle({{ $activity->id }})"
-                                                class="btn btn-soft-danger btn-sm rounded-pill px-3 py-2 d-inline-flex align-items-center gap-1">
+                                            <button type="button" data-id="{{ $activity->id }}"
+                                                class="btn btn-soft-danger btn-sm rounded-pill px-3 py-2 d-inline-flex align-items-center gap-1 js-delete-single">
                                                 <span>Hapus</span>
                                                 <i data-feather="trash-2"></i>
                                             </button>
@@ -134,11 +143,11 @@
                                     </td>
                                 </tr>
                             @endforelse
-
                         </tbody>
                     </table>
                 </div>
             </form>
+
             <div class="pagination-container">
                 {{ $activities->links('vendor.pagination.bootstrap-5') }}
             </div>

@@ -59,6 +59,8 @@ html {
 a.sidebar-link {
     background: #ffffff !important;
     color: #000000 !important;
+    font-weight: 450 !important;
+    -webkit-text-stroke: 0.1px #475569;
 }
 
 /* Icon sidebar */
@@ -286,8 +288,9 @@ a.sidebar-link svg {
 
     /* Pengunci tambahan agar Show Entries pasti di kiri dan spasinya rapi */
     .show-entries-wrapper {
-        align-self: flex-start !important; /* Garansi 100% rata kiri */
-        margin-bottom: 0 !important;       /* Hapus spasi bawah bawaan agar tidak bentrok dengan gap 12px */
+        align-self: center !important; /* PERBAIKAN 1: Ubah agar rata tengah secara vertikal */
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;      /* PERBAIKAN 2: Hapus margin atas yang mendorongnya ke bawah */
     }
 
     /* 2. Container aksi (Trash + Search) mengambil lebar penuh */
@@ -460,5 +463,225 @@ a.sidebar-link svg {
         visibility: visible !important;
         pointer-events: auto !important;
         cursor: pointer !important;
+    }
+}
+
+/*
+ * ======================================
+ * CUSTOM CSS: CIRCULAR TIMER TENANGIN
+ * ======================================
+ */
+.timer-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timer-svg {
+    transform: rotate(-90deg); /* Memutar agar progress mulai dari jam 12 atas */
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Lingkaran Background (Hijau pastel lembut sesuai tema Mode Bebas) */
+.timer-svg-bg {
+    fill: none;
+    stroke: #E5E7EB; /* Warna latar belakang lingkaran (hijau pastel) */
+    stroke-width: 15;
+}
+
+/* Lingkaran Progress (Hijau pekat sesuai tema tombol & angka) */
+.timer-svg-progress {
+    fill: none;
+    stroke: #86EFAC; /* Warna garis yang berjalan (hijau pekat) */
+    stroke-width: 15;
+    stroke-linecap: round; /* Membuat ujung garis membulat */
+    transition: stroke-dashoffset 1s linear; /* Animasi berjalan mulus per detik */
+}
+
+/* Teks Angka di Tengah */
+.timer-text-overlay {
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ======================================
+   FOCUS MODE PELAKSANAAN (CLEAN UP)
+====================================== */
+
+/* Ukuran Icon Standar */
+.icon-18 {
+    width: 18px !important;
+    height: 18px !important;
+}
+
+.icon-80 {
+    width: 80px !important;
+    height: 80px !important;
+}
+
+/* Teks Info Aktivitas */
+.focus-info-text {
+    font-size: 14px;
+}
+
+/* Lingkaran Ikon Mode Bebas (Tanpa Waktu) */
+.alert-soft-success.focus-mode-icon-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50% !important;
+    padding: 0 !important;
+}
+
+/* Offset posisi Timer agar pas di tengah */
+.timer-container-offset {
+    position: relative;
+    top: -25px;
+}
+
+/* Teks Angka Timer */
+.timer-display-text {
+    font-size: 28px;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -1px;
+    color: #159c47;
+}
+
+/* Kalimat Instruksi di bawah Timer */
+.timer-intro-text {
+    line-height: 1.5;
+    position: relative;
+    top: 10px;
+}
+
+/* ======================================
+   DARK MODE ADJUSTMENT UNTUK TIMER
+====================================== */
+.dark-mode .timer-display-text {
+    color: #4ADE80; /* Menyesuaikan hijau agar lebih terang dan jelas di Dark Mode */
+}
+
+/* Penyesuaian saat mode gelap (Dark Mode) */
+.dark-mode .timer-svg-bg {
+    stroke: #374151; /* Abu-abu lebih gelap agar tidak menyilaukan */
+}
+
+/* ======================================
+   GLOBAL FOCUS RING (ABU-ABU NETRAL SOFT)
+====================================== */
+.btn:focus,
+.btn:active,
+.page-link:focus,
+.btn-check:focus + .btn,
+.btn-check:focus + .pss-option,
+.form-control:focus,
+.form-select:focus,
+.filter-input:focus,
+.search-input:focus {
+    outline: none !important;
+    border-color: #CBD5E1 !important; /* Border abu-abu yang lebih muda dan cerah */
+    box-shadow: 0 0 0 0.15rem rgba(203, 213, 225, 0.4) !important; /* Shadow abu-abu yang sangat lembut */
+}
+
+/* ======================================
+   FEEDBACK SHOW UTILITIES
+====================================== */
+
+/* Ukuran Ikon */
+.icon-20 {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+/* Ukuran Teks Kecil */
+.text-12 {
+    font-size: 12px !important;
+}
+
+/* Garis Pembatas Lembut */
+.border-divider-soft {
+    border-color: #e2e8f0 !important;
+}
+
+/* ======================================
+   RESPONSIVE FONT & LAYOUT (MODE FOKUS MOBILE)
+====================================== */
+
+/* Ukuran Judul di PC/Tablet (Setara fs-3) */
+.focus-title {
+    font-size: 1.75rem;
+}
+
+@media (max-width: 575.98px) {
+    /* --- 1. PENYESUAIAN TOMBOL HP --- */
+    .btn-focus-action {
+        font-size: 13px !important;
+        width: 100% !important;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+    .btn-focus-action svg {
+        width: 15px !important;
+        height: 15px !important;
+        margin-right: 2px !important;
+    }
+
+    /* --- 2. PENYESUAIAN TEKS ATAS HP --- */
+    .focus-title {
+        font-size: 1.25rem !important;
+        margin-bottom: 8px !important;
+    }
+    .focus-info-text {
+        font-size: 12.5px !important;
+        gap: 12px !important;
+        /* Kunci mencegah konten jatuh ke bawah */
+        margin-bottom: 16px !important;
+    }
+    .focus-info-text .icon-16 {
+        width: 14px !important;
+        height: 14px !important;
+    }
+
+    /* --- 3. RATA TENGAH SEMPURNA: TIMER --- */
+    .timer-container-offset {
+        top: -7px !important;
+        margin-top: auto !important;
+        margin-bottom: auto !important;
+        /* PERBAIKAN: Menyamakan ukuran lingkaran Timer dengan Mode Bebas */
+        width: 115px !important;
+        height: 115px !important;
+    }
+
+    /* PERBAIKAN: Mengecilkan angka timer agar proporsional di dalam lingkaran 110px */
+    .timer-display-text {
+        font-size: 24px !important;
+    }
+
+    .timer-intro-text {
+        top: 0 !important;
+        margin-bottom: 24px !important;
+    }
+
+    /* --- 4. RATA TENGAH SEMPURNA: MODE BEBAS --- */
+    .focus-mode-icon-circle {
+        margin-top: -12px !important;
+        margin-bottom: 16px !important;
+        width: 110px !important;
+        height: 110px !important;
+    }
+    .focus-mode-icon-circle .icon-80 {
+        width: 55px !important;
+        height: 55px !important;
     }
 }

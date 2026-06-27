@@ -6,6 +6,7 @@ use App\Http\Controllers\PssAssessmentController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\RuleBasedRuleController;
 use App\Http\Controllers\RecommendationController;
+use App\Http\Controllers\FeedbackController;
 
 Route::get('/', function () {
     return view('landing.index');
@@ -68,6 +69,19 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/rule-based-rules/{ruleBasedRule}', [RuleBasedRuleController::class, 'update'])->name('rule-based-rules.update');
     Route::delete('/rule-based-rules', [RuleBasedRuleController::class, 'bulkDestroy'])->name('rule-based-rules.bulk-destroy');
     Route::delete('/rule-based-rules/{ruleBasedRule}', [RuleBasedRuleController::class, 'destroy'])->name('rule-based-rules.destroy');
+
+    // ======================================
+    // FEEDBACK & MODE FOKUS
+    // ======================================
+    // 1. Rute untuk membuka halaman "Mode Fokus"
+    Route::get('/feedbacks/{recommendationItem}/focus', [FeedbackController::class, 'focus'])->name('feedbacks.focus');
+    // 2. Rute untuk menyimpan data form feedback ke database
+    Route::post('/feedbacks/{recommendationItem}', [FeedbackController::class, 'store'])->name('feedbacks.store');
+    Route::get('/feedbacks/create/{recommendationItem}', [FeedbackController::class, 'create'])->name('feedbacks.create');
+    Route::get('/feedbacks', [FeedbackController::class, 'index'])->name('feedbacks.index');
+    Route::get('/feedbacks/detail/{feedback}', [FeedbackController::class, 'show'])->name('feedbacks.show');
+    Route::delete('/feedbacks/bulk-destroy', [FeedbackController::class, 'bulkDestroy'])->name('feedbacks.bulk-destroy');
+    Route::delete('/feedbacks/{feedback}', [FeedbackController::class, 'destroy'])->name('feedbacks.destroy');
 });
 
 require __DIR__ . '/auth.php';

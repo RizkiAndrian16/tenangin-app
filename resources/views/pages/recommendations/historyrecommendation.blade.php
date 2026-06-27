@@ -20,22 +20,35 @@
             </div>
         </div>
     @endif
-    <form id="filterForm" method="GET" action="{{ route('recommendations.history') }}">
-        <div class="card filter-card mb-2">
-            <div class="card-body">
-                <x-filter-table :showStressLevel="true" :showDate="true" :showStatus="false" :showIntensity="false" :resetRoute="route('recommendations.history')" />
+
+    <div class="collapse d-sm-block" id="collapseFilter">
+        <form id="filterForm" method="GET" action="{{ route('recommendations.history') }}">
+            <div class="card filter-card mb-2">
+                <div class="card-body">
+                    <x-filter-table :showStressLevel="true" :showDate="true" :showStatus="false" :showIntensity="false"
+                        :resetRoute="route('recommendations.history')" />
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
+
     <div class="card">
         <div class="card-body table-card-body">
             <div class="table-toolbar">
-                <x-show-entries />
+                <div class="d-flex justify-content-between align-items-center align-self-stretch">
+                    <x-show-entries />
+
+                    <button
+                        class="btn btn-soft-secondary d-inline-flex d-sm-none justify-content-center align-items-center rounded-3"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilter" aria-expanded="false"
+                        aria-controls="collapseFilter">
+                        <i data-feather="filter" class="icon-16"></i>
+                    </button>
+                </div>
+
                 <div class="toolbar-actions">
-                    <!-- Tombol Bulk Delete (Otomatis muncul dari JS jika ada checkbox yang dicentang) -->
                     <button type="button" id="btnBulkDelete"
-                        class="btn btn-soft-danger btn-sm rounded-pill px-3 py-2 align-items-center gap-1"
-                        style="display: none;">
+                        class="btn btn-soft-danger btn-sm rounded-pill px-3 py-2 align-items-center gap-1">
                         <i data-feather="trash-2"></i>
                     </button>
                     <div class="search-wrapper">
@@ -101,7 +114,8 @@
                                             <span class="text-muted">Preference tidak tersedia</span>
                                         @endif
                                     </td>
-                                    <td><strong>{{ $recommendation->recommendationItems->count() }}</strong> Aktivitas</td>
+                                    <td><strong>{{ $recommendation->recommendationItems->count() }}</strong> Aktivitas
+                                    </td>
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center gap-2">
                                             @if ($recommendation->pssAssessment)
@@ -120,8 +134,8 @@
                                             @endif
 
                                             <!-- Tombol Hapus Satuan -->
-                                            <button type="button" onclick="deleteSingle({{ $recommendation->id }})"
-                                                class="btn btn-soft-danger btn-sm rounded-pill px-3 py-2 d-inline-flex align-items-center gap-1">
+                                            <button type="button" data-id="{{ $recommendation->id }}"
+                                                class="btn btn-soft-danger btn-sm rounded-pill px-3 py-2 d-inline-flex align-items-center gap-1 js-delete-single">
                                                 <span>Hapus</span>
                                                 <i data-feather="trash-2"></i>
                                             </button>
@@ -135,8 +149,9 @@
                                     </td>
                                 </tr>
                             @endforelse
-                            <tr id="emptyFilterRow" style="display: none;">
-                                <td colspan="7" class="text-center text-muted py-4">Tidak ada data riwayat rekomendasi
+                            <tr id="emptyFilterRow" class="is-hidden">
+                                <td colspan="7" class="text-center text-muted py-4">Tidak ada data riwayat
+                                    rekomendasi
                                     yang sesuai.</td>
                             </tr>
                         </tbody>

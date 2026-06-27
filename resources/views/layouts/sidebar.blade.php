@@ -20,7 +20,7 @@
                 </a>
             </li>
             <li
-                class="sidebar-item {{ request()->routeIs('pss-assessments.*') || request()->routeIs('recommendations.index') || request()->routeIs('recommendations.final') ? 'active' : '' }}">
+                class="sidebar-item {{ request()->routeIs('pss-assessments.*') || request()->routeIs('recommendations.index') || request()->routeIs('recommendations.final') || request()->routeIs('feedbacks.focus') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('pss-assessments.index') }}">
                     <i class="align-middle" data-feather="clipboard"></i>
                     <span class="align-middle">PSS-10</span>
@@ -32,8 +32,9 @@
                     <span class="align-middle">Riwayat Rekomendasi</span>
                 </a>
             </li>
-            <li class="sidebar-item {{ request()->routeIs('#.*') ? 'active' : '' }}">
-                <a class="sidebar-link" href="#">
+            <li
+                class="sidebar-item {{ request()->routeIs('feedbacks.index') || request()->routeIs('feedbacks.show') || request()->routeIs('feedbacks.create') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('feedbacks.index') }}">
                     <i class="align-middle" data-feather="message-circle"></i>
                     <span class="align-middle">Feedback</span>
                 </a>

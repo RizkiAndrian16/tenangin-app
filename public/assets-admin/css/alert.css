@@ -59,6 +59,12 @@
     color: #86EFAC !important;
 }
 
+/* Kelas khusus untuk alert yang butuh teks putih */
+.dark-mode .alert-white-text p,
+.dark-mode .alert-white-text {
+    color: #FFFFFF !important;
+}
+
 /* WARNING TEXT */
 .dark-mode .alert-soft-warning p {
     color: #FCD34D !important;
@@ -109,4 +115,13 @@
 ====================================== */
 #preferenceAlert {
     display: none;
+}
+
+/* ======================================
+   DARK MODE PROFILE ALERT ICON
+====================================== */
+/* Memastikan kotak ikon di dalam alert juga berubah warna menjadi hijau terang di Dark Mode */
+.dark-mode .profile-alert-card .icon-box-success {
+    background-color: rgba(34, 197, 94, 0.15) !important;
+    color: #86EFAC !important;
 }

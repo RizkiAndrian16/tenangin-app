@@ -380,6 +380,23 @@ const deleteSingle = id => {
 
 //
 // ======================================
+// SINGLE DELETE (BUTTON HOOK)
+// ======================================
+//
+
+document.querySelectorAll('.js-delete-single')
+    .forEach(btn => {
+
+        btn.addEventListener('click', () => {
+
+            deleteSingle(btn.dataset.id);
+
+        });
+
+    });
+
+//
+// ======================================
 // AUTO SUBMIT FILTER
 // ======================================
 //
@@ -470,6 +487,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('openPhotoModal')
         ?.addEventListener('click', () => openModal('photoModal'));
 
+    document.getElementById('viewPhotoTrigger')
+        ?.addEventListener('click', () => openModal('viewPhotoModal'));
+
+    // Trigger transisi dari modal Lihat Foto LANGSUNG ke Pilih File
+    document.getElementById('btnSwitchToUploadModal')?.addEventListener('click', () => {
+        // Langsung "klik" input file yang tersembunyi tanpa membuka modal upload dulu
+        document.getElementById('photoInput')?.click();
+    });
+
     document.querySelectorAll('.js-close-modal').forEach(btn => {
         btn.addEventListener('click', () => closeModal(btn.dataset.target));
     });
@@ -520,6 +546,12 @@ document.addEventListener('DOMContentLoaded', () => {
             photoFileName.textContent = file.name;
             photoFileName.style.display = 'block';
             if (submitPhotoBtn) submitPhotoBtn.disabled = false;
+
+            // === BARIS TAMBAHAN BARU ===
+            // Tutup modal lihat foto (jika sedang terbuka) dan langsung buka modal upload/preview
+            closeModal('viewPhotoModal');
+            openModal('photoModal');
+            // ===========================
         };
         reader.readAsDataURL(file);
     }
@@ -724,7 +756,9 @@ window.addEventListener('load', () => {
         url.searchParams.has('status') ||
         url.searchParams.has('intensity_level') ||
         url.searchParams.has('search') ||
-        url.searchParams.has('per_page');
+        url.searchParams.has('per_page') ||
+        url.searchParams.has('is_completed') ||
+        url.searchParams.has('is_helpful');
 
     if (!hasFilter) return;
 
@@ -734,6 +768,8 @@ window.addEventListener('load', () => {
     url.searchParams.delete('intensity_level');
     url.searchParams.delete('search');
     url.searchParams.delete('per_page');
+    url.searchParams.delete('is_completed');
+    url.searchParams.delete('is_helpful');
 
     if (currentPage) {
         url.searchParams.set('page', currentPage);
@@ -805,5 +841,298 @@ document.addEventListener('click', function(e) {
                 if (toggleBtn) toggleBtn.click(); // Tutup sidebar
             }
         }
+    }
+});
+
+//
+// ======================================
+// FOCUS MODE TIMER (WITH SESSION STORAGE)
+// ======================================
+//
+document.addEventListener("DOMContentLoaded", function() {
+    const display = document.getElementById('timerDisplay');
+    const timerCircle = document.getElementById('timerCircle');
+
+    if (display) {
+        let durationTextElement = document.getElementById('durationText');
+        let durationText = durationTextElement ? durationTextElement.innerText : '5';
+
+        // Ambil angka dari teks (Misal: "10-15 Menit" -> ambil 15)
+        let matches = durationText.match(/\d+/g);
+        let defaultMinutes = 5;
+
+        if (matches && matches.length > 0) {
+            defaultMinutes = parseInt(matches[matches.length - 1]);
+        }
+
+        let totalSeconds = defaultMinutes * 60;
+
+        // KUNCI PENYIMPANAN UNIK (berdasarkan URL agar tidak bentrok dengan aktivitas lain)
+        const timeKey = 'tenangin_time_' + window.location.pathname;
+        const runKey = 'tenangin_run_' + window.location.pathname;
+
+        // CEK MEMORI: Ambil sisa waktu dari sessionStorage jika ada, jika tidak gunakan totalSeconds
+        let currentSeconds = sessionStorage.getItem(timeKey) ? parseInt(sessionStorage.getItem(timeKey)) : totalSeconds;
+        let timerInterval = null;
+        let isRunning = false;
+        const circumference = 565.48;
+
+        const btnStart = document.getElementById('btnStart');
+        const btnPause = document.getElementById('btnPause');
+        const btnReset = document.getElementById('btnReset');
+
+        function updateDisplay() {
+            let m = Math.floor(currentSeconds / 60).toString().padStart(2, '0');
+            let s = (currentSeconds % 60).toString().padStart(2, '0');
+            display.innerText = `${m}:${s}`;
+
+            if (timerCircle) {
+                let percentage = currentSeconds / totalSeconds;
+                let offset = circumference - (percentage * circumference);
+                timerCircle.style.strokeDashoffset = offset;
+            }
+
+            // SIMPAN SISA WAKTU KE MEMORI BROWSER
+            sessionStorage.setItem(timeKey, currentSeconds);
+        }
+
+        function startTimer() {
+            if (!isRunning && currentSeconds > 0) {
+                isRunning = true;
+                sessionStorage.setItem(runKey, 'true'); // Simpan status berjalan
+
+                btnStart.classList.add('d-none');
+                btnStart.classList.remove('d-flex');
+
+                btnPause.classList.remove('d-none');
+                btnPause.classList.add('d-flex');
+
+                btnReset.classList.remove('d-none');
+                btnReset.classList.add('d-flex');
+
+                timerInterval = setInterval(() => {
+                    currentSeconds--;
+                    updateDisplay();
+
+                    if (currentSeconds <= 0) {
+                        clearInterval(timerInterval);
+                        isRunning = false;
+
+                        // BERSIHKAN MEMORI KETIKA WAKTU HABIS
+                        sessionStorage.removeItem(timeKey);
+                        sessionStorage.removeItem(runKey);
+
+                        display.classList.remove('text-success');
+                        display.classList.add('text-danger');
+                        if(timerCircle) timerCircle.style.stroke = '#DC2626';
+
+                        btnPause.classList.add('d-none');
+                        btnPause.classList.remove('d-flex');
+                    }
+                }, 1000);
+            }
+        }
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            sessionStorage.setItem(runKey, 'false'); // Simpan status jeda
+
+            btnPause.classList.add('d-none');
+            btnPause.classList.remove('d-flex');
+
+            btnStart.classList.remove('d-none');
+            btnStart.classList.add('d-flex');
+            btnStart.innerHTML = '<i data-feather="play" style="width: 18px; height: 18px;" class="me-2"></i> Lanjutkan';
+
+            if (typeof feather !== 'undefined') feather.replace();
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            currentSeconds = totalSeconds;
+
+            // BERSIHKAN MEMORI
+            sessionStorage.removeItem(timeKey);
+            sessionStorage.removeItem(runKey);
+
+            display.classList.remove('text-danger');
+            display.classList.add('text-success');
+
+            if(timerCircle) {
+                timerCircle.style.stroke = '#86EFAC';
+                timerCircle.style.strokeDashoffset = 0;
+            }
+
+            updateDisplay();
+
+            btnPause.classList.add('d-none');
+            btnPause.classList.remove('d-flex');
+
+            btnReset.classList.add('d-none');
+            btnReset.classList.remove('d-flex');
+
+            btnStart.classList.remove('d-none');
+            btnStart.classList.add('d-flex');
+            btnStart.innerHTML = '<i data-feather="play" style="width: 18px; height: 18px;" class="me-2"></i> Mulai';
+
+            if (typeof feather !== 'undefined') feather.replace();
+        }
+
+        if (btnStart) btnStart.addEventListener('click', startTimer);
+        if (btnPause) btnPause.addEventListener('click', pauseTimer);
+        if (btnReset) btnReset.addEventListener('click', resetTimer);
+
+        // ==========================================
+        // AUTO-RESUME LOGIC (JIKA HALAMAN DI-RELOAD)
+        // ==========================================
+        updateDisplay(); // Panggil tampilan awal
+
+        // Cek apakah sebelum reload timer sedang berjalan?
+        if (sessionStorage.getItem(runKey) === 'true' && currentSeconds > 0) {
+            // Langsung otomatis jalankan lagi tanpa perlu user klik
+            startTimer();
+        } else if (currentSeconds < totalSeconds && currentSeconds > 0) {
+            // Jika sebelum reload timer sedang di-jeda (paused)
+            btnReset.classList.remove('d-none');
+            btnReset.classList.add('d-flex');
+            btnStart.innerHTML = '<i data-feather="play" style="width: 18px; height: 18px;" class="me-2"></i> Lanjutkan';
+            if (typeof feather !== 'undefined') feather.replace();
+        }
+
+        // ==========================================
+        // HAPUS MEMORI JIKA PINDAH HALAMAN (KEMBALI / SELESAI)
+        // ==========================================
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                let href = this.getAttribute('href');
+                // Pastikan yang diklik adalah link pindah halaman sungguhan
+                // Bukan link untuk modal popup ('#') atau aksi javascript
+                if (href && href !== '#' && !href.startsWith('javascript:')) {
+                    sessionStorage.removeItem(timeKey);
+                    sessionStorage.removeItem(runKey);
+                }
+            });
+        });
+    }
+});
+
+//
+// ======================================
+// EVALUATION FORM TOGGLE (FEEDBACK)
+// ======================================
+//
+document.addEventListener("DOMContentLoaded", function() {
+    const evaluationSection = document.getElementById('evaluationQuestions');
+    const completedYes = document.getElementById('completed_yes');
+    const completedNo = document.getElementById('completed_no');
+
+    // Pastikan script hanya berjalan JIKA elemen kuesioner evaluasi ada di halaman
+    if (evaluationSection && completedYes && completedNo) {
+
+        function toggleEvaluation() {
+            if (completedNo.checked) {
+                evaluationSection.style.display = 'none';
+
+                // Reset semua radio button di dalam kuesioner jika user memilih "Tidak Selesai"
+                const radios = evaluationSection.querySelectorAll('input[type="radio"]');
+                radios.forEach(radio => radio.checked = false);
+            } else {
+                evaluationSection.style.display = 'block';
+            }
+        }
+
+        completedYes.addEventListener('change', toggleEvaluation);
+        completedNo.addEventListener('change', toggleEvaluation);
+    }
+});
+
+//
+// ======================================
+// FEEDBACK CREATE FORM (EVALUATION & STARS)
+// ======================================
+//
+document.addEventListener("DOMContentLoaded", function() {
+    const formFeedback = document.getElementById('formFeedback');
+
+    if (formFeedback) {
+        // 1. LOGIKA BATAL PILIH (TOGGLE RESET)
+        formFeedback.querySelectorAll('.feedback-radio').forEach(radio => {
+            radio.addEventListener('click', function() {
+                if (this.wasChecked) {
+                    this.checked = false;
+                    this.wasChecked = false;
+                    this.dispatchEvent(new Event('change'));
+                } else {
+                    document.querySelectorAll(`input[name="${this.name}"]`).forEach(el => {
+                        el.wasChecked = false;
+                    });
+                    this.wasChecked = true;
+                }
+            });
+        });
+
+        // 2. LOGIKA RATING BINTANG (STAR RATING KHUSUS)
+        setTimeout(() => {
+            const starLabels = document.querySelectorAll('.star-label');
+            const starRadios = document.querySelectorAll('.star-radio');
+
+            function updateStars(value) {
+                starLabels.forEach(label => {
+                    const starSvg = label.querySelector('svg');
+                    if (starSvg) {
+                        if (parseInt(label.dataset.value) <= value) {
+                            starSvg.style.color = '#F59E0B'; // Garis tepi Emas
+                            starSvg.style.fill = '#F59E0B';  // Isi Emas
+                            starSvg.style.transform = 'scale(1.1)';
+                        } else {
+                            starSvg.style.color = '#cbd5e1'; // Abu-abu
+                            starSvg.style.fill = 'none';     // Kosong
+                            starSvg.style.transform = 'scale(1)';
+                        }
+                    }
+                });
+            }
+
+            starLabels.forEach(label => {
+                label.addEventListener('mouseover', function() {
+                    updateStars(this.dataset.value);
+                });
+
+                label.addEventListener('mouseout', function() {
+                    const checkedRadio = document.querySelector('.star-radio:checked');
+                    updateStars(checkedRadio ? checkedRadio.value : 0);
+                });
+            });
+
+            starRadios.forEach(radio => {
+                radio.addEventListener('click', function() {
+                    const clickedValue = parseInt(this.value);
+
+                    if (this.wasStarChecked) {
+                        this.checked = false;
+                        this.wasStarChecked = false;
+
+                        const newValue = clickedValue - 1;
+
+                        if (newValue > 0) {
+                            const prevRadio = document.getElementById('star_' + newValue);
+                            if (prevRadio) {
+                                prevRadio.checked = true;
+                                prevRadio.wasStarChecked = true;
+                            }
+                            updateStars(newValue);
+                        } else {
+                            updateStars(0);
+                        }
+                    } else {
+                        starRadios.forEach(r => r.wasStarChecked = false);
+                        this.wasStarChecked = true;
+                        updateStars(clickedValue);
+                    }
+                });
+            });
+        }, 100);
     }
 });

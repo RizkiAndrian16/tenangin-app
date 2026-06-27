@@ -135,13 +135,6 @@
     color: #F9FAFB !important;
 }
 
-.dark-mode .form-control:focus,
-.dark-mode .form-select:focus {
-    border-color: #3B82F6 !important;
-
-    box-shadow: 0 0 0 0.2rem rgba(59,130,246,.25);
-}
-
 /* ======================================
    DROPDOWN
 ====================================== */
@@ -196,14 +189,24 @@
     color: #FFFFFF !important;
 }
 
+/* ======================================
+   RADIO BUTTON POSITIF/DEFAULT (HIJAU SOFT) DARK MODE
+====================================== */
 .dark-mode .btn-check:checked + .pss-option {
-    background-color: #ECFDF5 !important;
-
-    border-color: #A7F3D0 !important;
-
-    color: #047857 !important;
-
+    background-color: rgba(34, 197, 94, 0.15) !important; /* Hijau gelap transparan */
+    border-color: #22C55E !important;                     /* Border hijau */
+    color: #86EFAC !important;                            /* Teks hijau pastel/cerah */
     font-weight: 600;
+}
+
+/* ======================================
+   RADIO BUTTON NEGATIF (MERAH SOFT) DARK MODE
+====================================== */
+.dark-mode #completed_no:checked + .pss-option,
+.dark-mode #helpful_no:checked + .pss-option {
+    background-color: rgba(239, 68, 68, 0.15) !important; /* Background merah gelap transparan */
+    border-color: #EF4444 !important;                     /* Border merah */
+    color: #FCA5A5 !important;                            /* Teks merah pastel */
 }
 
 /* ======================================
@@ -357,9 +360,8 @@ border-color: #166534 !important;
 }
 
 .dark-mode .filter-input:focus {
-    border-color: #3B82F6 !important;
-
-    box-shadow: 0 0 0 0.10rem rgba(59,130,246,.16) !important;
+    border-color: #22C55E !important;
+    box-shadow: 0 0 0 0.15rem rgba(34, 197, 94, 0.15) !important;
 }
 
 /* ======================================
@@ -549,4 +551,108 @@ border-color: #166534 !important;
 /* Border hijau soft untuk mode gelap */
 .dark-mode .border-soft-success {
     border: 1px solid rgba(34, 197, 94, 0.3) !important;
+}
+
+/* 7. AMAN: Perbaikan form HANYA untuk input yang tidak bisa diedit (Readonly/Disabled) seperti di Riwayat */
+.dark-mode .form-control:disabled,
+.dark-mode .form-control[readonly],
+.dark-mode .form-select:disabled {
+    background-color: transparent !important;
+    color: #F1F5F9 !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Jika ada wrapper box yang masih membandel berwarna putih di form tersebut,
+   kita targetkan yang ada di dalam card-body agar tidak bocor ke halaman luar */
+.dark-mode .card-body .bg-white,
+.dark-mode .card-body .bg-light {
+    background-color: transparent !important;
+}
+
+/* Penyesuaian warna teks label di dalam form khusus dalam card */
+.dark-mode .card-body label,
+.dark-mode .card-body .form-label {
+    color: #E5E7EB !important;
+}
+
+/* ======================================
+   PERBAIKAN WARNA TEXT SUCCESS (PERSENTASE)
+====================================== */
+.dark-mode .text-success {
+    color: #4ADE80 !important; /* Menggunakan warna Hijau Terang (Green 400) khas Tailwind agar sangat jelas dan elegan di background gelap */
+}
+
+/* ======================================
+   FEEDBACK SHOW STYLES (DARK MODE)
+====================================== */
+
+/* Kotak Info Biru di Dark Mode */
+.dark-mode .icon-box-primary {
+    background: rgba(14, 165, 233, 0.15);
+    color: #7DD3FC;
+}
+
+/* Background Card Statistik */
+.dark-mode .feedback-stat-card {
+    background-color: #14213D !important;
+    border-color: #22304D !important;
+}
+
+.dark-mode .feedback-stat-card .text-dark {
+    color: #F8FAFC !important;
+}
+
+/* Lingkaran PSS-10 Mini */
+.dark-mode .score-circle-mini {
+    background-color: #0F172A;
+    color: #86EFAC;
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+/* PERBAIKAN: Gaya Bulatan Likert Aktif (Dark Mode) - Sama dengan feedbackcreate */
+.dark-mode .likert-active {
+    background-color: rgba(34, 197, 94, 0.15) !important;
+    border-color: #22C55E !important;
+    color: #86EFAC !important;
+    font-weight: 600;
+    box-shadow: none;
+}
+
+/* PERBAIKAN: Gaya Bulatan Likert Tidak Aktif (Dark Mode) - Sama dengan feedbackcreate */
+.dark-mode .likert-inactive {
+    background-color: #162033 !important;
+    border-color: #374151 !important;
+    color: #E5E7EB !important;
+}
+
+/* Perbaikan Garis Pembatas (Divider) */
+.dark-mode .border-bottom {
+    border-color: #22304D !important;
+}
+
+/* Kotak Hasil Umpan Balik Dark Mode */
+.dark-mode .feedback-result-box {
+    background-color: transparent !important; /* Menyesuaikan warna card belakangnya */
+    border: 1px solid rgba(34, 197, 94, 0.3) !important; /* Garis hijau transparan seperti biasa */
+}
+
+/* ======================================
+   GLOBAL FOCUS RING DARK MODE (ABU-ABU NETRAL SEMUA)
+====================================== */
+.dark-mode .btn:focus,
+.dark-mode .btn:active,
+.dark-mode .page-link:focus,
+.dark-mode .btn-check:focus + .btn,
+.dark-mode .btn-check:focus + .pss-option,
+.dark-mode .form-control:focus,
+.dark-mode .form-select:focus,
+.dark-mode .filter-input:focus,
+.dark-mode .search-input:focus {
+    outline: none !important;
+    border-color: #475569 !important; /* Border abu-abu gelap */
+    box-shadow: 0 0 0 0.15rem rgba(100, 116, 139, 0.25) !important; /* Shadow abu-abu gelap soft */
+}
+
+.dark-mode .border-divider-soft {
+    border-color: #374151 !important;
 }

@@ -2,16 +2,16 @@
 @section('title', 'PSS-10 - Tenangin.')
 @section('content')
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center gap-2 gap-sm-3 mb-3 mb-sm-4">
         <div>
-            <h1 class="h3 fw-bold mb-1">PSS-10 Assessment</h1>
-            <p class="text-muted mb-0">Riwayat hasil PSS-10 assessment tingkat stres pengguna.</p>
+            <h1 class="h3 fw-bold mb-1">PSS-10</h1>
+            <p class="text-muted mb-0">Riwayat hasil PSS-10 tingkat stres pengguna.</p>
         </div>
-        <div>
+
+        <div class="d-grid d-sm-block">
             <a href="{{ route('pss-assessments.create') }}" class="btn btn-soft-success rounded-pill px-4 py-2">
                 Mulai PSS-10 Assessment
             </a>
-
         </div>
     </div>
 
@@ -30,22 +30,33 @@
         </div>
     @endif
 
-    <form id="filterForm" method="GET" action="{{ route('pss-assessments.index') }}">
-        <div class="card filter-card mb-2">
-            <div class="card-body">
-                <x-filter-table :showStressLevel="true" :showDate="true" :resetRoute="route('pss-assessments.index')" />
+    <div class="collapse d-sm-block" id="collapseFilter">
+        <form id="filterForm" method="GET" action="{{ route('pss-assessments.index') }}">
+            <div class="card filter-card mb-2">
+                <div class="card-body">
+                    <x-filter-table :showStressLevel="true" :showDate="true" :resetRoute="route('pss-assessments.index')" />
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 
     <div class="card">
         <div class="card-body table-card-body">
             <div class="table-toolbar">
-                <x-show-entries />
+                <div class="d-flex justify-content-between align-items-center align-self-stretch">
+                    <x-show-entries />
+
+                    <button
+                        class="btn btn-soft-secondary d-inline-flex d-sm-none justify-content-center align-items-center rounded-3"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilter" aria-expanded="false"
+                        aria-controls="collapseFilter">
+                        <i data-feather="filter" class="icon-16"></i>
+                    </button>
+                </div>
+
                 <div class="toolbar-actions">
                     <button type="button" id="btnBulkDelete"
-                        class="btn btn-soft-danger btn-sm rounded-pill px-3 py-2 align-items-center gap-1"
-                        style="display: none;">
+                        class="btn btn-soft-danger btn-sm rounded-pill px-3 py-2 align-items-center gap-1">
                         <i data-feather="trash-2"></i>
                     </button>
 
@@ -113,8 +124,9 @@
                                                 <i data-feather="eye"></i>
                                             </a>
 
-                                            <button type="button" onclick="deleteSingle({{ $assessment->id }})"
-                                                class="btn btn-soft-danger btn-sm rounded-pill px-3 py-2 d-inline-flex align-items-center gap-1">
+                                            <button type="button"
+                                                class="btn btn-soft-danger btn-sm rounded-pill px-3 py-2 d-inline-flex align-items-center gap-1 js-delete-single"
+                                                data-id="{{ $assessment->id }}">
                                                 <span>Hapus</span>
                                                 <i data-feather="trash-2"></i>
                                             </button>
@@ -130,7 +142,7 @@
                                 </tr>
                             @endforelse
 
-                            <tr id="emptyFilterRow" style="display: none;">
+                            <tr id="emptyFilterRow" class="is-hidden">
                                 <td colspan="6" class="text-center text-muted py-4">
                                     Tidak ada data PSS-10 Assessment yang sesuai.
                                 </td>

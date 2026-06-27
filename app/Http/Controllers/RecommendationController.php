@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\UserPreference;
 use App\Models\Recommendation;
 use App\Models\RecommendationItem;
+use App\Models\Feedback;
 
 class RecommendationController extends Controller
 {
@@ -213,12 +214,37 @@ class RecommendationController extends Controller
 
             $similarityScore = $score / 7;
 
-            $recommendations->push([
+            // ======================================
+            // THE MAGIC FEEDBACK LOOP (REWARD/PENALTY)
+            // ======================================
+            $finalSortingScore = $similarityScore; // Default awal adalah skor murni
 
+            // 1. Intip buku catatan (Feedback) paling baru dari user ini untuk aktivitas ini
+            $pastFeedback = Feedback::where('user_id', Auth::id())
+                ->whereHas('recommendationItem', function ($q) use ($activity) {
+                    // Gunakan withTrashed agar tetap bisa baca memori meski riwayat pernah dihapus
+                    $q->withTrashed()->where('activity_id', $activity->id);
+                })
+                ->latest()
+                ->first();
+
+            // 2. Berikan Penalti atau Hadiah berdasarkan pengalaman masa lalu
+            if ($pastFeedback) {
+                // PENALTI Ekstrem: Jika dulu tidak mau mengulang (skor 1 atau 2)
+                if ($pastFeedback->willingness_score == 1 || $pastFeedback->willingness_score == 2) {
+                    $finalSortingScore -= 999;
+                }
+                // REWARD (Bonus): Jika dulu selesai dikerjakan DAN bermanfaat
+                elseif ($pastFeedback->is_completed == 1 && $pastFeedback->is_helpful == 1) {
+                    $finalSortingScore += 0.5;
+                }
+            }
+
+            $recommendations->push([
                 'activity' => $activity,
                 'similarity_score' => $similarityScore,
                 'matching_score' => $score,
-
+                'final_sorting_score' => $finalSortingScore,
             ]);
         }
 
@@ -227,7 +253,7 @@ class RecommendationController extends Controller
         // ======================================
 
         $finalRecommendations = $recommendations
-            ->sortByDesc('similarity_score')
+            ->sortByDesc('final_sorting_score')
             ->values();
 
         // ======================================

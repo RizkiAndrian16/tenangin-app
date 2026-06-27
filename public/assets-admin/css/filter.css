@@ -83,25 +83,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 /* FOCUS */
 .filter-input:focus {
-    border-color: #86B7FE !important;
-    box-shadow: 0 0 0 0.10rem rgba(13,110,253,.10) !important;
+    border-color: #94A3B8 !important;
+    box-shadow: 0 0 0 0.15rem rgba(148, 163, 184, 0.25) !important;
 }
 
 /* ======================================
    RESET BUTTON
 ====================================== */
-
 #btnResetFilter {
     height: 30px;
-
     padding: 0 18px !important;
-
     font-size: 13px !important;
-
     font-weight: 550;
-
     border-radius: 8px !important;
-
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -115,7 +109,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /* =========================
    FILTER CONTAINER
 ========================= */
-
 .filter-container {
     display: flex;
     justify-content: space-between;
@@ -127,7 +120,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /* =========================
    SHOW ENTRIES
 ========================= */
-
 .show-entries-wrapper {
     display: flex;
     align-items: center;
@@ -138,19 +130,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 13px;
     color: #64748B;
     font-weight: 500;
-     margin: 0 6px;
+    margin: 0 6px;
 }
 
 .show-entries-select {
     width: 58px !important;
     min-width: 58px !important;
-
     height: 32px !important;
-
     padding: 0 8px !important;
-
     font-size: 13px !important;
-
     border-radius: 6px !important;
     cursor: pointer;
 }
@@ -158,19 +146,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /* =========================
    TABLE TOOLBAR
 ========================= */
-
 .table-toolbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     margin-bottom: 8px;
 }
 
 /* =========================
    TABLE CARD BODY
 ========================= */
-
 .table-card-body {
     padding: 16px 20px !important;
 }
@@ -178,51 +163,29 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /* =========================
    SEARCH INPUT
 ========================= */
-
-.search-input:focus {
-    border-color: #86B7FE !important;
-
-    box-shadow: 0 0 0 0.10rem rgba(13,110,253,.10) !important;
-}
-
-/* =========================
-   SEARCH INPUT
-========================= */
-
 .search-wrapper {
     position: relative;
-
     width: 303px;
     flex-shrink: 0;
 }
 
 .search-icon {
     position: absolute;
-
     top: 50%;
     left: 12px;
-
     width: 16px;
     height: 16px;
-
     transform: translateY(-50%);
-
     color: #94A3B8;
-
     pointer-events: none;
 }
 
 .search-input {
     height: 36px !important;
-
     padding-left: 38px !important;
-
     border-radius: 8px !important;
-
     font-size: 13px !important;
-
     border: 1px solid #D1D5DB !important;
-
     box-shadow: none !important;
 }
 
@@ -252,4 +215,45 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .card {
     border-radius: 0.75rem !important;
+}
+
+/* =========================
+   FILTER MOBILE BUTTON
+========================= */
+.btn-filter-mobile {
+    width: 34px !important;
+    height: 34px !important;
+    padding: 0 !important;
+}
+
+/* ======================================
+   FILTER MOBILE (KOTAK FILTER SAAT BUTTON FILTER DITEKAN)
+====================================== */
+@media (max-width: 575.98px) {
+    .filter-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-group {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .filter-field {
+        flex: 1 1 140px;
+        min-width: 0;
+    }
+
+    /* PERBAIKAN: Masukkan .filter-status ke sini agar ukurannya tidak terkunci 210px lagi di HP */
+    .filter-input.form-select,
+    .filter-input.form-select.filter-status,
+    input[type="date"].filter-input {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    #btnResetFilter {
+        width: 100%;
+    }
 }

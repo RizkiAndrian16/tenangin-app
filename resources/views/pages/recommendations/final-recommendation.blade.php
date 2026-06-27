@@ -136,6 +136,17 @@
                         $similarityScore = $recommendation['similarity_score'];
                         $matchingScore = $recommendation['matching_score'];
                         $percentage = number_format($similarityScore * 100, 0);
+
+                        // Ambil ID Recommendation Item secara dinamis untuk dimasukkan ke URL Mode Fokus
+                        $recParent = \App\Models\Recommendation::where('pss_assessment_id', $pssAssessment->id)
+                            ->where('user_id', Auth::id())
+                            ->first();
+
+                        $recItem = $recParent
+                            ? \App\Models\RecommendationItem::where('recommendation_id', $recParent->id)
+                                ->where('activity_id', $activity->id)
+                                ->first()
+                            : null;
                     @endphp
 
                     <div class="col-lg-6 {{ $index >= 2 ? 'd-none hidden-recommendation' : '' }}">
@@ -143,7 +154,7 @@
                             <div class="card-body p-4 d-flex flex-column">
 
                                 {{-- HEADER --}}
-                                <div class="mb-3 border-bottom pb-3 d-flex justify-content-between align-items-start gap-3">
+                                <div class="mb-2 pb-2 d-flex justify-content-between align-items-start gap-3">
                                     <div>
                                         <h5 class="fw-bold mb-1 text-dark activity-item-title">{{ $activity->title }}</h5>
                                         <p class="text-muted small mb-0">{{ $activity->activity_type }}</p>
@@ -187,39 +198,25 @@
                                     </div>
                                 </div>
 
-                                @if ($activity->instruction)
-                                    <div class="mt-4 pt-3 border-top">
-                                        <p class="fw-bold mb-3">Tips dan Konteks Pelaksanaan Aktivitas:</p>
-
-                                        @php
-                                            $steps = array_filter(
-                                                array_map('trim', explode('.', $activity->instruction)),
-                                            );
-                                        @endphp
-
-                                        <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
-                                            @foreach ($steps as $step)
-                                                <li class="d-flex align-items-start gap-3 text-muted small">
-
-                                                    <div class="text-success flex-shrink-0 list-icon-offset">
-                                                        <i data-feather="check-circle" class="icon-16"></i>
-                                                    </div>
-
-                                                    <span class="lh-base">{{ $step }}.</span>
-
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
+                                <div>
+                                    <p class="fw-bold mb-1">Deskripsi Aktivitas</p>
+                                    <p class="text-muted small mb-0">{{ $activity->description }}</p>
+                                </div>
 
                                 {{-- FOOTER (Mulai Aktivitas) --}}
                                 <div
-                                    class="mt-auto pt-3 border-top custom-top-divider d-grid d-sm-flex justify-content-sm-center">
-                                    <button type="button"
-                                        class="btn btn-soft-success rounded-pill px-4 py-2 force-focus-hover">
-                                        Mulai Aktivitas
-                                    </button>
+                                    class="mt-auto pt-4 border-top custom-top-divider d-flex flex-column align-items-center gap-2">
+                                    @if ($recItem)
+                                        <a href="{{ route('feedbacks.focus', $recItem->id) }}"
+                                            class="btn btn-soft-success rounded-pill px-4 py-2 force-focus-hover">
+                                            Mulai Aktivitas
+                                        </a>
+                                    @else
+                                        <button type="button" class="btn btn-soft-secondary rounded-pill px-4 py-2"
+                                            disabled>
+                                            Memuat...
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -241,7 +238,7 @@
 
             {{-- TOMBOL LIHAT LAINNYA --}}
             @if ($finalRecommendations->count() > 2)
-                <div class="text-center mt-4 mb-4" id="showMoreContainer">
+                <div class="text-center mt-4 mb-0" id="showMoreContainer">
                     <button type="button" id="btnShowMore"
                         class="btn btn-soft-secondary rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2">
                         <span class="fw-medium">Lihat rekomendasi lainnya</span>
@@ -250,10 +247,10 @@
                 </div>
             @endif
 
-            {{-- NAVIGASI KEMBALI --}}
-            <div class="d-flex justify-content-center align-items-center flex-wrap gap-2 border-top pt-4">
+            {{-- PERBAIKAN: Seluruh wrapper disembunyikan di HP (d-none) agar garis border juga hilang --}}
+            <div class="d-none d-md-flex justify-content-md-center gap-2 border-top pt-4">
                 <a href="{{ route('pss-assessments.index') }}"
-                    class="btn btn-soft-secondary rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2">
+                    class="btn btn-soft-secondary rounded-pill px-4 py-2 d-flex align-items-center justify-content-center gap-2">
                     <i data-feather="arrow-left"></i>
                     <span>Kembali</span>
                 </a>

@@ -28,7 +28,7 @@
     {{-- CARD DASAR --}}
     <div class="card border-0 shadow-sm rounded-4">
         <div class="card-body p-4">
-            <div class="row g-4">
+            <div class="row g-3">
 
                 {{-- CARD 1: INFORMASI PENTING --}}
                 <div class="col-12">
@@ -41,8 +41,7 @@
                                 <h6 class="fw-bold mb-2">Informasi Penting</h6>
                                 <p class="mb-0 fs-6">
                                     Lengkapi profil anda agar sistem dapat mengenal lebih baik dan memberikan
-                                    pengalaman penggunaan yang lebih nyaman. Tenang, seluruh data yang kamu isi akan dijaga
-                                    kerahasiaannya dan privasimu tetap aman.
+                                    pengalaman penggunaan yang lebih nyaman.
                                 </p>
                             </div>
                         </div>
@@ -51,20 +50,26 @@
 
                 {{-- CARD 2: PROFILE HERO --}}
                 <div class="col-12">
-                    <div class="card border-0 shadow-sm rounded-4">
-                        <div class="card-body py-4 px-5 profile-hero-body">
-                            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
-                                <div class="d-flex align-items-center gap-3">
-                                    @if (auth()->user()->profile_photo)
-                                        <img src="{{ auth()->user()->profile_photo_url }}" alt="Profile"
-                                            class="profile-avatar" id="heroAvatar">
-                                    @else
-                                        <div class="profile-avatar-placeholder" id="heroAvatarPlaceholder">
-                                            {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
-                                        </div>
-                                    @endif
-                                    <div class="ms-2">
-                                        <h5 class="fw-bold mb-2 profile-user-name" id="heroName">
+                    <div class="card border-0 shadow-sm rounded-4 mb-2">
+                        <div class="card-body py-4 px-4 profile-hero-body">
+                            <div
+                                class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-center gap-3 text-center text-sm-start">
+                                <div class="d-flex flex-column flex-sm-row align-items-center gap-3">
+                                    <div id="viewPhotoTrigger" class="profile-photo-trigger" title="Lihat Foto">
+
+                                        @if (auth()->user()->profile_photo)
+                                            <img src="{{ auth()->user()->profile_photo_url }}" alt="Profile"
+                                                class="profile-avatar" id="heroAvatar">
+                                        @else
+                                            <div class="profile-avatar-placeholder" id="heroAvatarPlaceholder">
+                                                {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                                            </div>
+                                        @endif
+                                    </div>
+
+                                    {{-- Teks Nama & Role --}}
+                                    <div class="mt-1 mt-sm-0">
+                                        <h5 class="fw-bold mb-1 profile-user-name" id="heroName">
                                             {{ auth()->user()->name }}
                                         </h5>
                                         <span class="profile-user-role">
@@ -73,11 +78,13 @@
                                     </div>
                                 </div>
 
-                                <button type="button" id="openPhotoModal"
-                                    class="btn btn-soft-secondary rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2">
-                                    <i data-feather="camera"></i>
-                                    <span>Ubah Foto Profil</span>
-                                </button>
+                                <div class="d-grid align-self-stretch align-self-sm-auto mt-2 mt-sm-0">
+                                    <button type="button" id="openPhotoModal"
+                                        class="btn btn-soft-secondary rounded-pill px-4 py-2 d-flex align-items-center justify-content-center gap-2">
+                                        <i data-feather="camera"></i>
+                                        <span>Edit Foto Profil</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -86,23 +93,16 @@
                 {{-- CARD 3: INFORMASI PRIBADI --}}
                 <div class="col-lg-6">
                     <div class="card border-0 shadow-sm rounded-4 h-100">
-                        <div class="card-body p-4 d-flex flex-column">
+                        <div class="card-body p-4 profile-card-grid">
 
-                            <div class="d-flex justify-content-between align-items-center mb-4">
-                                <div class="d-flex align-items-center gap-2">
-                                    <div class="icon-box-soft icon-box-success">
-                                        <i data-feather="user"></i>
-                                    </div>
-                                    <h5 class="fw-bold mb-0">Informasi Pribadi</h5>
+                            <div class="d-flex align-items-center gap-2 profile-card-title">
+                                <div class="icon-box-soft icon-box-success">
+                                    <i data-feather="user"></i>
                                 </div>
-                                <button type="button" id="openProfileModal"
-                                    class="btn btn-soft-secondary rounded-pill px-3 py-2 d-inline-flex align-items-center gap-2">
-                                    <i data-feather="edit-2"></i>
-                                    <span>Edit</span>
-                                </button>
+                                <h5 class="fw-bold mb-0">Informasi Pribadi</h5>
                             </div>
 
-                            <div class="row g-0">
+                            <div class="row g-0 profile-card-fields">
                                 <div class="col-12 py-3 border-bottom">
                                     <div class="row">
                                         <div class="col-5"><small class="text-muted">Nama Lengkap</small></div>
@@ -149,6 +149,13 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <button type="button" id="openProfileModal"
+                                class="btn btn-soft-secondary rounded-pill px-3 py-2 d-inline-flex align-items-center justify-content-center gap-2 profile-card-edit-btn">
+                                <i data-feather="edit-2"></i>
+                                <span>Edit</span>
+                            </button>
+
                         </div>
                     </div>
                 </div>
@@ -156,22 +163,16 @@
                 {{-- CARD 4: INFORMASI UNIVERSITAS --}}
                 <div class="col-lg-6">
                     <div class="card border-0 shadow-sm rounded-4 h-100">
-                        <div class="card-body p-4 d-flex flex-column">
-                            <div class="d-flex justify-content-between align-items-center mb-4">
-                                <div class="d-flex align-items-center gap-2">
-                                    <div class="icon-box-soft icon-box-success">
-                                        <i data-feather="book-open"></i>
-                                    </div>
-                                    <h5 class="fw-bold mb-0">Informasi Universitas</h5>
+                        <div class="card-body p-4 profile-card-grid">
+
+                            <div class="d-flex align-items-center gap-2 profile-card-title">
+                                <div class="icon-box-soft icon-box-success">
+                                    <i data-feather="book-open"></i>
                                 </div>
-                                <button type="button" id="openUniversityModal"
-                                    class="btn btn-soft-secondary rounded-pill px-3 py-2 d-inline-flex align-items-center gap-2">
-                                    <i data-feather="edit-2"></i>
-                                    <span>Edit</span>
-                                </button>
+                                <h5 class="fw-bold mb-0">Informasi Universitas</h5>
                             </div>
 
-                            <div class="row g-0">
+                            <div class="row g-0 profile-card-fields">
                                 <div class="col-12 py-3 border-bottom">
                                     <div class="row">
                                         <div class="col-5"><small class="text-muted">Universitas</small></div>
@@ -202,7 +203,7 @@
                                 </div>
                                 <div class="col-12 py-3">
                                     <div class="row">
-                                        <div class="col-5"><small class="text-muted">Status Tempat Tinggal</small></div>
+                                        <div class="col-5"><small class="text-muted">Tempat Tinggal</small></div>
                                         <div class="col-7">
                                             <p class="fw-semibold mb-0" id="displayResidence">
                                                 {{ auth()->user()->residence_status ?? '-' }}</p>
@@ -210,6 +211,13 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <button type="button" id="openUniversityModal"
+                                class="btn btn-soft-secondary rounded-pill px-3 py-2 d-inline-flex align-items-center justify-content-center gap-2 profile-card-edit-btn">
+                                <i data-feather="edit-2"></i>
+                                <span>Edit</span>
+                            </button>
+
                         </div>
                     </div>
                 </div>

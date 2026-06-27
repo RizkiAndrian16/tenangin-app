@@ -278,20 +278,23 @@
             </form>
 
             {{-- NAVIGASI BUTTON --}}
-            <div class="d-flex justify-content-between align-items-center border-top mt-5 pt-4">
+            <div class="d-flex justify-content-end justify-content-md-between gap-3 border-top mt-4 pt-4">
+
+                {{-- KEMBALI: Disembunyikan di HP (d-none), Muncul di PC (d-md-flex) --}}
                 <a href="{{ route('pss-assessments.show', $pssAssessment->id) }}"
-                    class="btn btn-soft-secondary rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2">
-                    <i data-feather="arrow-left"></i>
-                    <span>Kembali</span>
+                    class="btn btn-soft-secondary rounded-pill px-4 py-2 d-none d-md-flex align-items-center justify-content-center gap-2">
+                    <i data-feather="arrow-left" class="icon-16"></i>
+                    <span class="fw-medium">Kembali</span>
                 </a>
 
+                {{-- AKSI: Full memanjang di HP (flex-fill), normal di PC (flex-md-grow-0) --}}
                 <button type="submit" form="preferenceForm"
-                    class="btn btn-soft-success rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2 force-focus-hover">
-                    <span>Proses Rekomendasi Final</span>
-                    <i data-feather="arrow-right"></i>
+                    class="btn btn-soft-success rounded-pill px-3 px-sm-4 py-2 d-flex align-items-center justify-content-center gap-2 flex-fill flex-md-grow-0 force-focus-hover">
+                    <span class="fw-medium">Proses Rekomendasi Final</span>
+                    <i data-feather="arrow-right" class="icon-16"></i>
                 </button>
-            </div>
 
+            </div>
         </div>
     </div>
 @endsection

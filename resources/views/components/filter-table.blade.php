@@ -3,6 +3,8 @@
     'showDate' => true,
     'showStatus' => false,
     'showIntensity' => false,
+    'showIsCompleted' => false, // PROPERTI BARU
+    'showIsHelpful' => false, // PROPERTI BARU
     'resetRoute' => null,
 ])
 
@@ -15,7 +17,7 @@
 
             {{-- FILTER STRESS --}}
             @if ($showStressLevel)
-                <div class="d-flex flex-column gap-1">
+                <div class="d-flex flex-column gap-1 filter-field">
 
                     <label class="filter-label">Tingkat Stres</label>
 
@@ -44,7 +46,7 @@
 
             {{-- FILTER DATE --}}
             @if ($showDate)
-                <div class="d-flex flex-column gap-1">
+                <div class="d-flex flex-column gap-1 filter-field">
 
                     <label class="filter-label">Tanggal</label>
 
@@ -56,7 +58,7 @@
 
             {{-- FILTER INTENSITAS --}}
             @if ($showIntensity)
-                <div class="d-flex flex-column gap-1">
+                <div class="d-flex flex-column gap-1 filter-field">
 
                     <label class="filter-label">Intensitas</label>
 
@@ -80,7 +82,7 @@
 
             {{-- FILTER STATUS REKOMENDASI --}}
             @if ($showStatus)
-                <div class="d-flex flex-column gap-1">
+                <div class="d-flex flex-column gap-1 filter-field">
 
                     <label class="filter-label">Status Rekomendasi</label>
 
@@ -113,6 +115,33 @@
                 </div>
             @endif
 
+            {{-- FILTER STATUS PENYELESAIAN --}}
+            @if ($showIsCompleted)
+                <div class="d-flex flex-column gap-1 filter-field">
+                    <label class="filter-label">Status Penyelesaian</label>
+                    <select name="is_completed" class="form-select filter-input auto-submit-filter">
+                        <option value="">Semua Status</option>
+                        <option value="1" {{ request('is_completed') === '1' ? 'selected' : '' }}>Selesai</option>
+                        <option value="0" {{ request('is_completed') === '0' ? 'selected' : '' }}>Tidak Selesai
+                        </option>
+                    </select>
+                </div>
+            @endif
+
+            {{-- FILTER BERMANFAAT --}}
+            @if ($showIsHelpful)
+                <div class="d-flex flex-column gap-1 filter-field">
+                    <label class="filter-label">Bermanfaat?</label>
+                    <select name="is_helpful" class="form-select filter-input auto-submit-filter">
+                        <option value="">Semua Penilaian</option>
+                        <option value="1" {{ request('is_helpful') === '1' ? 'selected' : '' }}>Bermanfaat (Ya)
+                        </option>
+                        <option value="0" {{ request('is_helpful') === '0' ? 'selected' : '' }}>Tidak Bermanfaat
+                        </option>
+                    </select>
+                </div>
+            @endif
+
         </div>
 
     </div>
@@ -120,7 +149,7 @@
     {{-- RESET BUTTON --}}
     <a href="{{ $resetRoute }}" id="btnResetFilter"
         class="btn btn-soft-secondary px-4
-    {{ !request()->hasAny(['stress_level', 'date', 'status', 'intensity_level', 'search', 'per_page']) ? 'pe-none' : '' }}">
+    {{ !request()->hasAny(['stress_level', 'date', 'status', 'intensity_level', 'search', 'per_page', 'is_completed', 'is_helpful']) ? 'pe-none' : '' }}">
         Reset Filter
     </a>
 </div>

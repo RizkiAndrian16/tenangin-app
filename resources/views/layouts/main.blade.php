@@ -28,16 +28,33 @@
     <link href="{{ asset('assets-admin/css/app.css') }}" rel="stylesheet">
 
     {{-- CUSTOM CSS --}}
-    <link href="{{ asset('assets-admin/css/custom.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets-admin/css/button.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets-admin/css/badge.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets-admin/css/alert.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets-admin/css/filter.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets-admin/css/pagination.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets-admin/css/pss.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets-admin/css/topbar.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets-admin/css/profile.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets-admin/css/dark-mode.css') }}" rel="stylesheet">
+    <link
+        href="{{ asset('assets-admin/css/custom.css') }}?v={{ filemtime(public_path('assets-admin/css/custom.css')) }}"
+        rel="stylesheet">
+    <link
+        href="{{ asset('assets-admin/css/button.css') }}?v={{ filemtime(public_path('assets-admin/css/button.css')) }}"
+        rel="stylesheet">
+    <link href="{{ asset('assets-admin/css/badge.css') }}?v={{ filemtime(public_path('assets-admin/css/badge.css')) }}"
+        rel="stylesheet">
+    <link href="{{ asset('assets-admin/css/alert.css') }}?v={{ filemtime(public_path('assets-admin/css/alert.css')) }}"
+        rel="stylesheet">
+    <link
+        href="{{ asset('assets-admin/css/filter.css') }}?v={{ filemtime(public_path('assets-admin/css/filter.css')) }}"
+        rel="stylesheet">
+    <link
+        href="{{ asset('assets-admin/css/pagination.css') }}?v={{ filemtime(public_path('assets-admin/css/pagination.css')) }}"
+        rel="stylesheet">
+    <link href="{{ asset('assets-admin/css/pss.css') }}?v={{ filemtime(public_path('assets-admin/css/pss.css')) }}"
+        rel="stylesheet">
+    <link
+        href="{{ asset('assets-admin/css/topbar.css') }}?v={{ filemtime(public_path('assets-admin/css/topbar.css')) }}"
+        rel="stylesheet">
+    <link
+        href="{{ asset('assets-admin/css/profile.css') }}?v={{ filemtime(public_path('assets-admin/css/profile.css')) }}"
+        rel="stylesheet">
+    <link
+        href="{{ asset('assets-admin/css/dark-mode.css') }}?v={{ filemtime(public_path('assets-admin/css/dark-mode.css')) }}"
+        rel="stylesheet">
 
     @stack('styles')
 </head>

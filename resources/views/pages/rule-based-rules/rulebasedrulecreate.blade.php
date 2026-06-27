@@ -80,18 +80,17 @@
                     </div>
                 </div>
 
+                {{-- NAVIGASI BUTTON --}}
                 <div class="border-top pt-4 mt-4">
-                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-                        <div>
-                            <a href="{{ route('rule-based-rules.index') }}"
-                                class="btn btn-soft-secondary rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2">
-                                <i data-feather="arrow-left"></i>
-                                <span>Kembali</span>
-                            </a>
-                        </div>
+                    <div class="d-flex justify-content-end justify-content-md-between gap-3">
+                        <a href="{{ route('rule-based-rules.index') }}"
+                            class="btn btn-soft-secondary rounded-pill px-4 py-2 d-none d-md-flex align-items-center justify-content-center gap-2">
+                            <i data-feather="arrow-left"></i>
+                            <span>Kembali</span>
+                        </a>
 
                         <button type="submit"
-                            class="btn btn-soft-success rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2">
+                            class="btn btn-soft-success rounded-pill px-4 py-2 d-flex align-items-center justify-content-center gap-2 flex-fill flex-md-grow-0">
                             <i data-feather="save"></i>
                             <span>Simpan</span>
                         </button>

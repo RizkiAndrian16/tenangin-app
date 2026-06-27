@@ -9,15 +9,13 @@
         </button>
 
         <div class="mb-4">
-            <h2 class="fw-bold mb-1">Ubah Informasi Profil</h2>
-            <p class="text-muted mb-0">Perbarui informasi pribadi Anda</p>
+            <h2 class="fw-bold mb-1">Edit Informasi Profil</h2>
+            <p class="text-muted mb-0">Perbarui info pribadi Anda</p>
         </div>
 
         <form id="profileForm" action="{{ route('profile.update') }}" method="POST">
             @csrf
             @method('PUT')
-
-            <h5 class="fw-bold mb-4">Informasi Pribadi</h5>
 
             <div class="row g-4">
 
@@ -62,7 +60,7 @@
                 </div>
             </div>
 
-            <div class="d-flex justify-content-end gap-3 mt-5">
+            <div class="d-flex justify-content-end gap-3 mt-4">
                 <button type="button" class="btn btn-soft-secondary rounded-pill px-4 py-2 js-close-modal"
                     data-target="profileModal">
                     Tutup
@@ -70,7 +68,7 @@
                 <button type="submit"
                     class="btn btn-soft-success rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2">
                     <i data-feather="save"></i>
-                    <span>Simpan Perubahan</span>
+                    <span>Simpan</span>
                 </button>
             </div>
         </form>
@@ -89,15 +87,13 @@
         </button>
 
         <div class="mb-4">
-            <h2 class="fw-bold mb-1">Ubah Informasi Universitas</h2>
+            <h2 class="fw-bold mb-1">Edit Informasi Universitas</h2>
             <p class="text-muted mb-0">Perbarui data akademik Anda</p>
         </div>
 
         <form id="universityForm" action="{{ route('profile.university.update') }}" method="POST">
             @csrf
             @method('PUT')
-
-            <h5 class="fw-bold mb-4">Informasi Akademik</h5>
 
             <div class="row g-4">
 
@@ -120,10 +116,10 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label class="form-label fw-semibold" for="inputResidence">Status Tempat Tinggal</label>
+                    <label class="form-label fw-semibold" for="inputResidence">Tempat Tinggal</label>
                     <select id="inputResidence" name="residence_status" class="form-select custom-input"
                         data-current="{{ auth()->user()->residence_status }}">
-                        <option value="">Pilih Status</option>
+                        <option value="">Pilih</option>
                         @foreach (['Rumah Orang Tua', 'Kos', 'Asrama', 'Kontrakan', 'Lainnya'] as $status)
                             <option value="{{ $status }}"
                                 {{ auth()->user()->residence_status === $status ? 'selected' : '' }}>
@@ -132,8 +128,8 @@
                         @endforeach
                     </select>
                     <input type="text" id="inputResidenceOther" name="residence_status_other"
-                        class="form-control custom-input mt-3" placeholder="Tuliskan status tempat tinggal Anda..."
-                        style="display:none;">
+                        class="form-control custom-input mt-3 is-hidden"
+                        placeholder="Tuliskan status tempat tinggal Anda...">
                 </div>
             </div>
 
@@ -145,7 +141,7 @@
                 <button type="submit"
                     class="btn btn-soft-success rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2">
                     <i data-feather="save"></i>
-                    <span>Simpan Perubahan</span>
+                    <span>Simpan</span>
                 </button>
             </div>
 
@@ -165,7 +161,7 @@
         </button>
 
         <div class="mb-4">
-            <h2 class="fw-bold mb-1">Ubah Foto Profil</h2>
+            <h2 class="fw-bold mb-1">Edit Foto Profil</h2>
             <p class="text-muted mb-0">Upload foto baru untuk profil Anda</p>
         </div>
 
@@ -178,17 +174,17 @@
                 <div class="d-flex flex-column align-items-center gap-3">
                     <img id="photoPreviewImg" class="photo-preview-img" src="#" alt="Preview">
                     <div id="photoDropIcon">
-                        <i data-feather="upload-cloud" style="width:48px;height:48px;color:#9ca3af;"></i>
+                        <i data-feather="upload-cloud" class="photo-upload-icon"></i>
                         <p class="mt-3 mb-1 fw-semibold text-dark">Drag &amp; drop foto di sini</p>
                         <p class="text-muted small mb-0">atau klik untuk memilih file</p>
                         <p class="text-muted small">PNG, JPG — maks. 2 MB</p>
                     </div>
-                    <p id="photoFileName" class="text-muted small mb-0" style="display:none;"></p>
+                    <p id="photoFileName" class="text-muted small mb-0 is-hidden"></p>
                 </div>
             </div>
 
             <input type="file" id="photoInput" name="profile_photo" accept="image/png,image/jpeg,image/jpg"
-                style="display:none;">
+                class="is-hidden">
 
             <div class="d-flex justify-content-end gap-3 mt-4">
                 <button type="button" class="btn btn-soft-secondary rounded-pill px-4 py-2 js-close-modal"
@@ -203,5 +199,44 @@
                 </button>
             </div>
         </form>
+    </div>
+</div>
+
+{{-- ═══════════════════════════════════════
+         MODAL 4 — LIHAT FOTO PROFIL BESAR
+    ═══════════════════════════════════════ --}}
+<div class="custom-popup-overlay" id="viewPhotoModal">
+    <div class="custom-popup view-photo-popup text-center">
+
+        <button type="button" class="custom-popup-close js-close-modal" data-target="viewPhotoModal">
+            <i data-feather="x"></i>
+        </button>
+
+        <div class="mb-4">
+            <h4 class="fw-bold mb-1">Foto Profil</h4>
+        </div>
+
+        <div class="d-flex justify-content-center mb-4">
+            @if (auth()->user()->profile_photo)
+                {{-- Avatar besar khusus modal lihat foto: class "profile-avatar" + modifier "profile-avatar-lg" (lihat profile.css) --}}
+                <img src="{{ auth()->user()->profile_photo_url }}" alt="Profile"
+                    class="profile-avatar profile-avatar-lg shadow-sm">
+            @else
+                {{-- Placeholder avatar besar: class "profile-avatar-placeholder" + modifier "profile-avatar-lg" (lihat profile.css) --}}
+                <div
+                    class="profile-avatar-placeholder profile-avatar-lg shadow-sm d-flex align-items-center justify-content-center">
+                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                </div>
+            @endif
+        </div>
+
+        {{-- TOMBOL PINDAH KE MODAL UPLOAD --}}
+        <div>
+            <button type="button" id="btnSwitchToUploadModal"
+                class="btn btn-soft-secondary rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2">
+                <i data-feather="camera"></i>
+                <span>Edit Foto Profil</span>
+            </button>
+        </div>
     </div>
 </div>

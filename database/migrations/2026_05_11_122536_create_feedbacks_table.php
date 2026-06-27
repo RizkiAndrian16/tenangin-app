@@ -27,6 +27,8 @@ return new class extends Migration
 
             $table->integer('willingness_score')->nullable();      // Bersedia mengulang? (Untuk penalti/reward)
 
+            $table->tinyInteger('overall_rating')->nullable();    // Rating keseluruhan
+
             $table->text('notes')->nullable();
 
             $table->timestamps();

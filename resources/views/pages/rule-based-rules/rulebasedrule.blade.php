@@ -2,7 +2,7 @@
 @section('title', 'Aturan Rekomendasi - Tenangin.')
 @section('content')
 
-    <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
+    <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center gap-2 gap-sm-3 mb-3 mb-sm-4">
         <div>
             <h1 class="h3 fw-bold mb-1">Aturan Rekomendasi</h1>
             <p class="text-muted mb-0">
@@ -10,7 +10,7 @@
             </p>
         </div>
 
-        <div>
+        <div class="d-grid d-sm-block">
             <a href="{{ route('rule-based-rules.create') }}" class="btn btn-soft-success rounded-pill px-4 py-2">
                 Tambah Aturan Rekomendasi
             </a>
@@ -34,25 +34,34 @@
         </div>
     @endif
 
-    <form id="filterForm" method="GET" action="{{ route('rule-based-rules.index') }}">
-        <div class="card filter-card mb-2">
-            <div class="card-body">
-                <x-filter-table :showStressLevel="true" :showDate="false" :showStatus="false" :showIntensity="true" :resetRoute="route('rule-based-rules.index')" />
+    <div class="collapse d-sm-block" id="collapseFilter">
+        <form id="filterForm" method="GET" action="{{ route('rule-based-rules.index') }}">
+            <div class="card filter-card mb-2">
+                <div class="card-body">
+                    <x-filter-table :showStressLevel="true" :showDate="false" :showStatus="false" :showIntensity="true"
+                        :resetRoute="route('rule-based-rules.index')" />
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 
     <div class="card">
         <div class="card-body table-card-body">
-
             <div class="table-toolbar">
+                <div class="d-flex justify-content-between align-items-center align-self-stretch">
+                    <x-show-entries />
 
-                <x-show-entries />
+                    <button
+                        class="btn btn-soft-secondary d-inline-flex d-sm-none justify-content-center align-items-center rounded-3"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilter" aria-expanded="false"
+                        aria-controls="collapseFilter">
+                        <i data-feather="filter" class="icon-16"></i>
+                    </button>
+                </div>
 
                 <div class="toolbar-actions">
                     <button type="button" id="btnBulkDelete"
-                        class="btn btn-soft-danger btn-sm rounded-pill px-3 py-2 align-items-center gap-1"
-                        style="display: none;">
+                        class="btn btn-soft-danger btn-sm rounded-pill px-3 py-2 align-items-center gap-1">
                         <i data-feather="trash-2"></i>
                     </button>
 
@@ -113,7 +122,7 @@
                                     <td>{{ $rule->activity->intensity_level }}</td>
 
                                     <td>
-                                        <div class="d-flex justify-content-center gap-2 flex-wrap">
+                                        <div class="d-flex justify-content-center gap-2 flex-nowrap">
                                             <button type="button"
                                                 class="btn btn-soft-info btn-sm rounded-pill px-3 py-2 d-inline-flex align-items-center gap-1 js-open-rule"
                                                 data-stress="{{ $rule->stress_level }}"
@@ -131,8 +140,8 @@
                                                 <i data-feather="edit"></i>
                                             </a>
 
-                                            <button type="button" onclick="deleteSingle({{ $rule->id }})"
-                                                class="btn btn-soft-danger btn-sm rounded-pill px-3 py-2 d-inline-flex align-items-center gap-1">
+                                            <button type="button" data-id="{{ $rule->id }}"
+                                                class="btn btn-soft-danger btn-sm rounded-pill px-3 py-2 d-inline-flex align-items-center gap-1 js-delete-single">
                                                 <span>Hapus</span>
                                                 <i data-feather="trash-2"></i>
                                             </button>

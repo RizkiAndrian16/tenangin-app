@@ -10,6 +10,8 @@ class Feedback extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'feedbacks';
+
     protected $fillable = [
         'user_id',
         'recommendation_item_id',
@@ -19,6 +21,7 @@ class Feedback extends Model
         'comfort_score',
         'stress_reduction_score',
         'willingness_score',
+        'overall_rating',
         'notes',
     ];
 
@@ -29,6 +32,7 @@ class Feedback extends Model
         'comfort_score' => 'integer',
         'stress_reduction_score' => 'integer',
         'willingness_score' => 'integer',
+        'overall_rating' => 'integer',
     ];
 
     public function user()
