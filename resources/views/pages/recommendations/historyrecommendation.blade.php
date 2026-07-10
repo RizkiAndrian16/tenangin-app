@@ -91,18 +91,26 @@
                                         {{ $recommendation->created_at->translatedFormat('l, d-m-Y') }}</td>
                                     <td>
                                         @if ($recommendation->pssAssessment)
-                                            @if ($recommendation->pssAssessment->stress_level == 'Rendah')
-                                                <span class="badge badge-soft-success rounded-pill"
-                                                    data-stress="Rendah">Rendah</span>
-                                            @elseif ($recommendation->pssAssessment->stress_level == 'Sedang')
-                                                <span class="badge badge-soft-warning rounded-pill"
-                                                    data-stress="Sedang">Sedang</span>
-                                            @else
-                                                <span class="badge badge-soft-danger rounded-pill"
-                                                    data-stress="Tinggi">Tinggi</span>
-                                            @endif
+                                            <div class="d-flex flex-column align-items-center gap-1">
+                                                @if ($recommendation->pssAssessment->stress_level == 'Rendah')
+                                                    <span class="badge badge-soft-success rounded-pill"
+                                                        data-stress="Rendah">Rendah</span>
+                                                @elseif ($recommendation->pssAssessment->stress_level == 'Sedang')
+                                                    <span class="badge badge-soft-warning rounded-pill"
+                                                        data-stress="Sedang">Sedang</span>
+                                                @else
+                                                    <span class="badge badge-soft-danger rounded-pill"
+                                                        data-stress="Tinggi">Tinggi</span>
+                                                @endif
+
+                                                {{-- Cek apakah datanya diambil dari tong sampah --}}
+                                                @if ($recommendation->pssAssessment->trashed())
+                                                    <span class="text-muted" style="font-size: 0.75rem;">(Assessment
+                                                        Dihapus)</span>
+                                                @endif
+                                            </div>
                                         @else
-                                            <span class="text-muted">Tidak tersedia</span>
+                                            <span class="text-muted">Data Tidak Tersedia</span>
                                         @endif
                                     </td>
                                     <td>

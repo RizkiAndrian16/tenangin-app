@@ -12,7 +12,31 @@
                     <span class="align-middle">Dashboard</span>
                 </a>
             </li>
-            <li class="sidebar-header fw-bold">USER</li>
+
+            @if (Auth::user()->isAdmin())
+                <li class="sidebar-header fw-bold">DATA MASTER</li>
+                <li class="sidebar-item {{ request()->routeIs('users.*') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('users.index') }}">
+                        <i class="align-middle" data-feather="users"></i>
+                        <span class="align-middle">User</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item {{ request()->routeIs('activities.*') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('activities.index') }}">
+                        <i class="align-middle" data-feather="grid"></i>
+                        <span class="align-middle">Katalog Aktivitas</span>
+                    </a>
+                </li>
+                <li class="sidebar-item {{ request()->routeIs('rule-based-rules.*') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('rule-based-rules.index') }}">
+                        <i class="align-middle" data-feather="git-branch"></i>
+                        <span class="align-middle">Aturan Rekomendasi</span>
+                    </a>
+                </li>
+            @endif
+
+            <li class="sidebar-header fw-bold">USERS</li>
             <li class="sidebar-item {{ request()->routeIs('profile.*') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('profile.edit') }}">
                     <i class="align-middle" data-feather="user"></i>
@@ -39,19 +63,7 @@
                     <span class="align-middle">Feedback</span>
                 </a>
             </li>
-            <li class="sidebar-header fw-bold">RELAKSASI</li>
-            <li class="sidebar-item {{ request()->routeIs('activities.*') ? 'active' : '' }}">
-                <a class="sidebar-link" href="{{ route('activities.index') }}">
-                    <i class="align-middle" data-feather="grid"></i>
-                    <span class="align-middle">Katalog Aktivitas</span>
-                </a>
-            </li>
-            <li class="sidebar-item {{ request()->routeIs('rule-based-rules.*') ? 'active' : '' }}">
-                <a class="sidebar-link" href="{{ route('rule-based-rules.index') }}">
-                    <i class="align-middle" data-feather="git-branch"></i>
-                    <span class="align-middle">Aturan Rekomendasi</span>
-                </a>
-            </li>
+
         </ul>
     </div>
 </nav>

@@ -7,6 +7,7 @@ use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\RuleBasedRuleController;
 use App\Http\Controllers\RecommendationController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('landing.index');
@@ -48,40 +49,51 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/recommendations/bulk-destroy', [RecommendationController::class, 'bulkDestroy'])->name('recommendations.bulk-destroy');
 
     // ======================================
-    // ACTIVITY (KATALOG AKTIVITAS RELAKSASI)
-    // ======================================
-    Route::get('/activities', [ActivityController::class, 'index'])->name('activities.index');
-    Route::get('/activities/create', [ActivityController::class, 'create'])->name('activities.create');
-    Route::post('/activities', [ActivityController::class, 'store'])->name('activities.store');
-    // Route::get('/activities/{activity}', [ActivityController::class, 'show'])->name('activities.show');
-    Route::get('/activities/{activity}/edit', [ActivityController::class, 'edit'])->name('activities.edit');
-    Route::put('/activities/{activity}', [ActivityController::class, 'update'])->name('activities.update');
-    Route::delete('/activities', [ActivityController::class, 'bulkDestroy'])->name('activities.bulk-destroy');
-    Route::delete('/activities/{activity}', [ActivityController::class, 'destroy'])->name('activities.destroy');
-
-    // ======================================
-    // ATURAN RULE BASED RULES
-    // ======================================
-    Route::get('/rule-based-rules', [RuleBasedRuleController::class, 'index'])->name('rule-based-rules.index');
-    Route::get('/rule-based-rules/create', [RuleBasedRuleController::class, 'create'])->name('rule-based-rules.create');
-    Route::post('/rule-based-rules', [RuleBasedRuleController::class, 'store'])->name('rule-based-rules.store');
-    Route::get('/rule-based-rules/{ruleBasedRule}/edit', [RuleBasedRuleController::class, 'edit'])->name('rule-based-rules.edit');
-    Route::put('/rule-based-rules/{ruleBasedRule}', [RuleBasedRuleController::class, 'update'])->name('rule-based-rules.update');
-    Route::delete('/rule-based-rules', [RuleBasedRuleController::class, 'bulkDestroy'])->name('rule-based-rules.bulk-destroy');
-    Route::delete('/rule-based-rules/{ruleBasedRule}', [RuleBasedRuleController::class, 'destroy'])->name('rule-based-rules.destroy');
-
-    // ======================================
     // FEEDBACK & MODE FOKUS
     // ======================================
-    // 1. Rute untuk membuka halaman "Mode Fokus"
     Route::get('/feedbacks/{recommendationItem}/focus', [FeedbackController::class, 'focus'])->name('feedbacks.focus');
-    // 2. Rute untuk menyimpan data form feedback ke database
     Route::post('/feedbacks/{recommendationItem}', [FeedbackController::class, 'store'])->name('feedbacks.store');
     Route::get('/feedbacks/create/{recommendationItem}', [FeedbackController::class, 'create'])->name('feedbacks.create');
     Route::get('/feedbacks', [FeedbackController::class, 'index'])->name('feedbacks.index');
     Route::get('/feedbacks/detail/{feedback}', [FeedbackController::class, 'show'])->name('feedbacks.show');
     Route::delete('/feedbacks/bulk-destroy', [FeedbackController::class, 'bulkDestroy'])->name('feedbacks.bulk-destroy');
     Route::delete('/feedbacks/{feedback}', [FeedbackController::class, 'destroy'])->name('feedbacks.destroy');
+
+
+    // ==========================================================
+    // AREA KHUSUS ADMIN (USERS, ACTIVITIES, RULE BASED RULES)
+    // ==========================================================
+    Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
+
+        // MANAJEMEN PENGGUNA
+        Route::get('/users', [UserController::class, 'index'])->name('users.index');
+        Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('/users', [UserController::class, 'store'])->name('users.store');
+        Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+        Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+        Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('/users/bulk-destroy', [UserController::class, 'bulkDestroy'])->name('users.bulk-destroy');
+        Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+        // ACTIVITY (KATALOG AKTIVITAS RELAKSASI)
+        Route::get('/activities', [ActivityController::class, 'index'])->name('activities.index');
+        Route::get('/activities/create', [ActivityController::class, 'create'])->name('activities.create');
+        Route::post('/activities', [ActivityController::class, 'store'])->name('activities.store');
+        // Route::get('/activities/{activity}', [ActivityController::class, 'show'])->name('activities.show');
+        Route::get('/activities/{activity}/edit', [ActivityController::class, 'edit'])->name('activities.edit');
+        Route::put('/activities/{activity}', [ActivityController::class, 'update'])->name('activities.update');
+        Route::delete('/activities', [ActivityController::class, 'bulkDestroy'])->name('activities.bulk-destroy');
+        Route::delete('/activities/{activity}', [ActivityController::class, 'destroy'])->name('activities.destroy');
+
+        // ATURAN RULE BASED RULES
+        Route::get('/rule-based-rules', [RuleBasedRuleController::class, 'index'])->name('rule-based-rules.index');
+        Route::get('/rule-based-rules/create', [RuleBasedRuleController::class, 'create'])->name('rule-based-rules.create');
+        Route::post('/rule-based-rules', [RuleBasedRuleController::class, 'store'])->name('rule-based-rules.store');
+        Route::get('/rule-based-rules/{ruleBasedRule}/edit', [RuleBasedRuleController::class, 'edit'])->name('rule-based-rules.edit');
+        Route::put('/rule-based-rules/{ruleBasedRule}', [RuleBasedRuleController::class, 'update'])->name('rule-based-rules.update');
+        Route::delete('/rule-based-rules', [RuleBasedRuleController::class, 'bulkDestroy'])->name('rule-based-rules.bulk-destroy');
+        Route::delete('/rule-based-rules/{ruleBasedRule}', [RuleBasedRuleController::class, 'destroy'])->name('rule-based-rules.destroy');
+    });
 });
 
 require __DIR__ . '/auth.php';

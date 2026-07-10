@@ -3,8 +3,10 @@
     'showDate' => true,
     'showStatus' => false,
     'showIntensity' => false,
-    'showIsCompleted' => false, // PROPERTI BARU
-    'showIsHelpful' => false, // PROPERTI BARU
+    'showIsCompleted' => false,
+    'showIsHelpful' => false,
+    'showGender' => false, // PROPERTI BARU (Jenis Kelamin)
+    'showRole' => false, // PROPERTI BARU (Role)
     'resetRoute' => null,
 ])
 
@@ -142,6 +144,33 @@
                 </div>
             @endif
 
+            {{-- FILTER ROLE PENGGUNA --}}
+            @if ($showRole)
+                <div class="d-flex flex-column gap-1 filter-field">
+                    <label class="filter-label">Role Pengguna</label>
+                    <select name="role" class="form-select filter-input auto-submit-filter">
+                        <option value="">Semua Role</option>
+                        <option value="admin" {{ request('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+                        <option value="mahasiswa" {{ request('role') == 'mahasiswa' ? 'selected' : '' }}>Mahasiswa
+                        </option>
+                    </select>
+                </div>
+            @endif
+
+            {{-- FILTER JENIS KELAMIN --}}
+            @if ($showGender)
+                <div class="d-flex flex-column gap-1 filter-field">
+                    <label class="filter-label">Jenis Kelamin</label>
+                    <select name="gender" class="form-select filter-input auto-submit-filter">
+                        <option value="">Semua Jenis Kelamin</option>
+                        <option value="Laki-Laki" {{ request('gender') == 'Laki-Laki' ? 'selected' : '' }}>Laki-Laki
+                        </option>
+                        <option value="Perempuan" {{ request('gender') == 'Perempuan' ? 'selected' : '' }}>Perempuan
+                        </option>
+                    </select>
+                </div>
+            @endif
+
         </div>
 
     </div>
@@ -149,7 +178,7 @@
     {{-- RESET BUTTON --}}
     <a href="{{ $resetRoute }}" id="btnResetFilter"
         class="btn btn-soft-secondary px-4
-    {{ !request()->hasAny(['stress_level', 'date', 'status', 'intensity_level', 'search', 'per_page', 'is_completed', 'is_helpful']) ? 'pe-none' : '' }}">
+    {{ !request()->hasAny(['stress_level', 'date', 'status', 'intensity_level', 'search', 'per_page', 'is_completed', 'is_helpful', 'role', 'gender']) ? 'pe-none' : '' }}">
         Reset Filter
     </a>
 </div>

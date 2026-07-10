@@ -4,7 +4,8 @@
 
 .badge-soft-success,
 .badge-soft-warning,
-.badge-soft-danger {
+.badge-soft-danger,
+.badge-soft-secondary {
 
     display: inline-block;
 
@@ -30,4 +31,9 @@
 .badge-soft-danger {
     background-color: #FEE2E2;
     color: #DC2626;
+}
+
+.badge-soft-secondary {
+    background-color: #F1F5F9;
+    color: #475569;
 }

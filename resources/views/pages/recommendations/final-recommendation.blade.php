@@ -248,7 +248,7 @@
             @endif
 
             {{-- PERBAIKAN: Seluruh wrapper disembunyikan di HP (d-none) agar garis border juga hilang --}}
-            <div class="d-none d-md-flex justify-content-md-center gap-2 border-top pt-4">
+            <div class="d-none d-md-flex justify-content-md-center gap-2 border-top pt-4 mt-4">
                 <a href="{{ route('pss-assessments.index') }}"
                     class="btn btn-soft-secondary rounded-pill px-4 py-2 d-flex align-items-center justify-content-center gap-2">
                     <i data-feather="arrow-left"></i>

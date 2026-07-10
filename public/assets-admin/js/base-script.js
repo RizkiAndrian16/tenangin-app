@@ -1136,3 +1136,27 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 100);
     }
 });
+
+//
+// ======================================
+// TOGGLE PASSWORD VISIBILITY
+// ======================================
+//
+window.togglePassword = function(inputId, element) {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+
+    // Cek tipe input saat ini
+    if (input.type === 'password') {
+        input.type = 'text'; // Tampilkan password
+        // Ganti ikon menjadi eye-off
+        element.innerHTML = '<i data-feather="eye-off" style="width: 18px; height: 18px;"></i>';
+    } else {
+        input.type = 'password'; // Sembunyikan password
+        // Ganti ikon menjadi eye
+        element.innerHTML = '<i data-feather="eye" style="width: 18px; height: 18px;"></i>';
+    }
+
+    // Render ulang ikon feather
+    if (window.feather) feather.replace();
+};

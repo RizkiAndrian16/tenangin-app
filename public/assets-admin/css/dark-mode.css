@@ -98,14 +98,12 @@
 
 .dark-mode .table th {
     background-color: #0F172A !important;
-
     color: #F9FAFB !important;
-
-    border-color: rgba(255,255,255,0.08) !important;
+    border-color: #FFFFFF !important; /* <--- UBAH DI SINI */
 }
 
 .dark-mode .table td {
-    border-color: rgba(255,255,255,0.08) !important;
+    border-color: #FFFFFF !important; /* <--- UBAH DI SINI */
 }
 
 .dark-mode .table thead th {

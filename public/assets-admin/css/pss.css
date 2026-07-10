@@ -78,6 +78,19 @@
     margin-top: 4px;
 }
 
+.score-circle.score-circle-sm {
+    width: 90px;
+    height: 90px;
+}
+
+.score-circle.score-circle-sm .score-number {
+    font-size: 1.5rem;
+}
+
+.score-circle.score-circle-sm .score-max {
+    font-size: 0.7rem;
+}
+
 /* =========================
    ICON BOX
 ========================= */

@@ -70,41 +70,21 @@ class RecommendationController extends Controller
     public function processPreferences(Request $request, PssAssessment $pssAssessment)
     {
         if ($pssAssessment->user_id !== Auth::id()) {
-
             abort(403);
         }
 
         $validated = $request->validate([
-
             'preferred_activity_type' => ['required', 'string'],
             'preferred_duration' => ['required', 'string'],
             'preferred_intensity' => ['required', 'string'],
-
         ]);
 
-        UserPreference::where(
-            'user_id',
-            Auth::id()
-
-        )->update([
-            'is_active' => false
-        ]);
-
+        // Cukup buat data baru, SoftDeletes akan mengurus yang lama saat riwayat dihapus
         UserPreference::create([
-
             'user_id' => Auth::id(),
-
-            'preferred_activity_type' =>
-            $validated['preferred_activity_type'],
-
-            'preferred_duration' =>
-            $validated['preferred_duration'],
-
-            'preferred_intensity' =>
-            $validated['preferred_intensity'],
-
-            'is_active' => true,
-
+            'preferred_activity_type' => $validated['preferred_activity_type'],
+            'preferred_duration' => $validated['preferred_duration'],
+            'preferred_intensity' => $validated['preferred_intensity'],
         ]);
 
         return redirect()
@@ -115,22 +95,17 @@ class RecommendationController extends Controller
     public function generateFinalRecommendation(PssAssessment $pssAssessment)
     {
         if ($pssAssessment->user_id !== Auth::id()) {
-
             abort(403);
         }
 
         $stressLevel = $pssAssessment->stress_level;
 
-        $activePreference = UserPreference::where(
-            'user_id',
-            Auth::id()
-        )
-            ->where('is_active', true)
-            ->latest()
+        // Ambil data tanpa filter is_active
+        $activePreference = UserPreference::where('user_id', Auth::id())
+            ->latest('id')
             ->first();
 
         if (!$activePreference) {
-
             return redirect()
                 ->route('recommendations.index', $pssAssessment->id)
                 ->with('error', 'Preferensi aktivitas belum dipilih.');
@@ -316,7 +291,9 @@ class RecommendationController extends Controller
     public function history()
     {
         $query = Recommendation::with([
-            'pssAssessment',
+            'pssAssessment' => function ($query) {
+                $query->withTrashed(); // <-- TAMBAHKAN INI UNTUK MEMBACA DARI TONG SAMPAH
+            },
             'userPreference',
             'recommendationItems'
         ])->where('user_id', Auth::id());
@@ -391,15 +368,19 @@ class RecommendationController extends Controller
     // ======================================
     public function showHistory(Recommendation $recommendation)
     {
-        // Pastikan keamanan: hanya pemilik riwayat yang boleh melihat
         if ($recommendation->user_id !== Auth::id()) {
             abort(403);
         }
 
-        // Panggil relasinya agar datanya lengkap
-        $recommendation->load(['pssAssessment', 'userPreference', 'recommendationItems.activity']);
+        // TAMBAHKAN withTrashed DI SINI JUGA
+        $recommendation->load([
+            'pssAssessment' => function ($query) {
+                $query->withTrashed();
+            },
+            'userPreference',
+            'recommendationItems.activity'
+        ]);
 
-        // Ambil data dari tabel items (bukan dihitung ulang), urutkan berdasarkan ranking
         $historyItems = $recommendation->recommendationItems->sortBy('ranking');
 
         return view('pages.recommendations.history-detail', compact('recommendation', 'historyItems'));
@@ -415,7 +396,6 @@ class RecommendationController extends Controller
             'ids.*' => 'exists:recommendations,id',
         ]);
 
-        // 1. Ambil data rekomendasi milik user yang sedang login (Keamanan)
         $recommendations = Recommendation::whereIn('id', $request->ids)
             ->where('user_id', Auth::id())
             ->get();
@@ -424,7 +404,6 @@ class RecommendationController extends Controller
             return back()->with('error', 'Tidak ada data yang valid untuk dihapus.');
         }
 
-        // Kumpulkan ID untuk dihapus massal
         $recommendationIds = $recommendations->pluck('id')->toArray();
         $preferenceIds = $recommendations->pluck('user_preference_id')->filter()->toArray();
 
@@ -434,18 +413,10 @@ class RecommendationController extends Controller
         // 3. HAPUS INDUK (Recommendations)
         Recommendation::whereIn('id', $recommendationIds)->delete();
 
-        // 4. HAPUS PASANGAN (User Preferences)
+        // 4. HAPUS PASANGAN (User Preferences) - HANYA HAPUS (Soft Delete) SAJA
         if (!empty($preferenceIds)) {
-            // Matikan status is_active menjadi 0 sebelum di-soft delete
-            UserPreference::whereIn('id', $preferenceIds)->update(['is_active' => 0]);
-
-            // Eksekusi Soft Delete
             UserPreference::whereIn('id', $preferenceIds)->delete();
         }
-
-        // CATATAN PENTING:
-        // Kita TIDAK MENGHAPUS pss_assessments di sini, karena data PSS-10
-        // adalah riwayat medis independen yang memiliki halaman pengelolaannya sendiri.
 
         return redirect()->route('recommendations.history')
             ->with('success', count($recommendationIds) . ' riwayat rekomendasi berhasil dihapus.');
