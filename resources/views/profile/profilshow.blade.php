@@ -77,77 +77,79 @@
 
 
 {{-- ═══════════════════════════════════════
-         MODAL 2 — EDIT UNIVERSITAS
+         MODAL 2 — EDIT UNIVERSITAS (HANYA MAHASISWA)
     ═══════════════════════════════════════ --}}
-<div class="custom-popup-overlay" id="universityModal">
-    <div class="custom-popup">
+@if (auth()->user()->role === 'mahasiswa')
+    <div class="custom-popup-overlay" id="universityModal">
+        <div class="custom-popup">
 
-        <button type="button" class="custom-popup-close js-close-modal" data-target="universityModal">
-            <i data-feather="x"></i>
-        </button>
+            <button type="button" class="custom-popup-close js-close-modal" data-target="universityModal">
+                <i data-feather="x"></i>
+            </button>
 
-        <div class="mb-4">
-            <h2 class="fw-bold mb-1">Edit Informasi Universitas</h2>
-            <p class="text-muted mb-0">Perbarui data akademik Anda</p>
+            <div class="mb-4">
+                <h2 class="fw-bold mb-1">Edit Informasi Universitas</h2>
+                <p class="text-muted mb-0">Perbarui data akademik Anda</p>
+            </div>
+
+            <form id="universityForm" action="{{ route('profile.university.update') }}" method="POST">
+                @csrf
+                @method('PUT')
+
+                <div class="row g-4">
+
+                    <div class="col-12">
+                        <label class="form-label fw-semibold" for="inputUniversity">Universitas</label>
+                        <input type="text" id="inputUniversity" name="university" class="form-control custom-input"
+                            value="{{ auth()->user()->university }}">
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label fw-semibold" for="inputMajor">Jurusan / Program Studi</label>
+                        <input type="text" id="inputMajor" name="major" class="form-control custom-input"
+                            value="{{ auth()->user()->major }}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold" for="inputSemester">Semester</label>
+                        <input type="number" id="inputSemester" name="semester" class="form-control custom-input"
+                            min="1" max="14" value="{{ auth()->user()->semester }}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold" for="inputResidence">Tempat Tinggal</label>
+                        <select id="inputResidence" name="residence_status" class="form-select custom-input"
+                            data-current="{{ auth()->user()->residence_status }}">
+                            <option value="">Pilih</option>
+                            @foreach (['Rumah Orang Tua', 'Kos', 'Asrama', 'Kontrakan', 'Lainnya'] as $status)
+                                <option value="{{ $status }}"
+                                    {{ auth()->user()->residence_status === $status ? 'selected' : '' }}>
+                                    {{ $status }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <input type="text" id="inputResidenceOther" name="residence_status_other"
+                            class="form-control custom-input mt-3 is-hidden"
+                            placeholder="Tuliskan status tempat tinggal Anda...">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end gap-3 mt-5">
+                    <button type="button" class="btn btn-soft-secondary rounded-pill px-4 py-2 js-close-modal"
+                        data-target="universityModal">
+                        Tutup
+                    </button>
+                    <button type="submit"
+                        class="btn btn-soft-success rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2">
+                        <i data-feather="save"></i>
+                        <span>Simpan</span>
+                    </button>
+                </div>
+
+            </form>
         </div>
-
-        <form id="universityForm" action="{{ route('profile.university.update') }}" method="POST">
-            @csrf
-            @method('PUT')
-
-            <div class="row g-4">
-
-                <div class="col-12">
-                    <label class="form-label fw-semibold" for="inputUniversity">Universitas</label>
-                    <input type="text" id="inputUniversity" name="university" class="form-control custom-input"
-                        value="{{ auth()->user()->university }}">
-                </div>
-
-                <div class="col-12">
-                    <label class="form-label fw-semibold" for="inputMajor">Jurusan / Program Studi</label>
-                    <input type="text" id="inputMajor" name="major" class="form-control custom-input"
-                        value="{{ auth()->user()->major }}">
-                </div>
-
-                <div class="col-md-6">
-                    <label class="form-label fw-semibold" for="inputSemester">Semester</label>
-                    <input type="number" id="inputSemester" name="semester" class="form-control custom-input"
-                        min="1" max="14" value="{{ auth()->user()->semester }}">
-                </div>
-
-                <div class="col-md-6">
-                    <label class="form-label fw-semibold" for="inputResidence">Tempat Tinggal</label>
-                    <select id="inputResidence" name="residence_status" class="form-select custom-input"
-                        data-current="{{ auth()->user()->residence_status }}">
-                        <option value="">Pilih</option>
-                        @foreach (['Rumah Orang Tua', 'Kos', 'Asrama', 'Kontrakan', 'Lainnya'] as $status)
-                            <option value="{{ $status }}"
-                                {{ auth()->user()->residence_status === $status ? 'selected' : '' }}>
-                                {{ $status }}
-                            </option>
-                        @endforeach
-                    </select>
-                    <input type="text" id="inputResidenceOther" name="residence_status_other"
-                        class="form-control custom-input mt-3 is-hidden"
-                        placeholder="Tuliskan status tempat tinggal Anda...">
-                </div>
-            </div>
-
-            <div class="d-flex justify-content-end gap-3 mt-5">
-                <button type="button" class="btn btn-soft-secondary rounded-pill px-4 py-2 js-close-modal"
-                    data-target="universityModal">
-                    Tutup
-                </button>
-                <button type="submit"
-                    class="btn btn-soft-success rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2">
-                    <i data-feather="save"></i>
-                    <span>Simpan</span>
-                </button>
-            </div>
-
-        </form>
     </div>
-</div>
+@endif
 
 
 {{-- ═══════════════════════════════════════
@@ -218,11 +220,9 @@
 
         <div class="d-flex justify-content-center mb-4">
             @if (auth()->user()->profile_photo)
-                {{-- Avatar besar khusus modal lihat foto: class "profile-avatar" + modifier "profile-avatar-lg" (lihat profile.css) --}}
                 <img src="{{ auth()->user()->profile_photo_url }}" alt="Profile"
                     class="profile-avatar profile-avatar-lg shadow-sm">
             @else
-                {{-- Placeholder avatar besar: class "profile-avatar-placeholder" + modifier "profile-avatar-lg" (lihat profile.css) --}}
                 <div
                     class="profile-avatar-placeholder profile-avatar-lg shadow-sm d-flex align-items-center justify-content-center">
                     {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
@@ -230,7 +230,6 @@
             @endif
         </div>
 
-        {{-- TOMBOL PINDAH KE MODAL UPLOAD --}}
         <div>
             <button type="button" id="btnSwitchToUploadModal"
                 class="btn btn-soft-secondary rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2">

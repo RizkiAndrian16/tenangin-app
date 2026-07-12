@@ -4,15 +4,24 @@
 
     <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center gap-2 gap-sm-3 mb-3 mb-sm-4">
         <div>
-            <h1 class="h3 fw-bold mb-1">PSS-10</h1>
-            <p class="text-muted mb-0">Riwayat hasil PSS-10 tingkat stres pengguna.</p>
+            <h1 class="h3 fw-bold mb-1">
+                {{ auth()->user()->role === 'admin' ? 'Data PSS-10 Keseluruhan' : 'PSS-10' }}
+            </h1>
+            <p class="text-muted mb-0">
+                {{ auth()->user()->role === 'admin'
+                    ? 'Pantau seluruh riwayat tes stres dari semua mahasiswa.'
+                    : 'Riwayat hasil PSS-10 tingkat stres anda.' }}
+            </p>
         </div>
 
-        <div class="d-grid d-sm-block">
-            <a href="{{ route('pss-assessments.create') }}" class="btn btn-soft-success rounded-pill px-4 py-2">
-                Mulai PSS-10 Assessment
-            </a>
-        </div>
+        {{-- Sembunyikan tombol mulai jika yang login adalah admin --}}
+        @if (auth()->user()->role === 'mahasiswa')
+            <div class="d-grid d-sm-block">
+                <a href="{{ route('pss-assessments.create') }}" class="btn btn-soft-success rounded-pill px-4 py-2">
+                    Mulai PSS-10 Assessment
+                </a>
+            </div>
+        @endif
     </div>
 
     @if (session('success'))
@@ -21,12 +30,17 @@
                 <div class="profile-success-icon">
                     <i data-feather="check-circle"></i>
                 </div>
-
                 <div>
                     <h6 class="fw-bold mb-1">Sukses!</h6>
                     <p class="mb-0">{{ session('success') }}</p>
                 </div>
             </div>
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger mb-4">
+            {{ session('error') }}
         </div>
     @endif
 
@@ -78,6 +92,10 @@
                             <tr class="text-center">
                                 <th width="2.5%"><input type="checkbox" id="checkAll" class="form-check-input"></th>
                                 <th width="3.5%">No</th>
+                                {{-- Tambahkan kolom Nama Mahasiswa jika Admin --}}
+                                @if (auth()->user()->role === 'admin')
+                                    <th>Nama Mahasiswa</th>
+                                @endif
                                 <th>Tanggal</th>
                                 <th>Tingkat Stres</th>
                                 <th>Skor PSS-10</th>
@@ -95,11 +113,17 @@
                                     <td>
                                         {{ $assessments->firstItem() + $loop->index }}
                                     </td>
+
+                                    {{-- Tampilkan Nama Mahasiswa jika Admin --}}
+                                    @if (auth()->user()->role === 'admin')
+                                        <td class="fw-medium">{{ $assessment->user->name ?? 'Tidak Diketahui' }}
+                                        </td>
+                                    @endif
+
                                     <td data-date="{{ $assessment->created_at->format('Y-m-d') }}">
                                         {{ $assessment->created_at->translatedFormat('l, d-m-Y') }}
                                     </td>
                                     <td>
-
                                         @if ($assessment->stress_level == 'Rendah')
                                             <span class="badge badge-soft-success rounded-pill" data-stress="Rendah">
                                                 Rendah</span>
@@ -136,14 +160,17 @@
 
                             @empty
                                 <tr>
-                                    <td colspan="6" class="text-center text-muted py-4">
+                                    {{-- Sesuaikan colspan (tambah 1) jika admin --}}
+                                    <td colspan="{{ auth()->user()->role === 'admin' ? '7' : '6' }}"
+                                        class="text-center text-muted py-4">
                                         Belum ada data PSS-10 Assessment.
                                     </td>
                                 </tr>
                             @endforelse
 
                             <tr id="emptyFilterRow" class="is-hidden">
-                                <td colspan="6" class="text-center text-muted py-4">
+                                <td colspan="{{ auth()->user()->role === 'admin' ? '7' : '6' }}"
+                                    class="text-center text-muted py-4">
                                     Tidak ada data PSS-10 Assessment yang sesuai.
                                 </td>
                             </tr>

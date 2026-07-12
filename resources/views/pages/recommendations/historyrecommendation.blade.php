@@ -2,9 +2,17 @@
 @section('title', 'Riwayat Rekomendasi - Tenangin.')
 @section('content')
     <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
-        <div>
-            <h1 class="h3 fw-bold mb-1">Riwayat Rekomendasi</h1>
-            <p class="text-muted mb-0">Riwayat hasil rekomendasi aktivitas relaksasi pengguna.</p>
+        <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
+            <div>
+                <h1 class="h3 fw-bold mb-1">
+                    {{ auth()->user()->role === 'admin' ? 'Data Riwayat Rekomendasi' : 'Riwayat Rekomendasi' }}
+                </h1>
+                <p class="text-muted mb-0">
+                    {{ auth()->user()->role === 'admin'
+                        ? 'Pantau seluruh riwayat rekomendasi dari semua mahasiswa.'
+                        : 'Riwayat hasil rekomendasi aktivitas relaksasi Anda.' }}
+                </p>
+            </div>
         </div>
     </div>
     @if (session('success'))
@@ -68,9 +76,13 @@
                     <table class="table table-bordered table-hover align-middle">
                         <thead class="table-light">
                             <tr class="text-center">
-                                <!-- Checkbox All -->
                                 <th width="2.5%"><input type="checkbox" id="checkAll" class="form-check-input"></th>
                                 <th width="3.5%">No</th>
+
+                                @if (auth()->user()->role === 'admin')
+                                    <th>Nama Mahasiswa</th>
+                                @endif
+
                                 <th>Tanggal</th>
                                 <th>Tingkat Stres</th>
                                 <th>Preferensi Aktivitas</th>
@@ -81,12 +93,17 @@
                         <tbody>
                             @forelse ($recommendations as $recommendation)
                                 <tr class="text-center">
-                                    <!-- Checkbox Satuan -->
                                     <td>
                                         <input type="checkbox" name="ids[]" value="{{ $recommendation->id }}"
                                             class="form-check-input check-item">
                                     </td>
                                     <td>{{ $recommendations->firstItem() + $loop->index }}</td>
+
+                                    @if (auth()->user()->role === 'admin')
+                                        <td class="fw-medium">
+                                            {{ $recommendation->user->name ?? 'Tidak Diketahui' }}</td>
+                                    @endif
+
                                     <td data-date="{{ $recommendation->created_at->format('Y-m-d') }}">
                                         {{ $recommendation->created_at->translatedFormat('l, d-m-Y') }}</td>
                                     <td>

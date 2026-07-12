@@ -15,8 +15,7 @@ class RecommendationController extends Controller
 {
     public function index(PssAssessment $pssAssessment)
     {
-        if ($pssAssessment->user_id !== Auth::id()) {
-
+        if ($pssAssessment->user_id !== Auth::id() && Auth::user()->role !== 'admin') {
             abort(403);
         }
 
@@ -69,7 +68,7 @@ class RecommendationController extends Controller
 
     public function processPreferences(Request $request, PssAssessment $pssAssessment)
     {
-        if ($pssAssessment->user_id !== Auth::id()) {
+        if ($pssAssessment->user_id !== Auth::id() && Auth::user()->role !== 'admin') {
             abort(403);
         }
 
@@ -94,7 +93,7 @@ class RecommendationController extends Controller
 
     public function generateFinalRecommendation(PssAssessment $pssAssessment)
     {
-        if ($pssAssessment->user_id !== Auth::id()) {
+        if ($pssAssessment->user_id !== Auth::id() && Auth::user()->role !== 'admin') {
             abort(403);
         }
 
@@ -291,12 +290,18 @@ class RecommendationController extends Controller
     public function history()
     {
         $query = Recommendation::with([
+            'user',
             'pssAssessment' => function ($query) {
-                $query->withTrashed(); // <-- TAMBAHKAN INI UNTUK MEMBACA DARI TONG SAMPAH
+                $query->withTrashed();
             },
             'userPreference',
             'recommendationItems'
-        ])->where('user_id', Auth::id());
+        ]);
+
+        // HANYA filter berdasarkan user_id jika dia Mahasiswa
+        if (Auth::user()->role !== 'admin') {
+            $query->where('user_id', Auth::id());
+        }
 
         // ======================================
         // 1. FILTER PENCARIAN (SEARCH)
@@ -368,7 +373,8 @@ class RecommendationController extends Controller
     // ======================================
     public function showHistory(Recommendation $recommendation)
     {
-        if ($recommendation->user_id !== Auth::id()) {
+        // IZINKAN jika pemilik OR jika yang login adalah admin
+        if ($recommendation->user_id !== Auth::id() && Auth::user()->role !== 'admin') {
             abort(403);
         }
 
@@ -396,9 +402,15 @@ class RecommendationController extends Controller
             'ids.*' => 'exists:recommendations,id',
         ]);
 
-        $recommendations = Recommendation::whereIn('id', $request->ids)
-            ->where('user_id', Auth::id())
-            ->get();
+        // 1. Ambil data dengan filter dinamis
+        $query = Recommendation::whereIn('id', $request->ids);
+
+        // JIKA BUKAN ADMIN, batasi hanya data miliknya sendiri
+        if (Auth::user()->role !== 'admin') {
+            $query->where('user_id', Auth::id());
+        }
+
+        $recommendations = $query->get();
 
         if ($recommendations->isEmpty()) {
             return back()->with('error', 'Tidak ada data yang valid untuk dihapus.');
@@ -413,7 +425,7 @@ class RecommendationController extends Controller
         // 3. HAPUS INDUK (Recommendations)
         Recommendation::whereIn('id', $recommendationIds)->delete();
 
-        // 4. HAPUS PASANGAN (User Preferences) - HANYA HAPUS (Soft Delete) SAJA
+        // 4. HAPUS PASANGAN (User Preferences)
         if (!empty($preferenceIds)) {
             UserPreference::whereIn('id', $preferenceIds)->delete();
         }

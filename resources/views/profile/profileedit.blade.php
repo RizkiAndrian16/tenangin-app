@@ -91,7 +91,8 @@
                 </div>
 
                 {{-- CARD 3: INFORMASI PRIBADI --}}
-                <div class="col-lg-6">
+                {{-- Jika Admin, buat full width (col-12). Jika mahasiswa, bagi dua (col-lg-6) --}}
+                <div class="{{ auth()->user()->role === 'admin' ? 'col-12' : 'col-lg-6' }}">
                     <div class="card border-0 shadow-sm rounded-4 h-100">
                         <div class="card-body p-4 profile-card-grid">
 
@@ -160,67 +161,71 @@
                     </div>
                 </div>
 
-                {{-- CARD 4: INFORMASI UNIVERSITAS --}}
-                <div class="col-lg-6">
-                    <div class="card border-0 shadow-sm rounded-4 h-100">
-                        <div class="card-body p-4 profile-card-grid">
+                {{-- CARD 4: INFORMASI UNIVERSITAS (HANYA MUNCUL UNTUK MAHASISWA) --}}
+                @if (auth()->user()->role === 'mahasiswa')
+                    <div class="col-lg-6">
+                        <div class="card border-0 shadow-sm rounded-4 h-100">
+                            <div class="card-body p-4 profile-card-grid">
 
-                            <div class="d-flex align-items-center gap-2 profile-card-title">
-                                <div class="icon-box-soft icon-box-success">
-                                    <i data-feather="book-open"></i>
+                                <div class="d-flex align-items-center gap-2 profile-card-title">
+                                    <div class="icon-box-soft icon-box-success">
+                                        <i data-feather="book-open"></i>
+                                    </div>
+                                    <h5 class="fw-bold mb-0">Informasi Universitas</h5>
                                 </div>
-                                <h5 class="fw-bold mb-0">Informasi Universitas</h5>
+
+                                <div class="row g-0 profile-card-fields">
+                                    <div class="col-12 py-3 border-bottom">
+                                        <div class="row">
+                                            <div class="col-5"><small class="text-muted">Universitas</small></div>
+                                            <div class="col-7">
+                                                <p class="fw-semibold mb-0" id="displayUniversity">
+                                                    {{ auth()->user()->university ?? '-' }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 py-3 border-bottom">
+                                        <div class="row">
+                                            <div class="col-5"><small class="text-muted">Jurusan</small></div>
+                                            <div class="col-7">
+                                                <p class="fw-semibold mb-0" id="displayMajor">
+                                                    {{ auth()->user()->major ?? '-' }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 py-3 border-bottom">
+                                        <div class="row">
+                                            <div class="col-5"><small class="text-muted">Semester</small></div>
+                                            <div class="col-7">
+                                                <p class="fw-semibold mb-0" id="displaySemester">
+                                                    {{ auth()->user()->semester ? 'Semester ' . auth()->user()->semester : '-' }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 py-3">
+                                        <div class="row">
+                                            <div class="col-5"><small class="text-muted">Tempat Tinggal</small></div>
+                                            <div class="col-7">
+                                                <p class="fw-semibold mb-0" id="displayResidence">
+                                                    {{ auth()->user()->residence_status ?? '-' }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="button" id="openUniversityModal"
+                                    class="btn btn-soft-secondary rounded-pill px-3 py-2 d-inline-flex align-items-center justify-content-center gap-2 profile-card-edit-btn">
+                                    <i data-feather="edit-2"></i>
+                                    <span>Edit</span>
+                                </button>
+
                             </div>
-
-                            <div class="row g-0 profile-card-fields">
-                                <div class="col-12 py-3 border-bottom">
-                                    <div class="row">
-                                        <div class="col-5"><small class="text-muted">Universitas</small></div>
-                                        <div class="col-7">
-                                            <p class="fw-semibold mb-0" id="displayUniversity">
-                                                {{ auth()->user()->university ?? '-' }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 py-3 border-bottom">
-                                    <div class="row">
-                                        <div class="col-5"><small class="text-muted">Jurusan</small></div>
-                                        <div class="col-7">
-                                            <p class="fw-semibold mb-0" id="displayMajor">
-                                                {{ auth()->user()->major ?? '-' }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 py-3 border-bottom">
-                                    <div class="row">
-                                        <div class="col-5"><small class="text-muted">Semester</small></div>
-                                        <div class="col-7">
-                                            <p class="fw-semibold mb-0" id="displaySemester">
-                                                {{ auth()->user()->semester ? 'Semester ' . auth()->user()->semester : '-' }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 py-3">
-                                    <div class="row">
-                                        <div class="col-5"><small class="text-muted">Tempat Tinggal</small></div>
-                                        <div class="col-7">
-                                            <p class="fw-semibold mb-0" id="displayResidence">
-                                                {{ auth()->user()->residence_status ?? '-' }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <button type="button" id="openUniversityModal"
-                                class="btn btn-soft-secondary rounded-pill px-3 py-2 d-inline-flex align-items-center justify-content-center gap-2 profile-card-edit-btn">
-                                <i data-feather="edit-2"></i>
-                                <span>Edit</span>
-                            </button>
-
                         </div>
                     </div>
-                </div>
+                @endif
+                {{-- END CARD UNIVERSITAS --}}
+
             </div>
         </div>
     </div>

@@ -464,3 +464,13 @@
 .text-11 {
     font-size: 11px !important;
 }
+
+/* Style untuk penanda nilai dibalik (reverse scoring) */
+.reverse-scoring-note {
+    font-size: 11px !important;
+}
+
+.reverse-scoring-icon {
+    width: 10px !important;
+    height: 10px !important;
+}

@@ -4,9 +4,18 @@
 
     <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
         <div>
-            <h1 class="h3 fw-bold mb-1">Detail Riwayat Rekomendasi</h1>
+            <h1 class="h3 fw-bold mb-1">
+                {{ auth()->user()->role === 'admin' ? 'Detail Riwayat: ' . ($recommendation->user->name ?? 'User') : 'Detail Riwayat Rekomendasi' }}
+            </h1>
             <p class="text-muted mb-0">
-                Snapshot hasil rekomendasi aktivitas pada {{ $recommendation->created_at->translatedFormat('l, d F Y') }}.
+                @if (auth()->user()->role === 'admin')
+                    Memantau snapshot hasil rekomendasi mahasiswa
+                    <strong>{{ $recommendation->user->name ?? 'User' }}</strong> pada
+                    {{ $recommendation->created_at->translatedFormat('l, d F Y') }}.
+                @else
+                    Snapshot hasil rekomendasi aktivitas pada
+                    {{ $recommendation->created_at->translatedFormat('l, d F Y') }}.
+                @endif
             </p>
         </div>
     </div>
@@ -39,7 +48,9 @@
                                 </div>
                             </div>
 
-                            <p class="text-muted small mb-2 custom-dark-text">Tingkat Stres Anda</p>
+                            <p class="text-muted small mb-2 custom-dark-text">
+                                {{ auth()->user()->role === 'admin' ? 'Tingkat Stres' : 'Tingkat Stres Anda' }}
+                            </p>
 
                             <div>
                                 @if ($stressLevel == 'Rendah')
@@ -67,7 +78,9 @@
                                         <h5 class="fw-bold mb-0">Preferensi Saat Itu</h5>
                                     </div>
                                     <p class="text-muted small mb-0">
-                                        Kriteria yang Anda gunakan saat rekomendasi ini dihasilkan.
+                                        {{ auth()->user()->role === 'admin'
+                                            ? 'Kriteria preferensi yang digunakan saat rekomendasi ini dihasilkan.'
+                                            : 'Kriteria yang Anda gunakan saat rekomendasi ini dihasilkan.' }}
                                     </p>
                                 </div>
                                 <div class="col-md-7">
@@ -178,7 +191,7 @@
                                 {{-- ==========================================
                                      FOOTER: DYNAMIC BUTTON (TOMBOL PINTAR)
                                 ========================================== --}}
-                                @if (!$hasAnyFeedback)
+                                @if (!$hasAnyFeedback && auth()->user()->role !== 'admin')
                                     <div
                                         class="mt-auto pt-4 border-top custom-top-divider d-flex flex-column align-items-center gap-2">
                                         @if ($isToday)

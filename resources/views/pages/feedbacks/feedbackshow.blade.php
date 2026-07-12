@@ -9,8 +9,14 @@
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h1 class="h3 fw-bold mb-1">Detail Evaluasi Aktivitas</h1>
-            <p class="text-muted mb-0">Rincian umpan balik yang Anda berikan setelah sesi relaksasi.</p>
+            <h1 class="h3 fw-bold mb-1">
+                {{ auth()->user()->role === 'admin' ? 'Detail Evaluasi: ' . ($feedback->user->name ?? 'Mahasiswa') : 'Detail Evaluasi Aktivitas' }}
+            </h1>
+            <p class="text-muted mb-0">
+                {{ auth()->user()->role === 'admin'
+                    ? 'Rincian umpan balik mahasiswa untuk sesi relaksasi ini.'
+                    : 'Rincian umpan balik yang Anda berikan setelah sesi relaksasi.' }}
+            </p>
         </div>
     </div>
 
@@ -219,9 +225,10 @@
                                 </div>
                             @else
                                 <div class="alert alert-soft-warning border-0 rounded-4 text-center p-4 mt-3">
-                                    <p class="mb-0">Detail indikator tidak tersedia karena Anda menandai aktivitas ini
-                                        sebagai
-                                        <strong>Tidak Selesai.</strong>
+                                    <p class="mb-0">
+                                        Detail indikator tidak tersedia karena
+                                        {{ auth()->user()->role === 'admin' ? 'mahasiswa' : 'Anda' }}
+                                        menandai aktivitas ini sebagai <strong>Tidak Selesai.</strong>
                                     </p>
                                 </div>
                             @endif

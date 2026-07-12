@@ -11,8 +11,14 @@ class PssAssessmentController extends Controller
 {
     public function index()
     {
-        $query = PssAssessment::with('answers')
-            ->where('user_id', Auth::id());
+        // Load relasi user agar nama mahasiswa bisa ditampilkan
+        $query = PssAssessment::with(['answers', 'user']);
+
+        // Jika login sebagai mahasiswa, batasi HANYA data miliknya
+        // Jika admin, biarkan query mengambil SEMUA data
+        if (Auth::user()->role !== 'admin') {
+            $query->where('user_id', Auth::id());
+        }
 
         if (request('stress_level')) {
             $query->where('stress_level', request('stress_level'));
@@ -39,6 +45,13 @@ class PssAssessmentController extends Controller
                     ->orWhere('total_score', 'like', "%{$search}%")
                     ->orWhere('created_at', 'like', "%{$search}%");
 
+                // Admin bisa mencari berdasarkan nama mahasiswa
+                if (Auth::user()->role === 'admin') {
+                    $q->orWhereHas('user', function ($userQuery) use ($search) {
+                        $userQuery->where('name', 'like', "%{$search}%");
+                    });
+                }
+
                 if ($englishDay) {
                     $q->orWhereRaw('DAYNAME(created_at) = ?', [$englishDay]);
                 }
@@ -59,99 +72,68 @@ class PssAssessmentController extends Controller
         return view('pages.pss-assessments.pss-assessment', compact('assessments'));
     }
 
-
     public function create()
     {
+        // Cegah Admin mengakses halaman form pengisian tes
+        if (Auth::user()->role === 'admin') {
+            return redirect()->route('pss-assessments.index')->with('error', 'Admin tidak dapat melakukan assessment.');
+        }
+
         return view('pages.pss-assessments.pss-assessmentcreate');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-
-            'answers' => [
-                'required',
-                'array',
-                'size:10'
-            ],
-
-            'answers.*' => [
-                'required',
-                'integer',
-                'min:0',
-                'max:4'
-            ],
-
+            'answers' => ['required', 'array', 'size:10'],
+            'answers.*' => ['required', 'integer', 'min:0', 'max:4'],
         ]);
 
         $answers = $request->answers;
-
         $positiveItems = [4, 5, 7, 8];
-
         $totalScore = 0;
 
         foreach ($answers as $questionNumber => $answerScore) {
-
             if (in_array($questionNumber, $positiveItems)) {
-
                 $totalScore += (4 - $answerScore);
             } else {
-
                 $totalScore += $answerScore;
             }
         }
 
         if ($totalScore >= 0 && $totalScore <= 13) {
-
             $stressLevel = 'Rendah';
         } elseif ($totalScore >= 14 && $totalScore <= 26) {
-
             $stressLevel = 'Sedang';
         } else {
-
             $stressLevel = 'Tinggi';
         }
 
         $assessment = PssAssessment::create([
-
             'user_id' => Auth::id(),
-
             'total_score' => $totalScore,
-
             'stress_level' => $stressLevel,
-
         ]);
 
         foreach ($answers as $questionNumber => $answerScore) {
-
             PssAnswer::create([
-
                 'pss_assessment_id' => $assessment->id,
-
                 'question_number' => $questionNumber,
-
                 'answer_score' => $answerScore,
-
             ]);
         }
 
-        return redirect()
-            ->route('pss-assessments.show', $assessment->id);
+        return redirect()->route('pss-assessments.show', $assessment->id);
     }
 
     public function show(PssAssessment $pssAssessment)
     {
-        if ($pssAssessment->user_id !== Auth::id()) {
-
+        // Admin diizinkan melihat. Jika mahasiswa, pastikan itu miliknya.
+        if ($pssAssessment->user_id !== Auth::id() && Auth::user()->role !== 'admin') {
             abort(403);
         }
 
-        $pssAssessment->load([
-            'user',
-            'answers',
-            'recommendations'
-
-        ]);
+        $pssAssessment->load(['user', 'answers', 'recommendations']);
 
         return view('pages.pss-assessments.pss-assessmentshow', compact('pssAssessment'));
     }
@@ -173,14 +155,16 @@ class PssAssessmentController extends Controller
             'ids.*' => 'integer'
         ]);
 
-        $assessments = PssAssessment::whereIn('id', $request->ids)
-            ->where('user_id', Auth::id())
-            ->get();
+        $query = PssAssessment::whereIn('id', $request->ids);
+
+        if (Auth::user()->role !== 'admin') {
+            $query->where('user_id', Auth::id());
+        }
+
+        $assessments = $query->get();
 
         foreach ($assessments as $assessment) {
-
             $assessment->answers()->delete();
-
             $assessment->delete();
         }
 
@@ -191,6 +175,10 @@ class PssAssessmentController extends Controller
 
     public function destroy(PssAssessment $pssAssessment)
     {
+        if ($pssAssessment->user_id !== Auth::id() && Auth::user()->role !== 'admin') {
+            abort(403);
+        }
+
         $pssAssessment->answers()->delete();
         $pssAssessment->delete();
 

@@ -14,10 +14,15 @@ class FeedbackController extends Controller
     // ======================================
     public function index(Request $request)
     {
-        // Gunakan withTrashed() agar bisa membaca nama aktivitas dari riwayat yang sudah dihapus
-        $query = Feedback::with(['recommendationItem' => function ($query) {
+        // Tambahkan relasi 'user' agar bisa menampilkan nama mahasiswa
+        $query = Feedback::with(['user', 'recommendationItem' => function ($query) {
             $query->withTrashed()->with('activity');
-        }])->where('user_id', Auth::id());
+        }]);
+
+        // HANYA filter user_id jika bukan Admin
+        if (Auth::user()->role !== 'admin') {
+            $query->where('user_id', Auth::id());
+        }
 
         // ======================================
         // 1. FILTER PENCARIAN (SEARCH)
@@ -196,11 +201,11 @@ class FeedbackController extends Controller
     // ======================================
     public function show(Feedback $feedback)
     {
-        if ($feedback->user_id !== Auth::id()) {
+        // Izinkan jika pemilik data OR jika Admin
+        if ($feedback->user_id !== Auth::id() && Auth::user()->role !== 'admin') {
             abort(403);
         }
 
-        // PERBAIKAN: Gunakan withTrashed() pada show juga
         $feedback->load(['user', 'recommendationItem' => function ($query) {
             $query->withTrashed()->with(['activity', 'recommendation' => function ($q) {
                 $q->withTrashed()->with('pssAssessment');
@@ -220,20 +225,25 @@ class FeedbackController extends Controller
             'ids.*' => 'exists:feedbacks,id',
         ]);
 
-        // Hapus (Soft Delete) data feedback milik user yang sedang login
-        $feedbacks = Feedback::whereIn('id', $request->ids)
-            ->where('user_id', Auth::id())
-            ->get();
+        // 1. Mulai query berdasarkan ID yang dikirim
+        $query = Feedback::whereIn('id', $request->ids);
+
+        // 2. Terapkan filter kepemilikan HANYA jika yang login bukan Admin
+        if (Auth::user()->role !== 'admin') {
+            $query->where('user_id', Auth::id());
+        }
+
+        $feedbacks = $query->get();
 
         if ($feedbacks->isEmpty()) {
             return back()->with('error', 'Tidak ada data yang valid untuk dihapus.');
         }
 
-        // Eksekusi delete
-        Feedback::whereIn('id', $request->ids)->delete();
+        // 3. Eksekusi delete pada query yang sudah difilter
+        $deletedCount = $query->delete();
 
         return redirect()->route('feedbacks.index')
-            ->with('success', count($request->ids) . ' data umpan balik berhasil dihapus.');
+            ->with('success', $deletedCount . ' data umpan balik berhasil dihapus.');
     }
 
     // ======================================
@@ -241,8 +251,8 @@ class FeedbackController extends Controller
     // ======================================
     public function destroy(Feedback $feedback)
     {
-        // Pastikan keamanan
-        if ($feedback->user_id !== Auth::id()) {
+        // Tambahkan pengecekan role admin
+        if ($feedback->user_id !== Auth::id() && Auth::user()->role !== 'admin') {
             abort(403);
         }
 

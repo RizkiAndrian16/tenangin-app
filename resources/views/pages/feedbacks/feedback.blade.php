@@ -4,9 +4,14 @@
 
     <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
         <div>
-            <h1 class="h3 fw-bold mb-1">Feedback</h1>
-            <p class="text-muted mb-0">Daftar riwayat umpan balik (feedback) dari aktivitas relaksasi yang telah Anda
-                lakukan.</p>
+            <h1 class="h3 fw-bold mb-1">
+                {{ auth()->user()->role === 'admin' ? 'Data Evaluasi Feedback' : 'Riwayat Feedback' }}
+            </h1>
+            <p class="text-muted mb-0">
+                {{ auth()->user()->role === 'admin'
+                    ? 'Pantau seluruh umpan balik (feedback) dari semua mahasiswa terhadap efektivitas aktivitas relaksasi sistem.'
+                    : 'Daftar riwayat umpan balik (feedback) dari aktivitas relaksasi yang telah Anda lakukan.' }}
+            </p>
         </div>
     </div>
 
@@ -76,6 +81,11 @@
                             <tr class="text-center">
                                 <th width="2.5%"><input type="checkbox" id="checkAll" class="form-check-input"></th>
                                 <th width="3.5%">No</th>
+
+                                @if (auth()->user()->role === 'admin')
+                                    <th>Nama Mahasiswa</th>
+                                @endif
+
                                 <th>Tanggal</th>
                                 <th>Aktivitas Relaksasi</th>
                                 <th>Status Penyelesaian</th>
@@ -91,6 +101,13 @@
                                             class="form-check-input check-item">
                                     </td>
                                     <td>{{ $feedbacks->firstItem() + $loop->index }}</td>
+
+                                    @if (auth()->user()->role === 'admin')
+                                        <td class="fw-medium">
+                                            {{ $feedback->user->name ?? 'Tidak Diketahui' }}
+                                        </td>
+                                    @endif
+
                                     <td data-date="{{ $feedback->created_at->format('Y-m-d') }}">
                                         {{ $feedback->created_at->translatedFormat('l, d-m-Y') }}
                                     </td>

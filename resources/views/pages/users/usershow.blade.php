@@ -40,7 +40,8 @@
                 </div>
 
                 {{-- CARD INFORMASI PRIBADI --}}
-                <div class="col-lg-6">
+                {{-- Diperlebar (col-12) jika user adalah admin, dibagi dua (col-lg-6) jika mahasiswa --}}
+                <div class="{{ $user->role === 'admin' ? 'col-12' : 'col-lg-6' }}">
                     <div class="card border-0 shadow-sm rounded-4 h-100">
                         <div class="card-body p-4">
 
@@ -100,82 +101,64 @@
                     </div>
                 </div>
 
-                {{-- CARD INFORMASI UNIVERSITAS --}}
-                <div class="col-lg-6">
-                    <div class="card border-0 shadow-sm rounded-4 h-100">
-                        <div class="card-body p-4">
+                {{-- CARD INFORMASI UNIVERSITAS (HANYA DITAMPILKAN JIKA ROLE ADALAH MAHASISWA) --}}
+                @if ($user->role === 'mahasiswa')
+                    <div class="col-lg-6">
+                        <div class="card border-0 shadow-sm rounded-4 h-100">
+                            <div class="card-body p-4">
 
-                            <div class="d-flex align-items-center gap-2 mb-3">
-                                <div class="icon-box-soft icon-box-success">
-                                    <i data-feather="book-open"></i>
+                                <div class="d-flex align-items-center gap-2 mb-3">
+                                    <div class="icon-box-soft icon-box-success">
+                                        <i data-feather="book-open"></i>
+                                    </div>
+                                    <h5 class="fw-bold mb-0">Informasi Universitas</h5>
                                 </div>
-                                <h5 class="fw-bold mb-0">Informasi Universitas</h5>
-                            </div>
 
-                            <div class="row g-0">
-                                <div class="col-12 py-3 border-bottom">
-                                    <div class="row">
-                                        <div class="col-5"><small class="text-muted">Universitas</small></div>
-                                        <div class="col-7">
-                                            <p class="fw-semibold mb-0">
-                                                @if ($user->role == 'admin')
-                                                    <span class="text-muted fst-italic">-</span>
-                                                @else
-                                                    {{ $user->university ?? '-' }}
-                                                @endif
-                                            </p>
+                                {{-- Karena sudah dipastikan mahasiswa, logika IF admin di dalam teks bisa dihapus agar bersih --}}
+                                <div class="row g-0">
+                                    <div class="col-12 py-3 border-bottom">
+                                        <div class="row">
+                                            <div class="col-5"><small class="text-muted">Universitas</small></div>
+                                            <div class="col-7">
+                                                <p class="fw-semibold mb-0">{{ $user->university ?? '-' }}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12 py-3 border-bottom">
-                                    <div class="row">
-                                        <div class="col-5"><small class="text-muted">Jurusan</small></div>
-                                        <div class="col-7">
-                                            <p class="fw-semibold mb-0">
-                                                @if ($user->role == 'admin')
-                                                    <span class="text-muted fst-italic">-</span>
-                                                @else
-                                                    {{ $user->major ?? '-' }}
-                                                @endif
-                                            </p>
+                                    <div class="col-12 py-3 border-bottom">
+                                        <div class="row">
+                                            <div class="col-5"><small class="text-muted">Jurusan</small></div>
+                                            <div class="col-7">
+                                                <p class="fw-semibold mb-0">{{ $user->major ?? '-' }}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12 py-3 border-bottom">
-                                    <div class="row">
-                                        <div class="col-5"><small class="text-muted">Semester</small></div>
-                                        <div class="col-7">
-                                            <p class="fw-semibold mb-0">
-                                                @if ($user->role == 'admin')
-                                                    <span class="text-muted fst-italic">-</span>
-                                                @else
+                                    <div class="col-12 py-3 border-bottom">
+                                        <div class="row">
+                                            <div class="col-5"><small class="text-muted">Semester</small></div>
+                                            <div class="col-7">
+                                                <p class="fw-semibold mb-0">
                                                     {{ $user->semester ? 'Semester ' . $user->semester : '-' }}
-                                                @endif
-                                            </p>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 py-3">
+                                        <div class="row">
+                                            <div class="col-5"><small class="text-muted">Tempat Tinggal</small></div>
+                                            <div class="col-7">
+                                                <p class="fw-semibold mb-0">{{ $user->residence_status ?? '-' }}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 py-3">
-                                    <div class="row">
-                                        <div class="col-5"><small class="text-muted">Tempat Tinggal</small></div>
-                                        <div class="col-7">
-                                            <p class="fw-semibold mb-0">
-                                                @if ($user->role == 'admin')
-                                                    <span class="text-muted fst-italic">-</span>
-                                                @else
-                                                    {{ $user->residence_status ?? '-' }}
-                                                @endif
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
+                {{-- END CARD UNIVERSITAS --}}
 
-                {{-- TOMBOL KEMBALI (GAYA FINAL RECOMMENDATION) --}}
+                {{-- TOMBOL KEMBALI --}}
                 <div class="col-12">
                     <div class="d-none d-md-flex justify-content-md-center gap-2 border-top pt-4 mt-4">
                         <a href="{{ route('users.index') }}"
