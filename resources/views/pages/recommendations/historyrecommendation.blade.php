@@ -1,20 +1,20 @@
 @extends('layouts.main')
 @section('title', 'Riwayat Rekomendasi - Tenangin.')
 @section('content')
-    <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
-        <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
-            <div>
-                <h1 class="h3 fw-bold mb-1">
-                    {{ auth()->user()->role === 'admin' ? 'Data Riwayat Rekomendasi' : 'Riwayat Rekomendasi' }}
-                </h1>
-                <p class="text-muted mb-0">
-                    {{ auth()->user()->role === 'admin'
-                        ? 'Pantau seluruh riwayat rekomendasi dari semua mahasiswa.'
-                        : 'Riwayat hasil rekomendasi aktivitas relaksasi Anda.' }}
-                </p>
-            </div>
+
+    <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center gap-2 gap-sm-3 mb-3 mb-sm-4">
+        <div>
+            <h1 class="h3 fw-bold mb-1">
+                {{ auth()->user()->role === 'admin' ? 'Data Riwayat Rekomendasi' : 'Riwayat Rekomendasi' }}
+            </h1>
+            <p class="text-muted mb-0">
+                {{ auth()->user()->role === 'admin'
+                    ? 'Pantau seluruh riwayat rekomendasi dari semua mahasiswa.'
+                    : 'Riwayat hasil rekomendasi aktivitas relaksasi Anda.' }}
+            </p>
         </div>
     </div>
+
     @if (session('success'))
         <div class="profile-success-alert mb-4" id="successAlert">
             <div class="d-flex align-items-start gap-3">
@@ -122,8 +122,7 @@
 
                                                 {{-- Cek apakah datanya diambil dari tong sampah --}}
                                                 @if ($recommendation->pssAssessment->trashed())
-                                                    <span class="text-muted" style="font-size: 0.75rem;">(Assessment
-                                                        Dihapus)</span>
+                                                    <span class="text-muted text-12">(Assessment Dihapus)</span>
                                                 @endif
                                             </div>
                                         @else

@@ -5,7 +5,7 @@
     <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center gap-2 gap-sm-3 mb-3 mb-sm-4">
         <div>
             <h1 class="h3 fw-bold mb-1">
-                {{ auth()->user()->role === 'admin' ? 'Data PSS-10 Keseluruhan' : 'PSS-10' }}
+                {{ auth()->user()->role === 'admin' ? 'Data PSS-10' : 'PSS-10' }}
             </h1>
             <p class="text-muted mb-0">
                 {{ auth()->user()->role === 'admin'
@@ -14,11 +14,13 @@
             </p>
         </div>
 
-        {{-- Sembunyikan tombol mulai jika yang login adalah admin --}}
         @if (auth()->user()->role === 'mahasiswa')
             <div class="d-grid d-sm-block">
-                <a href="{{ route('pss-assessments.create') }}" class="btn btn-soft-success rounded-pill px-4 py-2">
-                    Mulai PSS-10 Assessment
+                <a href="{{ route('pss-assessments.create') }}"
+                    class="btn btn-soft-success rounded-pill px-4 py-2 d-inline-flex align-items-center justify-content-center gap-2">
+                    {{-- Tambahkan d-none (sembunyi di HP) dan d-sm-block (muncul di tablet/PC) --}}
+                    <i data-feather="plus" class="icon-18 d-none d-sm-block"></i>
+                    <span>Mulai PSS-10 Assessment</span>
                 </a>
             </div>
         @endif

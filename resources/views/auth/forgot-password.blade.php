@@ -1,82 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-guest-layout>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Judul & Deskripsi -->
+    <h1>Reset Password</h1>
+    <p class="sub" style="margin-bottom: 24px;">
+        Masukkan email Anda untuk menerima link reset
+    </p>
 
-    <title>Forgot Password - StressCheck</title>
+    <!-- Notifikasi Sukses -->
+    @if (session('status'))
+        <div class="alert alert-success"
+            style="font-size: 13px; border-radius: 12px; padding: 12px 16px; margin-bottom: 20px;">
+            {{ session('status') }}
+        </div>
+    @endif
 
-    <!-- ADMIN KIT CSS -->
-    <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
-</head>
+    <!-- Notifikasi Error -->
+    @if ($errors->any())
+        <div class="alert alert-danger"
+            style="font-size: 13px; border-radius: 12px; padding: 12px 16px; margin-bottom: 20px;">
+            {{ $errors->first() }}
+        </div>
+    @endif
 
-<body>
+    <!-- Form Input -->
+    <form method="POST" action="{{ route('password.email') }}">
+        @csrf
 
-    <main class="d-flex w-100">
-        <div class="container d-flex flex-column">
-            <div class="row vh-100">
-                <div class="col-md-6 mx-auto d-table h-100">
-                    <div class="d-table-cell align-middle">
-
-                        <div class="text-center mt-4">
-                            <h1 class="h2">Reset Password</h1>
-                            <p class="lead">
-                                Masukkan email untuk mendapatkan link reset
-                            </p>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="m-sm-4">
-
-                                    <!-- SUCCESS -->
-                                    @if (session('status'))
-                                        <div class="alert alert-success">
-                                            {{ session('status') }}
-                                        </div>
-                                    @endif
-
-                                    <!-- ERROR -->
-                                    @if ($errors->any())
-                                        <div class="alert alert-danger">
-                                            {{ $errors->first() }}
-                                        </div>
-                                    @endif
-
-                                    <form method="POST" action="{{ route('password.email') }}">
-                                        @csrf
-
-                                        <!-- EMAIL -->
-                                        <div class="mb-3">
-                                            <label class="form-label">Email</label>
-                                            <input type="email" name="email" class="form-control form-control-lg"
-                                                value="{{ old('email') }}" placeholder="Enter your email" required>
-                                        </div>
-
-                                        <!-- BUTTON -->
-                                        <div class="d-grid">
-                                            <button type="submit" class="btn btn-primary btn-lg">
-                                                Kirim Link Reset
-                                            </button>
-                                        </div>
-
-                                    </form>
-
-                                    <div class="text-center mt-3">
-                                        <a href="{{ route('login') }}">Kembali ke login</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+        <div style="margin-bottom: 24px;">
+            <label class="auth-field-label">Email</label>
+            <div class="auth-input-wrap">
+                <input type="email" name="email" class="auth-input" value="{{ old('email') }}"
+                    placeholder="nama@email.com" required autofocus>
             </div>
         </div>
-    </main>
 
-</body>
+        <button type="submit" class="auth-submit-btn">
+            Kirim Link Reset <i data-feather="arrow-right"></i>
+        </button>
+    </form>
 
-</html>
+    <!-- Link Kembali -->
+    <div style="text-align: center; margin-top: 24px;">
+        <span style="color: #64748B; font-size: 13px;">Ingat password Anda? </span>
+        <a href="{{ route('login') }}" class="auth-link">Masuk di sini</a>
+    </div>
+
+</x-guest-layout>

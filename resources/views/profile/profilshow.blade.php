@@ -239,3 +239,112 @@
         </div>
     </div>
 </div>
+
+{{-- ═══════════════════════════════════════
+         MODAL 5 — UBAH PASSWORD
+    ═══════════════════════════════════════ --}}
+<div class="custom-popup-overlay" id="passwordModal">
+    <div class="custom-popup">
+
+        <button type="button" class="custom-popup-close js-close-modal" data-target="passwordModal">
+            <i data-feather="x"></i>
+        </button>
+
+        <div class="mb-4">
+            <h2 class="fw-bold mb-1">Ubah Password</h2>
+            <p class="text-muted mb-0">Pastikan akun Anda menggunakan kata sandi yang kuat.</p>
+        </div>
+
+        {{-- ALERT JIKA GAGAL UBAH PASSWORD (DIPINDAH KE SINI) --}}
+        @if ($errors->updatePassword->any())
+            <div class="alert alert-soft-danger rounded-3 mb-4 p-3">
+                <div class="d-flex align-items-start gap-2">
+                    <i data-feather="alert-triangle" class="text-danger flex-shrink-0 mt-1"></i>
+                    <ul class="mb-0 ps-3 small text-danger">
+                        @foreach ($errors->updatePassword->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        @endif
+
+        <form id="passwordForm" action="{{ route('password.update') }}" method="POST">
+            @csrf
+            @method('PUT')
+
+            <div class="row g-4">
+                {{-- Cek apakah user mendaftar manual dan memiliki password --}}
+                @if (auth()->user()->password)
+                    <div class="col-12">
+                        <label class="form-label fw-semibold" for="current_password">Password Saat Ini</label>
+                        <div class="position-relative">
+                            <input type="password" id="current_password" name="current_password"
+                                class="form-control custom-input pe-5" required>
+                            <button type="button" tabindex="-1"
+                                class="btn btn-transparent border-0 shadow-none position-absolute top-50 end-0 translate-middle-y text-muted"
+                                onmousedown="event.preventDefault()"
+                                onclick="togglePassword('current_password', this)">
+                                <i data-feather="eye" class="icon-18"></i>
+                            </button>
+                        </div>
+                    </div>
+                @else
+                    {{-- Jika login Google (password null), tampilkan info ini --}}
+                    <div class="col-12">
+                        <div class="alert alert-soft-info border-0 rounded-3 mb-0 p-3">
+                            <div class="d-flex align-items-start gap-2">
+                                <i data-feather="info" class="text-info flex-shrink-0 mt-1 icon-18"></i>
+                                <span class="small text-info">Anda mendaftar menggunakan Google. Silakan atur password
+                                    baru Anda di bawah ini.</span>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+                <div class="col-12">
+                    <label class="form-label fw-semibold" for="password">Password Baru</label>
+                    <div class="position-relative">
+                        <input type="password" id="password" name="password" class="form-control custom-input pe-5"
+                            required>
+                        {{-- PERBAIKAN: Memanggil btn-transparent --}}
+                        <button type="button" tabindex="-1"
+                            class="btn btn-transparent border-0 shadow-none position-absolute top-50 end-0 translate-middle-y text-muted"
+                            onmousedown="event.preventDefault()" onclick="togglePassword('password', this)">
+                            {{-- PERBAIKAN: Memanggil icon-18 --}}
+                            <i data-feather="eye" class="icon-18"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label fw-semibold" for="password_confirmation">Konfirmasi Password Baru</label>
+                    <div class="position-relative">
+                        <input type="password" id="password_confirmation" name="password_confirmation"
+                            class="form-control custom-input pe-5" required>
+                        {{-- PERBAIKAN: Memanggil btn-transparent --}}
+                        <button type="button" tabindex="-1"
+                            class="btn btn-transparent border-0 shadow-none position-absolute top-50 end-0 translate-middle-y text-muted"
+                            onmousedown="event.preventDefault()"
+                            onclick="togglePassword('password_confirmation', this)">
+                            {{-- PERBAIKAN: Memanggil icon-18 --}}
+                            <i data-feather="eye" class="icon-18"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-3 mt-5">
+                <button type="button" class="btn btn-soft-secondary rounded-pill px-4 py-2 js-close-modal"
+                    data-target="passwordModal">
+                    Batal
+                </button>
+                <button type="submit"
+                    class="btn btn-soft-success rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2">
+                    <i data-feather="save"></i>
+                    <span>Simpan</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

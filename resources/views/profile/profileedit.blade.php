@@ -10,7 +10,8 @@
         </div>
     </div>
 
-    @if (session('success'))
+    {{-- ALERT SUKSES (Menangkap 'success' dari ProfileController DAN 'status' dari PasswordController) --}}
+    @if (session('success') || session('status') === 'password-updated')
         <div class="profile-success-alert mb-4" id="successAlert">
             <div class="d-flex align-items-start gap-3">
                 <div class="profile-success-icon">
@@ -19,7 +20,9 @@
 
                 <div>
                     <h6 class="fw-bold mb-1">Sukses!</h6>
-                    <p class="mb-0">{{ session('success') }}</p>
+                    <p class="mb-0">
+                        {{ session('status') === 'password-updated' ? 'Password Anda berhasil diperbarui.' : session('success') }}
+                    </p>
                 </div>
             </div>
         </div>
@@ -186,13 +189,15 @@
                                     </div>
                                     <div class="col-12 py-3 border-bottom">
                                         <div class="row">
-                                            <div class="col-5"><small class="text-muted">Jurusan</small></div>
+                                            <div class="col-5"><small class="text-muted">Jurusan / Program Studi</small>
+                                            </div>
                                             <div class="col-7">
                                                 <p class="fw-semibold mb-0" id="displayMajor">
                                                     {{ auth()->user()->major ?? '-' }}</p>
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-12 py-3 border-bottom">
                                         <div class="row">
                                             <div class="col-5"><small class="text-muted">Semester</small></div>
@@ -224,7 +229,6 @@
                         </div>
                     </div>
                 @endif
-                {{-- END CARD UNIVERSITAS --}}
 
             </div>
         </div>

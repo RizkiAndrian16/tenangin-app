@@ -57,18 +57,18 @@
     </div>
 
     {{-- =======================================================
-     BAGIAN 1: HERO CTA (Mulai Assessment)
-======================================================== --}}
+         BAGIAN 1: HERO CTA (Mulai Assessment)
+    ======================================================== --}}
     <div class="row g-4 mb-1">
         <div class="col-12">
             <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
-                <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 p-4 rounded-4"
-                    style="background-color: rgba(34, 197, 94, 0.05); border: 1.5px solid rgba(34, 197, 94, 0.4);">
+                <div
+                    class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 p-4 rounded-4 hero-cta-card">
 
                     <div class="d-flex align-items-center gap-3">
-                        <div class="bg-success d-flex align-items-center justify-content-center flex-shrink-0 rounded-4 shadow-sm"
-                            style="width: 60px; height: 60px;">
-                            <i data-feather="activity" style="width: 26px; height: 26px; color: #fff;"></i>
+                        <div
+                            class="bg-success d-flex align-items-center justify-content-center flex-shrink-0 rounded-4 shadow-sm icon-box-60">
+                            <i data-feather="activity" class="icon-26 text-white"></i>
                         </div>
                         <div>
                             <h5 class="fw-bold mb-1 text-dark">Mulai PSS-10 Assessment</h5>
@@ -80,10 +80,9 @@
                     </div>
 
                     <a href="{{ route('pss-assessments.create') }}"
-                        class="btn btn-success rounded-pill px-4 py-2 fw-medium d-flex align-items-center justify-content-center flex-shrink-0 text-white"
-                        style="white-space: nowrap;">
+                        class="btn btn-success rounded-pill px-4 py-2 fw-medium d-flex align-items-center justify-content-center flex-shrink-0 text-white text-nowrap">
                         Mulai Tes Sekarang
-                        <i data-feather="chevron-right" class="ms-1" style="width: 18px; height: 18px;"></i>
+                        <i data-feather="chevron-right" class="ms-1 icon-18"></i>
                     </a>
                 </div>
             </div>
@@ -120,8 +119,7 @@
                     <span class="text-muted small mb-3">Tingkat Stres Terakhir</span>
 
                     @if (!$lastAssessment)
-                        <span class="badge bg-light text-muted border rounded-pill px-3 py-1 fw-normal mb-3">Belum
-                            Ada</span>
+                        <span class="badge badge-soft-secondary rounded-pill mb-3">Belum Ada</span>
                     @elseif ($lastAssessment->stress_level == 'Rendah')
                         <span class="badge badge-soft-success rounded-pill px-3 py-1 fw-medium mb-3">😌 Rendah</span>
                     @elseif ($lastAssessment->stress_level == 'Sedang')

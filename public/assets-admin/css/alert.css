@@ -80,7 +80,8 @@
 ====================================== */
 
 .profile-alert-card {
-    border: none !important;
+    /* PERBAIKAN: Mengganti 'border: none' menjadi garis hijau transparan seperti di Dashboard */
+    border: 1.5px solid rgba(34, 197, 94, 0.4) !important;
 }
 
 .profile-alert-card h6 {
@@ -92,6 +93,11 @@
 }
 
 /* DARK MODE */
+
+/* TAMBAHAN: Agar garis tepi menyesuaikan menjadi sedikit lebih redup di Dark Mode */
+.dark-mode .profile-alert-card {
+    border: 1.5px solid rgba(34, 197, 94, 0.3) !important;
+}
 
 .dark-mode .profile-alert-card h6 {
     color: #BBF7D0 !important;

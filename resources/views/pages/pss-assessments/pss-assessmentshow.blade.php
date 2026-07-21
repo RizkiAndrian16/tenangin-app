@@ -27,7 +27,7 @@
                 ========================================================== --}}
 
                 {{-- BARIS 1: SKOR & INFORMASI MAHASISWA --}}
-                <div class="row g-4 mb-4">
+                <div class="row g-4 mb-3 mb-lg-4">
 
                     {{-- KIRI: SKOR HERO --}}
                     <div class="col-lg-4">
@@ -62,18 +62,15 @@
                     {{-- KANAN: INFORMASI MAHASISWA --}}
                     <div class="col-lg-8">
                         <div class="card border shadow-sm rounded-4 h-100">
-                            <div class="card-body p-4 d-flex flex-column justify-content-center">
+                            <div class="card-body p-4 pb-3 pb-lg-4 d-flex flex-column justify-content-center">
 
-                                <div class="d-flex align-items-center gap-2 mb-4">
+                                <div class="d-flex align-items-center gap-2 mb-2">
                                     <div class="icon-box-soft icon-box-success flex-shrink-0">
                                         <i data-feather="user"></i>
                                     </div>
-                                    <div>
-                                        <h5 class="fw-bold mb-0">Informasi Mahasiswa</h5>
-                                        <p class="text-muted small mb-0">Profil akademik dan personal peserta assessment.
-                                        </p>
-                                    </div>
+                                    <h5 class="fw-bold mb-0">Informasi Mahasiswa</h5>
                                 </div>
+                                <p class="text-muted small mb-4">Profil akademik dan personal peserta assessment.</p>
 
                                 <div class="row g-4">
                                     {{-- BARIS 1 --}}
@@ -114,7 +111,7 @@
                                         </span>
                                     </div>
                                     {{-- Tambahan class no-border-hp untuk menjaga layout HP --}}
-                                    <div class="col-md-6 border-bottom pb-2 no-border-hp">
+                                    <div class="col-md-6 border-bottom pb-1 pb-md-2 no-border-hp">
                                         <small class="text-muted d-block mb-1">Tempat Tinggal</small>
                                         <span
                                             class="fw-bold text-dark">{{ $pssAssessment->user->residence_status ?? 'Belum diisi' }}</span>
@@ -128,21 +125,18 @@
                 </div>
 
                 {{-- BARIS 2: TABEL RINCIAN JAWABAN (FULL WIDTH) --}}
-                <div class="row g-4 mb-2">
+                <div class="row g-3 g-lg-4 mb-2">
                     <div class="col-12">
                         <div class="card border shadow-sm rounded-4">
                             <div class="card-body p-4">
 
-                                <div class="d-flex align-items-center gap-2 mb-4">
+                                <div class="d-flex align-items-center gap-2 mb-2">
                                     <div class="icon-box-soft icon-box-success flex-shrink-0">
                                         <i data-feather="list"></i>
                                     </div>
-                                    <div>
-                                        <h5 class="fw-bold mb-1">Rincian Jawaban Kuesioner</h5>
-                                        <p class="text-muted small mb-0">Data respons mentah dari ke-10 pertanyaan PSS-10.
-                                        </p>
-                                    </div>
+                                    <h5 class="fw-bold mb-0">Rincian Jawaban Kuesioner</h5>
                                 </div>
+                                <p class="text-muted small mb-4">Data respons mentah dari ke-10 pertanyaan PSS-10.</p>
 
                                 @php
                                     $questions = [
@@ -183,7 +177,7 @@
                                                     <td>{{ $questions[$answer->question_number] ?? 'Pertanyaan tidak diketahui' }}
                                                     </td>
                                                     <td class="text-center">
-                                                        <span class="badge bg-light text-dark border fw-normal px-2 py-1">
+                                                        <span class="badge badge-soft-secondary rounded-pill">
                                                             {{ $options[$answer->answer_score] ?? '-' }}
                                                         </span>
                                                     </td>
@@ -191,7 +185,6 @@
                                                         <strong class="fs-6">{{ $answer->answer_score }}</strong>
                                                         @if (in_array($answer->question_number, [4, 5, 7, 8]))
                                                             <small class="text-muted d-block mt-1 reverse-scoring-note">
-                                                                <i data-feather="info" class="reverse-scoring-icon"></i>
                                                                 Nilai dibalik
                                                             </small>
                                                         @endif

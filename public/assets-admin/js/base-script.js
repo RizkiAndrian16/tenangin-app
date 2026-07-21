@@ -1149,14 +1149,49 @@ window.togglePassword = function(inputId, element) {
     // Cek tipe input saat ini
     if (input.type === 'password') {
         input.type = 'text'; // Tampilkan password
-        // Ganti ikon menjadi eye-off
-        element.innerHTML = '<i data-feather="eye-off" style="width: 18px; height: 18px;"></i>';
+        // PERBAIKAN: Gunakan class icon-18, HAPUS style="width: 18px;"
+        element.innerHTML = '<i data-feather="eye-off" class="icon-18"></i>';
     } else {
         input.type = 'password'; // Sembunyikan password
-        // Ganti ikon menjadi eye
-        element.innerHTML = '<i data-feather="eye" style="width: 18px; height: 18px;"></i>';
+        // PERBAIKAN: Gunakan class icon-18, HAPUS style="width: 18px;"
+        element.innerHTML = '<i data-feather="eye" class="icon-18"></i>';
     }
 
     // Render ulang ikon feather
     if (window.feather) feather.replace();
 };
+
+//
+// ======================================
+// AUTO-OPEN PASSWORD MODAL (MAGIC SCRIPT)
+// ======================================
+//
+document.addEventListener('DOMContentLoaded', () => {
+    // Beri jeda 100ms agar DOM dan event listener lain selesai dimuat
+    setTimeout(() => {
+        const passwordModal = document.getElementById('passwordModal');
+        if (!passwordModal) return;
+
+        // Cek 1: Apakah ada parameter ?action=password di URL?
+        const urlParams = new URLSearchParams(window.location.search);
+        const hasPasswordAction = urlParams.get('action') === 'password';
+
+        // Cek 2: Apakah ada peringatan error merah di dalam modal password? (Berarti gagal validasi backend)
+        const hasPasswordError = passwordModal.querySelector('.alert-soft-danger') !== null;
+
+        // Jika salah satu kondisi terpenuhi, otomatis buka modalnya!
+        if (hasPasswordAction || hasPasswordError) {
+            passwordModal.classList.add('show');
+            document.body.style.setProperty('overflow-y', 'scroll');
+            document.body.style.setProperty('touch-action', 'none');
+
+            if (window.feather) feather.replace();
+
+            // Jika dibuka karena parameter URL, bersihkan URL-nya agar tidak terus-terusan terbuka saat di-refresh
+            if (hasPasswordAction && window.history.replaceState) {
+                const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                window.history.replaceState({ path: cleanUrl }, '', cleanUrl);
+            }
+        }
+    }, 100);
+});

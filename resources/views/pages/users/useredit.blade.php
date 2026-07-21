@@ -74,9 +74,9 @@
                         <div class="input-group">
                             <input type="password" name="password" id="inputPassword"
                                 class="form-control custom-input border-end-0 @error('password') is-invalid @enderror">
-                            <span class="input-group-text bg-white border-start-0 text-muted" style="cursor: pointer;"
-                                onclick="togglePassword('inputPassword', this)">
-                                <i data-feather="eye" style="width: 18px; height: 18px;"></i>
+                            <span class="input-group-text bg-white border-start-0 text-muted cursor-pointer"
+                                onmousedown="event.preventDefault()" onclick="togglePassword('inputPassword', this)">
+                                <i data-feather="eye" class="icon-18"></i>
                             </span>
                         </div>
                     </div>
@@ -87,9 +87,9 @@
                         <div class="input-group">
                             <input type="password" name="password_confirmation" id="inputPasswordConfirm"
                                 class="form-control custom-input border-end-0">
-                            <span class="input-group-text bg-white border-start-0 text-muted" style="cursor: pointer;"
-                                onclick="togglePassword('inputPasswordConfirm', this)">
-                                <i data-feather="eye" style="width: 18px; height: 18px;"></i>
+                            <span class="input-group-text bg-white border-start-0 text-muted cursor-pointer"
+                                onmousedown="event.preventDefault()" onclick="togglePassword('inputPasswordConfirm', this)">
+                                <i data-feather="eye" class="icon-18"></i>
                             </span>
                         </div>
                     </div>

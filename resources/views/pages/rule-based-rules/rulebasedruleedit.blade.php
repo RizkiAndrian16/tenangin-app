@@ -12,20 +12,12 @@
     </div>
 
     @if ($errors->any())
-        <div class="alert alert-danger border-0 rounded-4 mb-4">
-            <div class="d-flex align-items-start gap-3">
-                <i data-feather="alert-circle"></i>
-
-                <div>
-                    <h6 class="fw-bold mb-2">Validasi gagal</h6>
-
-                    <ul class="mb-0 ps-3">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+        <div class="alert-soft-danger rounded-4 mb-4 shadow-sm p-3">
+            @foreach (array_unique($errors->all()) as $error)
+                <div class="mb-1 text-danger">
+                    {{ $error }}
                 </div>
-            </div>
+            @endforeach
         </div>
     @endif
 

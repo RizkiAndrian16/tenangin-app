@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\RuleBasedRule;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 
 class RuleBasedRuleController extends Controller
 {
@@ -88,8 +89,10 @@ class RuleBasedRuleController extends Controller
 
         ], [
 
-            'activity_id.unique' =>
-            'Aturan rekomendasi dengan tingkat stres dan aktivitas relaksasi tersebut sudah tersedia.',
+            'stress_level.required' => 'Harap mengisi seluruh form Aturan Rekomendasi sebelum menyimpan.',
+            'activity_id.required'  => 'Harap mengisi seluruh form Aturan Rekomendasi sebelum menyimpan.',
+            'description.required'  => 'Harap mengisi seluruh form Aturan Rekomendasi sebelum menyimpan.',
+            'activity_id.unique' => 'Aturan rekomendasi dengan tingkat stres dan aktivitas relaksasi tersebut sudah tersedia.',
 
         ]);
 
@@ -140,8 +143,10 @@ class RuleBasedRuleController extends Controller
 
         ], [
 
-            'activity_id.unique' =>
-            'Aturan rekomendasi dengan tingkat stres dan aktivitas relaksasi tersebut sudah tersedia.',
+            'stress_level.required' => 'Harap mengisi seluruh form Aturan Rekomendasi sebelum menyimpan.',
+            'activity_id.required'  => 'Harap mengisi seluruh form Aturan Rekomendasi sebelum menyimpan.',
+            'description.required'  => 'Harap mengisi seluruh form Aturan Rekomendasi sebelum menyimpan.',
+            'activity_id.unique' => 'Aturan rekomendasi dengan tingkat stres dan aktivitas relaksasi tersebut sudah tersedia.',
 
         ]);
 

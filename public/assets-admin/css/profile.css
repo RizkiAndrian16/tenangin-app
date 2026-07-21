@@ -356,11 +356,16 @@ textarea.custom-input {
 @media (min-width: 992px) {
     .profile-card-grid {
         grid-template-columns: 1fr auto;
+        grid-template-rows: auto 1fr;
         grid-template-areas:
             "title button"
             "fields fields";
         align-items: center;
         row-gap: 1rem;
+    }
+    .profile-card-grid .profile-card-fields {
+        align-self: stretch;
+        align-content: start;   /* ⬅️ TAMBAHAN INI yang jadi kunci */
     }
     .profile-card-grid .profile-card-edit-btn {
         width: auto;

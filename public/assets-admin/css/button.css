@@ -72,3 +72,24 @@
 .btn-soft-success.force-focus {
     box-shadow: 0 0 0 3px #C7D2FE !important;
 }
+
+/* ======================================
+   UTILITIES UNTUK TOMBOL (TRANSPARAN)
+====================================== */
+.btn-transparent {
+    background-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
+}
+
+/* Tambahkan baris ini agar kebal terhadap efek fokus/klik global */
+.btn-transparent:hover,
+.btn-transparent:focus,
+.btn-transparent:active {
+    background-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
+    color: #64748b !important;
+}

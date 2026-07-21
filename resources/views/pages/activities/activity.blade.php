@@ -9,8 +9,12 @@
         </div>
 
         <div class="d-grid d-sm-block">
-            <a href="{{ route('activities.create') }}" class="btn btn-soft-success rounded-pill px-4 py-2">
-                Tambah Aktivitas Relaksasi
+            {{-- Ditambahkan d-inline-flex, align-items-center, justify-content-center, dan gap-2 --}}
+            <a href="{{ route('activities.create') }}"
+                class="btn btn-soft-success rounded-pill px-4 py-2 d-inline-flex align-items-center justify-content-center gap-2">
+                {{-- Ikon plus disembunyikan di HP (d-none) dan dimunculkan di layar sm ke atas (d-sm-block) --}}
+                <i data-feather="plus" class="icon-18 d-none d-sm-block"></i>
+                <span>Tambah Aktivitas Relaksasi</span>
             </a>
         </div>
     </div>

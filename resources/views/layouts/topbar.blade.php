@@ -26,6 +26,12 @@
                         <i class="align-middle me-1" data-feather="user"></i>
                         Profile
                     </a>
+
+                    <a class="dropdown-item" href="{{ route('profile.edit', ['action' => 'password']) }}">
+                        <i class="align-middle me-1" data-feather="key"></i>
+                        Ubah Password
+                    </a>
+
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
