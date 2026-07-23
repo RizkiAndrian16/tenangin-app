@@ -35,7 +35,7 @@
         </div>
 
         <button type="submit" class="auth-submit-btn">
-            Kirim Link Reset <i data-feather="arrow-right"></i>
+            Kirim Link Reset
         </button>
     </form>
 

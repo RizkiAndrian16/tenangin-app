@@ -156,7 +156,9 @@
                                 {{-- HEADER --}}
                                 <div class="mb-2 pb-2 d-flex justify-content-between align-items-start gap-3">
                                     <div>
-                                        <h5 class="fw-bold mb-1 text-dark activity-item-title">{{ $activity->title }}</h5>
+                                        <h5 class="fw-bold mb-1 text-dark activity-item-title">
+                                            {{ $loop->iteration }}. {{ $activity->title }}
+                                        </h5>
                                         <p class="text-muted small mb-0">{{ $activity->activity_type }}</p>
                                     </div>
 

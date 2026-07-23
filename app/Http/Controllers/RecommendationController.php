@@ -63,7 +63,12 @@ class RecommendationController extends Controller
             ->oldest()
             ->get();
 
-        return view('pages.recommendations.recommendation', compact('pssAssessment', 'rules', 'stressLevel'));
+        // Ambil data preferensi terakhir dari user yang sedang login
+        $lastPreference = \App\Models\UserPreference::where('user_id', Auth::id())
+            ->latest('id')
+            ->first();
+
+        return view('pages.recommendations.recommendation', compact('pssAssessment', 'rules', 'stressLevel', 'lastPreference'));
     }
 
     public function processPreferences(Request $request, PssAssessment $pssAssessment)

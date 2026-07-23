@@ -158,7 +158,7 @@
                                 {{-- Judul Aktivitas menggunakan class .activity-item-title --}}
                                 <div class="mb-3 border-bottom pb-3">
                                     <h5 class="fw-bold mb-0 text-dark activity-item-title">
-                                        {{ $rule->activity->title }}
+                                        {{ $loop->iteration }}. {{ $rule->activity->title }}
                                     </h5>
                                 </div>
 
@@ -243,12 +243,16 @@
                 @csrf
                 <div class="row g-4">
                     {{-- Jenis Aktivitas --}}
+                    {{-- Jenis Aktivitas --}}
                     <div class="col-md-4">
                         <label class="form-label fw-bold">Jenis Aktivitas</label>
                         <select name="preferred_activity_type" class="form-select custom-input">
                             <option value="">Pilih jenis aktivitas</option>
                             @foreach ($rules->pluck('activity.activity_type')->unique() as $type)
-                                <option value="{{ $type }}">{{ $type }}</option>
+                                <option value="{{ $type }}"
+                                    {{ isset($lastPreference) && $lastPreference->preferred_activity_type == $type ? 'selected' : '' }}>
+                                    {{ $type }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -259,7 +263,10 @@
                         <select name="preferred_duration" class="form-select custom-input">
                             <option value="">Pilih durasi aktivitas</option>
                             @foreach ($rules->pluck('activity.duration_category')->unique() as $duration)
-                                <option value="{{ $duration }}">{{ $duration }}</option>
+                                <option value="{{ $duration }}"
+                                    {{ isset($lastPreference) && $lastPreference->preferred_duration == $duration ? 'selected' : '' }}>
+                                    {{ $duration }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -270,7 +277,10 @@
                         <select name="preferred_intensity" class="form-select custom-input">
                             <option value="">Pilih intensitas aktivitas</option>
                             @foreach ($rules->pluck('activity.intensity_level')->unique() as $intensity)
-                                <option value="{{ $intensity }}">{{ $intensity }}</option>
+                                <option value="{{ $intensity }}"
+                                    {{ isset($lastPreference) && $lastPreference->preferred_intensity == $intensity ? 'selected' : '' }}>
+                                    {{ $intensity }}
+                                </option>
                             @endforeach
                         </select>
                     </div>

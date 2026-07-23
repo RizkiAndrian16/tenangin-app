@@ -32,7 +32,8 @@
             <div class="auth-input-wrap">
                 <input id="login_password" class="auth-input has-toggle" type="password" name="password"
                     placeholder="Masukkan password" required autocomplete="current-password">
-                <button type="button" class="auth-input-toggle" onclick="togglePassword('login_password', this)">
+                <button type="button" class="auth-input-toggle" tabindex="-1"
+                    onclick="togglePassword('login_password', this)">
                     <i data-feather="eye-off" class="icon-18"></i>
                 </button>
             </div>
@@ -51,11 +52,6 @@
 
         <button type="submit" class="auth-submit-btn mt-4">
             Masuk
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
-            </svg>
         </button>
     </form>
 
@@ -81,7 +77,7 @@
     <div class="text-center mt-4">
         <small class="text-muted">
             Belum punya akun?
-            <a onclick="toggleAuthMode(event, 'register')" class="auth-link">Daftar sekarang</a>
+            <a href="#" onclick="toggleAuthMode(event, 'register')" class="auth-link">Daftar sekarang</a>
         </small>
     </div>
 </div>

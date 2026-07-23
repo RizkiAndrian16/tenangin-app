@@ -59,7 +59,7 @@
             <li
                 class="sidebar-item {{ request()->routeIs('feedbacks.index') || request()->routeIs('feedbacks.show') || request()->routeIs('feedbacks.create') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('feedbacks.index') }}">
-                    <i class="align-middle" data-feather="message-circle"></i>
+                    <i class="align-middle" data-feather="message-square"></i>
                     <span class="align-middle">Feedback</span>
                 </a>
             </li>
