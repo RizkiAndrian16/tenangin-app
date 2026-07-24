@@ -1195,3 +1195,47 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 100);
 });
+
+//
+// ======================================
+// AUTHENTICATION LOGIC (REFACTORED)
+// ======================================
+//
+document.addEventListener('DOMContentLoaded', () => {
+    const authCard = document.getElementById('authCard');
+
+    if (authCard) {
+        // Menerima signal state dari Blade via data-attribute
+        const isActive = authCard.dataset.registerActive === 'true';
+        if (isActive) {
+            authCard.classList.add('sign-up-mode');
+        }
+
+        // Logic Toggle Mode (Login <-> Register)
+        document.querySelectorAll('[data-auth-toggle]').forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                const mode = trigger.dataset.authToggle;
+
+                if (mode === 'register') {
+                    authCard.classList.add('sign-up-mode');
+                    if (window.history.pushState) window.history.pushState({}, '', '/register');
+                } else {
+                    authCard.classList.remove('sign-up-mode');
+                    if (window.history.pushState) window.history.pushState({}, '', '/login');
+                }
+            });
+        });
+    }
+
+    // Logic Toggle Password (menggunakan ulang fungsi window.togglePassword Anda)
+    document.querySelectorAll('[data-password-toggle]').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.dataset.passwordToggle;
+            if (typeof window.togglePassword === 'function') {
+                window.togglePassword(targetId, this);
+            }
+        });
+    });
+});

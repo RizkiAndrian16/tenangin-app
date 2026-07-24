@@ -12,7 +12,7 @@
 }
 
 /*===========================
-    01.COMMON css 
+    01.COMMON css
 ===========================*/
 html {
   scroll-behavior: smooth;
@@ -2167,4 +2167,1015 @@ p {
 
 .pb-225 {
   padding-bottom: 225px;
+}
+
+/* ======================================
+   TENANGIN - GLOBAL OVERRIDES
+====================================== */
+.navbar-nav .nav-item a {
+    color: #0F172A;
+}
+
+.navbar-nav .nav-item a::before {
+    background: #34D399;
+}
+
+.navbar-toggler .toggler-icon {
+    background-color: #0F172A;
+    border-radius: 2px;
+}
+
+.scroll-top {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #6EE7B7, #16A34A);
+    box-shadow: 0 12px 26px rgba(22, 163, 74, 0.35);
+}
+
+.scroll-top:hover {
+    background: linear-gradient(135deg, #34D399, #15803D);
+}
+
+.navbar-collapse {
+    border-radius: 18px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+/* ======================================
+   TENANGIN - SHARED
+====================================== */
+.tng-kicker {
+    display: inline-block;
+    font-size: 12.5px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #16A34A;
+    background: #DCFCE7;
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+}
+
+.tng-text-gradient {
+    background: linear-gradient(135deg, #059669, #0D9488);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+@keyframes tngFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+}
+
+/* ======================================
+   TENANGIN - NAVBAR
+====================================== */
+.tng-navbar-pill {
+    max-width: 1140px;
+    margin: 18px auto 0;
+    padding: 12px 26px !important;
+    background: rgba(255, 255, 255, 0.72);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 999px;
+    box-shadow: 0 10px 34px rgba(15, 23, 42, 0.08);
+    transition: all 0.3s ease;
+}
+
+.sticky .tng-navbar-pill {
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.12);
+}
+
+.tng-navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tng-navbar-brand img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.tng-navbar-brand-text {
+    font-weight: 800;
+    font-size: 18px;
+    color: #0F172A;
+    line-height: 1;
+}
+
+.tng-nav-item-cta {
+    margin-left: 18px;
+}
+
+.navbar-nav .nav-item.tng-nav-item-cta a::before {
+    content: none;
+}
+
+.tng-nav-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #6EE7B7, #34D399);
+    color: #064E3B !important;
+    font-weight: 700;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.tng-nav-btn:hover {
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+    color: #064E3B !important;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+    .tng-navbar-pill {
+        margin: 12px 12px 0;
+        padding: 10px 18px !important;
+    }
+
+    .tng-nav-item-cta {
+        margin-left: 0;
+        margin-top: 14px;
+    }
+
+    .tng-nav-btn {
+        display: block;
+        text-align: center;
+    }
+}
+
+/* ======================================
+   TENANGIN - HERO
+====================================== */
+.tng-hero {
+    position: relative;
+    z-index: 1;
+    padding: 170px 0 100px;
+    overflow: hidden;
+    background: linear-gradient(160deg, #ECFDF5 0%, #D1FAE5 45%, #BBF7D0 100%);
+}
+
+.tng-hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(50px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.tng-hero-orb-1 {
+    width: 340px;
+    height: 340px;
+    background: rgba(52, 211, 153, 0.35);
+    top: -120px;
+    left: -100px;
+}
+
+.tng-hero-orb-2 {
+    width: 260px;
+    height: 260px;
+    background: rgba(16, 185, 129, 0.25);
+    bottom: -80px;
+    right: 5%;
+}
+
+.tng-hero-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: #DCFCE7;
+    color: #15803D;
+    font-size: 12.5px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.tng-hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.tng-hero-content h1 {
+    font-size: 46px;
+    font-weight: 800;
+    color: #064E3B;
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+}
+
+.tng-hero-content p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #334155;
+    margin-bottom: 32px;
+    max-width: 480px;
+}
+
+.tng-hero-btn-group {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.tng-main-btn {
+    background: linear-gradient(135deg, #6EE7B7, #34D399);
+    color: #064E3B;
+    padding: 16px 32px;
+    font-size: 15.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tng-main-btn:hover {
+    color: #064E3B;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(16, 185, 129, 0.3);
+}
+
+.tng-main-btn.btn-hover::after {
+    background: rgba(6, 78, 59, 0.08);
+}
+
+.tng-btn-secondary {
+    color: #15803D;
+    font-weight: 700;
+    font-size: 14.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.tng-btn-secondary-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.1);
+    transition: all 0.2s ease;
+}
+
+.tng-btn-secondary:hover .tng-btn-secondary-icon {
+    background: #DCFCE7;
+    transform: scale(1.08);
+}
+
+.tng-hero-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 420px;
+    z-index: 1;
+}
+
+.tng-hero-blob {
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: linear-gradient(150deg, #A7F3D0 0%, #6EE7B7 45%, #34D399 100%);
+    opacity: 0.55;
+    filter: blur(2px);
+    animation: tngFloat 7s ease-in-out infinite;
+}
+
+.tng-hero-mockup {
+    position: relative;
+    width: 300px;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 30px 60px rgba(15, 23, 42, 0.18);
+    overflow: hidden;
+}
+
+.tng-hero-mockup-topbar {
+    display: flex;
+    gap: 6px;
+    padding: 14px 16px;
+    border-bottom: 1px solid #F1F5F9;
+}
+
+.tng-hero-mockup-topbar span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #E2E8F0;
+}
+
+.tng-hero-mockup-body {
+    padding: 26px 24px 28px;
+    text-align: center;
+}
+
+.tng-hero-mockup-score {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+}
+
+.tng-hero-mockup-score-num {
+    font-size: 42px;
+    font-weight: 800;
+    color: #16A34A;
+    line-height: 1;
+}
+
+.tng-hero-mockup-score-max {
+    font-size: 14px;
+    color: #94A3B8;
+    font-weight: 600;
+}
+
+.tng-hero-mockup-caption {
+    font-size: 12.5px;
+    color: #64748B;
+    margin: 6px 0 14px;
+}
+
+.tng-hero-mockup-badge {
+    display: inline-block;
+    background: #DCFCE7;
+    color: #15803D;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+}
+
+.tng-hero-mockup-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+}
+
+.tng-hero-mockup-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #334155;
+    font-weight: 600;
+    background: #F8FAFC;
+    padding: 10px 12px;
+    border-radius: 10px;
+}
+
+.tng-hero-mockup-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.tng-dot-success { background: #16A34A; }
+.tng-dot-primary { background: #0284C7; }
+.tng-dot-teal { background: #0D9488; }
+
+.tng-hero-float-card {
+    position: absolute;
+    bottom: -18px;
+    left: -30px;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 12px 18px;
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.14);
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 2;
+    animation: tngFloat 5.5s ease-in-out infinite;
+    animation-delay: 0.4s;
+}
+
+@media (max-width: 1366px) {
+    .tng-hero-content h1 {
+        font-size: 40px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+    .tng-hero {
+        padding: 150px 0 60px;
+        text-align: center;
+    }
+
+    .tng-hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .tng-hero-btn-group {
+        justify-content: center;
+    }
+
+    .tng-hero-visual {
+        margin-top: 50px;
+        min-height: 340px;
+    }
+}
+
+@media (max-width: 767px) {
+    .tng-hero-content h1 {
+        font-size: 30px;
+    }
+
+    .tng-hero-mockup {
+        width: 260px;
+    }
+
+    .tng-hero-blob {
+        width: 280px;
+        height: 280px;
+    }
+}
+
+@media (max-width: 576px) {
+    .tng-hero {
+        padding: 140px 0 50px;
+    }
+
+    .tng-hero-content h1 {
+        font-size: 26px;
+    }
+
+    .tng-hero-btn-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    .tng-hero-mockup {
+        width: 230px;
+    }
+
+    .tng-hero-float-card {
+        left: -10px;
+        bottom: -12px;
+        font-size: 11.5px;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 400px) {
+    .tng-hero-float-card {
+        display: none;
+    }
+}
+
+/* ======================================
+   TENANGIN - FEATURES (BENTO GRID)
+====================================== */
+.tng-features {
+    background: #ffffff;
+}
+
+.tng-features .section-title h2,
+.tng-how .section-title h2,
+.tng-about .section-title h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #0F172A;
+    margin-bottom: 14px;
+}
+
+.tng-features .section-title p,
+.tng-how .section-title p {
+    font-size: 15px;
+    color: #64748B;
+}
+
+.tng-bento-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    grid-template-rows: repeat(3, auto);
+    grid-template-areas:
+        "big s1"
+        "big s2"
+        "big s3";
+    gap: 20px;
+}
+
+.tng-bento-big { grid-area: big; }
+.tng-bento-s1 { grid-area: s1; }
+.tng-bento-s2 { grid-area: s2; }
+.tng-bento-s3 { grid-area: s3; }
+
+.tng-feature-card {
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    border-radius: 20px;
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+    transition: all 0.25s ease;
+}
+
+.tng-feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.09);
+}
+
+.tng-feature-card:hover .tng-feature-icon {
+    transform: scale(1.08) rotate(-4deg);
+}
+
+.tng-bento-big {
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tng-bento-s1,
+.tng-bento-s2,
+.tng-bento-s3 {
+    padding: 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.tng-feature-card h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #0F172A;
+    margin-bottom: 8px;
+}
+
+.tng-feature-card p {
+    font-size: 14px;
+    color: #64748B;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.tng-feature-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+    transition: all 0.25s ease;
+}
+
+.tng-bento-big .tng-feature-icon {
+    width: 64px;
+    height: 64px;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.tng-icon-success { background: #DCFCE7; color: #16A34A; }
+.tng-icon-teal { background: #CCFBF1; color: #0D9488; }
+.tng-icon-primary { background: #E0F2FE; color: #0284C7; }
+.tng-icon-purple { background: #EDE9FE; color: #7C3AED; }
+
+.tng-bento-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 18px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #16A34A;
+}
+
+.tng-bento-link:hover {
+    color: #15803D;
+}
+
+@media (max-width: 991px) {
+    .tng-bento-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "big big"
+            "s1 s2"
+            "s3 s3";
+    }
+}
+
+@media (max-width: 767px) {
+
+    .tng-features .section-title h2,
+    .tng-how .section-title h2,
+    .tng-about .section-title h2 {
+        font-size: 24px;
+    }
+
+    .tng-bento-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "big"
+            "s1"
+            "s2"
+            "s3";
+    }
+
+    .tng-bento-big {
+        padding: 28px 22px;
+    }
+}
+
+/* ======================================
+   TENANGIN - HOW IT WORKS
+====================================== */
+.tng-how {
+    background: #F8FAFC;
+}
+
+.tng-how-timeline {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: 30px;
+    position: relative;
+}
+
+.tng-how-timeline::before {
+    content: "";
+    position: absolute;
+    top: 26px;
+    left: 5%;
+    right: 5%;
+    height: 2px;
+    background: repeating-linear-gradient(to right, #A7F3D0 0, #A7F3D0 8px, transparent 8px, transparent 16px);
+    z-index: 0;
+}
+
+.tng-how-step {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    border-radius: 18px;
+    padding: 28px 20px;
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.tng-how-ghost {
+    position: absolute;
+    top: -18px;
+    right: -6px;
+    font-size: 64px;
+    font-weight: 800;
+    color: #F1F5F9;
+    line-height: 1;
+    z-index: 0;
+    user-select: none;
+}
+
+.tng-how-number {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6EE7B7, #34D399);
+    color: #064E3B;
+    font-weight: 800;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    z-index: 1;
+}
+
+.tng-how-content {
+    position: relative;
+    z-index: 1;
+}
+
+.tng-how-content h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0F172A;
+    margin-bottom: 8px;
+}
+
+.tng-how-content p {
+    font-size: 13.5px;
+    color: #64748B;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+@media (min-width: 992px) {
+    .tng-how-step:nth-child(even) {
+        transform: translateY(30px);
+    }
+}
+
+@media (max-width: 991px) {
+    .tng-how-timeline {
+        flex-direction: column;
+    }
+
+    .tng-how-timeline::before {
+        display: none;
+    }
+}
+
+/* ======================================
+   TENANGIN - PERSONALIZATION
+====================================== */
+.tng-personalization {
+    background: #ffffff;
+}
+
+.tng-personalization-content .section-title h2 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #0F172A;
+    margin-bottom: 16px;
+}
+
+.tng-personalization-content .section-title p {
+    font-size: 15px;
+    color: #475569;
+    line-height: 1.75;
+}
+
+.tng-personalization-visual {
+    display: flex;
+    justify-content: center;
+}
+
+.tng-personalization-card {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 20px;
+    padding: 32px;
+    width: 100%;
+    max-width: 380px;
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+    animation: tngFloat 8s ease-in-out infinite;
+}
+
+.tng-tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.tng-tag {
+    background: #DCFCE7;
+    color: #15803D;
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 999px;
+}
+
+.tng-personalization-bar {
+    height: 10px;
+    border-radius: 999px;
+    background: #E2E8F0;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.tng-bar-fill {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #6EE7B7, #16A34A);
+}
+
+.tng-personalization-caption {
+    font-size: 12.5px;
+    color: #64748B;
+    margin-bottom: 0;
+}
+
+@media (max-width: 991px) {
+    .tng-personalization-visual {
+        margin-bottom: 36px;
+    }
+}
+
+/* ======================================
+   TENANGIN - ABOUT
+====================================== */
+.tng-about {
+    background: #F8FAFC;
+}
+
+.tng-about p {
+    font-size: 15px;
+    color: #475569;
+    line-height: 1.8;
+}
+
+.tng-about-disclaimer {
+    font-size: 13px;
+    color: #94A3B8;
+    margin-top: 14px;
+    font-style: italic;
+}
+
+/* ======================================
+   TENANGIN - CTA
+====================================== */
+.tng-cta {
+    background: #ffffff;
+}
+
+.tng-cta-wrapper {
+    position: relative;
+    background: linear-gradient(135deg, #20C997 0%, #17A589 100%);
+    border-radius: 28px;
+    padding: 56px 48px;
+    box-shadow: 0 20px 50px rgba(15, 118, 110, 0.25);
+    overflow: hidden;
+}
+
+.tng-cta-dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.18) 1.5px, transparent 1.5px);
+    background-size: 18px 18px;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.tng-cta-kicker {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.18);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+}
+
+.tng-cta-wrapper .section-title h2 {
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.tng-cta-wrapper .section-title p {
+    font-size: 14.5px;
+    opacity: 0.92;
+    margin-bottom: 0;
+}
+
+.tng-cta-btn {
+    background: #ffffff;
+    color: #0D9488;
+    padding: 16px 34px;
+    font-size: 15px;
+}
+
+.tng-cta-btn:hover {
+    color: #0D9488;
+    transform: translateY(-2px);
+}
+
+.tng-cta-btn.btn-hover::after {
+    background: rgba(13, 148, 136, 0.08);
+}
+
+@media (max-width: 767px) {
+    .tng-cta-wrapper {
+        padding: 40px 28px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .tng-cta-wrapper {
+        padding: 32px 20px;
+        border-radius: 20px;
+    }
+
+    .tng-cta-wrapper .section-title h2 {
+        font-size: 21px;
+    }
+}
+
+/* ======================================
+   TENANGIN - FOOTER
+====================================== */
+.tng-footer {
+    background: #0F172A;
+    padding: 60px 0 0;
+    position: relative;
+}
+
+.tng-footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #34D399, transparent);
+}
+
+.tng-footer-brand {
+    margin-bottom: 20px;
+}
+
+.tng-footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.tng-footer-logo img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+}
+
+.tng-footer-logo span {
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.tng-footer-brand p {
+    color: #94A3B8;
+    font-size: 13.5px;
+    max-width: 360px;
+    margin-bottom: 0;
+}
+
+.tng-footer-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    padding: 0;
+    margin: 0;
+    justify-content: flex-end;
+}
+
+.tng-footer-links a {
+    color: #CBD5E1;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.tng-footer-links a:hover {
+    color: #6EE7B7;
+}
+
+.tng-footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 18px 0;
+    text-align: center;
+}
+
+.tng-footer-bottom p {
+    color: #64748B;
+    font-size: 12.5px;
+    margin-bottom: 0;
+}
+
+@media (max-width: 991px) {
+    .tng-footer-links {
+        justify-content: flex-start;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .tng-footer-links {
+        gap: 14px 18px;
+    }
 }

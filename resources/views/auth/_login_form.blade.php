@@ -32,8 +32,7 @@
             <div class="auth-input-wrap">
                 <input id="login_password" class="auth-input has-toggle" type="password" name="password"
                     placeholder="Masukkan password" required autocomplete="current-password">
-                <button type="button" class="auth-input-toggle" tabindex="-1"
-                    onclick="togglePassword('login_password', this)">
+                <button type="button" class="auth-input-toggle" tabindex="-1" data-password-toggle="login_password">
                     <i data-feather="eye-off" class="icon-18"></i>
                 </button>
             </div>
@@ -41,9 +40,8 @@
 
         <div class="d-flex justify-content-between align-items-center mb-4">
             <label class="d-flex align-items-center gap-2 mb-0 cursor-pointer">
-                <input class="form-check-input m-0" type="checkbox" name="remember"
-                    style="position: relative; top: 1px;">
-                <span class="text-muted" style="font-size: 13px;">Ingat saya</span>
+                <input class="form-check-input m-0 auth-checkbox-fix" type="checkbox" name="remember">
+                <span class="text-muted auth-fs-13">Ingat saya</span>
             </label>
             @if (Route::has('password.request'))
                 <a href="{{ route('password.request') }}" class="auth-link">Lupa password?</a>
@@ -59,7 +57,6 @@
     <div class="auth-divider"><span>atau</span></div>
 
     <!-- LOGIN DENGAN GOOGLE -->
-    {{-- Sesuaikan href dengan route Socialite Google yang tersedia di aplikasi --}}
     <a href="{{ Route::has('auth.google') ? route('auth.google') : '#' }}" class="auth-google-btn">
         <svg viewBox="0 0 24 24">
             <path fill="#4285F4"
@@ -77,7 +74,7 @@
     <div class="text-center mt-4">
         <small class="text-muted">
             Belum punya akun?
-            <a href="#" onclick="toggleAuthMode(event, 'register')" class="auth-link">Daftar sekarang</a>
+            <a href="#" data-auth-toggle="register" class="auth-link">Daftar sekarang</a>
         </small>
     </div>
 </div>

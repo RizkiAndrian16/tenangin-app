@@ -80,6 +80,11 @@ class User extends Authenticatable
         return $this->hasMany(PssAssessment::class);
     }
 
+    public function latestPssAssessment()
+    {
+        return $this->hasOne(PssAssessment::class)->latestOfMany();
+    }
+
     public function recommendations()
     {
         return $this->hasMany(Recommendation::class);

@@ -32,15 +32,13 @@
             <div class="auth-input-wrap">
                 <input id="reg_password" class="auth-input has-toggle" type="password" name="password"
                     placeholder="Buat password" required autocomplete="new-password">
-                <button type="button" class="auth-input-toggle" tabindex="-1"
-                    onclick="togglePassword('reg_password', this)">
+                <button type="button" class="auth-input-toggle" tabindex="-1" data-password-toggle="reg_password">
                     <i data-feather="eye-off" class="icon-18"></i>
                 </button>
             </div>
         </div>
 
-        <!-- TOMBOL DAFTAR UTAMA -->
-        <button type="submit" class="auth-submit-btn" style="margin-top: 0;">
+        <button type="submit" class="auth-submit-btn auth-submit-btn-no-mt">
             Daftar Sekarang
         </button>
     </form>
@@ -49,7 +47,6 @@
     <div class="auth-divider"><span>atau</span></div>
 
     <!-- DAFTAR DENGAN GOOGLE -->
-    {{-- Sesuaikan href dengan route Socialite Google yang tersedia di aplikasi --}}
     <a href="{{ Route::has('auth.google') ? route('auth.google') : '#' }}" class="auth-google-btn">
         <svg viewBox="0 0 24 24">
             <path fill="#4285F4"
@@ -67,7 +64,7 @@
     <div class="text-center mt-4">
         <small class="text-muted">
             Sudah punya akun?
-            <a href="#" onclick="toggleAuthMode(event, 'login')" class="auth-link">Masuk di sini</a>
+            <a href="#" data-auth-toggle="login" class="auth-link">Masuk di sini</a>
         </small>
     </div>
 </div>

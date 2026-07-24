@@ -4,12 +4,12 @@
 
     <body>
         <!--[if lte IE 9]>
-                                                      <p class="browserupgrade">
-                                                        You are using an <strong>outdated</strong> browser. Please
-                                                        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
-                                                        your experience and security.
-                                                      </p>
-                                                    <![endif]-->
+                                            <p class="browserupgrade">
+                                                You are using an <strong>outdated</strong> browser. Please
+                                                <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+                                                your experience and security.
+                                            </p>
+                                            <![endif]-->
 
         <!-- ======== preloader start ======== -->
         <div class="preloader">
@@ -36,9 +36,10 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-12">
-                            <nav class="navbar navbar-expand-lg">
-                                <a class="navbar-brand" href="index.html">
-                                    <img src="assets/img/logo/logo.svg" alt="Logo" />
+                            <nav class="navbar navbar-expand-lg tng-navbar-pill">
+                                <a class="navbar-brand tng-navbar-brand" href="{{ url('/') }}">
+                                    <img src="{{ asset('assets-admin/img/logo/LogoSistem.png') }}" alt="Tenangin" />
+                                    <span class="tng-navbar-brand-text">Tenangin</span>
                                 </a>
                                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -49,25 +50,21 @@
                                 </button>
 
                                 <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
-                                    <ul id="nav" class="navbar-nav ms-auto">
+                                    <ul id="nav" class="navbar-nav ms-auto align-items-lg-center">
                                         <li class="nav-item">
-                                            <a class="page-scroll active" href="#home">Home</a>
+                                            <a class="page-scroll active" href="#home">Beranda</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="page-scroll" href="#features">Features</a>
+                                            <a class="page-scroll" href="#features">Fitur</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="page-scroll" href="#about">About</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a class="page-scroll" href="#why">Why</a>
+                                            <a class="page-scroll" href="#how-it-works">Cara Kerja</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="javascript:void(0)">Pricing</a>
+                                            <a class="page-scroll" href="#about">Tentang</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a href="javascript:void(0)">Clients</a>
+                                        <li class="nav-item tng-nav-item-cta">
+                                            <a href="{{ route('login') }}" class="tng-nav-btn">Masuk</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -85,29 +82,60 @@
         <!-- ======== header end ======== -->
 
         <!-- ======== hero-section start ======== -->
-        <section id="home" class="hero-section">
+        <section id="home" class="tng-hero">
+            <div class="tng-hero-orb tng-hero-orb-1"></div>
+            <div class="tng-hero-orb tng-hero-orb-2"></div>
             <div class="container">
                 <div class="row align-items-center position-relative">
                     <div class="col-lg-6">
-                        <div class="hero-content">
+                        <div class="tng-hero-content">
                             <h1 class="wow fadeInUp" data-wow-delay=".4s">
-                                Your using free lite version
+                                Kenali Tingkat Stresmu, <span class="tng-text-gradient">Temukan Relaksasi</span>
+                                yang Tepat
                             </h1>
                             <p class="wow fadeInUp" data-wow-delay=".6s">
-                                Please, purchase full version to get all sections, features and
-                                permission to remove footer credit.
+                                Tenangin membantu kamu mengetahui tingkat stres melalui assessment
+                                PSS-10, lalu memberikan rekomendasi aktivitas relaksasi yang
+                                dipersonalisasi sesuai preferensimu.
                             </p>
-                            <a href="{{ route('register') }}" class="main-btn border-btn btn-hover wow fadeInUp"
-                                data-wow-delay=".6s">Mulai Sekarang</a>
-                            <a href="{{ route('login') }}" class="main-btn border-btn btn-hover wow fadeInUp"
-                                data-wow-delay=".6s">Masuk</a>
-                            <a href="#features" class="scroll-bottom">
-                                <i class="lni lni-arrow-down"></i></a>
+                            <div class="tng-hero-btn-group wow fadeInUp" data-wow-delay=".8s">
+                                <a href="{{ route('login') }}" class="main-btn btn-hover tng-main-btn">
+                                    Masuk ke Tenangin
+                                    <i class="lni lni-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
-                            <img src="{{ asset('assets/img/hero/hero-img.png') }}">
+                        <div class="tng-hero-visual wow fadeInUp" data-wow-delay=".5s">
+                            <div class="tng-hero-blob"></div>
+                            <div class="tng-hero-mockup">
+                                <div class="tng-hero-mockup-topbar">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <div class="tng-hero-mockup-body">
+                                    <div class="tng-hero-mockup-score">
+                                        <span class="tng-hero-mockup-score-num">18</span>
+                                        <span class="tng-hero-mockup-score-max">/ 40</span>
+                                    </div>
+                                    <p class="tng-hero-mockup-caption">Skor PSS-10 Kamu</p>
+                                    <span class="tng-hero-mockup-badge">Tingkat Stres: Rendah</span>
+                                    <div class="tng-hero-mockup-list">
+                                        <div class="tng-hero-mockup-row">
+                                            <span class="tng-hero-mockup-dot tng-dot-success"></span>
+                                            Assessment Selesai
+                                        </div>
+                                        <div class="tng-hero-mockup-row">
+                                            <span class="tng-hero-mockup-dot tng-dot-primary"></span>
+                                            Rekomendasi Siap
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tng-hero-float-card">
+                                <span class="tng-hero-float-dot tng-dot-teal"></span>
+                                Aktivitas Relaksasi Cocok
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -116,49 +144,66 @@
         <!-- ======== hero-section end ======== -->
 
         <!-- ======== feature-section start ======== -->
-        <section id="features" class="feature-section pt-120">
+        <section id="features" class="tng-features pt-120">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-8 col-sm-10">
-                        <div class="single-feature">
-                            <div class="icon">
-                                <i class="lni lni-bootstrap"></i>
-                            </div>
-                            <div class="content">
-                                <h3>Bootstrap 5</h3>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                    diam nonumy eirmod tempor invidunt ut labore
-                                </p>
-                            </div>
+                    <div class="col-lg-7 col-md-9">
+                        <div class="section-title text-center mb-60">
+                            <span class="tng-kicker wow fadeInUp" data-wow-delay=".1s">Fitur Utama</span>
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">
+                                Yang Bisa Kamu Lakukan di Tenangin
+                            </h2>
+                            <p class="wow fadeInUp" data-wow-delay=".4s">
+                                Empat langkah sederhana untuk mengenali kondisi stresmu dan
+                                menemukan aktivitas relaksasi yang sesuai.
+                            </p>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-8 col-sm-10">
-                        <div class="single-feature">
-                            <div class="icon">
-                                <i class="lni lni-layout"></i>
-                            </div>
-                            <div class="content">
-                                <h3>Clean Design</h3>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                    diam nonumy eirmod tempor invidunt ut labore
-                                </p>
-                            </div>
+                </div>
+
+                <div class="tng-bento-grid">
+                    <div class="tng-feature-card tng-bento-big wow fadeInUp" data-wow-delay=".2s">
+                        <div class="tng-feature-icon tng-icon-success">
+                            <i class="lni lni-clipboard-check"></i>
+                        </div>
+                        <h3>Assessment PSS-10</h3>
+                        <p>
+                            Ketahui tingkat stresmu dengan mengisi 10 pertanyaan singkat
+                            berbasis skala PSS-10, standar yang umum dipakai untuk mengukur
+                            persepsi stres.
+                        </p>
+                        <a href="{{ route('login') }}" class="tng-bento-link">
+                            Mulai assessment <i class="lni lni-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="tng-feature-card tng-bento-s1 wow fadeInUp" data-wow-delay=".3s">
+                        <div class="tng-feature-icon tng-icon-teal">
+                            <i class="lni lni-thumbs-up"></i>
+                        </div>
+                        <div>
+                            <h3>Rekomendasi Personal</h3>
+                            <p>Aktivitas relaksasi berdasarkan tingkat stres dan preferensimu.</p>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-8 col-sm-10">
-                        <div class="single-feature">
-                            <div class="icon">
-                                <i class="lni lni-coffee-cup"></i>
-                            </div>
-                            <div class="content">
-                                <h3>Easy to Use</h3>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                    diam nonumy eirmod tempor invidunt ut labore
-                                </p>
-                            </div>
+
+                    <div class="tng-feature-card tng-bento-s2 wow fadeInUp" data-wow-delay=".4s">
+                        <div class="tng-feature-icon tng-icon-primary">
+                            <i class="lni lni-leaf"></i>
+                        </div>
+                        <div>
+                            <h3>Aktivitas Relaksasi</h3>
+                            <p>Jalankan aktivitas relaksasi lewat Mode Fokus di sistem.</p>
+                        </div>
+                    </div>
+
+                    <div class="tng-feature-card tng-bento-s3 wow fadeInUp" data-wow-delay=".5s">
+                        <div class="tng-feature-icon tng-icon-purple">
+                            <i class="lni lni-bar-chart"></i>
+                        </div>
+                        <div>
+                            <h3>Pantau Perkembangan</h3>
+                            <p>Lihat riwayat assessment dan perkembangan tingkat stresmu.</p>
                         </div>
                     </div>
                 </div>
@@ -166,293 +211,179 @@
         </section>
         <!-- ======== feature-section end ======== -->
 
-        <!-- ======== about-section start ======== -->
-        <section id="about" class="about-section pt-150">
+        <!-- ======== how-it-works start ======== -->
+        <section id="how-it-works" class="tng-how pt-120">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-xl-6 col-lg-6">
-                        <div class="about-img">
-                            <img src="assets/img/about/about-1.png" alt="" class="w-100" />
-                            <img src="assets/img/about/about-left-shape.svg" alt="" class="shape shape-1" />
-                            <img src="assets/img/about/left-dots.svg" alt="" class="shape shape-2" />
+                <div class="row justify-content-center">
+                    <div class="col-lg-7 col-md-9">
+                        <div class="section-title text-center mb-60">
+                            <span class="tng-kicker wow fadeInUp" data-wow-delay=".1s">Cara Kerja</span>
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">
+                                Bagaimana Tenangin Bekerja?
+                            </h2>
+                            <p class="wow fadeInUp" data-wow-delay=".4s">
+                                Empat langkah mudah, dari assessment sampai evaluasi aktivitas.
+                            </p>
                         </div>
                     </div>
-                    <div class="col-xl-6 col-lg-6">
-                        <div class="about-content">
-                            <div class="section-title mb-30">
-                                <h2 class="mb-25 wow fadeInUp" data-wow-delay=".2s">
-                                    Perfect Solution Thriving Online Business
-                                </h2>
-                                <p class="wow fadeInUp" data-wow-delay=".4s">
-                                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                    dinonumy eirmod tempor invidunt ut labore et dolore magna
-                                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                                    sea takimata sanctus est Lorem.Lorem ipsum dolor sit amet.
+                </div>
+                <div class="tng-how-timeline">
+                    <div class="tng-how-step wow fadeInUp" data-wow-delay=".2s">
+                        <span class="tng-how-ghost">01</span>
+                        <div class="tng-how-number">01</div>
+                        <div class="tng-how-content">
+                            <h3>Isi Assessment</h3>
+                            <p>Jawab 10 pertanyaan PSS-10 untuk mengetahui tingkat stres saat ini.</p>
+                        </div>
+                    </div>
+                    <div class="tng-how-step wow fadeInUp" data-wow-delay=".3s">
+                        <span class="tng-how-ghost">02</span>
+                        <div class="tng-how-number">02</div>
+                        <div class="tng-how-content">
+                            <h3>Tentukan Preferensi</h3>
+                            <p>Pilih karakteristik aktivitas relaksasi yang sesuai dengan preferensimu.</p>
+                        </div>
+                    </div>
+                    <div class="tng-how-step wow fadeInUp" data-wow-delay=".4s">
+                        <span class="tng-how-ghost">03</span>
+                        <div class="tng-how-number">03</div>
+                        <div class="tng-how-content">
+                            <h3>Dapatkan Rekomendasi</h3>
+                            <p>Tenangin mencocokkan tingkat stres dan preferensi untuk menghasilkan rekomendasi yang lebih
+                                sesuai.</p>
+                        </div>
+                    </div>
+                    <div class="tng-how-step wow fadeInUp" data-wow-delay=".5s">
+                        <span class="tng-how-ghost">04</span>
+                        <div class="tng-how-number">04</div>
+                        <div class="tng-how-content">
+                            <h3>Lakukan &amp; Evaluasi</h3>
+                            <p>Jalankan aktivitas relaksasi dan berikan feedback setelah selesai.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ======== how-it-works end ======== -->
+
+        <!-- ======== personalization-section start ======== -->
+        <section class="tng-personalization pt-120">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="tng-personalization-visual wow fadeInUp" data-wow-delay=".2s">
+                            <div class="tng-personalization-card">
+                                <div class="tng-tag-row">
+                                    <span class="tng-tag">Jenis Aktivitas</span>
+                                    <span class="tng-tag">Durasi</span>
+                                    <span class="tng-tag">Intensitas</span>
+                                </div>
+                                <div class="tng-personalization-bar">
+                                    <span class="tng-bar-fill" style="width: 78%"></span>
+                                </div>
+                                <p class="tng-personalization-caption">Tingkat kesesuaian rekomendasi</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="tng-personalization-content wow fadeInUp" data-wow-delay=".3s">
+                            <div class="section-title mb-25">
+                                <span class="tng-kicker">Personalisasi</span>
+                                <h2>Rekomendasi yang Lebih Sesuai untukmu</h2>
+                                <p>
+                                    Rekomendasi di Tenangin tidak hanya mempertimbangkan tingkat
+                                    stresmu, tetapi juga preferensi pribadi seperti jenis
+                                    aktivitas, durasi, dan intensitas yang kamu inginkan - agar
+                                    aktivitas relaksasi yang disarankan terasa lebih pas
+                                    untukmu.
                                 </p>
                             </div>
-                            <a href="javascript:void(0)" class="main-btn btn-hover border-btn wow fadeInUp"
-                                data-wow-delay=".6s">Discover More</a>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ======== personalization-section end ======== -->
+
+        <!-- ======== about-section start ======== -->
+        <section id="about" class="tng-about pt-120">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <div class="section-title mb-25 wow fadeInUp" data-wow-delay=".2s">
+                            <span class="tng-kicker">Tentang</span>
+                            <h2>Tentang Tenangin</h2>
+                        </div>
+                        <p class="wow fadeInUp" data-wow-delay=".3s">
+                            Tenangin dikembangkan sebagai sistem yang membantu mahasiswa
+                            mengenali tingkat stres melalui PSS-10 dan memperoleh rekomendasi
+                            aktivitas relaksasi yang lebih personal, sehingga lebih mudah
+                            menjaga keseimbangan di tengah kesibukan perkuliahan.
+                        </p>
+                        <p class="tng-about-disclaimer wow fadeInUp" data-wow-delay=".4s">
+                            Hasil assessment pada Tenangin bersifat informatif dan bukan
+                            merupakan diagnosis medis atau profesional.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
         <!-- ======== about-section end ======== -->
 
-        <!-- ======== about2-section start ======== -->
-        <section id="about" class="about-section pt-150">
+        <!-- ======== cta-section start ======== -->
+        <section class="tng-cta pt-120">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-xl-6 col-lg-6">
-                        <div class="about-content">
-                            <div class="section-title mb-30">
-                                <h2 class="mb-25 wow fadeInUp" data-wow-delay=".2s">
-                                    Easy to Use with Tons of Awesome Features
+                <div class="tng-cta-wrapper">
+                    <div class="tng-cta-dots"></div>
+                    <div class="row align-items-center position-relative">
+                        <div class="col-lg-8">
+                            <div class="section-title mb-0">
+                                <h2 class="text-white mb-15 wow fadeInUp" data-wow-delay=".2s">
+                                    Siap Mengenali Kondisimu dan Menemukan Aktivitas yang Tepat?
                                 </h2>
-                                <p class="wow fadeInUp" data-wow-delay=".4s">
-                                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                                    aliquyam erat, sed diam voluptua.
+                                <p class="text-white wow fadeInUp" data-wow-delay=".4s">
+                                    Mulai dengan assessment PSS-10 dan dapatkan rekomendasi
+                                    aktivitas relaksasi yang dipersonalisasi untukmu.
                                 </p>
                             </div>
-                            <ul>
-                                <li>Quick Access</li>
-                                <li>Easily to Manage</li>
-                                <li>24/7 Support</li>
-                            </ul>
-                            <a href="javascript:void(0)" class="main-btn btn-hover border-btn wow fadeInUp"
-                                data-wow-delay=".6s">Learn More</a>
                         </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 order-first order-lg-last">
-                        <div class="about-img-2">
-                            <img src="assets/img/about/about-2.png" alt="" class="w-100" />
-                            <img src="assets/img/about/about-right-shape.svg" alt="" class="shape shape-1" />
-                            <img src="assets/img/about/right-dots.svg" alt="" class="shape shape-2" />
+                        <div class="col-lg-4 text-lg-end mt-30 mt-lg-0">
+                            <a href="{{ route('login') }}" class="main-btn btn-hover tng-cta-btn wow fadeInUp"
+                                data-wow-delay=".6s">
+                                Mulai dengan Tenangin
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- ======== about2-section end ======== -->
-
-        <!-- ======== feature-section start ======== -->
-        <section id="why" class="feature-extended-section pt-100">
-            <div class="feature-extended-wrapper">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-xxl-5 col-xl-6 col-lg-8 col-md-9">
-                            <div class="section-title text-center mb-60">
-                                <h2 class="mb-25 wow fadeInUp" data-wow-delay=".2s">
-                                    Why Choose SaaSpal
-                                </h2>
-                                <p class="wow fadeInUp" data-wow-delay=".4s">
-                                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                    diam nonumy eirmod tempor invidunt ut labore et dolore
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-feature-extended">
-                                <div class="icon">
-                                    <i class="lni lni-display"></i>
-                                </div>
-                                <div class="content">
-                                    <h3>SaaS Focused</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                        diam nonumy eirmod tempor invidunt ut labore
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-feature-extended">
-                                <div class="icon">
-                                    <i class="lni lni-leaf"></i>
-                                </div>
-                                <div class="content">
-                                    <h3>Awesome Design</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                        diam nonumy eirmod tempor invidunt ut labore
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-feature-extended">
-                                <div class="icon">
-                                    <i class="lni lni-grid-alt"></i>
-                                </div>
-                                <div class="content">
-                                    <h3>Ready to Use</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                        diam nonumy eirmod tempor invidunt ut labore
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-feature-extended">
-                                <div class="icon">
-                                    <i class="lni lni-javascript"></i>
-                                </div>
-                                <div class="content">
-                                    <h3>Vanilla JS</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                        diam nonumy eirmod tempor invidunt ut labore
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-feature-extended">
-                                <div class="icon">
-                                    <i class="lni lni-layers"></i>
-                                </div>
-                                <div class="content">
-                                    <h3>Essential Sections</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                        diam nonumy eirmod tempor invidunt ut labore
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-feature-extended">
-                                <div class="icon">
-                                    <i class="lni lni-rocket"></i>
-                                </div>
-                                <div class="content">
-                                    <h3>Highly Optimized</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                        diam nonumy eirmod tempor invidunt ut labore
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- ======== feature-section end ======== -->
-
-        <!-- ======== subscribe-section start ======== -->
-        <section id="contact" class="subscribe-section pt-120">
-            <div class="container">
-                <div class="subscribe-wrapper img-bg">
-                    <div class="row align-items-center">
-                        <div class="col-xl-6 col-lg-7">
-                            <div class="section-title mb-15">
-                                <h2 class="text-white mb-25">Subscribe Our Newsletter</h2>
-                                <p class="text-white pr-5">
-                                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                    diam nonumy eirmod tempor
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-5">
-                            <form action="#" class="subscribe-form">
-                                <input type="email" name="subs-email" id="subs-email" placeholder="Your Email" />
-                                <button type="submit" class="main-btn btn-hover">
-                                    Subscribe
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- ======== subscribe-section end ======== -->
+        <!-- ======== cta-section end ======== -->
 
         <!-- ======== footer start ======== -->
-        <footer class="footer">
+        <footer class="tng-footer">
             <div class="container">
-                <div class="widget-wrapper">
-                    <div class="row">
-                        <div class="col-xl-4 col-lg-4 col-md-6">
-                            <div class="footer-widget">
-                                <div class="logo mb-30">
-                                    <a href="index.html">
-                                        <img src="assets/img/logo/logo.svg" alt="" />
-                                    </a>
-                                </div>
-                                <p class="desc mb-30 text-white">
-                                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                                    dinonumy eirmod tempor invidunt.
-                                </p>
-                                <ul class="socials">
-                                    <li>
-                                        <a href="jvascript:void(0)">
-                                            <i class="lni lni-facebook-filled"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="jvascript:void(0)">
-                                            <i class="lni lni-twitter-filled"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="jvascript:void(0)">
-                                            <i class="lni lni-instagram-filled"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="jvascript:void(0)">
-                                            <i class="lni lni-linkedin-original"></i>
-                                        </a>
-                                    </li>
-                                </ul>
+                <div class="tng-footer-wrapper">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <div class="tng-footer-brand">
+                                <a href="{{ url('/') }}" class="tng-footer-logo">
+                                    <img src="{{ asset('assets-admin/img/logo/LogoSistem.png') }}" alt="Tenangin" />
+                                    <span>Tenangin</span>
+                                </a>
+                                <p>Sistem Rekomendasi Aktivitas Relaksasi Personal untuk Mahasiswa</p>
                             </div>
                         </div>
-
-                        <div class="col-xl-2 col-lg-2 col-md-6">
-                            <div class="footer-widget">
-                                <h3>About Us</h3>
-                                <ul class="links">
-                                    <li><a href="javascript:void(0)">Home</a></li>
-                                    <li><a href="javascript:void(0)">Feature</a></li>
-                                    <li><a href="javascript:void(0)">About</a></li>
-                                    <li><a href="javascript:void(0)">Testimonials</a></li>
-                                </ul>
-                            </div>
+                        <div class="col-lg-6">
+                            <ul class="tng-footer-links">
+                                <li><a href="#home" class="page-scroll">Beranda</a></li>
+                                <li><a href="#features" class="page-scroll">Fitur</a></li>
+                                <li><a href="#how-it-works" class="page-scroll">Cara Kerja</a></li>
+                                <li><a href="#about" class="page-scroll">Tentang</a></li>
+                            </ul>
                         </div>
-
-                        <div class="col-xl-3 col-lg-3 col-md-6">
-                            <div class="footer-widget">
-                                <h3>Features</h3>
-                                <ul class="links">
-                                    <li><a href="javascript:void(0)">How it works</a></li>
-                                    <li><a href="javascript:void(0)">Privacy policy</a></li>
-                                    <li><a href="javascript:void(0)">Terms of service</a></li>
-                                    <li><a href="javascript:void(0)">Refund policy</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-3 col-lg-3 col-md-6">
-                            <div class="footer-widget">
-                                <h3>Other Products</h3>
-                                <ul class="links">
-                                    <li><a href="jvascript:void(0)">Accounting Software</a></li>
-                                    <li><a href="jvascript:void(0)">Billing Software</a></li>
-                                    <li><a href="jvascript:void(0)">Booking System</a></li>
-                                    <li><a href="jvascript:void(0)">Tracking System</a></li>
-                                </ul>
-                                Distributed by <a href="https://themewagon.com" target="_blank"
-                                    style="color: #bfc7d7">ThemeWagon</a>
-                            </div>
-
-                        </div>
+                    </div>
+                    <div class="tng-footer-bottom">
+                        <p>&copy; {{ date('Y') }} Tenangin.</p>
                     </div>
                 </div>
             </div>

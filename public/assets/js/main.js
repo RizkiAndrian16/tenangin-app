@@ -6,8 +6,10 @@
   };
 
   function fadeout() {
-    document.querySelector(".preloader").style.opacity = "0";
-    document.querySelector(".preloader").style.display = "none";
+    const preloader = document.querySelector(".preloader");
+    if (!preloader) return;
+    preloader.style.opacity = "0";
+    preloader.style.display = "none";
   }
 
   /*=====================================
@@ -15,26 +17,26 @@
     ======================================= */
   window.onscroll = function () {
     const header_navbar = document.querySelector(".navbar-area");
+    if (!header_navbar) return;
     const sticky = header_navbar.offsetTop;
-    const logo = document.querySelector(".navbar-brand img");
 
     if (window.pageYOffset > sticky) {
       header_navbar.classList.add("sticky");
-      logo.src = "assets/img/logo/logo-2.svg";
     } else {
       header_navbar.classList.remove("sticky");
-      logo.src = "assets/img/logo/logo.svg";
     }
 
     // show or hide the back-top-top button
     const backToTo = document.querySelector(".scroll-top");
-    if (
-      document.body.scrollTop > 50 ||
-      document.documentElement.scrollTop > 50
-    ) {
-      backToTo.style.display = "flex";
-    } else {
-      backToTo.style.display = "none";
+    if (backToTo) {
+      if (
+        document.body.scrollTop > 50 ||
+        document.documentElement.scrollTop > 50
+      ) {
+        backToTo.style.display = "flex";
+      } else {
+        backToTo.style.display = "none";
+      }
     }
   };
 
@@ -43,8 +45,11 @@
 
   pageLink.forEach((elem) => {
     elem.addEventListener("click", (e) => {
+      const targetSelector = elem.getAttribute("href");
+      const target = targetSelector ? document.querySelector(targetSelector) : null;
+      if (!target) return;
       e.preventDefault();
-      document.querySelector(elem.getAttribute("href")).scrollIntoView({
+      target.scrollIntoView({
         behavior: "smooth",
         offsetTop: 1 - 60,
       });
@@ -62,7 +67,8 @@
     for (let i = 0; i < sections.length; i++) {
       const currLink = sections[i];
       const val = currLink.getAttribute("href");
-      const refElement = document.querySelector(val);
+      const refElement = val ? document.querySelector(val) : null;
+      if (!refElement) continue;
       const scrollTopMinus = scrollPos + 73;
       if (
         refElement.offsetTop <= scrollTopMinus &&
@@ -82,16 +88,20 @@
   let navbarToggler = document.querySelector(".navbar-toggler");
   const navbarCollapse = document.querySelector(".navbar-collapse");
 
-  document.querySelectorAll(".page-scroll").forEach((e) =>
-    e.addEventListener("click", () => {
-      navbarToggler.classList.remove("active");
-      navbarCollapse.classList.remove("show");
-    })
-  );
-  navbarToggler.addEventListener("click", function () {
-    navbarToggler.classList.toggle("active");
-  });
+  if (navbarToggler && navbarCollapse) {
+    document.querySelectorAll(".page-scroll").forEach((e) =>
+      e.addEventListener("click", () => {
+        navbarToggler.classList.remove("active");
+        navbarCollapse.classList.remove("show");
+      })
+    );
+    navbarToggler.addEventListener("click", function () {
+      navbarToggler.classList.toggle("active");
+    });
+  }
 
   // WOW active
-  new WOW().init();
+  if (typeof WOW !== "undefined") {
+    new WOW().init();
+  }
 })();

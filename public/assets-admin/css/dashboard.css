@@ -1,0 +1,140 @@
+/* ======================================
+   DASHBOARD - HERO BANNER (ADMIN & MAHASISWA)
+====================================== */
+.dashboard-hero-banner {
+    background: linear-gradient(135deg, #20c997 0%, #17a589 100%);
+}
+
+.dashboard-hero-circle-top {
+    width: 160px;
+    height: 160px;
+    background: rgba(255, 255, 255, 0.08);
+    transform: translate(40px, -60px);
+}
+
+.dashboard-hero-circle-bottom {
+    width: 90px;
+    height: 90px;
+    background: rgba(255, 255, 255, 0.06);
+    transform: translate(10px, 25px);
+}
+
+.dashboard-hero-subtitle {
+    opacity: 0.9;
+}
+
+/* ======================================
+   DASHBOARD - STAT CARD "LIHAT" LINK
+====================================== */
+.dashboard-link-pos {
+    top: 20px;
+    right: 20px;
+}
+
+.dashboard-link-success-text { color: #16A34A; }
+.dashboard-link-warning-text { color: #D97706; }
+.dashboard-link-teal-text    { color: #0D9488; }
+.dashboard-link-primary-text { color: #0284C7; }
+.dashboard-link-purple-text  { color: #7C3AED; }
+.dashboard-link-danger-text  { color: #DC2626; }
+
+/* ======================================
+   DASHBOARD - STAT ICON BOX
+====================================== */
+.icon-52 {
+    width: 52px !important;
+    height: 52px !important;
+}
+
+.icon-48 {
+    width: 48px !important;
+    height: 48px !important;
+}
+
+.icon-22 {
+    width: 22px !important;
+    height: 22px !important;
+}
+
+.icon-20 {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.icon-box-teal {
+    background: #CCFBF1;
+    color: #0D9488;
+}
+
+.icon-box-purple {
+    background: #EDE9FE;
+    color: #7C3AED;
+}
+
+/* ======================================
+   DASHBOARD - TREND CHART (ADMIN)
+====================================== */
+.dashboard-chart-sm {
+    height: 200px;
+}
+
+/* ======================================
+   DASHBOARD - BADGE KECIL (ASSESSMENT TERBARU)
+====================================== */
+.badge-dashboard-sm {
+    font-size: 11px;
+    padding: 4px 10px;
+}
+
+/* ======================================
+   DASHBOARD - AKTIVITAS TERBARU (ADMIN)
+====================================== */
+.dashboard-latest-item {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+/* ======================================
+   DASHBOARD - LEGEND GRAFIK STRES (MAHASISWA)
+====================================== */
+.dashboard-legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.dashboard-legend-low    { background: #20c997; }
+.dashboard-legend-medium { background: #fd7e14; }
+.dashboard-legend-high   { background: #dc3545; }
+
+/* ======================================
+   DASHBOARD - SCORE CIRCLE MAHASISWA (110px)
+====================================== */
+.dashboard-score-circle {
+    width: 110px;
+    height: 110px;
+}
+
+.dashboard-score-circle-empty {
+    box-shadow: 0 4px 20px rgba(148, 163, 184, 0.15);
+}
+
+.dashboard-score-number {
+    font-size: 2rem;
+}
+
+.dashboard-score-number-empty {
+    color: #94A3B8;
+}
+
+.dashboard-score-max {
+    font-size: 0.8rem;
+}
+
+.dashboard-score-max-empty {
+    color: #CBD5E1;
+}
+
+.dashboard-date-text {
+    font-size: 13px;
+}
