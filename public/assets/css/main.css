@@ -16,6 +16,8 @@
 ===========================*/
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -24,6 +26,8 @@ body {
   font-style: normal;
   color: #5B657E;
   overflow-x: hidden;
+  width: 100%;
+  background-color: #F4F7FB !important;
 }
 
 * {
@@ -597,9 +601,9 @@ p {
 .sticky {
   position: fixed;
   z-index: 99;
-  background-color: rgba(255, 255, 255, 0.8);
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(14px);
+          backdrop-filter: blur(14px);
   -webkit-box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.1);
   -webkit-transition: all 0.3s ease-out 0s;
@@ -2172,52 +2176,13 @@ p {
 /* ======================================
    TENANGIN - GLOBAL OVERRIDES
 ====================================== */
-.navbar-nav .nav-item a {
-    color: #0F172A;
-}
-
 .navbar-nav .nav-item a::before {
-    background: #34D399;
-}
-
-.navbar-toggler .toggler-icon {
-    background-color: #0F172A;
-    border-radius: 2px;
-}
-
-.scroll-top {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, #6EE7B7, #16A34A);
-    box-shadow: 0 12px 26px rgba(22, 163, 74, 0.35);
-}
-
-.scroll-top:hover {
-    background: linear-gradient(135deg, #34D399, #15803D);
-}
-
-.navbar-collapse {
-    border-radius: 18px;
-    margin-top: 10px;
-    overflow: hidden;
+    background: #FDE68A;
 }
 
 /* ======================================
    TENANGIN - SHARED
 ====================================== */
-.tng-kicker {
-    display: inline-block;
-    font-size: 12.5px;
-    font-weight: 800;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    color: #16A34A;
-    background: #DCFCE7;
-    padding: 6px 14px;
-    border-radius: 999px;
-    margin-bottom: 14px;
-}
 
 .tng-text-gradient {
     background: linear-gradient(135deg, #059669, #0D9488);
@@ -2234,25 +2199,6 @@ p {
 /* ======================================
    TENANGIN - NAVBAR
 ====================================== */
-.tng-navbar-pill {
-    max-width: 1140px;
-    margin: 18px auto 0;
-    padding: 12px 26px !important;
-    background: rgba(255, 255, 255, 0.72);
-    -webkit-backdrop-filter: blur(14px);
-    backdrop-filter: blur(14px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    border-radius: 999px;
-    box-shadow: 0 10px 34px rgba(15, 23, 42, 0.08);
-    transition: all 0.3s ease;
-}
-
-.sticky .tng-navbar-pill {
-    margin-top: 10px;
-    background: rgba(255, 255, 255, 0.94);
-    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.12);
-}
-
 .tng-navbar-brand {
     display: flex;
     align-items: center;
@@ -2269,49 +2215,47 @@ p {
 .tng-navbar-brand-text {
     font-weight: 800;
     font-size: 18px;
-    color: #0F172A;
+    color: #ffffff;
     line-height: 1;
+    transition: color 0.3s ease;
 }
 
-.tng-nav-item-cta {
-    margin-left: 18px;
+.sticky .tng-navbar-brand-text {
+    color: #0F172A;
 }
 
-.navbar-nav .nav-item.tng-nav-item-cta a::before {
-    content: none;
-}
-
-.tng-nav-btn {
-    display: inline-block;
-    padding: 10px 24px;
+.tng-navbar-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 26px;
+    margin-left: 24px;
     border-radius: 999px;
-    background: linear-gradient(135deg, #6EE7B7, #34D399);
-    color: #064E3B !important;
+    background: #ffffff;
+    color: #059669 !important;
     font-weight: 700;
     font-size: 14px;
-    transition: all 0.2s ease;
+    transition: all 0.25s ease;
 }
 
-.tng-nav-btn:hover {
-    filter: brightness(1.05);
-    transform: translateY(-1px);
-    color: #064E3B !important;
+.tng-navbar-cta:hover {
+    background: #ECFDF5;
+    color: #059669 !important;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
-    .tng-navbar-pill {
-        margin: 12px 12px 0;
-        padding: 10px 18px !important;
-    }
+.sticky .tng-navbar-cta {
+    background: #10B981;
+    color: #ffffff !important;
+}
 
-    .tng-nav-item-cta {
-        margin-left: 0;
-        margin-top: 14px;
-    }
+.sticky .tng-navbar-cta:hover {
+    background: #059669;
+    color: #ffffff !important;
+}
 
-    .tng-nav-btn {
-        display: block;
-        text-align: center;
+@media (max-width: 991px) {
+    .tng-navbar-cta {
+        display: none;
     }
 }
 
@@ -2321,329 +2265,607 @@ p {
 .tng-hero {
     position: relative;
     z-index: 1;
-    padding: 170px 0 100px;
+    padding: 130px 0 90px;
     overflow: hidden;
-    background: linear-gradient(160deg, #ECFDF5 0%, #D1FAE5 45%, #BBF7D0 100%);
+    display: block;
+    background-color: transparent;
 }
 
-.tng-hero-orb {
+.tng-hero-shape {
     position: absolute;
-    border-radius: 50%;
-    filter: blur(50px);
-    z-index: 0;
-    pointer-events: none;
+    inset: 0;
+    z-index: -1;
+    line-height: 0;
+    overflow: hidden;
 }
 
-.tng-hero-orb-1 {
-    width: 340px;
-    height: 340px;
-    background: rgba(52, 211, 153, 0.35);
-    top: -120px;
-    left: -100px;
+.tng-hero-shape svg {
+    width: 100%;
+    height: 100%;
 }
 
-.tng-hero-orb-2 {
-    width: 260px;
-    height: 260px;
-    background: rgba(16, 185, 129, 0.25);
-    bottom: -80px;
-    right: 5%;
-}
-
-.tng-hero-badge {
-    display: inline-block;
-    padding: 6px 14px;
-    border-radius: 999px;
-    background: #DCFCE7;
-    color: #15803D;
-    font-size: 12.5px;
-    font-weight: 700;
-    margin-bottom: 18px;
-}
-
-.tng-hero-content {
+.tng-hero-container {
     position: relative;
-    z-index: 1;
 }
 
 .tng-hero-content h1 {
-    font-size: 46px;
+    font-size: 48px;
     font-weight: 800;
-    color: #064E3B;
-    line-height: 1.25;
+    color: #ffffff;
+    line-height: 1.28;
     letter-spacing: -0.5px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .tng-hero-content p {
-    font-size: 16px;
+    font-size: 17px;
     line-height: 1.7;
-    color: #334155;
-    margin-bottom: 32px;
-    max-width: 480px;
+    color: rgba(255, 255, 255, 0.94);
+    margin-bottom: 34px;
 }
 
-.tng-hero-btn-group {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    flex-wrap: wrap;
-}
-
-.tng-main-btn {
-    background: linear-gradient(135deg, #6EE7B7, #34D399);
-    color: #064E3B;
-    padding: 16px 32px;
-    font-size: 15.5px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.tng-main-btn:hover {
-    color: #064E3B;
-    transform: translateY(-2px);
-    box-shadow: 0 14px 30px rgba(16, 185, 129, 0.3);
-}
-
-.tng-main-btn.btn-hover::after {
-    background: rgba(6, 78, 59, 0.08);
-}
-
-.tng-btn-secondary {
-    color: #15803D;
+.tng-hero-outline-btn {
+    display: inline-block;
+    padding: 15px 40px;
+    border-radius: 999px;
+    border: 2px solid #ffffff;
+    color: #ffffff;
     font-weight: 700;
-    font-size: 14.5px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
+    font-size: 15px;
+    background: transparent;
+    transition: all 0.25s ease;
 }
 
-.tng-btn-secondary-icon {
-    width: 34px;
-    height: 34px;
+.tng-hero-outline-btn:hover {
+    background: #ffffff;
+    color: #059669;
+}
+
+.tng-hero-scroll-down {
+    position: absolute;
+    left: 5px;
+    bottom: -20px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background: #ffffff;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.1);
-    transition: all 0.2s ease;
-}
-
-.tng-btn-secondary:hover .tng-btn-secondary-icon {
-    background: #DCFCE7;
-    transform: scale(1.08);
-}
-
-.tng-hero-visual {
-    position: relative;
+    border: 3px solid #10B981;
+    color: #10B981;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 420px;
-    z-index: 1;
+    z-index: 2;
 }
 
-.tng-hero-blob {
-    position: absolute;
-    width: 380px;
-    height: 380px;
-    border-radius: 50%;
-    background: linear-gradient(150deg, #A7F3D0 0%, #6EE7B7 45%, #34D399 100%);
-    opacity: 0.55;
-    filter: blur(2px);
-    animation: tngFloat 7s ease-in-out infinite;
-}
-
-.tng-hero-mockup {
+/* --- dashboard mockup (HTML/CSS, bukan gambar) --- */
+.tng-hero-img {
     position: relative;
-    width: 300px;
+    width: 100%;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: -40px;
+}
+
+.tng-mock {
+    position: relative;
+    z-index: 1;
+    display: flex;
     background: #ffffff;
-    border-radius: 24px;
-    box-shadow: 0 30px 60px rgba(15, 23, 42, 0.18);
+    border-radius: 22px;
+    box-shadow: 0 40px 70px rgba(6, 78, 59, 0.28);
     overflow: hidden;
 }
 
-.tng-hero-mockup-topbar {
-    display: flex;
-    gap: 6px;
-    padding: 14px 16px;
-    border-bottom: 1px solid #F1F5F9;
-}
-
-.tng-hero-mockup-topbar span {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: #E2E8F0;
-}
-
-.tng-hero-mockup-body {
-    padding: 26px 24px 28px;
-    text-align: center;
-}
-
-.tng-hero-mockup-score {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    gap: 4px;
-}
-
-.tng-hero-mockup-score-num {
-    font-size: 42px;
-    font-weight: 800;
-    color: #16A34A;
-    line-height: 1;
-}
-
-.tng-hero-mockup-score-max {
-    font-size: 14px;
-    color: #94A3B8;
-    font-weight: 600;
-}
-
-.tng-hero-mockup-caption {
-    font-size: 12.5px;
-    color: #64748B;
-    margin: 6px 0 14px;
-}
-
-.tng-hero-mockup-badge {
-    display: inline-block;
-    background: #DCFCE7;
-    color: #15803D;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 6px 14px;
-    border-radius: 999px;
-    margin-bottom: 20px;
-}
-
-.tng-hero-mockup-list {
+.tng-mock-sidebar {
+    width: 60px;
+    background: #F8FAFC;
+    border-right: 1px solid #F1F5F9;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    text-align: left;
-}
-
-.tng-hero-mockup-row {
-    display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 13px;
-    color: #334155;
-    font-weight: 600;
-    background: #F8FAFC;
-    padding: 10px 12px;
-    border-radius: 10px;
-}
-
-.tng-hero-mockup-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
+    gap: 14px;
+    padding: 18px 0;
     flex-shrink: 0;
 }
 
-.tng-dot-success { background: #16A34A; }
-.tng-dot-primary { background: #0284C7; }
-.tng-dot-teal { background: #0D9488; }
+.tng-mock-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    background: #DCFCE7;
+    color: #16A34A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    margin-bottom: 6px;
+}
 
-.tng-hero-float-card {
+.tng-mock-side-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94A3B8;
+    font-size: 15px;
+}
+
+.tng-mock-side-icon.active {
+    background: #DCFCE7;
+    color: #16A34A;
+}
+
+.tng-mock-main {
+    flex: 1;
+    padding: 16px 20px 18px;
+    min-width: 0;
+}
+
+.tng-mock-banner {
+    background: linear-gradient(135deg, #34D399, #10B981);
+    border-radius: 12px;
+    padding: 11px 16px;
+    margin-bottom: 12px;
+}
+
+.tng-mock-banner-title {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.tng-mock-banner-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 11.5px;
+    line-height: 1.5;
+}
+
+.tng-mock-cta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border: 1.5px solid #A7F3D0;
+    background: #F0FDF4;
+    border-radius: 12px;
+    padding: 10px 16px;
+    margin-bottom: 12px;
+}
+
+.tng-mock-cta-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: #16A34A;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+}
+
+.tng-mock-cta-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.tng-mock-cta-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #0F172A;
+}
+
+.tng-mock-cta-sub {
+    font-size: 10.5px;
+    color: #64748B;
+}
+
+.tng-mock-cta-btn {
+    background: #16A34A;
+    color: #ffffff;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 8px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.tng-mock-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.2fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.tng-mock-score-card,
+.tng-mock-pref-card,
+.tng-mock-stat-card {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 10px 12px;
+}
+
+.tng-mock-score-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.tng-mock-ring {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: conic-gradient(#D97706 0% 38%, #E2E8F0 38% 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+}
+
+.tng-mock-ring::before {
+    content: "";
     position: absolute;
-    bottom: -18px;
-    left: -30px;
+}
+
+.tng-mock-ring span {
+    width: 38px;
+    height: 38px;
     background: #ffffff;
-    border-radius: 14px;
-    padding: 12px 18px;
-    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.14);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 13px;
+    font-weight: 800;
+    color: #0F172A;
+}
+
+.tng-mock-ring b {
+    font-size: 8px;
     font-weight: 600;
+    color: #94A3B8;
+    margin-left: 1px;
+}
+
+.tng-mock-score-label {
+    font-size: 9.5px;
+    color: #64748B;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.tng-mock-section-label {
+    font-size: 11px;
+    font-weight: 700;
     color: #334155;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tng-mock-pref-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 10.5px;
+    padding: 7px 0;
+    border-bottom: 1px dashed #E2E8F0;
+}
+
+.tng-mock-pref-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.tng-mock-pref-row span {
+    color: #94A3B8;
+}
+
+.tng-mock-pref-row b {
+    color: #0F172A;
+    font-weight: 700;
+}
+
+.tng-mock-stat-row {
     display: flex;
     align-items: center;
     gap: 8px;
-    z-index: 2;
-    animation: tngFloat 5.5s ease-in-out infinite;
-    animation-delay: 0.4s;
+    padding: 7px 0;
+    border-bottom: 1px dashed #E2E8F0;
 }
 
+.tng-mock-stat-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.tng-mock-stat-row b {
+    font-size: 13px;
+    font-weight: 800;
+    color: #0F172A;
+}
+
+.tng-mock-stat-row span {
+    font-size: 9.5px;
+    color: #64748B;
+    flex: 1;
+    line-height: 1.3;
+}
+
+.tng-mock-stat-row i {
+    color: #16A34A;
+    font-size: 13px;
+}
+
+.tng-mock-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 9.5px;
+    font-weight: 700;
+}
+
+.tng-badge-success { background: #DCFCE7; color: #16A34A; }
+.tng-badge-warning { background: #FEF3C7; color: #D97706; }
+.tng-badge-danger { background: #FEE2E2; color: #DC2626; }
+
+.tng-mock-chart {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.tng-mock-chart-svg {
+    width: 100%;
+    height: 58px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.tng-mock-chart-legend {
+    display: flex;
+    gap: 16px;
+    font-size: 10px;
+    color: #64748B;
+    font-weight: 600;
+}
+
+.tng-mock-chart-legend span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.tng-mock-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.tng-dot-success { background: #16A34A; }
+.tng-dot-warning { background: #D97706; }
+.tng-dot-danger { background: #DC2626; }
+
+/* --- promo floating card --- */
+.tng-hero-promo {
+    position: absolute;
+    right: -18px;
+    bottom: -30px;
+    z-index: 2;
+    width: 190px;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 20px 18px;
+    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.18);
+    text-align: left;
+}
+
+.tng-hero-promo-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: #DCFCE7;
+    color: #16A34A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    margin-bottom: 12px;
+}
+
+.tng-hero-promo-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0F172A;
+    margin-bottom: 4px;
+}
+
+.tng-hero-promo-text {
+    font-size: 11px;
+    color: #64748B;
+    line-height: 1.5;
+    margin-bottom: 14px;
+}
+
+.tng-hero-promo-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #6EE7B7, #34D399);
+    color: #064E3B;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 999px;
+}
+
+@media (min-width: 992px) {
+    .tng-hero {
+        min-height: auto;
+    }
+}
+
+@media (min-width: 1200px) {
+    /* 1. Melebarkan SEMUA container di layar besar agar sejajar & serasi dengan Hero */
+    .tng-navbar-container,
+    .tng-hero-container,
+    .tng-features .container,
+    .tng-how .container,
+    .tng-personalization .container,
+    .tng-about .container,
+    .tng-cta .container,
+    .tng-footer .container {
+        max-width: 88vw;
+    }
+
+    /* 2. Menjaga proporsi gambar Hero */
+    .tng-hero-img {
+        max-width: 40vw;
+    }
+
+    /* 3. Menyeimbangkan proporsi Bento Grid (Fitur) agar rapi saat direntangkan */
+    .tng-bento-grid {
+        grid-template-columns: 1.1fr 1fr; /* Meratakan rasio kotak kiri dan kanan */
+        gap: 30px; /* Melebarkan jarak antar kotak agar tidak pengap */
+    }
+    .tng-bento-big {
+        padding: 56px 48px;
+    }
+}
+
+/* --- responsive --- */
 @media (max-width: 1366px) {
     .tng-hero-content h1 {
         font-size: 40px;
     }
+
+    .tng-hero-img {
+        max-width: 620px;
+        margin-right: 0;
+    }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+@media (min-width: 992px) and (max-width: 1200px) {
+    .tng-hero-img {
+        max-width: 540px;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 991px) {
     .tng-hero {
-        padding: 150px 0 60px;
+        padding: 120px 0 110px;
         text-align: center;
     }
 
-    .tng-hero-content p {
-        margin-left: auto;
-        margin-right: auto;
+    .tng-hero-content h1 {
+        font-size: 34px;
     }
 
-    .tng-hero-btn-group {
-        justify-content: center;
+    .tng-hero-img {
+        max-width: 560px;
+        margin: 50px auto 0;
     }
 
-    .tng-hero-visual {
-        margin-top: 50px;
-        min-height: 340px;
+    .tng-hero-promo {
+        right: 6px;
+    }
+
+    .tng-hero-scroll-down {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -55px;
     }
 }
 
 @media (max-width: 767px) {
-    .tng-hero-content h1 {
-        font-size: 30px;
+    .tng-mock-sidebar {
+        display: none;
+    }
+    .tng-hero-br {
+        display: none;
     }
 
-    .tng-hero-mockup {
-        width: 260px;
+    .tng-mock-grid {
+        grid-template-columns: 1fr;
     }
 
-    .tng-hero-blob {
-        width: 280px;
-        height: 280px;
+    .tng-hero-img {
+        max-width: 480px;
     }
 }
 
 @media (max-width: 576px) {
     .tng-hero {
-        padding: 140px 0 50px;
+        padding: 110px 0 100px;
     }
 
     .tng-hero-content h1 {
-        font-size: 26px;
+        font-size: 24px;
     }
 
-    .tng-hero-btn-group {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 14px;
+    .tng-hero-outline-btn {
+        display: block;
+        text-align: center;
     }
 
-    .tng-hero-mockup {
-        width: 230px;
+    .tng-hero-img {
+        max-width: 100%;
     }
 
-    .tng-hero-float-card {
-        left: -10px;
-        bottom: -12px;
-        font-size: 11.5px;
-        padding: 8px 12px;
+    .tng-mock-main {
+        padding: 14px 16px 16px;
+    }
+
+    .tng-mock-cta-sub {
+        display: none;
+    }
+
+    .tng-mock-chart-legend {
+        gap: 10px;
+        font-size: 9px;
+    }
+
+    .tng-hero-promo {
+        width: 150px;
+        right: 0;
+        bottom: -20px;
+        padding: 14px;
+    }
+
+    .tng-hero-promo-text {
+        display: none;
     }
 }
 
 @media (max-width: 400px) {
-    .tng-hero-float-card {
-        display: none;
+    .tng-hero-img {
+        margin-right: 0;
+    }
+
+    .tng-mock-grid {
+        gap: 8px;
+    }
+
+    .tng-mock-score-card,
+    .tng-mock-pref-card,
+    .tng-mock-stat-card {
+        padding: 8px;
+    }
+
+    .tng-hero-promo {
+        position: static;
+        width: 100%;
+        margin-top: 14px;
     }
 }
 
@@ -2651,7 +2873,35 @@ p {
    TENANGIN - FEATURES (BENTO GRID)
 ====================================== */
 .tng-features {
-    background: #ffffff;
+    background-color: transparent; /* Ubah F4F7FB jadi transparent */
+    position: relative;
+    z-index: 1;
+}
+
+/* Efek Cahaya / Blob Modern di Background */
+.tng-feature-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1; /* Ubah dari 0 menjadi -1 agar menyatu dengan background */
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.tng-blob-1 {
+    top: -10%;
+    left: -5%;
+    width: 400px;
+    height: 400px;
+    background: #A7F3D0; /* Hijau muda */
+}
+
+.tng-blob-2 {
+    bottom: -10%;
+    right: -5%;
+    width: 500px;
+    height: 500px;
+    background: #BAE6FD; /* Biru muda */
 }
 
 .tng-features .section-title h2,
@@ -2678,6 +2928,8 @@ p {
         "big s2"
         "big s3";
     gap: 20px;
+    position: relative;
+    z-index: 2;
 }
 
 .tng-bento-big { grid-area: big; }
@@ -2687,39 +2939,38 @@ p {
 
 .tng-feature-card {
     background: #ffffff;
-    border: 1px solid #E2E8F0;
-    border-radius: 20px;
-    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
-    transition: all 0.25s ease;
+    border: 1px solid #10B981; /* PERBAIKAN: Garis hijau solid permanen */
+    border-radius: 24px;
+    box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .tng-feature-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.09);
-}
-
-.tng-feature-card:hover .tng-feature-icon {
-    transform: scale(1.08) rotate(-4deg);
+    /* Perintah 'transform: translateY' dihapus agar kotak tidak melompat */
+    box-shadow: 0 15px 35px -10px rgba(16, 185, 129, 0.15); /* Shadow diberi sedikit rona hijau lembut */
+    border-color: #10B981; /* Memunculkan garis hijau solid di semua sisi kotak */
 }
 
 .tng-bento-big {
-    padding: 36px 32px;
+    padding: 48px 40px;
     display: flex;
     flex-direction: column;
+    justify-content: center; /* Meratakan konten di tengah secara vertikal */
+    background: linear-gradient(180deg, #ffffff 0%, #F8FAFC 100%);
 }
 
 .tng-bento-s1,
 .tng-bento-s2,
 .tng-bento-s3 {
-    padding: 24px;
+    padding: 32px 28px;
     display: flex;
-    align-items: flex-start;
-    gap: 16px;
+    align-items: center; /* Ikon dan teks sejajar */
+    gap: 20px;
 }
 
 .tng-feature-card h3 {
-    font-size: 17px;
-    font-weight: 700;
+    font-size: 18px;
+    font-weight: 800;
     color: #0F172A;
     margin-bottom: 8px;
 }
@@ -2750,17 +3001,17 @@ p {
     margin-bottom: 20px;
 }
 
-.tng-icon-success { background: #DCFCE7; color: #16A34A; }
+.tng-icon-success { background: #DCFCE7; color: #10B981; }
 .tng-icon-teal { background: #CCFBF1; color: #0D9488; }
-.tng-icon-primary { background: #E0F2FE; color: #0284C7; }
-.tng-icon-purple { background: #EDE9FE; color: #7C3AED; }
+.tng-icon-warning { background: #FEF3C7; color: #D97706; }
+.tng-icon-blue { background: #E0F2FE; color: #0284C7; }
 
 .tng-bento-link {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    margin-top: 18px;
-    font-size: 13.5px;
+    margin-top: 24px;
+    font-size: 14px;
     font-weight: 700;
     color: #16A34A;
 }
@@ -2780,7 +3031,6 @@ p {
 }
 
 @media (max-width: 767px) {
-
     .tng-features .section-title h2,
     .tng-how .section-title h2,
     .tng-about .section-title h2 {
@@ -2797,117 +3047,204 @@ p {
     }
 
     .tng-bento-big {
-        padding: 28px 22px;
+        padding: 32px 24px;
+    }
+
+    .tng-bento-s1,
+    .tng-bento-s2,
+    .tng-bento-s3 {
+        padding: 24px;
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
 
 /* ======================================
-   TENANGIN - HOW IT WORKS
+   TENANGIN - HOW IT WORKS (MODERNIZED)
 ====================================== */
 .tng-how {
-    background: #F8FAFC;
+    background-color: transparent;
 }
 
+/* 1. Ubah timeline menjadi Grid 4 Kolom yang simetris dan rapi */
 .tng-how-timeline {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 24px;
-    margin-top: 30px;
+    margin-top: 20px;
     position: relative;
 }
 
+/* Hapus garis putus-putus usang di latar belakang */
 .tng-how-timeline::before {
-    content: "";
-    position: absolute;
-    top: 26px;
-    left: 5%;
-    right: 5%;
-    height: 2px;
-    background: repeating-linear-gradient(to right, #A7F3D0 0, #A7F3D0 8px, transparent 8px, transparent 16px);
-    z-index: 0;
+    display: none;
 }
 
+/* 2. Styling Kotak Cara Kerja agar senada dengan Fitur Utama (Bento Grid) */
 .tng-how-step {
-    flex: 1;
-    position: relative;
-    z-index: 1;
     background: #ffffff;
-    border: 1px solid #E2E8F0;
-    border-radius: 18px;
-    padding: 28px 20px;
-    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
-    overflow: hidden;
-    transition: transform 0.3s ease;
-}
-
-.tng-how-ghost {
-    position: absolute;
-    top: -18px;
-    right: -6px;
-    font-size: 64px;
-    font-weight: 800;
-    color: #F1F5F9;
-    line-height: 1;
-    z-index: 0;
-    user-select: none;
-}
-
-.tng-how-number {
+    border: 1px solid #10B981; /* PERBAIKAN: Garis hijau solid permanen disamakan dengan Fitur Utama */
+    border-radius: 24px;
+    padding: 36px 28px;
+    box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #6EE7B7, #34D399);
-    color: #064E3B;
+}
+
+/* Efek saat kartu diarahkan kursor */
+.tng-how-step:hover {
+    border-color: #10B981;
+    box-shadow: 0 15px 35px -10px rgba(16, 185, 129, 0.15);
+    /* transform: translateY dihapus agar kotak diam */
+}
+
+/* Hapus angka raksasa di background karena membuat desain terlihat kotor */
+.tng-how-ghost {
+    display: none;
+}
+
+/* 3. Styling Angka Langkah menjadi lebih gaya App/SaaS modern */
+.tng-how-number {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #DCFCE7, #A7F3D0);
+    color: #059669;
     font-weight: 800;
-    font-size: 15px;
+    font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 16px;
-    z-index: 1;
-}
-
-.tng-how-content {
-    position: relative;
-    z-index: 1;
+    margin-bottom: 24px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.1);
 }
 
 .tng-how-content h3 {
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 18px;
+    font-weight: 800;
     color: #0F172A;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 .tng-how-content p {
-    font-size: 13.5px;
+    font-size: 14px;
     color: #64748B;
-    line-height: 1.6;
+    line-height: 1.65;
     margin-bottom: 0;
 }
 
-@media (min-width: 992px) {
-    .tng-how-step:nth-child(even) {
-        transform: translateY(30px);
+/* --- Responsive Layout untuk Layar Lebih Kecil --- */
+@media (max-width: 1199px) {
+    .tng-how-timeline {
+        grid-template-columns: repeat(2, 1fr); /* Menjadi 2 baris x 2 kolom di tablet */
+        gap: 20px;
     }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 767px) {
     .tng-how-timeline {
-        flex-direction: column;
+        grid-template-columns: 1fr; /* Memanjang ke bawah di HP */
+        gap: 16px;
     }
-
-    .tng-how-timeline::before {
-        display: none;
+    .tng-how-step {
+        padding: 28px 24px;
     }
 }
 
 /* ======================================
    TENANGIN - PERSONALIZATION
 ====================================== */
+
+.section-title .tng-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ECFDF5;
+    color: #059669;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    padding: 6px 16px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+}
+
 .tng-personalization {
+    background-color: transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.tng-personalization::before {
+    content: "";
+    position: absolute;
+    top: -15%;
+    right: -8%;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: #A7F3D0;
+    filter: blur(90px);
+    opacity: 0.5;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.tng-personalization-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ECFDF5;
+    color: #059669;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+}
+
+.tng-personalization-points {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 8px;
+}
+
+.tng-personalization-point {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     background: #ffffff;
+    border: 1px solid #E2E8F0;
+    border-radius: 14px;
+    padding: 14px 18px;
+}
+
+.tng-personalization-point i {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #ECFDF5;
+    color: #059669;
+    font-size: 16px;
+}
+
+.tng-personalization-point span {
+    font-size: 14px;
+    color: #475569;
+    font-weight: 600;
+}
+
+.tng-personalization-content .section-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .tng-personalization-content .section-title h2 {
@@ -2929,38 +3266,62 @@ p {
 }
 
 .tng-personalization-card {
-    background: #F8FAFC;
-    border: 1px solid #E2E8F0;
-    border-radius: 20px;
-    padding: 32px;
+    background: #ffffff;
+    border: 1px solid #10B981;
+    border-radius: 24px;
+    padding: 40px 36px;
     width: 100%;
-    max-width: 380px;
-    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
-    animation: tngFloat 8s ease-in-out infinite;
+    max-width: 420px;
+    box-shadow: 0 20px 40px -10px rgba(16, 185, 129, 0.15);
+    animation: tngFloat 6s ease-in-out infinite;
 }
 
 .tng-tag-row {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 22px;
+    margin-bottom: 24px;
 }
 
 .tng-tag {
-    background: #DCFCE7;
-    color: #15803D;
-    font-size: 12.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffff;
+    color: #059669;
+    font-size: 13px;
     font-weight: 700;
-    padding: 8px 14px;
+    padding: 8px 16px;
     border-radius: 999px;
+    border: 1px solid #A7F3D0; /* Garis tepi tipis pada label tag */
+    box-shadow: 0 4px 6px rgba(16, 185, 129, 0.05); /* Sedikit shadow agar terlihat seperti tombol */
+}
+
+.tng-tag i {
+    color: #10B981;
+    font-size: 13px;
+}
+
+.tng-personalization-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.tng-personalization-bar-row .tng-personalization-percent {
+    font-size: 14px;
+    font-weight: 800;
+    color: #059669;
 }
 
 .tng-personalization-bar {
+    flex: 1;
     height: 10px;
     border-radius: 999px;
     background: #E2E8F0;
     overflow: hidden;
-    margin-bottom: 10px;
+    margin-bottom: 0;
 }
 
 .tng-bar-fill {
@@ -2986,7 +3347,53 @@ p {
    TENANGIN - ABOUT
 ====================================== */
 .tng-about {
-    background: #F8FAFC;
+    background-color: transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.tng-about::before {
+    content: "";
+    position: absolute;
+    bottom: -20%;
+    left: -10%;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: #BAE6FD;
+    filter: blur(90px);
+    opacity: 0.45;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.tng-about-points {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 28px 0;
+}
+
+.tng-about-point {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    border-radius: 999px;
+    padding: 10px 18px;
+}
+
+.tng-about-point i {
+    color: #059669;
+    font-size: 15px;
+}
+
+.tng-about-point span {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0F172A;
 }
 
 .tng-about p {
@@ -2996,9 +3403,30 @@ p {
 }
 
 .tng-about-disclaimer {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 10px;
+    text-align: left;
+    max-width: 520px;
+    margin: 20px auto 0;
+    padding: 14px 18px;
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 14px;
+}
+
+.tng-about-disclaimer i {
+    color: #10B981;
+    font-size: 16px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.tng-about-disclaimer p {
     font-size: 13px;
-    color: #94A3B8;
-    margin-top: 14px;
+    color: #64748B;
+    line-height: 1.6;
+    margin-bottom: 0;
     font-style: italic;
 }
 
@@ -3006,7 +3434,7 @@ p {
    TENANGIN - CTA
 ====================================== */
 .tng-cta {
-    background: #ffffff;
+    background-color: transparent;
 }
 
 .tng-cta-wrapper {
@@ -3177,5 +3605,16 @@ p {
 @media (max-width: 576px) {
     .tng-footer-links {
         gap: 14px 18px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wow {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .tng-personalization-card {
+        animation: none !important;
     }
 }

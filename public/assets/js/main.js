@@ -84,19 +84,24 @@
 
   window.document.addEventListener("scroll", onScroll);
 
-  //===== close navbar-collapse when a  clicked
-  let navbarToggler = document.querySelector(".navbar-toggler");
-  const navbarCollapse = document.querySelector(".navbar-collapse");
+  //===== Membuka dan Menutup Navbar di Mobile (MANUAL 100%)
+  let btnNav = document.getElementById("btn-nav-mobile");
+  let navContent = document.getElementById("navbarSupportedContent");
 
-  if (navbarToggler && navbarCollapse) {
-    document.querySelectorAll(".page-scroll").forEach((e) =>
-      e.addEventListener("click", () => {
-        navbarToggler.classList.remove("active");
-        navbarCollapse.classList.remove("show");
-      })
-    );
-    navbarToggler.addEventListener("click", function () {
-      navbarToggler.classList.toggle("active");
+  if (btnNav && navContent) {
+    // Fungsi klik tombol garis tiga
+    btnNav.onclick = function (e) {
+        e.preventDefault();
+        this.classList.toggle("active");
+        navContent.classList.toggle("show");
+    };
+
+    // Fungsi klik isi navbar otomatis tutup
+    document.querySelectorAll(".page-scroll, .tng-navbar-cta").forEach((link) => {
+        link.onclick = function () {
+            btnNav.classList.remove("active");
+            navContent.classList.remove("show");
+        };
     });
   }
 
