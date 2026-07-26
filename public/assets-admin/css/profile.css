@@ -297,6 +297,129 @@ textarea.custom-input {
 }
 
 /* ======================================
+   PROFILE WARNING ALERT
+====================================== */
+
+.profile-warning-alert {
+    width: 100%;
+    padding: 12px 14px;
+
+    background: #FFFBEB;
+    border: 1px solid #F59E0B;
+    border-radius: 16px;
+
+    animation: fadeSlideDown 0.3s ease;
+}
+
+.profile-warning-icon {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: rgba(245, 158, 11, 0.12);
+    color: #D97706;
+}
+
+.profile-warning-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.profile-warning-alert h6 {
+    color: #92400E;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.profile-warning-alert p {
+    color: #B45309;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* ======================================
+   PROFILE WARNING ALERT - DARK MODE
+====================================== */
+
+.dark-mode .profile-warning-alert {
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.dark-mode .profile-warning-icon {
+    background: rgba(245, 158, 11, 0.15);
+    color: #FCD34D;
+}
+
+.dark-mode .profile-warning-alert h6 {
+    color: #FDE68A !important;
+}
+
+.dark-mode .profile-warning-alert p {
+    color: #FCD34D !important;
+}
+
+/* ======================================
+   PROFILE COMPLETENESS STATUS CARD
+====================================== */
+
+.profile-complete-card,
+.profile-incomplete-card {
+    background: #F0FDF4;
+    border: 1px solid #BBF7D0;
+}
+
+.profile-complete-card h6,
+.profile-incomplete-card h6 {
+    color: #166534;
+}
+
+.profile-complete-card p,
+.profile-incomplete-card p {
+    color: #15803D;
+}
+
+.profile-complete-icon,
+.profile-incomplete-icon {
+    background: #DCFCE7;
+    color: #16A34A;
+}
+
+/* ======================================
+   PROFILE COMPLETENESS STATUS - DARK MODE
+====================================== */
+
+.dark-mode .profile-complete-card,
+.dark-mode .profile-incomplete-card {
+    background: rgba(22, 163, 74, 0.08);
+    border-color: rgba(74, 222, 128, 0.2);
+}
+
+.dark-mode .profile-complete-card h6,
+.dark-mode .profile-incomplete-card h6 {
+    color: #BBF7D0;
+}
+
+.dark-mode .profile-complete-card p,
+.dark-mode .profile-incomplete-card p {
+    color: #9CA3AF;
+}
+
+.dark-mode .profile-complete-icon,
+.dark-mode .profile-incomplete-icon {
+    background: rgba(34, 197, 94, 0.15);
+    color: #86EFAC;
+}
+
+/* ======================================
    RADIO BUTTON SOFT GREEN
 ====================================== */
 

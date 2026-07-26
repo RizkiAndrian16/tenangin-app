@@ -34,7 +34,7 @@ class ProfileUpdateRequest extends FormRequest
 
             'gender' => [
                 'nullable',
-                'in:Laki-laki,Perempuan'
+                'in:Laki-Laki,Perempuan'
             ],
 
             'age' => [

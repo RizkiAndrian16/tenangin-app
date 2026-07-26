@@ -7,6 +7,7 @@
             <h1 class="h3 fw-bold mb-1">
                 {{ auth()->user()->role === 'admin' ? 'Data PSS-10' : 'PSS-10' }}
             </h1>
+
             <p class="text-muted mb-0">
                 {{ auth()->user()->role === 'admin'
                     ? 'Pantau seluruh riwayat tes stres dari semua mahasiswa.'
@@ -14,16 +15,32 @@
             </p>
         </div>
 
-        @if (auth()->user()->role === 'mahasiswa')
-            <div class="d-grid d-sm-block">
+        {{-- ======================================
+         ACTION BUTTON
+        ====================================== --}}
+        <div class="d-grid d-sm-block">
+            {{-- MAHASISWA --}}
+            @if (auth()->user()->role === 'mahasiswa')
                 <a href="{{ route('pss-assessments.create') }}"
                     class="btn btn-soft-success rounded-pill px-4 py-2 d-inline-flex align-items-center justify-content-center gap-2">
-                    {{-- Tambahkan d-none (sembunyi di HP) dan d-sm-block (muncul di tablet/PC) --}}
                     <i data-feather="plus" class="icon-18 d-none d-sm-block"></i>
                     <span>Mulai PSS-10 Assessment</span>
                 </a>
-            </div>
-        @endif
+            @endif
+
+            {{-- ADMIN --}}
+            @if (auth()->user()->role === 'admin')
+                <a href="{{ route('pss-assessments.export.pdf', [
+                    'stress_level' => request('stress_level'),
+                    'date' => request('date'),
+                    'search' => request('search'),
+                ]) }}"
+                    class="btn btn-soft-danger rounded-pill px-4 py-2 d-inline-flex align-items-center justify-content-center gap-2">
+                    <i data-feather="file-text" class="icon-18"></i>
+                    <span>Export PDF</span>
+                </a>
+            @endif
+        </div>
     </div>
 
     @if (session('success'))

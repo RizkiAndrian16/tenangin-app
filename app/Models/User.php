@@ -94,4 +94,27 @@ class User extends Authenticatable
     {
         return $this->hasMany(Feedback::class);
     }
+
+    public function hasCompleteProfile(): bool
+    {
+        if (!$this->isMahasiswa()) {
+            return true;
+        }
+
+        return filled($this->name)
+            && filled($this->email)
+            && filled($this->gender)
+            && !is_null($this->age)
+            && filled($this->university)
+            && filled($this->major)
+            && !is_null($this->semester)
+            && filled($this->residence_status);
+    }
+
+    public function needsPasswordSetup(): bool
+    {
+        return $this->isMahasiswa()
+            && filled($this->google_id)
+            && is_null($this->password);
+    }
 }

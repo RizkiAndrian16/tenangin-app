@@ -6,6 +6,7 @@ use App\Models\PssAssessment;
 use App\Models\PssAnswer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PssAssessmentController extends Controller
 {
@@ -70,6 +71,85 @@ class PssAssessmentController extends Controller
             ->withQueryString();
 
         return view('pages.pss-assessments.pss-assessment', compact('assessments'));
+    }
+
+    public function exportPdf(Request $request)
+    {
+        // Export hanya diperuntukkan bagi admin.
+        if (Auth::user()->role !== 'admin') {
+            abort(403);
+        }
+
+        $query = PssAssessment::with('user');
+
+        // Filter tingkat stres
+        if ($request->filled('stress_level')) {
+            $query->where('stress_level', $request->stress_level);
+        }
+
+        // Filter pencarian
+        if ($request->filled('search')) {
+            $search = (string) $request->search;
+
+            $days = [
+                'senin' => 'Monday',
+                'selasa' => 'Tuesday',
+                'rabu' => 'Wednesday',
+                'kamis' => 'Thursday',
+                'jumat' => 'Friday',
+                'sabtu' => 'Saturday',
+                'minggu' => 'Sunday',
+            ];
+
+            $searchLower = strtolower($search);
+            $englishDay = $days[$searchLower] ?? null;
+
+            $query->where(function ($q) use ($search, $englishDay) {
+                $q->where('stress_level', 'like', "%{$search}%")
+                    ->orWhere('total_score', 'like', "%{$search}%")
+                    ->orWhere('created_at', 'like', "%{$search}%")
+                    ->orWhereHas('user', function ($userQuery) use ($search) {
+                        $userQuery->where('name', 'like', "%{$search}%");
+                    });
+
+                if ($englishDay) {
+                    $q->orWhereRaw('DAYNAME(created_at) = ?', [$englishDay]);
+                }
+            });
+        }
+
+        // Filter tanggal
+        if ($request->filled('date')) {
+            $query->whereDate('created_at', $request->date);
+        }
+
+        // Export seluruh hasil filter, bukan hanya data pada halaman pagination.
+        $assessments = $query
+            ->latest()
+            ->get();
+
+        // Ringkasan laporan
+        $summary = [
+            'total' => $assessments->count(),
+            'rendah' => $assessments->where('stress_level', 'Rendah')->count(),
+            'sedang' => $assessments->where('stress_level', 'Sedang')->count(),
+            'tinggi' => $assessments->where('stress_level', 'Tinggi')->count(),
+        ];
+
+        // Informasi filter untuk ditampilkan pada laporan.
+        $filters = [
+            'stress_level' => $request->stress_level,
+            'date' => $request->date,
+            'search' => $request->search,
+        ];
+
+        $pdf = Pdf::loadView('pages.pss-assessments.pss-assessmentpdf', compact('assessments', 'summary', 'filters'));
+
+        $pdf->setPaper('a4', 'landscape');
+
+        $filename = 'Laporan_PSS-10_Tenangin_' . now()->format('d-m-Y') . '.pdf';
+
+        return $pdf->download($filename);
     }
 
     public function create()

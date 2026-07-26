@@ -370,6 +370,38 @@
         </div>
 
         {{-- =======================================================
+             REMINDER KELENGKAPAN PROFIL
+             Hanya tampil untuk mahasiswa dengan profil belum lengkap
+        ======================================================== --}}
+        @if (Auth::user()->isMahasiswa() && !Auth::user()->hasCompleteProfile())
+            <div class="dashboard-profile-reminder mb-4">
+                <div class="dashboard-profile-reminder-content">
+
+                    <div class="dashboard-profile-reminder-main">
+                        <div class="dashboard-profile-reminder-icon">
+                            <i data-feather="user-check"></i>
+                        </div>
+
+                        <div class="dashboard-profile-reminder-text">
+                            <h6>Lengkapi profilmu</h6>
+
+                            <p>
+                                Yuk, isi sedikit info profilmu dulu. Setelah itu, kamu bisa langsung mencoba assessment
+                                PSS-10 dan melihat rekomendasi relaksasi yang pas buatmu.
+                            </p>
+                        </div>
+                    </div>
+
+                    <a href="{{ route('profile.edit') }}"
+                        class="btn rounded-pill px-4 py-2 fw-medium d-flex align-items-center justify-content-center flex-shrink-0 text-white text-nowrap dashboard-profile-reminder-button">
+                        Lengkapi Profil
+                        <i data-feather="chevron-right" class="ms-1 icon-18"></i>
+                    </a>
+                </div>
+            </div>
+        @endif
+
+        {{-- =======================================================
              BAGIAN 1: HERO CTA (Mulai Assessment)
         ======================================================== --}}
         <div class="row g-4 mb-1">

@@ -28,28 +28,69 @@
         </div>
     @endif
 
+    {{-- ALERT WARNING --}}
+    @if (session('warning'))
+        <div class="profile-warning-alert mb-4">
+            <div class="d-flex align-items-start gap-3">
+                <div class="profile-warning-icon">
+                    <i data-feather="alert-circle"></i>
+                </div>
+
+                <div>
+                    <h6 class="fw-bold mb-1">Lengkapi profilmu</h6>
+                    <p class="mb-0">
+                        {{ session('warning') }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    @endif
+
     {{-- CARD DASAR --}}
     <div class="card border-0 shadow-sm rounded-4">
         <div class="card-body p-4">
             <div class="row g-3">
+                {{-- CARD 1: STATUS KELENGKAPAN PROFIL - KHUSUS MAHASISWA --}}
+                @if (auth()->user()->isMahasiswa())
+                    <div class="col-12">
 
-                {{-- CARD 1: INFORMASI PENTING --}}
-                <div class="col-12">
-                    <div class="profile-alert-card alert-soft-success rounded-4 p-3 shadow-sm w-100">
-                        <div class="d-flex gap-3 align-items-start">
-                            <div class="icon-box-soft icon-box-success flex-shrink-0">
-                                <i data-feather="info"></i>
+                        @if (auth()->user()->hasCompleteProfile())
+                            {{-- PROFIL SUDAH LENGKAP --}}
+                            <div class="profile-alert-card profile-complete-card rounded-4 p-3 shadow-sm w-100">
+                                <div class="d-flex gap-3 align-items-start">
+                                    <div class="icon-box-soft profile-complete-icon flex-shrink-0">
+                                        <i data-feather="check-circle"></i>
+                                    </div>
+
+                                    <div>
+                                        <h6 class="fw-bold mb-2">Profil Lengkap</h6>
+                                        <p class="mb-0 fs-6">
+                                            Informasi profil Anda sudah lengkap dan siap digunakan untuk mendukung
+                                            pengalaman penggunaan Tenangin.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <h6 class="fw-bold mb-2">Informasi Penting</h6>
-                                <p class="mb-0 fs-6">
-                                    Lengkapi profil anda agar sistem dapat mengenal lebih baik dan memberikan
-                                    pengalaman penggunaan yang lebih nyaman.
-                                </p>
+                        @else
+                            {{-- PROFIL BELUM LENGKAP --}}
+                            <div class="profile-alert-card profile-incomplete-card rounded-4 p-3 shadow-sm w-100">
+                                <div class="d-flex gap-3 align-items-start">
+                                    <div class="icon-box-soft profile-incomplete-icon flex-shrink-0">
+                                        <i data-feather="info"></i>
+                                    </div>
+
+                                    <div>
+                                        <h6 class="fw-bold mb-2">Informasi Penting</h6>
+                                        <p class="mb-0 fs-6">
+                                            Lengkapi profil Anda agar sistem dapat mengenal lebih baik dan memberikan
+                                            pengalaman penggunaan yang lebih nyaman.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
-                </div>
+                @endif
 
                 {{-- CARD 2: PROFILE HERO --}}
                 <div class="col-12">
@@ -159,7 +200,6 @@
                                 <i data-feather="edit-2"></i>
                                 <span>Edit</span>
                             </button>
-
                         </div>
                     </div>
                 </div>

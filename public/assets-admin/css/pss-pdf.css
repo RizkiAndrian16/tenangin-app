@@ -1,0 +1,220 @@
+@page {
+    margin: 25px 30px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: DejaVu Sans, sans-serif;
+    font-size: 11px;
+    color: #212529;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+}
+
+/* ======================================
+   HEADER LAPORAN
+====================================== */
+
+.report-header {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.report-header h1 {
+    font-size: 19px;
+    margin: 0 0 4px 0;
+    font-weight: bold;
+}
+
+.report-header h2 {
+    font-size: 14px;
+    margin: 0 0 5px 0;
+    font-weight: bold;
+}
+
+.report-header p {
+    font-size: 10px;
+    margin: 0;
+    color: #555;
+}
+
+.header-line {
+    border: 0;
+    border-top: 2px solid #222;
+    margin: 12px 0 18px 0;
+}
+
+/* ======================================
+   INFORMASI LAPORAN
+====================================== */
+
+.report-info {
+    width: 100%;
+    margin-bottom: 16px;
+    border-collapse: collapse;
+}
+
+.report-info td {
+    padding: 2px 0;
+    vertical-align: top;
+    font-size: 10px;
+}
+
+.report-info .label {
+    width: 115px;
+    font-weight: bold;
+}
+
+.report-info .separator {
+    width: 12px;
+    text-align: center;
+}
+
+/* ======================================
+   JUDUL SECTION
+====================================== */
+
+.section-title {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 15px 0 8px 0;
+}
+
+/* ======================================
+   SUMMARY
+====================================== */
+
+.summary-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 8px 0;
+    margin-left: -8px;
+    margin-bottom: 18px;
+}
+
+.summary-box {
+    border: 1px solid #d9d9d9;
+    padding: 10px;
+    text-align: center;
+    background-color: #f8f9fa;
+}
+
+.summary-number {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.summary-label {
+    font-size: 9px;
+    color: #555;
+}
+
+/* ======================================
+   TABEL DATA
+====================================== */
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
+}
+
+.data-table thead {
+    display: table-header-group;
+}
+
+.data-table th {
+    background-color: #f0f0f0;
+    border: 1px solid #bdbdbd;
+    padding: 7px 5px;
+    font-size: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.data-table td {
+    border: 1px solid #d0d0d0;
+    padding: 6px 5px;
+    font-size: 9.5px;
+    vertical-align: middle;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.student-name {
+    font-weight: bold;
+}
+
+/* ======================================
+   EMPTY DATA
+====================================== */
+
+.empty-data {
+    text-align: center;
+    padding: 20px !important;
+    color: #777;
+}
+
+/* ======================================
+   KETERANGAN
+====================================== */
+
+.information-box {
+    margin-top: 16px;
+    border: 1px solid #d5d5d5;
+    background-color: #fafafa;
+    padding: 10px 12px;
+}
+
+.information-title {
+    font-weight: bold;
+    font-size: 10px;
+    margin-bottom: 5px;
+}
+
+.information-box p {
+    font-size: 9px;
+    margin: 2px 0;
+}
+
+/* ======================================
+   FOOTER
+====================================== */
+
+.report-footer {
+    margin-top: 20px;
+    border-top: 1px solid #d0d0d0;
+    padding-top: 7px;
+    font-size: 8px;
+    color: #666;
+}
+
+.report-footer-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.report-footer-table td {
+    border: none;
+    padding: 0;
+}
+
+.footer-right {
+    text-align: right;
+}
+
+/* Hindari pemotongan baris tabel */
+tr {
+    page-break-inside: avoid;
+}
+
+.information-description {
+    margin-top: 6px !important;
+}
