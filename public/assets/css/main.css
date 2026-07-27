@@ -285,19 +285,23 @@ p {
 .scroll-top {
   width: 45px;
   height: 45px;
-  background: #5864FF;
+  background: #D1FAE5;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+
   font-size: 18px;
-  color: #fff;
-  border-radius: 5px;
+  color: #059669;
+  border: 1px solid #A7F3D0;
+  border-radius: 50%;
   position: fixed;
   bottom: 30px;
   right: 30px;
@@ -305,13 +309,15 @@ p {
   cursor: pointer;
   -webkit-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
-  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 4px 14px rgba(16, 185, 129, 0.18);
+          box-shadow: 0 4px 14px rgba(16, 185, 129, 0.18);
 }
 
 .scroll-top:hover {
-  color: #fff;
-  background: rgba(88, 100, 255, 0.8);
+  color: #047857;
+  background: #A7F3D0;
+  border-color: #6EE7B7;
+  transform: translateY(-2px);
 }
 
 @keyframes animation1 {
@@ -421,7 +427,7 @@ p {
   height: 100%;
   border-style: solid;
   /* Spinner Color */
-  border-color: #5864FF #5864FF #ddd;
+  border-color: #34D399 #34D399 #D1FAE5;
   border-radius: 50%;
   border-width: 6px;
 }
@@ -695,13 +701,14 @@ p {
 @media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
   .navbar-collapse {
     position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
+    top: calc(100% + 10px);
+    left: 16px;
+    width: calc(100% - 32px);
     background-color: #fff;
+    border-radius: 18px;
     z-index: 9;
-    -webkit-box-shadow: 0px 15px 20px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 15px 20px 0px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px 15px 30px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 15px 30px 0px rgba(0, 0, 0, 0.15);
   }
 }
 
@@ -740,7 +747,7 @@ p {
   width: 0;
   border-radius: 16px;
   background: #fdd446;
-  bottom: 15px;
+  bottom: 5px;
   left: 0;
   z-index: -1;
   -webkit-transition: all 0.3s ease-out 0s;
@@ -2177,19 +2184,16 @@ p {
    TENANGIN - GLOBAL OVERRIDES
 ====================================== */
 .navbar-nav .nav-item a::before {
-    background: #FDE68A;
+    background: #ffffff;
+}
+
+.sticky .navbar .navbar-nav .nav-item a::before {
+    background: #10B981;
 }
 
 /* ======================================
    TENANGIN - SHARED
 ====================================== */
-
-.tng-text-gradient {
-    background: linear-gradient(135deg, #059669, #0D9488);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
 
 @keyframes tngFloat {
     0%, 100% { transform: translateY(0); }
@@ -2259,6 +2263,31 @@ p {
     }
 }
 
+.tng-navbar-mobile-actions {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+@media (min-width: 992px) {
+    .tng-navbar-mobile-actions {
+        display: none;
+    }
+}
+
+@media (max-width: 991px) {
+    .tng-navbar-mobile-actions {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+    }
+
+    .tng-navbar-mobile-actions .navbar-toggler {
+        flex-shrink: 0;
+        margin: 0;
+    }
+}
+
 /* ======================================
    TENANGIN - HERO
 ====================================== */
@@ -2321,23 +2350,6 @@ p {
     color: #059669;
 }
 
-.tng-hero-scroll-down {
-    position: absolute;
-    left: 5px;
-    bottom: -20px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #ffffff;
-    border: 3px solid #10B981;
-    color: #10B981;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-}
-
-/* --- dashboard mockup (HTML/CSS, bukan gambar) --- */
 .tng-hero-img {
     position: relative;
     width: 100%;
@@ -2614,9 +2626,10 @@ p {
     font-weight: 700;
 }
 
-.tng-badge-success { background: #DCFCE7; color: #16A34A; }
-.tng-badge-warning { background: #FEF3C7; color: #D97706; }
-.tng-badge-danger { background: #FEE2E2; color: #DC2626; }
+.tng-badge-warning {
+    background: #FEF3C7;
+    color: #D97706;
+}
 
 .tng-mock-chart {
     background: #F8FAFC;
@@ -2657,7 +2670,6 @@ p {
 .tng-dot-warning { background: #D97706; }
 .tng-dot-danger { background: #DC2626; }
 
-/* --- promo floating card --- */
 .tng-hero-promo {
     position: absolute;
     right: -18px;
@@ -2698,16 +2710,6 @@ p {
     margin-bottom: 14px;
 }
 
-.tng-hero-promo-btn {
-    display: inline-block;
-    background: linear-gradient(135deg, #6EE7B7, #34D399);
-    color: #064E3B;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 8px 18px;
-    border-radius: 999px;
-}
-
 @media (min-width: 992px) {
     .tng-hero {
         min-height: auto;
@@ -2715,7 +2717,6 @@ p {
 }
 
 @media (min-width: 1200px) {
-    /* 1. Melebarkan SEMUA container di layar besar agar sejajar & serasi dengan Hero */
     .tng-navbar-container,
     .tng-hero-container,
     .tng-features .container,
@@ -2727,22 +2728,19 @@ p {
         max-width: 88vw;
     }
 
-    /* 2. Menjaga proporsi gambar Hero */
     .tng-hero-img {
         max-width: 40vw;
     }
 
-    /* 3. Menyeimbangkan proporsi Bento Grid (Fitur) agar rapi saat direntangkan */
     .tng-bento-grid {
-        grid-template-columns: 1.1fr 1fr; /* Meratakan rasio kotak kiri dan kanan */
-        gap: 30px; /* Melebarkan jarak antar kotak agar tidak pengap */
+        grid-template-columns: 1.1fr 1fr;
+        gap: 30px;
     }
     .tng-bento-big {
         padding: 56px 48px;
     }
 }
 
-/* --- responsive --- */
 @media (max-width: 1366px) {
     .tng-hero-content h1 {
         font-size: 40px;
@@ -2778,12 +2776,6 @@ p {
 
     .tng-hero-promo {
         right: 6px;
-    }
-
-    .tng-hero-scroll-down {
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: -55px;
     }
 }
 
@@ -2836,14 +2828,10 @@ p {
     }
 
     .tng-hero-promo {
-        width: 150px;
+        width: 190px;
         right: 0;
         bottom: -20px;
         padding: 14px;
-    }
-
-    .tng-hero-promo-text {
-        display: none;
     }
 }
 
@@ -2861,47 +2849,72 @@ p {
     .tng-mock-stat-card {
         padding: 8px;
     }
-
-    .tng-hero-promo {
-        position: static;
-        width: 100%;
-        margin-top: 14px;
-    }
 }
+
+/* ======================================
+   TENANGIN - SHARED MAIN BACKGROUND
+====================================== */
+
+.tng-main-content-bg {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+}
+
+.tng-main-content-bg > section {
+    position: relative;
+    z-index: 1;
+    background-color: transparent;
+}
+
+.tng-page-glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    background: rgba(167, 243, 208, 0.12);
+}
+
+.tng-page-glow-1 {
+    width: 700px;
+    height: 1200px;
+    top: 0;
+    left: -250px;
+
+    filter: blur(160px);
+}
+
+.tng-page-glow-2 {
+    width: 700px;
+    height: 700px;
+    top: 38%;
+    right: -250px;
+
+    filter: blur(140px);
+}
+
+.tng-page-glow-3 {
+    width: 700px;
+    height: 1200px;
+    bottom: -300px;
+    left: -250px;
+
+    filter: blur(160px);
+}
+
 
 /* ======================================
    TENANGIN - FEATURES (BENTO GRID)
 ====================================== */
+
 .tng-features {
-    background-color: transparent; /* Ubah F4F7FB jadi transparent */
+    background-color: transparent;
+    position: relative;
+}
+
+.tng-features > .container {
     position: relative;
     z-index: 1;
-}
-
-/* Efek Cahaya / Blob Modern di Background */
-.tng-feature-blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    z-index: -1; /* Ubah dari 0 menjadi -1 agar menyatu dengan background */
-    opacity: 0.6;
-    pointer-events: none;
-}
-
-.tng-blob-1 {
-    top: -10%;
-    left: -5%;
-    width: 400px;
-    height: 400px;
-    background: #A7F3D0; /* Hijau muda */
-}
-
-.tng-blob-2 {
-    bottom: -10%;
-    right: -5%;
-    width: 500px;
-    height: 500px;
-    background: #BAE6FD; /* Biru muda */
 }
 
 .tng-features .section-title h2,
@@ -2917,6 +2930,10 @@ p {
 .tng-how .section-title p {
     font-size: 15px;
     color: #64748B;
+}
+
+.tng-features-description {
+    max-width: 600px;
 }
 
 .tng-bento-grid {
@@ -2939,23 +2956,22 @@ p {
 
 .tng-feature-card {
     background: #ffffff;
-    border: 1px solid #10B981; /* PERBAIKAN: Garis hijau solid permanen */
+    border: 1px solid #10B981;
     border-radius: 24px;
     box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.05);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .tng-feature-card:hover {
-    /* Perintah 'transform: translateY' dihapus agar kotak tidak melompat */
-    box-shadow: 0 15px 35px -10px rgba(16, 185, 129, 0.15); /* Shadow diberi sedikit rona hijau lembut */
-    border-color: #10B981; /* Memunculkan garis hijau solid di semua sisi kotak */
+    box-shadow: 0 15px 35px -10px rgba(16, 185, 129, 0.15);
+    border-color: #10B981;
 }
 
 .tng-bento-big {
     padding: 48px 40px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Meratakan konten di tengah secara vertikal */
+    justify-content: center;
     background: linear-gradient(180deg, #ffffff 0%, #F8FAFC 100%);
 }
 
@@ -2964,7 +2980,7 @@ p {
 .tng-bento-s3 {
     padding: 32px 28px;
     display: flex;
-    align-items: center; /* Ikon dan teks sejajar */
+    align-items: center;
     gap: 20px;
 }
 
@@ -3066,7 +3082,6 @@ p {
     background-color: transparent;
 }
 
-/* 1. Ubah timeline menjadi Grid 4 Kolom yang simetris dan rapi */
 .tng-how-timeline {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -3075,15 +3090,13 @@ p {
     position: relative;
 }
 
-/* Hapus garis putus-putus usang di latar belakang */
 .tng-how-timeline::before {
     display: none;
 }
 
-/* 2. Styling Kotak Cara Kerja agar senada dengan Fitur Utama (Bento Grid) */
 .tng-how-step {
     background: #ffffff;
-    border: 1px solid #10B981; /* PERBAIKAN: Garis hijau solid permanen disamakan dengan Fitur Utama */
+    border: 1px solid #10B981;
     border-radius: 24px;
     padding: 36px 28px;
     box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.04);
@@ -3091,19 +3104,15 @@ p {
     position: relative;
 }
 
-/* Efek saat kartu diarahkan kursor */
 .tng-how-step:hover {
     border-color: #10B981;
     box-shadow: 0 15px 35px -10px rgba(16, 185, 129, 0.15);
-    /* transform: translateY dihapus agar kotak diam */
 }
 
-/* Hapus angka raksasa di background karena membuat desain terlihat kotor */
 .tng-how-ghost {
     display: none;
 }
 
-/* 3. Styling Angka Langkah menjadi lebih gaya App/SaaS modern */
 .tng-how-number {
     width: 52px;
     height: 52px;
@@ -3134,17 +3143,16 @@ p {
     margin-bottom: 0;
 }
 
-/* --- Responsive Layout untuk Layar Lebih Kecil --- */
 @media (max-width: 1199px) {
     .tng-how-timeline {
-        grid-template-columns: repeat(2, 1fr); /* Menjadi 2 baris x 2 kolom di tablet */
+        grid-template-columns: repeat(2, 1fr);
         gap: 20px;
     }
 }
 
 @media (max-width: 767px) {
     .tng-how-timeline {
-        grid-template-columns: 1fr; /* Memanjang ke bawah di HP */
+        grid-template-columns: 1fr;
         gap: 16px;
     }
     .tng-how-step {
@@ -3156,24 +3164,9 @@ p {
    TENANGIN - PERSONALIZATION
 ====================================== */
 
-.section-title .tng-kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: #ECFDF5;
-    color: #059669;
-    font-size: 12.5px;
-    font-weight: 700;
-    letter-spacing: 0.3px;
-    padding: 6px 16px;
-    border-radius: 999px;
-    margin-bottom: 14px;
-}
-
 .tng-personalization {
     background-color: transparent;
     position: relative;
-    overflow: hidden;
 }
 
 .tng-personalization::before {
@@ -3186,7 +3179,7 @@ p {
     border-radius: 50%;
     background: #A7F3D0;
     filter: blur(90px);
-    opacity: 0.5;
+    opacity: 0.15;
     z-index: -1;
     pointer-events: none;
 }
@@ -3293,8 +3286,8 @@ p {
     font-weight: 700;
     padding: 8px 16px;
     border-radius: 999px;
-    border: 1px solid #A7F3D0; /* Garis tepi tipis pada label tag */
-    box-shadow: 0 4px 6px rgba(16, 185, 129, 0.05); /* Sedikit shadow agar terlihat seperti tombol */
+    border: 1px solid #A7F3D0;
+    box-shadow: 0 4px 6px rgba(16, 185, 129, 0.05);
 }
 
 .tng-tag i {
@@ -3326,6 +3319,7 @@ p {
 
 .tng-bar-fill {
     display: block;
+    width: 78%;
     height: 100%;
     border-radius: 999px;
     background: linear-gradient(135deg, #6EE7B7, #16A34A);
@@ -3362,7 +3356,7 @@ p {
     border-radius: 50%;
     background: #BAE6FD;
     filter: blur(90px);
-    opacity: 0.45;
+    opacity: 0.15;
     z-index: -1;
     pointer-events: none;
 }
@@ -3455,19 +3449,6 @@ p {
     pointer-events: none;
 }
 
-.tng-cta-kicker {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.18);
-    padding: 6px 14px;
-    border-radius: 999px;
-    margin-bottom: 14px;
-}
-
 .tng-cta-wrapper .section-title h2 {
     font-size: 26px;
     font-weight: 800;
@@ -3514,107 +3495,54 @@ p {
 }
 
 /* ======================================
-   TENANGIN - FOOTER
+   PENYESUAIAN GLOW UNTUK LAYAR HP
 ====================================== */
-.tng-footer {
-    background: #0F172A;
-    padding: 60px 0 0;
-    position: relative;
-}
-
-.tng-footer::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #34D399, transparent);
-}
-
-.tng-footer-brand {
-    margin-bottom: 20px;
-}
-
-.tng-footer-logo {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 14px;
-}
-
-.tng-footer-logo img {
-    width: 34px;
-    height: 34px;
-    object-fit: contain;
-}
-
-.tng-footer-logo span {
-    color: #ffffff;
-    font-weight: 800;
-    font-size: 18px;
-}
-
-.tng-footer-brand p {
-    color: #94A3B8;
-    font-size: 13.5px;
-    max-width: 360px;
-    margin-bottom: 0;
-}
-
-.tng-footer-links {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 22px;
-    padding: 0;
-    margin: 0;
-    justify-content: flex-end;
-}
-
-.tng-footer-links a {
-    color: #CBD5E1;
-    font-size: 14px;
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.tng-footer-links a:hover {
-    color: #6EE7B7;
-}
-
-.tng-footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 18px 0;
-    text-align: center;
-}
-
-.tng-footer-bottom p {
-    color: #64748B;
-    font-size: 12.5px;
-    margin-bottom: 0;
-}
-
-@media (max-width: 991px) {
-    .tng-footer-links {
-        justify-content: flex-start;
-        margin-top: 10px;
+@media (max-width: 767px) {
+    .tng-page-glow-1, .tng-page-glow-3 {
+        width: 100%;
+        height: 600px;
+        filter: blur(100px);
+    }
+    .tng-page-glow-2 {
+        width: 100%;
+        height: 400px;
+        filter: blur(100px);
     }
 }
 
-@media (max-width: 576px) {
-    .tng-footer-links {
-        gap: 14px 18px;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .wow {
-        animation: none !important;
-        transition: none !important;
+/* ======================================
+   UPGRADE TAMPILAN HERO (BERANDA) KHUSUS HP
+====================================== */
+@media (max-width: 767px) {
+    .tng-hero {
+        padding-top: 90px !important;
     }
 
-    .tng-personalization-card {
-        animation: none !important;
+    .tng-hero-shape {
+        height: 50% !important;
+        border-bottom-left-radius: 35px;
+        border-bottom-right-radius: 35px;
+        overflow: hidden;
+    }
+
+    .tng-hero-outline-btn {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 40px !important;
+        margin-top: 15px !important;
+        margin-bottom: 25px !important;
+        font-size: 14px !important;
+    }
+
+    .tng-hero-img {
+        margin: 15px auto 0 !important;
+        padding: 0 10px;
+    }
+
+    .tng-hero-content p {
+        margin-bottom: 16px !important;
+        font-size: 14.5px !important;
+        line-height: 1.6 !important;
     }
 }

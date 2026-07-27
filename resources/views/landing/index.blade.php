@@ -1,84 +1,86 @@
 @extends('layouts.landing')
 
 @section('content')
+    <!--[if lte IE 9]>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <p class="browserupgrade">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        You are using an <strong>outdated</strong> browser. Please
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        your experience and security.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <![endif]-->
 
-    <body>
-        <!--[if lte IE 9]>
-                                                                                                                                                                                                                                                                                                            <p class="browserupgrade">
-                                                                                                                                                                                                                                                                                                                You are using an <strong>outdated</strong> browser. Please
-                                                                                                                                                                                                                                                                                                                <a href="https://browsehappy.com/">upgrade your browser</a> to improve
-                                                                                                                                                                                                                                                                                                                your experience and security.
-                                                                                                                                                                                                                                                                                                            </p>
-                                                                                                                                                                                                                                                                                                            <![endif]-->
-
-        <!-- ======== preloader start ======== -->
-        <div class="preloader">
-            <div class="loader">
-                <div class="spinner">
-                    <div class="spinner-container">
-                        <div class="spinner-rotator">
-                            <div class="spinner-left">
-                                <div class="spinner-circle"></div>
-                            </div>
-                            <div class="spinner-right">
-                                <div class="spinner-circle"></div>
-                            </div>
+    <div class="preloader">
+        <div class="loader">
+            <div class="ytp-spinner">
+                <div class="ytp-spinner-container">
+                    <div class="ytp-spinner-rotator">
+                        <div class="ytp-spinner-left">
+                            <div class="ytp-spinner-circle"></div>
+                        </div>
+                        <div class="ytp-spinner-right">
+                            <div class="ytp-spinner-circle"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- preloader end -->
+    </div>
 
-        <!-- ======== header start ======== -->
-        <header class="header">
-            <div class="navbar-area">
-                <div class="container tng-navbar-container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-12">
-                            <nav class="navbar navbar-expand-lg">
-                                <a class="navbar-brand tng-navbar-brand" href="{{ url('/') }}">
-                                    <img src="{{ asset('assets-admin/img/logo/LogoSistem.png') }}" alt="Tenangin" />
-                                    <span class="tng-navbar-brand-text">Tenangin</span>
-                                </a>
+    <header class="header">
+        <div class="navbar-area">
+            <div class="container tng-navbar-container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand tng-navbar-brand" href="{{ url('/') }}">
+                                <img src="{{ asset('assets-admin/img/logo/LogoSistem.png') }}" alt="Tenangin" />
+                                <span class="tng-navbar-brand-text">Tenangin</span>
+                            </a>
+                            <div class="tng-navbar-mobile-actions">
                                 <button class="navbar-toggler" type="button" id="btn-nav-mobile"
                                     aria-label="Toggle navigation">
                                     <span class="toggler-icon"></span>
                                     <span class="toggler-icon"></span>
                                     <span class="toggler-icon"></span>
                                 </button>
+                            </div>
 
-                                <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
-                                    <ul id="nav" class="navbar-nav ms-auto align-items-lg-center">
-                                        <li class="nav-item">
-                                            <a class="page-scroll active" href="#home">Beranda</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="page-scroll" href="#features">Fitur</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="page-scroll" href="#how-it-works">Cara Kerja</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="page-scroll" href="#about">Tentang</a>
-                                        </li>
-                                    </ul>
-                                    <a href="{{ route('login') }}" class="tng-navbar-cta btn-hover">Masuk</a>
-                                </div>
-                                <!-- navbar collapse -->
-                            </nav>
-                            <!-- navbar -->
-                        </div>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ms-auto align-items-lg-center">
+                                    <li class="nav-item">
+                                        <a class="page-scroll active" href="#home">Beranda</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#features">Fitur</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#how-it-works">Cara Kerja</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#about">Tentang</a>
+                                    </li>
+                                </ul>
+
+                                <a href="{{ route('login') }}" class="tng-navbar-cta btn-hover">
+                                    Masuk
+                                </a>
+                            </div>
+                        </nav>
                     </div>
-                    <!-- row -->
                 </div>
-                <!-- container -->
             </div>
-            <!-- navbar area -->
-        </header>
-        <!-- ======== header end ======== -->
+        </div>
+    </header>
 
-        <!-- ======== hero-section start ======== -->
+    <div class="tng-main-content-bg">
+
+        <div class="tng-page-glow tng-page-glow-1"></div>
+        <div class="tng-page-glow tng-page-glow-2"></div>
+        <div class="tng-page-glow tng-page-glow-3"></div>
+
         <section id="home" class="tng-hero">
             <div class="tng-hero-shape">
                 <svg viewBox="0 0 1781.408 796.067" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
@@ -205,14 +207,8 @@
                 </div>
             </div>
         </section>
-        <!-- ======== hero-section end ======== -->
 
-        <!-- ======== feature-section start ======== -->
         <section id="features" class="tng-features pt-90 pb-70">
-            <!-- Ornamen Background Modern (Glow) -->
-            <div class="tng-feature-blob tng-blob-1"></div>
-            <div class="tng-feature-blob tng-blob-2"></div>
-
             <div class="container position-relative z-index-1">
                 <div class="row justify-content-center">
                     <div class="col-lg-8 col-md-10">
@@ -220,7 +216,7 @@
                             <h2 class="wow fadeInUp" data-wow-delay=".2s">
                                 Fasilitas Lengkap untuk <br class="d-none d-md-block" /> Kelola Stresmu
                             </h2>
-                            <p class="wow fadeInUp mx-auto" data-wow-delay=".4s" style="max-width: 600px;">
+                            <p class="wow fadeInUp mx-auto tng-features-description" data-wow-delay=".4s">
                                 Tenangin hadir dengan berbagai alat yang dirancang khusus untuk membantumu mengenali,
                                 mengatasi, dan memantau tingkat stres selama masa perkuliahan.
                             </p>
@@ -229,14 +225,14 @@
                 </div>
 
                 <div class="tng-bento-grid">
-                    <!-- FITUR 1: KOTAK BESAR (KIRI) -->
                     <div class="tng-feature-card tng-bento-big wow fadeInUp" data-wow-delay=".2s">
                         <div class="tng-feature-icon tng-icon-success">
                             <i class="lni lni-clipboard"></i>
                         </div>
                         <h3>Assessment PSS-10</h3>
                         <p>
-                            Ukur tingkat stresmu dengan cepat dan akurat menggunakan kuesioner standar <i>Perceived Stress
+                            Ukur tingkat stresmu dengan cepat dan akurat menggunakan kuesioner standar <i>Perceived
+                                Stress
                                 Scale</i> (PSS-10). Hasil dari tes ini akan menjadi acuan utama sistem untuk memberikan
                             bantuan yang tepat.
                         </p>
@@ -245,19 +241,18 @@
                         </a>
                     </div>
 
-                    <!-- FITUR 2: KOTAK KANAN ATAS -->
                     <div class="tng-feature-card tng-bento-s1 wow fadeInUp" data-wow-delay=".3s">
                         <div class="tng-feature-icon tng-icon-teal">
                             <i class="lni lni-bulb"></i>
                         </div>
                         <div>
                             <h3>Rekomendasi Personal</h3>
-                            <p>Dapatkan saran aktivitas relaksasi yang disesuaikan dengan tingkat stres dan preferensi waktu
+                            <p>Dapatkan saran aktivitas relaksasi yang disesuaikan dengan tingkat stres dan preferensi
+                                waktu
                                 luangmu.</p>
                         </div>
                     </div>
 
-                    <!-- FITUR 3: KOTAK KANAN TENGAH -->
                     <div class="tng-feature-card tng-bento-s2 wow fadeInUp" data-wow-delay=".4s">
                         <div class="tng-feature-icon tng-icon-warning">
                             <i class="lni lni-leaf"></i>
@@ -269,23 +264,21 @@
                         </div>
                     </div>
 
-                    <!-- FITUR 4: KOTAK KANAN BAWAH -->
                     <div class="tng-feature-card tng-bento-s3 wow fadeInUp" data-wow-delay=".5s">
                         <div class="tng-feature-icon tng-icon-blue">
                             <i class="lni lni-stats-up"></i>
                         </div>
                         <div>
                             <h3>Pantau Perkembangan</h3>
-                            <p>Lihat grafik riwayat stresmu dari waktu ke waktu untuk mengetahui efektivitas relaksasi yang
+                            <p>Lihat grafik riwayat stresmu dari waktu ke waktu untuk mengetahui efektivitas relaksasi
+                                yang
                                 telah dilakukan.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- ======== feature-section end ======== -->
 
-        <!-- ======== how-it-works start ======== -->
         <section id="how-it-works" class="tng-how pt-70">
             <div class="container">
                 <div class="row justify-content-center">
@@ -322,7 +315,8 @@
                         <div class="tng-how-number">03</div>
                         <div class="tng-how-content">
                             <h3>Dapatkan Rekomendasi</h3>
-                            <p>Tenangin mencocokkan tingkat stres dan preferensi untuk menghasilkan rekomendasi yang lebih
+                            <p>Tenangin mencocokkan tingkat stres dan preferensi untuk menghasilkan rekomendasi yang
+                                lebih
                                 sesuai.</p>
                         </div>
                     </div>
@@ -337,9 +331,7 @@
                 </div>
             </div>
         </section>
-        <!-- ======== how-it-works end ======== -->
 
-        <!-- ======== personalization-section start ======== -->
         <section class="tng-personalization pt-70">
             <div class="container">
                 <div class="row align-items-center">
@@ -356,7 +348,7 @@
                                 </div>
                                 <div class="tng-personalization-bar-row">
                                     <div class="tng-personalization-bar">
-                                        <span class="tng-bar-fill" style="width: 78%"></span>
+                                        <span class="tng-bar-fill"></span>
                                     </div>
                                     <span class="tng-personalization-percent">78%</span>
                                 </div>
@@ -395,9 +387,7 @@
                 </div>
             </div>
         </section>
-        <!-- ======== personalization-section end ======== -->
 
-        <!-- ======== about-section start ======== -->
         <section id="about" class="tng-about pt-70">
             <div class="container">
                 <div class="row justify-content-center">
@@ -436,10 +426,8 @@
                 </div>
             </div>
         </section>
-        <!-- ======== about-section end ======== -->
 
-        <!-- ======== cta-section start ======== -->
-        <section class="tng-cta pt-90">
+        <section class="tng-cta pt-90 pb-50">
             <div class="container">
                 <div class="tng-cta-wrapper">
                     <div class="tng-cta-dots"></div>
@@ -465,47 +453,13 @@
                 </div>
             </div>
         </section>
-        <!-- ======== cta-section end ======== -->
 
-        <!-- ======== footer start ======== -->
-        <footer class="tng-footer">
-            <div class="container">
-                <div class="tng-footer-wrapper">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6">
-                            <div class="tng-footer-brand">
-                                <a href="{{ url('/') }}" class="tng-footer-logo">
-                                    <img src="{{ asset('assets-admin/img/logo/LogoSistem.png') }}" alt="Tenangin" />
-                                    <span>Tenangin</span>
-                                </a>
-                                <p>Sistem Rekomendasi Aktivitas Relaksasi Personal untuk Mahasiswa</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <ul class="tng-footer-links">
-                                <li><a href="#home" class="page-scroll">Beranda</a></li>
-                                <li><a href="#features" class="page-scroll">Fitur</a></li>
-                                <li><a href="#how-it-works" class="page-scroll">Cara Kerja</a></li>
-                                <li><a href="#about" class="page-scroll">Tentang</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="tng-footer-bottom">
-                        <p>&copy; {{ date('Y') }} Tenangin.</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- ======== footer end ======== -->
+        <button id="landingDarkModeToggle" type="button" aria-label="Ubah tema" title="Ubah tema">
+            <i class="lni lni-night" id="themeIcon"></i>
+        </button>
 
-        <!-- ======== scroll-top ======== -->
         <a href="#" class="scroll-top btn-hover">
             <i class="lni lni-chevron-up"></i>
         </a>
-
-        <!-- ======== JS here ======== -->
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/js/wow.min.js"></script>
-        <script src="assets/js/main.js"></script>
-    </body>
+    </div>
 @endsection
