@@ -101,21 +101,12 @@ class DashboardController extends Controller
 
         $labels = [];
         $scores = [];
-        $pointColors = [];
         $stressLevels = [];
 
         foreach ($chartData as $item) {
             $labels[] = $item->created_at->format('d M');
             $scores[] = $item->total_score;
             $stressLevels[] = $item->stress_level;
-
-            if ($item->stress_level == 'Rendah') {
-                $pointColors[] = '#20c997';
-            } elseif ($item->stress_level == 'Sedang') {
-                $pointColors[] = '#fd7e14';
-            } else {
-                $pointColors[] = '#dc3545';
-            }
         }
 
         if (empty($labels)) {
@@ -138,7 +129,6 @@ class DashboardController extends Controller
             'chartData',
             'labels',
             'scores',
-            'pointColors',
             'stressLevels',
             'lastAssessment',
             'stressScore',

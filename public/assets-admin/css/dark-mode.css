@@ -24,7 +24,7 @@
 .dark-mode .navbar,
 .dark-mode .navbar-bg {
     background-color: #162033 !important;
-    border-bottom: 1px solid #374151;
+    border-bottom: 1px solid #374151 !important;
 }
 
 /* ======================================
@@ -694,31 +694,31 @@ html.dark-mode #landingDarkModeToggle:hover {
 ====================================== */
 @media (max-width: 991px) {
 
-    .dark-mode .navbar-collapse {
+    /* TAMBAHKAN .navbar-area AGAR TIDAK MERUSAK TOPBAR DASHBOARD */
+    .dark-mode .navbar-area .navbar-collapse {
         background-color: #162033 !important;
         border: 1px solid rgba(255, 255, 255, 0.08) !important;
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.30) !important;
     }
 
-    .dark-mode .navbar-collapse .navbar-nav .nav-item a {
+    .dark-mode .navbar-area .navbar-collapse .navbar-nav .nav-item a {
         color: #E5E7EB !important;
     }
 
-    .dark-mode .navbar-collapse .navbar-nav .nav-item a:hover,
-    .dark-mode .navbar-collapse .navbar-nav .nav-item a.active {
+    .dark-mode .navbar-area .navbar-collapse .navbar-nav .nav-item a:hover,
+    .dark-mode .navbar-area .navbar-collapse .navbar-nav .nav-item a.active {
         color: #6EE7B7 !important;
     }
 
-    .dark-mode .navbar-collapse .navbar-nav .nav-item a::before {
+    .dark-mode .navbar-area .navbar-collapse .navbar-nav .nav-item a::before {
         background-color: #10B981 !important;
     }
 
-    .dark-mode .navbar-toggler .toggler-icon,
-    .dark-mode .sticky .navbar-toggler .toggler-icon {
+    .dark-mode .navbar-area .navbar-toggler .toggler-icon,
+    .dark-mode .navbar-area.sticky .navbar-toggler .toggler-icon {
         background-color: #E5E7EB !important;
     }
 }
-
 
 /* ======================================
    2. BACKGROUND & KARTU LANDING PAGE
@@ -857,7 +857,7 @@ html.dark-mode #landingDarkModeToggle:hover {
 ====================================== */
 .dark-mode .header,
 .dark-mode .navbar-area,
-.dark-mode .navbar {
+.dark-mode .navbar-area .navbar {
     background-color: transparent !important;
     border-bottom: none !important;
     box-shadow: none !important;
@@ -1073,9 +1073,13 @@ html.dark-mode #landingDarkModeToggle:hover {
     color: #E5E7EB !important;
 }
 
-.dark-mode .tng-personalization-point i,
-.dark-mode .tng-about-point i {
+.dark-mode .tng-personalization-point i {
     background-color: rgba(34, 197, 94, 0.15) !important;
+    color: #34D399 !important;
+}
+
+.dark-mode .tng-about-point i {
+    background-color: transparent !important;
     color: #34D399 !important;
 }
 

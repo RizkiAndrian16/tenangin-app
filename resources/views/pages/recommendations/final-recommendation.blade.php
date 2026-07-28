@@ -2,20 +2,23 @@
 @section('title', 'Final Recommendation - Tenangin.')
 @section('content')
 
-    <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
-        <div>
-            <h1 class="h3 fw-bold mb-1">Final Rekomendasi Aktivitas</h1>
-            <p class="text-muted mb-0">
-                Rekomendasi aktivitas relaksasi personal berdasarkan tingkat stres dan preferensi aktivitas pengguna.
-            </p>
-        </div>
-    </div>
+    @if (auth()->user()->isMahasiswa())
+        <x-stepper :current-step="4" />
+    @endif
+
+    @if (session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
 
     {{-- ======================================
         CARD 1: SUMMARY (STRES & PREFERENSI)
     ====================================== --}}
     <div class="card border-0 shadow-sm rounded-4 mb-4">
-        <div class="card-body p-4">
+        <div class="card-body p-4 p-md-5">
+            <div class="text-center border-bottom pb-4 mb-4">
+                <h2 class="fw-bold mb-2">Final Rekomendasi Aktivitas</h2>
+                <p class="text-muted mb-0">Rekomendasi aktivitas relaksasi personal berdasarkan tingkat stres dan preferensi aktivitas pengguna.</p>
+            </div>
             <div class="row g-4 align-items-stretch">
 
                 {{-- Kolom 1: Skor Stres --}}

@@ -2,6 +2,10 @@
 @section('title', 'Form PSS-10 - Tenangin.')
 @section('content')
 
+    @if (auth()->user()->isMahasiswa())
+        <x-stepper :current-step="1" />
+    @endif
+
     <div class="row justify-content-center">
         <div class="col-lg-12">
             <div class="card border-0 shadow-sm rounded-4">

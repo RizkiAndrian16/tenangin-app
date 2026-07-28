@@ -1,0 +1,212 @@
+/* ==========================================================
+   RECOMMENDATION PROGRESS STEPPER STYLE SYSTEM
+========================================================== */
+
+.recommendation-stepper {
+    --stepper-icon-size: 36px;
+    margin-bottom: 1.5rem;
+    padding: 0.75rem 1.25rem; /* Memberikan ruang horizontal agar ikon pertama/terakhir tidak mepet */
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.recommendation-stepper__wrapper {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+/* Background Progress Line Track */
+.recommendation-stepper__track {
+    position: absolute;
+    top: calc(var(--stepper-icon-size) / 2);
+    left: calc(100% / 12);
+    right: calc(100% / 12);
+    height: 2.5px;
+    background-color: #E2E8F0; /* Muted upcoming line */
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.recommendation-stepper__line {
+    height: 100%;
+    background-color: #10B981; /* Completed line color (Emerald 500) */
+    transition: width 0.4s ease-in-out;
+}
+
+.recommendation-stepper__step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    flex: 1;
+}
+
+/* Icon Box - Kotak dengan Sudut Membulat Modern */
+.recommendation-stepper__icon-box {
+    position: relative;
+    width: var(--stepper-icon-size);
+    height: var(--stepper-icon-size);
+    box-sizing: border-box !important; /* Mencegah border melebarkan ukuran luar elemen */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF;
+    border: 3px solid #E2E8F0; /* Upcoming border */
+    border-radius: 10px; /* Kotak sudut membulat modern */
+    color: #94A3B8; /* Upcoming icon color */
+    transition: all 0.3s ease;
+}
+
+/* Active State - Hijau Tenangin Outline Only */
+.recommendation-stepper__step--active .recommendation-stepper__icon-box {
+    background-color: #FFFFFF;
+    border-color: #10B981;
+    color: #10B981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.08);
+}
+
+/* Completed State - Hijau Tenangin Lebih Soft */
+.recommendation-stepper__step--completed .recommendation-stepper__icon-box {
+    background-color: #F0FDF4;
+    border-color: #A7F3D0;
+    color: #059669;
+}
+
+.recommendation-stepper__icon {
+    width: 15px;
+    height: 15px;
+    stroke-width: 2.25;
+}
+
+/* Check Badge - Pojok Kanan Atas Icon Box */
+.recommendation-stepper__check-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 15px;
+    height: 15px;
+    background-color: #10B981;
+    border: 2px solid #FFFFFF;
+    border-radius: 50%; /* Circle shape */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    z-index: 10;
+}
+
+.recommendation-stepper__check-icon {
+    width: 8px;
+    height: 8px;
+    stroke-width: 4.5;
+}
+
+/* Labels di Bawah Icon Box - Seragam Muted */
+.recommendation-stepper__label {
+    margin-top: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #64748B; /* Upcoming/Muted text untuk semua state */
+    text-align: center;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+
+/* ==========================================================
+   DARK MODE COMPATIBILITY
+========================================================== */
+
+.dark-mode .recommendation-stepper {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.dark-mode .recommendation-stepper__track {
+    background-color: #374151; /* Dark mode muted line */
+}
+
+.dark-mode .recommendation-stepper__icon-box {
+    background-color: #0F172A; /* Match body background */
+    border-color: #374151;
+    color: #64748B;
+}
+
+.dark-mode .recommendation-stepper__step--active .recommendation-stepper__icon-box {
+    background-color: #0F172A; /* Match body background */
+    border-color: #34D399;
+    color: #34D399;
+    box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.1);
+}
+
+.dark-mode .recommendation-stepper__step--completed .recommendation-stepper__icon-box {
+    background-color: #022C22; /* Lighter dark green */
+    border-color: #047857;
+    color: #10B981;
+}
+
+.dark-mode .recommendation-stepper__check-badge {
+    border-color: #0F172A; /* Match dark mode background */
+}
+
+.dark-mode .recommendation-stepper__label {
+    color: #94A3B8; /* Muted readable text untuk semua state di dark mode */
+}
+
+
+/* ==========================================================
+   MOBILE VIEWS RESPONSIVENESS (<= 575.98px)
+========================================================== */
+
+@media (max-width: 575.98px) {
+    .recommendation-stepper {
+        --stepper-icon-size: 32px;
+        padding: 0.75rem 10px;
+        margin-bottom: 1.5rem;
+        border-radius: 0 !important;
+    }
+
+    /* Sembunyikan Seluruh Label di HP */
+    .recommendation-stepper__label {
+        display: none !important;
+    }
+
+    /* Perkecil Ukuran Icon Box agar Semua Step Muat Satu Baris */
+    .recommendation-stepper__icon-box {
+        border-width: 2px;
+        border-radius: 8px;
+    }
+
+    .recommendation-stepper__icon {
+        width: 14px;
+        height: 14px;
+        stroke-width: 2.25;
+    }
+
+    /* Penyesuaian Connector Track */
+    .recommendation-stepper__track {
+        height: 2px;
+    }
+
+    /* Penyesuaian Ukuran Check Badge */
+    .recommendation-stepper__check-badge {
+        width: 14px;
+        height: 14px;
+        top: -4px;
+        right: -4px;
+        border-width: 1.5px;
+    }
+
+    .recommendation-stepper__check-icon {
+        width: 8px;
+        height: 8px;
+        stroke-width: 5;
+    }
+}

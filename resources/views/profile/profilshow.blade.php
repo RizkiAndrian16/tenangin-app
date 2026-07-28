@@ -179,7 +179,7 @@
                         <i data-feather="upload-cloud" class="photo-upload-icon"></i>
                         <p class="mt-3 mb-1 fw-semibold text-dark">Drag &amp; drop foto di sini</p>
                         <p class="text-muted small mb-0">atau klik untuk memilih file</p>
-                        <p class="text-muted small">PNG, JPG — maks. 2 MB</p>
+                        <p class="text-muted small">PNG, JPG — maks. 5 MB</p>
                     </div>
                     <p id="photoFileName" class="text-muted small mb-0 is-hidden"></p>
                 </div>

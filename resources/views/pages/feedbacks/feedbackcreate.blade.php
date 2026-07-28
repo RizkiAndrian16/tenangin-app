@@ -2,6 +2,10 @@
 @section('title', 'Evaluasi Aktivitas - Tenangin.')
 @section('content')
 
+    @if (auth()->user()->isMahasiswa())
+        <x-stepper :current-step="6" />
+    @endif
+
     <div class="row justify-content-center">
         <div class="col-lg-12">
             <div class="card border-0 shadow-sm rounded-4">

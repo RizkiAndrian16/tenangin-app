@@ -2,22 +2,23 @@
 @section('title', 'Mode Fokus Pelaksanaan - Tenangin.')
 @section('content')
 
+    @if (auth()->user()->isMahasiswa())
+        <x-stepper :current-step="5" />
+    @endif
+
     @php
         $activity = $recommendationItem->activity;
     @endphp
-
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h1 class="h3 fw-bold mb-1">Mode Fokus: Pelaksanaan</h1>
-            <p class="text-muted mb-0">Ikuti instruksi dengan tenang dan gunakan timer di bawah ini.</p>
-        </div>
-    </div>
 
     {{-- ==========================================
          CARD UTAMA (PEMBUNGKUS BESAR)
     =============================================== --}}
     <div class="card border-0 shadow-sm rounded-4 mb-5">
         <div class="card-body p-4 p-md-5">
+            <div class="text-center border-bottom pb-4 mb-4">
+                <h2 class="fw-bold mb-2">Mode Fokus: Pelaksanaan</h2>
+                <p class="text-muted mb-0">Ikuti instruksi dengan tenang dan gunakan timer di bawah ini.</p>
+            </div>
 
             <div class="row g-4 align-items-stretch mb-0 mb-md-5">
 

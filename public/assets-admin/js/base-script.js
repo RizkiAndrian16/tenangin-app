@@ -44,11 +44,9 @@ if (scrollButton) {
 
 }
 
-//
 // ======================================
 // DARK MODE
 // ======================================
-//
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -83,6 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleBtn?.addEventListener('click', e => {
 
         e.preventDefault();
+
+        // Cegah klik dark mode diteruskan ke document,
+        // sehingga dropdown yang sedang terbuka tidak ditutup Bootstrap
+        e.stopPropagation();
 
         const darkMode = document.documentElement
             .classList.toggle('dark-mode');
@@ -501,7 +503,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.querySelectorAll('button[type="submit"]').forEach(btn => {
-        btn.addEventListener('mousedown', function() {
+        btn.addEventListener('mousedown', function () {
             this.classList.add('force-focus');
             setTimeout(() => this.classList.remove('force-focus'), 300);
         });
@@ -520,11 +522,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // PHOTO DROP ZONE
-    const photoInput     = document.getElementById('photoInput');
-    const photoDropZone  = document.getElementById('photoDropZone');
-    const photoPreview   = document.getElementById('photoPreviewImg');
-    const photoDropIcon  = document.getElementById('photoDropIcon');
-    const photoFileName  = document.getElementById('photoFileName');
+    const photoInput = document.getElementById('photoInput');
+    const photoDropZone = document.getElementById('photoDropZone');
+    const photoPreview = document.getElementById('photoPreviewImg');
+    const photoDropIcon = document.getElementById('photoDropIcon');
+    const photoFileName = document.getElementById('photoFileName');
     const submitPhotoBtn = document.getElementById('submitPhotoBtn');
 
     function handlePhotoFile(file) {
@@ -534,8 +536,8 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Format tidak didukung. Gunakan PNG atau JPG.');
             return;
         }
-        if (file.size > 2 * 1024 * 1024) {
-            alert('Ukuran file maksimal 2 MB.');
+        if (file.size > 5 * 1024 * 1024) {
+            alert('Ukuran file maksimal 5 MB.');
             return;
         }
         const reader = new FileReader();
@@ -578,20 +580,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('photoModal')?.addEventListener('transitionend', e => {
         if (e.target.id !== 'photoModal' || e.target.classList.contains('show')) return;
-        if (photoPreview)   { photoPreview.src = '#'; photoPreview.style.display = 'none'; }
-        if (photoDropIcon)    photoDropIcon.style.display = 'block';
-        if (photoFileName)  { photoFileName.textContent = ''; photoFileName.style.display = 'none'; }
-        if (submitPhotoBtn)   submitPhotoBtn.disabled = true;
-        if (photoInput)       photoInput.value = '';
+        if (photoPreview) { photoPreview.src = '#'; photoPreview.style.display = 'none'; }
+        if (photoDropIcon) photoDropIcon.style.display = 'block';
+        if (photoFileName) { photoFileName.textContent = ''; photoFileName.style.display = 'none'; }
+        if (submitPhotoBtn) submitPhotoBtn.disabled = true;
+        if (photoInput) photoInput.value = '';
     });
 
     // RESIDENCE STATUS — LAINNYA
     const selectResidence = document.getElementById('inputResidence');
-    const inputOther      = document.getElementById('inputResidenceOther');
+    const inputOther = document.getElementById('inputResidenceOther');
 
     if (selectResidence) {
         const fixedOptions = ['Rumah Orang Tua', 'Kos', 'Asrama', 'Kontrakan', 'Lainnya', ''];
-        const currentVal   = selectResidence.dataset.current ?? '';
+        const currentVal = selectResidence.dataset.current ?? '';
         if (currentVal && !fixedOptions.includes(currentVal)) {
             selectResidence.value = 'Lainnya';
             inputOther.style.display = 'block';
@@ -612,7 +614,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ACTIVITY DETAIL POPUP
     document.querySelectorAll('.js-open-activity').forEach(btn => {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', function () {
 
             const stress = this.dataset.stress;
             let stressLabel = stress;
@@ -622,20 +624,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const status = this.dataset.status;
 
-            document.getElementById('popupTitleDetail').textContent  = this.dataset.title;
-            document.getElementById('popupType').textContent         = this.dataset.type;
-            document.getElementById('popupDuration').textContent     = this.dataset.duration;
-            document.getElementById('popupIntensity').textContent    = this.dataset.intensity;
-            document.getElementById('popupStress').textContent       = stressLabel;
-            document.getElementById('popupStatusText').textContent   = status;
-            document.getElementById('popupDescription').textContent  = this.dataset.description;
+            document.getElementById('popupTitleDetail').textContent = this.dataset.title;
+            document.getElementById('popupType').textContent = this.dataset.type;
+            document.getElementById('popupDuration').textContent = this.dataset.duration;
+            document.getElementById('popupIntensity').textContent = this.dataset.intensity;
+            document.getElementById('popupStress').textContent = stressLabel;
+            document.getElementById('popupStatusText').textContent = status;
+            document.getElementById('popupDescription').textContent = this.dataset.description;
 
             document.getElementById('popupInstruction').textContent =
                 this.dataset.instruction
                     ? this.dataset.instruction
                     : 'Belum ada instruksi aktivitas yang ditambahkan.';
 
-                        openModal('activityModal');
+            openModal('activityModal');
         });
     });
 
@@ -787,8 +789,7 @@ window.addEventListener('load', () => {
 
 const btnShowMore = document.getElementById('btnShowMore');
 
-if (btnShowMore)
-{
+if (btnShowMore) {
     let isExpanded = false; // Penanda status awal (sedang ditutup)
 
     btnShowMore.addEventListener('click', () => {
@@ -829,7 +830,7 @@ if (btnShowMore)
 // ======================================
 // MOBILE OVERLAY CLICK TO CLOSE SIDEBAR
 // ======================================
-document.addEventListener('click', function(e) {
+document.addEventListener('click', function (e) {
     if (window.innerWidth <= 991.98) {
         const sidebar = document.getElementById('sidebar');
         const toggleBtn = document.querySelector('.js-sidebar-toggle');
@@ -849,7 +850,7 @@ document.addEventListener('click', function(e) {
 // FOCUS MODE TIMER (WITH SESSION STORAGE)
 // ======================================
 //
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const display = document.getElementById('timerDisplay');
     const timerCircle = document.getElementById('timerCircle');
 
@@ -924,7 +925,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                         display.classList.remove('text-success');
                         display.classList.add('text-danger');
-                        if(timerCircle) timerCircle.style.stroke = '#DC2626';
+                        if (timerCircle) timerCircle.style.stroke = '#DC2626';
 
                         btnPause.classList.add('d-none');
                         btnPause.classList.remove('d-flex');
@@ -960,7 +961,7 @@ document.addEventListener("DOMContentLoaded", function() {
             display.classList.remove('text-danger');
             display.classList.add('text-success');
 
-            if(timerCircle) {
+            if (timerCircle) {
                 timerCircle.style.stroke = '#86EFAC';
                 timerCircle.style.strokeDashoffset = 0;
             }
@@ -1005,7 +1006,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // HAPUS MEMORI JIKA PINDAH HALAMAN (KEMBALI / SELESAI)
         // ==========================================
         document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function () {
                 let href = this.getAttribute('href');
                 // Pastikan yang diklik adalah link pindah halaman sungguhan
                 // Bukan link untuk modal popup ('#') atau aksi javascript
@@ -1023,7 +1024,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // EVALUATION FORM TOGGLE (FEEDBACK)
 // ======================================
 //
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const evaluationSection = document.getElementById('evaluationQuestions');
     const completedYes = document.getElementById('completed_yes');
     const completedNo = document.getElementById('completed_no');
@@ -1053,13 +1054,13 @@ document.addEventListener("DOMContentLoaded", function() {
 // FEEDBACK CREATE FORM (EVALUATION & STARS)
 // ======================================
 //
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const formFeedback = document.getElementById('formFeedback');
 
     if (formFeedback) {
         // 1. LOGIKA BATAL PILIH (TOGGLE RESET)
         formFeedback.querySelectorAll('.feedback-radio').forEach(radio => {
-            radio.addEventListener('click', function() {
+            radio.addEventListener('click', function () {
                 if (this.wasChecked) {
                     this.checked = false;
                     this.wasChecked = false;
@@ -1096,18 +1097,18 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             starLabels.forEach(label => {
-                label.addEventListener('mouseover', function() {
+                label.addEventListener('mouseover', function () {
                     updateStars(this.dataset.value);
                 });
 
-                label.addEventListener('mouseout', function() {
+                label.addEventListener('mouseout', function () {
                     const checkedRadio = document.querySelector('.star-radio:checked');
                     updateStars(checkedRadio ? checkedRadio.value : 0);
                 });
             });
 
             starRadios.forEach(radio => {
-                radio.addEventListener('click', function() {
+                radio.addEventListener('click', function () {
                     const clickedValue = parseInt(this.value);
 
                     if (this.wasStarChecked) {
@@ -1142,7 +1143,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // TOGGLE PASSWORD VISIBILITY
 // ======================================
 //
-window.togglePassword = function(inputId, element) {
+window.togglePassword = function (inputId, element) {
     const input = document.getElementById(inputId);
     if (!input) return;
 
@@ -1230,7 +1231,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Logic Toggle Password (menggunakan ulang fungsi window.togglePassword Anda)
     document.querySelectorAll('[data-password-toggle]').forEach(btn => {
-        btn.addEventListener('click', function(e) {
+        btn.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.dataset.passwordToggle;
             if (typeof window.togglePassword === 'function') {

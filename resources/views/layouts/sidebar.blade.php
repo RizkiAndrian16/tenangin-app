@@ -40,7 +40,7 @@
             <li class="sidebar-item {{ request()->routeIs('profile.*') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('profile.edit') }}">
                     <i class="align-middle" data-feather="user"></i>
-                    <span class="align-middle">Profile</span>
+                    <span class="align-middle">Profil</span>
                 </a>
             </li>
             <li

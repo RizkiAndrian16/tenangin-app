@@ -2,12 +2,9 @@
 @section('title', 'Rekomendasi Aktivitas - Tenangin.')
 @section('content')
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h1 class="h3 fw-bold mb-1">Kandidat Aktivitas Relaksasi</h1>
-            <p class="text-muted mb-0">Daftar kandidat aktivitas berdasarkan hasil pengukuran tingkat stres anda.</p>
-        </div>
-    </div>
+    @if (auth()->user()->isMahasiswa())
+        <x-stepper :current-step="3" />
+    @endif
 
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
@@ -17,7 +14,11 @@
          CARD 1: SUMMARY (SCORE & RULE)
     =============================================== --}}
     <div class="card border-0 shadow-sm rounded-4 mb-4">
-        <div class="card-body p-4">
+        <div class="card-body p-4 p-md-5">
+            <div class="text-center border-bottom pb-4 mb-4">
+                <h2 class="fw-bold mb-2">Kandidat Aktivitas Relaksasi</h2>
+                <p class="text-muted mb-0">Daftar kandidat aktivitas berdasarkan hasil pengukuran tingkat stres anda.</p>
+            </div>
             <div class="row g-4 align-items-stretch">
 
                 {{-- KOLOM 1: SKOR & TINGKAT STRES --}}

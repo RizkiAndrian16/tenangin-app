@@ -20,9 +20,9 @@
 
                                 {{-- Avatar --}}
                                 @if ($user->profile_photo)
-                                    <img src="{{ $user->profile_photo_url }}" alt="Profile" class="profile-avatar">
+                                    <img src="{{ $user->profile_photo_url }}" alt="Profile" class="profile-avatar cursor-pointer" id="viewUserPhotoTrigger">
                                 @else
-                                    <div class="profile-avatar-placeholder">
+                                    <div class="profile-avatar-placeholder cursor-pointer" id="viewUserPhotoTrigger">
                                         {{ strtoupper(substr($user->name, 0, 1)) }}
                                     </div>
                                 @endif
@@ -173,4 +173,47 @@
         </div>
     </div>
 
+    {{-- MODAL LIHAT FOTO PROFIL BESAR (READ-ONLY) --}}
+    <div class="custom-popup-overlay" id="viewUserPhotoModal">
+        <div class="custom-popup view-photo-popup text-center">
+
+            <button type="button" class="custom-popup-close js-close-modal" data-target="viewUserPhotoModal">
+                <i data-feather="x"></i>
+            </button>
+
+            <div class="mb-4">
+                <h4 class="fw-bold mb-1">Foto Profil</h4>
+            </div>
+
+            <div class="d-flex justify-content-center mb-0">
+                @if ($user->profile_photo)
+                    <img src="{{ $user->profile_photo_url }}" alt="Profile"
+                        class="profile-avatar profile-avatar-lg shadow-sm">
+                @else
+                    <div
+                        class="profile-avatar-placeholder profile-avatar-lg shadow-sm d-flex align-items-center justify-content-center">
+                        {{ strtoupper(substr($user->name, 0, 1)) }}
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
+
 @endsection
+
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const trigger = document.getElementById('viewUserPhotoTrigger');
+            const modal = document.getElementById('viewUserPhotoModal');
+
+            if (trigger && modal) {
+                trigger.addEventListener('click', () => {
+                    modal.classList.add('show');
+                    document.body.style.setProperty('overflow-y', 'scroll');
+                    document.body.style.setProperty('touch-action', 'none');
+                });
+            }
+        });
+    </script>
+@endpush

@@ -13,13 +13,13 @@ body,
 .card,
 .card-header,
 .card-body {
-    transition:
-        background-color 0.18s ease,
-        color 0.18s ease;
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 /* ======================================
@@ -31,7 +31,7 @@ html {
 .btn-soft-success,
 .btn-soft-warning,
 .btn-soft-secondary {
-    transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .btn-soft-info:hover,
@@ -40,8 +40,8 @@ html {
 .btn-soft-warning:hover,
 .form-check-input,
 .btn-soft-secondary:hover {
-    transform: translateY(-1px);
-    cursor: pointer;
+  transform: translateY(-1px);
+  cursor: pointer;
 }
 
 /* =========================
@@ -51,16 +51,16 @@ html {
 /* Background sidebar */
 .sidebar,
 .sidebar-content {
-    background: #ffffff !important;
+  background: #ffffff !important;
 }
 
 /* Link sidebar */
 .sidebar-link,
 a.sidebar-link {
-    background: #ffffff !important;
-    color: #000000 !important;
-    font-weight: 450 !important;
-    -webkit-text-stroke: 0.1px #475569;
+  background: #ffffff !important;
+  color: #000000 !important;
+  font-weight: 450 !important;
+  -webkit-text-stroke: 0.1px #475569;
 }
 
 /* Icon sidebar */
@@ -68,94 +68,102 @@ a.sidebar-link {
 .sidebar-link svg,
 a.sidebar-link i,
 a.sidebar-link svg {
-    color: #000000 !important;
+  color: #000000 !important;
 }
 
 /* Hover */
 .sidebar-link:hover,
 .sidebar-link:hover i,
 .sidebar-link:hover svg {
-    color: #374151 !important;
-    background: #E5E7EB !important;
+  color: #374151 !important;
+  background: #E5E7EB !important;
 }
 
 /* Active item */
-.sidebar-item.active > .sidebar-link {
-    position: relative !important;
-    background: transparent !important; /* Jadikan transparan agar kotak siluman di belakangnya terlihat */
-    color: #15803D !important;
-    border-left: none !important;
-    border-right: none !important;
-    z-index: 1 !important; /* Pastikan teks dan ikon berada di atas */
+.sidebar-item.active>.sidebar-link {
+  position: relative !important;
+  background: transparent !important;
+  /* Jadikan transparan agar kotak siluman di belakangnya terlihat */
+  color: #15803D !important;
+  border-left: none !important;
+  border-right: none !important;
+  z-index: 1 !important;
+  /* Pastikan teks dan ikon berada di atas */
 }
+
 /* Kotak Background melengkung di belakang teks (Siluman) */
-.sidebar-item.active > .sidebar-link::before {
-    content: "" !important;
-    position: absolute !important;
-    top: 2px !important;
-    bottom: 2px !important;
-    left: 16px !important; /* Jarak dari kiri */
-    right: 16px !important; /* Jarak dari kanan */
-    background: #DCFCE7 !important;
-    border-radius: 8px !important; /* Lengkungan kotak */
-    z-index: -1 !important; /* Ditaruh di lapisan paling belakang */
+.sidebar-item.active>.sidebar-link::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 2px !important;
+  bottom: 2px !important;
+  left: 16px !important;
+  /* Jarak dari kiri */
+  right: 16px !important;
+  /* Jarak dari kanan */
+  background: #DCFCE7 !important;
+  border-radius: 8px !important;
+  /* Lengkungan kotak */
+  z-index: -1 !important;
+  /* Ditaruh di lapisan paling belakang */
 }
+
 /* Membuat Garis Kapsul Bulat Premium di Kanan */
-.sidebar-item.active > .sidebar-link::after {
-    content: "" !important;
-    position: absolute !important;
-    right: 0 !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    height: 38px !important;
-    width: 4px !important;
-    background-color: #1ba34d !important;
-    border-radius: 10px 0px 0px 10px !important;
+.sidebar-item.active>.sidebar-link::after {
+  content: "" !important;
+  position: absolute !important;
+  right: 0 !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  height: 38px !important;
+  width: 4px !important;
+  background-color: #1ba34d !important;
+  border-radius: 10px 0px 0px 10px !important;
 }
 
 /* Active icon */
-.sidebar-item.active > .sidebar-link i,
-.sidebar-item.active > .sidebar-link svg {
-    color: #15803D !important;
+.sidebar-item.active>.sidebar-link i,
+.sidebar-item.active>.sidebar-link svg {
+  color: #15803D !important;
 }
 
 /* Active menu text */
-.sidebar-item.active > .sidebar-link span {
-    color: #15803D !important;
-    font-weight: 600 !important;
+.sidebar-item.active>.sidebar-link span {
+  color: #15803D !important;
+  font-weight: 600 !important;
 }
 
 /* Active menu icon */
-.sidebar-item.active > .sidebar-link i,
-.sidebar-item.active > .sidebar-link svg {
-    color: #15803D !important;
+.sidebar-item.active>.sidebar-link i,
+.sidebar-item.active>.sidebar-link svg {
+  color: #15803D !important;
 
-    stroke-width: 2.3 !important;
+  stroke-width: 2.3 !important;
 }
 
 /* Brand */
 .sidebar-brand {
-    color: #000000 !important;
+  color: #000000 !important;
 }
 
 /* Header */
 .sidebar-header {
-    color: #6B7280 !important;
+  color: #6B7280 !important;
 }
 
 /* Border */
 .sidebar-content {
-    border-right: 1px solid #E5E7EB !important;
+  border-right: 1px solid #E5E7EB !important;
 }
 
 /* Remove icon background on hover */
 .sidebar-link:hover i,
 .sidebar-link:hover svg {
-    background: transparent !important;
+  background: transparent !important;
 
-    box-shadow: none !important;
+  box-shadow: none !important;
 
-    border-radius: 0 !important;
+  border-radius: 0 !important;
 }
 
 /* =========================
@@ -164,103 +172,111 @@ a.sidebar-link svg {
 
 .dark-mode .sidebar,
 .dark-mode .sidebar-content {
-    background: #0F172A !important;
+  background: #0F172A !important;
 }
 
 /* Text */
 .dark-mode .sidebar-link,
 .dark-mode a.sidebar-link {
-    background: transparent !important;
-    color: #E2E8F0 !important;
+  background: transparent !important;
+  color: #E2E8F0 !important;
 }
 
 /* Icon */
 .dark-mode .sidebar-link i,
 .dark-mode .sidebar-link svg {
-    color: #CBD5E1 !important;
+  color: #CBD5E1 !important;
 }
 
 /* Hover */
 .dark-mode .sidebar-link:hover {
-    background: #1E293B !important;
-    color: #FFFFFF !important;
+  background: #1E293B !important;
+  color: #FFFFFF !important;
 }
 
 /* Active menu (Dark Mode) */
-.dark-mode .sidebar-item.active > .sidebar-link {
-    position: relative !important;
-    background: transparent !important; /* Jadikan transparan agar kotak siluman terlihat */
-    color: #bfe9ce !important;
-    border-left: none !important;
-    border-right: none !important;
-    z-index: 1 !important; /* Pastikan teks dan ikon berada di atas */
+.dark-mode .sidebar-item.active>.sidebar-link {
+  position: relative !important;
+  background: transparent !important;
+  /* Jadikan transparan agar kotak siluman terlihat */
+  color: #bfe9ce !important;
+  border-left: none !important;
+  border-right: none !important;
+  z-index: 1 !important;
+  /* Pastikan teks dan ikon berada di atas */
 }
+
 /* Kotak Background melengkung di belakang teks (Siluman Dark Mode) */
-.dark-mode .sidebar-item.active > .sidebar-link::before {
-    content: "" !important;
-    position: absolute !important;
-    top: 2px !important;
-    bottom: 2px !important;
-    left: 16px !important; /* Jarak dari kiri */
-    right: 16px !important; /* Jarak dari kanan */
-    background: #14532D !important; /* Warna hijau gelap elegan */
-    border-radius: 8px !important;
-    z-index: -1 !important;
+.dark-mode .sidebar-item.active>.sidebar-link::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 2px !important;
+  bottom: 2px !important;
+  left: 16px !important;
+  /* Jarak dari kiri */
+  right: 16px !important;
+  /* Jarak dari kanan */
+  background: #14532D !important;
+  /* Warna hijau gelap elegan */
+  border-radius: 8px !important;
+  z-index: -1 !important;
 }
+
 /* Membuat Garis Kapsul Bulat Premium di Kanan (Dark Mode) */
-.dark-mode .sidebar-item.active > .sidebar-link::after {
-    content: "" !important;
-    position: absolute !important;
-    right: 0 !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    height: 38px !important;
-    width: 4px !important;
-    background-color: #4ADE80 !important; /* Warna hijau neon */
-    border-radius: 10px 0px 0px 10px !important;
+.dark-mode .sidebar-item.active>.sidebar-link::after {
+  content: "" !important;
+  position: absolute !important;
+  right: 0 !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  height: 38px !important;
+  width: 4px !important;
+  background-color: #4ADE80 !important;
+  /* Warna hijau neon */
+  border-radius: 10px 0px 0px 10px !important;
 }
 
 /* Active menu text */
-.dark-mode .sidebar-item.active > .sidebar-link span {
-    color: #bfe9ce !important;
+.dark-mode .sidebar-item.active>.sidebar-link span {
+  color: #bfe9ce !important;
 }
 
 /* Active icon */
-.dark-mode .sidebar-item.active > .sidebar-link i,
-.dark-mode .sidebar-item.active > .sidebar-link svg {
-    color: #bfe9ce !important;
+.dark-mode .sidebar-item.active>.sidebar-link i,
+.dark-mode .sidebar-item.active>.sidebar-link svg {
+  color: #bfe9ce !important;
 }
 
 /* Brand */
 .dark-mode .sidebar-brand {
-    color: #F8FAFC !important;
+  color: #F8FAFC !important;
 }
 
 /* Header */
 .dark-mode .sidebar-header {
-    color: #94A3B8 !important;
+  color: #94A3B8 !important;
 }
 
 /* Border */
 .dark-mode .sidebar-content {
-    border-right: 1px solid #1E293B !important;
+  border-right: 1px solid #1E293B !important;
 }
 
 /* Remove icon background on hover */
 .dark-mode .sidebar-link:hover i,
 .dark-mode .sidebar-link:hover svg {
-    background: transparent !important;
+  background: transparent !important;
 
-    box-shadow: none !important;
+  box-shadow: none !important;
 
-    border-radius: 0 !important;
+  border-radius: 0 !important;
 }
 
 /* Sidebar toggle hover */
 .sidebar-toggle:hover .hamburger,
 .sidebar-toggle:hover .hamburger::before,
 .sidebar-toggle:hover .hamburger::after {
-    background-color: #22C55E !important;
+  background-color: #22C55E !important;
 }
 
 /* =========================
@@ -268,9 +284,9 @@ a.sidebar-link svg {
 ========================= */
 
 .form-select {
-    background-position: right 0.45rem center !important;
+  background-position: right 0.45rem center !important;
 
-    padding-right: 2rem !important;
+  padding-right: 2rem !important;
 }
 
 /* =========================
@@ -279,43 +295,46 @@ a.sidebar-link svg {
 
 @media (max-width: 768px) {
 
-    /* 1. Ubah susunan toolbar menjadi atas-bawah dan PAKSA rata kiri */
-    .table-toolbar {
-        flex-direction: column !important;
-        align-items: flex-start !important; /* !important akan menarik semua elemen ke kiri */
-        gap: 12px;
-    }
+  /* 1. Ubah susunan toolbar menjadi atas-bawah dan PAKSA rata kiri */
+  .table-toolbar {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    /* !important akan menarik semua elemen ke kiri */
+    gap: 12px;
+  }
 
-    /* Pengunci tambahan agar Show Entries pasti di kiri dan spasinya rapi */
-    .show-entries-wrapper {
-        align-self: center !important; /* PERBAIKAN 1: Ubah agar rata tengah secara vertikal */
-        margin-bottom: 0 !important;
-        margin-top: 0 !important;      /* PERBAIKAN 2: Hapus margin atas yang mendorongnya ke bawah */
-    }
+  /* Pengunci tambahan agar Show Entries pasti di kiri dan spasinya rapi */
+  .show-entries-wrapper {
+    align-self: center !important;
+    /* PERBAIKAN 1: Ubah agar rata tengah secara vertikal */
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+    /* PERBAIKAN 2: Hapus margin atas yang mendorongnya ke bawah */
+  }
 
-    /* 2. Container aksi (Trash + Search) mengambil lebar penuh */
-    .toolbar-actions {
-        width: 100%;
-        margin-bottom: 0;
-    }
+  /* 2. Container aksi (Trash + Search) mengambil lebar penuh */
+  .toolbar-actions {
+    width: 100%;
+    margin-bottom: 0;
+  }
 
-    /* 3. Kotak Search mengisi sisa ruang secara dinamis di sebelah tombol Hapus */
-    .search-wrapper {
-        width: auto !important;
-        flex-grow: 1;
-    }
+  /* 3. Kotak Search mengisi sisa ruang secara dinamis di sebelah tombol Hapus */
+  .search-wrapper {
+    width: auto !important;
+    flex-grow: 1;
+  }
 
-    .search-input {
-        width: 100% !important;
-        min-width: 100% !important;
-    }
+  .search-input {
+    width: 100% !important;
+    min-width: 100% !important;
+  }
 
-    /* Tetap pertahankan perbaikan flex bawaan Anda sebelumnya */
-    .d-flex.justify-content-between.align-items-center.mb-3 {
-        flex-direction: column !important;
-        align-items: stretch !important;
-        gap: 12px;
-    }
+  /* Tetap pertahankan perbaikan flex bawaan Anda sebelumnya */
+  .d-flex.justify-content-between.align-items-center.mb-3 {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px;
+  }
 }
 
 /* =========================
@@ -323,43 +342,43 @@ a.sidebar-link svg {
 ========================= */
 
 .custom-card-shadow {
-    box-shadow:
-        0 10px 28px rgba(15, 23, 42, 0.10) !important;
+  box-shadow:
+    0 10px 28px rgba(15, 23, 42, 0.10) !important;
 }
 
 .custom-sidebar-brand {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 20px 24px 8px 24px;
-    text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 24px 8px 24px;
+  text-decoration: none;
 }
 
 .sidebar-logo {
-    width: 44px;
-    height: 48px;
-    object-fit: contain;
-    flex-shrink: 0;
-    border-radius: 8px;
-    margin-left: -4px;
+  width: 44px;
+  height: 48px;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 8px;
+  margin-left: -4px;
 }
 
 .sidebar-brand-text {
-    font-size: 20px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    color: #0F172A;
-    line-height: 1.2;
-    white-space: nowrap;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #0F172A;
+  line-height: 1.2;
+  white-space: nowrap;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 .dark-mode .sidebar-brand-text {
-    color: #FFFFFF;
+  color: #FFFFFF;
 }
 
 .main {
-    overflow: visible !important;
+  overflow: visible !important;
 }
 
 /* ======================================
@@ -367,20 +386,20 @@ a.sidebar-link svg {
 ====================================== */
 
 .form-table-wrapper {
-    width: 100%;
-    max-width: 100%;
+  width: 100%;
+  max-width: 100%;
 }
 
 .table-card-body {
-    overflow-x: hidden;
-    max-width: 100%;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 /* =========================
    BORDER HIJAU SOFT
 ========================= */
 .border-soft-success {
-    border: 1px solid #A7F3D0 !important;
+  border: 1px solid #A7F3D0 !important;
 }
 
 /* ==========================================
@@ -389,81 +408,86 @@ a.sidebar-link svg {
 
 /* Style untuk kartu individu kandidat aktivitas */
 .activity-item-card {
-    background-color: #fdfdfd !important;
-    border: 1px solid #f1f5f9 !important;
+  background-color: #fdfdfd !important;
+  border: 1px solid #f1f5f9 !important;
 }
 
 /* Kerapian tipografi judul aktivitas (Modern Optical Kerning) */
 .activity-item-title {
-    letter-spacing: -0.3px;
+  letter-spacing: -0.3px;
 }
 
 /* =========================
    EMPTY STATE ICON
 ========================= */
 .empty-state-icon {
-    width: 48px !important;
-    height: 48px !important;
+  width: 48px !important;
+  height: 48px !important;
 }
 
 /* =========================
    CUSTOM ICON SIZES & OFFSETS
 ========================= */
 .icon-16 {
-    width: 16px !important;
-    height: 16px !important;
+  width: 16px !important;
+  height: 16px !important;
 }
 
 .list-icon-offset {
-    margin-top: -2px;
+  margin-top: -2px;
 }
 
 /* ==========================================
    GLOBAL SIDEBAR TRANSITION
 ============================================= */
-#sidebar, #sidebar .sidebar-content, .main {
-    transition: min-width 0.3s ease, max-width 0.3s ease, width 0.3s ease, margin-left 0.3s ease, transform 0.3s ease !important;
+#sidebar,
+#sidebar .sidebar-content,
+.main {
+  transition: min-width 0.3s ease, max-width 0.3s ease, width 0.3s ease, margin-left 0.3s ease, transform 0.3s ease !important;
 }
 
 /* ==========================================
    MOBILE OVERLAY SIDEBAR & DIM EFFECT
 ============================================= */
 @media (max-width: 991.98px) {
-    #sidebar {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        z-index: 1050 !important;
-        height: 100vh !important;
-    }
-    .main {
-        width: 100vw !important;
-        margin-left: 0 !important;
-        transform: none !important;
-    }
-    /* Lapisan gelap (redup) yang menutupi konten */
-    .main::after {
-        content: "" !important;
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        background: rgba(15, 23, 42, 0.4) !important;
-        backdrop-filter: blur(2px) !important;
-        z-index: 1040 !important;
-        opacity: 0 !important;
-        visibility: hidden !important;
-        transition: opacity 0.3s ease, visibility 0.3s ease !important;
-        pointer-events: none !important;
-    }
-    /* Munculkan lapisan gelap HANYA jika sidebar terbuka (punya class collapsed di mobile) */
-    #sidebar.collapsed ~ .main::after {
-        opacity: 1 !important;
-        visibility: visible !important;
-        pointer-events: auto !important;
-        cursor: pointer !important;
-    }
+  #sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 1050 !important;
+    height: 100vh !important;
+  }
+
+  .main {
+    width: 100vw !important;
+    margin-left: 0 !important;
+    transform: none !important;
+  }
+
+  /* Lapisan gelap (redup) yang menutupi konten */
+  .main::after {
+    content: "" !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(15, 23, 42, 0.4) !important;
+    backdrop-filter: blur(2px) !important;
+    z-index: 1040 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: opacity 0.3s ease, visibility 0.3s ease !important;
+    pointer-events: none !important;
+  }
+
+  /* Munculkan lapisan gelap HANYA jika sidebar terbuka (punya class collapsed di mobile) */
+  #sidebar.collapsed~.main::after {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+  }
 }
 
 /*
@@ -472,48 +496,53 @@ a.sidebar-link svg {
  * ======================================
  */
 .timer-container {
-    position: relative;
-    width: 140px;
-    height: 140px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .timer-svg {
-    transform: rotate(-90deg); /* Memutar agar progress mulai dari jam 12 atas */
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+  transform: rotate(-90deg);
+  /* Memutar agar progress mulai dari jam 12 atas */
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 /* Lingkaran Background (Hijau pastel lembut sesuai tema Mode Bebas) */
 .timer-svg-bg {
-    fill: none;
-    stroke: #E5E7EB; /* Warna latar belakang lingkaran (hijau pastel) */
-    stroke-width: 15;
+  fill: none;
+  stroke: #E5E7EB;
+  /* Warna latar belakang lingkaran (hijau pastel) */
+  stroke-width: 15;
 }
 
 /* Lingkaran Progress (Hijau pekat sesuai tema tombol & angka) */
 .timer-svg-progress {
-    fill: none;
-    stroke: #86EFAC; /* Warna garis yang berjalan (hijau pekat) */
-    stroke-width: 15;
-    stroke-linecap: round; /* Membuat ujung garis membulat */
-    transition: stroke-dashoffset 1s linear; /* Animasi berjalan mulus per detik */
+  fill: none;
+  stroke: #86EFAC;
+  /* Warna garis yang berjalan (hijau pekat) */
+  stroke-width: 15;
+  stroke-linecap: round;
+  /* Membuat ujung garis membulat */
+  transition: stroke-dashoffset 1s linear;
+  /* Animasi berjalan mulus per detik */
 }
 
 /* Teks Angka di Tengah */
 .timer-text-overlay {
-    position: absolute;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ======================================
@@ -522,59 +551,61 @@ a.sidebar-link svg {
 
 /* Ukuran Icon Standar */
 .icon-18 {
-    width: 18px !important;
-    height: 18px !important;
+  width: 18px !important;
+  height: 18px !important;
 }
 
 .icon-80 {
-    width: 80px !important;
-    height: 80px !important;
+  width: 80px !important;
+  height: 80px !important;
 }
 
 /* Teks Info Aktivitas */
 .focus-info-text {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 /* Lingkaran Ikon Mode Bebas (Tanpa Waktu) */
 .alert-soft-success.focus-mode-icon-circle {
-    width: 140px;
-    height: 140px;
-    border-radius: 50% !important;
-    padding: 0 !important;
+  width: 140px;
+  height: 140px;
+  border-radius: 50% !important;
+  padding: 0 !important;
 }
 
 /* Offset posisi Timer agar pas di tengah */
 .timer-container-offset {
-    position: relative;
-    top: -25px;
+  position: relative;
+  top: -25px;
 }
 
 /* Teks Angka Timer */
 .timer-display-text {
-    font-size: 28px;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: -1px;
-    color: #159c47;
+  font-size: 28px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -1px;
+  color: #159c47;
 }
 
 /* Kalimat Instruksi di bawah Timer */
 .timer-intro-text {
-    line-height: 1.5;
-    position: relative;
-    top: 10px;
+  line-height: 1.5;
+  position: relative;
+  top: 10px;
 }
 
 /* ======================================
    DARK MODE ADJUSTMENT UNTUK TIMER
 ====================================== */
 .dark-mode .timer-display-text {
-    color: #4ADE80; /* Menyesuaikan hijau agar lebih terang dan jelas di Dark Mode */
+  color: #4ADE80;
+  /* Menyesuaikan hijau agar lebih terang dan jelas di Dark Mode */
 }
 
 /* Penyesuaian saat mode gelap (Dark Mode) */
 .dark-mode .timer-svg-bg {
-    stroke: #374151; /* Abu-abu lebih gelap agar tidak menyilaukan */
+  stroke: #374151;
+  /* Abu-abu lebih gelap agar tidak menyilaukan */
 }
 
 /* ======================================
@@ -583,15 +614,17 @@ a.sidebar-link svg {
 .btn:focus,
 .btn:active,
 .page-link:focus,
-.btn-check:focus + .btn,
-.btn-check:focus + .pss-option,
+.btn-check:focus+.btn,
+.btn-check:focus+.pss-option,
 .form-control:focus,
 .form-select:focus,
 .filter-input:focus,
 .search-input:focus {
-    outline: none !important;
-    border-color: #CBD5E1 !important; /* Border abu-abu yang lebih muda dan cerah */
-    box-shadow: 0 0 0 0.15rem rgba(203, 213, 225, 0.4) !important; /* Shadow abu-abu yang sangat lembut */
+  outline: none !important;
+  border-color: #CBD5E1 !important;
+  /* Border abu-abu yang lebih muda dan cerah */
+  box-shadow: 0 0 0 0.15rem rgba(203, 213, 225, 0.4) !important;
+  /* Shadow abu-abu yang sangat lembut */
 }
 
 /* ======================================
@@ -600,18 +633,18 @@ a.sidebar-link svg {
 
 /* Ukuran Ikon */
 .icon-20 {
-    width: 20px !important;
-    height: 20px !important;
+  width: 20px !important;
+  height: 20px !important;
 }
 
 /* Ukuran Teks Kecil */
 .text-12 {
-    font-size: 12px !important;
+  font-size: 12px !important;
 }
 
 /* Garis Pembatas Lembut */
 .border-divider-soft {
-    border-color: #e2e8f0 !important;
+  border-color: #e2e8f0 !important;
 }
 
 /* ======================================
@@ -620,93 +653,108 @@ a.sidebar-link svg {
 
 /* Ukuran Judul di PC/Tablet (Setara fs-3) */
 .focus-title {
-    font-size: 1.75rem;
+  font-size: 1.75rem;
 }
 
 @media (max-width: 575.98px) {
-    /* --- 1. PENYESUAIAN TOMBOL HP --- */
-    .btn-focus-action {
-        font-size: 13px !important;
-        width: 100% !important;
-        padding-left: 12px !important;
-        padding-right: 12px !important;
-    }
-    .btn-focus-action svg {
-        width: 15px !important;
-        height: 15px !important;
-        margin-right: 2px !important;
-    }
 
-    /* --- 2. PENYESUAIAN TEKS ATAS HP --- */
-    .focus-title {
-        font-size: 1.25rem !important;
-        margin-bottom: 8px !important;
-    }
-    .focus-info-text {
-        font-size: 12.5px !important;
-        gap: 12px !important;
-        /* Kunci mencegah konten jatuh ke bawah */
-        margin-bottom: 16px !important;
-    }
-    .focus-info-text .icon-16 {
-        width: 14px !important;
-        height: 14px !important;
-    }
+  /* --- 1. PENYESUAIAN TOMBOL HP --- */
+  .btn-focus-action {
+    font-size: 13px !important;
+    width: 100% !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
 
-    /* --- 3. RATA TENGAH SEMPURNA: TIMER --- */
-    .timer-container-offset {
-        top: -7px !important;
-        margin-top: auto !important;
-        margin-bottom: auto !important;
-        /* PERBAIKAN: Menyamakan ukuran lingkaran Timer dengan Mode Bebas */
-        width: 115px !important;
-        height: 115px !important;
-    }
+  .btn-focus-action svg {
+    width: 15px !important;
+    height: 15px !important;
+    margin-right: 2px !important;
+  }
 
-    /* PERBAIKAN: Mengecilkan angka timer agar proporsional di dalam lingkaran 110px */
-    .timer-display-text {
-        font-size: 24px !important;
-    }
+  /* --- 2. PENYESUAIAN TEKS ATAS HP --- */
+  .focus-title {
+    font-size: 1.25rem !important;
+    margin-bottom: 8px !important;
+  }
 
-    .timer-intro-text {
-        top: 0 !important;
-        margin-bottom: 24px !important;
-    }
+  .focus-info-text {
+    font-size: 12.5px !important;
+    gap: 12px !important;
+    /* Kunci mencegah konten jatuh ke bawah */
+    margin-bottom: 16px !important;
+  }
 
-    /* --- 4. RATA TENGAH SEMPURNA: MODE BEBAS --- */
-    .focus-mode-icon-circle {
-        margin-top: -12px !important;
-        margin-bottom: 16px !important;
-        width: 110px !important;
-        height: 110px !important;
-    }
-    .focus-mode-icon-circle .icon-80 {
-        width: 55px !important;
-        height: 55px !important;
-    }
+  .focus-info-text .icon-16 {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  /* --- 3. RATA TENGAH SEMPURNA: TIMER --- */
+  .timer-container-offset {
+    top: -7px !important;
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+    /* PERBAIKAN: Menyamakan ukuran lingkaran Timer dengan Mode Bebas */
+    width: 115px !important;
+    height: 115px !important;
+  }
+
+  /* PERBAIKAN: Mengecilkan angka timer agar proporsional di dalam lingkaran 110px */
+  .timer-display-text {
+    font-size: 24px !important;
+  }
+
+  .timer-intro-text {
+    top: 0 !important;
+    margin-bottom: 24px !important;
+  }
+
+  /* --- 4. RATA TENGAH SEMPURNA: MODE BEBAS --- */
+  .focus-mode-icon-circle {
+    margin-top: -12px !important;
+    margin-bottom: 16px !important;
+    width: 110px !important;
+    height: 110px !important;
+  }
+
+  .focus-mode-icon-circle .icon-80 {
+    width: 55px !important;
+    height: 55px !important;
+  }
 }
 
 /* ======================================
    UTILITIES
 ====================================== */
 .cursor-pointer {
-    cursor: pointer !important;
+  cursor: pointer !important;
 }
 
 /* ======================================
    HERO CTA CARD (DASHBOARD)
 ====================================== */
 .hero-cta-card {
-    background-color: rgba(34, 197, 94, 0.05);
-    border: 1.5px solid rgba(34, 197, 94, 0.4);
+  background-color: rgba(34, 197, 94, 0.05);
+  border: 1.5px solid rgba(34, 197, 94, 0.4);
 }
 
 .icon-box-60 {
-    width: 60px !important;
-    height: 60px !important;
+  width: 60px !important;
+  height: 60px !important;
 }
 
 .icon-26 {
-    width: 26px !important;
-    height: 26px !important;
+  width: 26px !important;
+  height: 26px !important;
+}
+
+/* ======================================
+   LAYOUT OVERRIDES (SPACING ADJUSTMENTS)
+====================================== */
+@media (min-width: 992px) {
+  .content {
+    padding-top: 1.5rem;
+    /* Reduced from 3rem to match mobile/tablet vertical rhythm */
+  }
 }

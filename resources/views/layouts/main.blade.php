@@ -55,6 +55,9 @@
     <link
         href="{{ asset('assets-admin/css/dark-mode.css') }}?v={{ filemtime(public_path('assets-admin/css/dark-mode.css')) }}"
         rel="stylesheet">
+    <link
+        href="{{ asset('assets-admin/css/stepper.css') }}?v={{ filemtime(public_path('assets-admin/css/stepper.css')) }}"
+        rel="stylesheet">
 
     @stack('styles')
 </head>

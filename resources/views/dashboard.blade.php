@@ -608,7 +608,6 @@
                 {!! json_encode([
                     'labels' => $labels,
                     'scores' => $scores,
-                    'pointColors' => $pointColors,
                     'stressLevels' => $stressLevels,
                 ]) !!}
             </script>

@@ -6,8 +6,15 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <h1 class="h3 fw-bold mb-1">Profil Pengguna</h1>
-            <p class="text-muted mb-0">Informasi data pengguna sistem.</p>
         </div>
+        @if (auth()->user()->isMahasiswa())
+            <div>
+                <a href="{{ route('dashboard') }}" class="text-decoration-none d-inline-flex align-items-center gap-1 fw-semibold text-secondary profile-dashboard-link" style="font-size: 14px;">
+                    <span>Dashboard</span>
+                    <i data-feather="chevron-right" style="width: 16px; height: 16px;"></i>
+                </a>
+            </div>
+        @endif
     </div>
 
     {{-- ALERT SUKSES (Menangkap 'success' dari ProfileController DAN 'status' dari PasswordController) --}}

@@ -578,3 +578,17 @@ textarea.custom-input {
     row-gap: 18px !important;       /* Jarak antara "Show Entries/Filter" dengan "Search Bar" */
     margin-bottom: 12px !important; /* Jarak antara "Search Bar" dengan Tabel di bawahnya */
 }
+
+/* Hover Effect: Dashboard link on profile page */
+.profile-dashboard-link {
+    transition: font-weight 0.15s ease, color 0.15s ease;
+}
+
+.profile-dashboard-link:hover {
+    font-weight: 700 !important;
+    color: #6c757d !important; /* Keep it secondary gray */
+}
+
+.dark-mode .profile-dashboard-link:hover {
+    color: #adb5bd !important; /* Keep it light gray in dark mode */
+}

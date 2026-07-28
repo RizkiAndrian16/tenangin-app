@@ -11,8 +11,25 @@
     align-items: center;
     justify-content: center;
 
+    background-color: #F1F5F9;
+    color: #64748B !important;
     border-radius: 50%;
-    transition: all 0.2s ease;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.dark-mode #darkModeToggle,
+.dark-mode .nav-icon {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #CBD5E1 !important;
+}
+
+.dark-mode #darkModeToggle:hover,
+.dark-mode .nav-icon:hover {
+    background-color: rgba(52, 211, 153, 0.14);
+    color: #6EE7B7 !important;
 }
 
 /* ======================================
@@ -21,7 +38,7 @@
 
 #darkModeToggle:hover,
 .nav-icon:hover {
-    background-color: rgba(34,197,94,0.10);
+    background-color: rgba(34, 197, 94, 0.10);
     color: #22C55E !important;
 }
 
@@ -56,6 +73,38 @@
     display: inline-flex !important;
     align-items: center !important;
     gap: 6px;
+}
+
+/* ======================================
+   PROFILE DROPDOWN CHEVRON
+====================================== */
+
+/* Hilangkan caret bawaan Bootstrap */
+.topbar-profile-toggle::after {
+    display: none !important;
+}
+
+/* Icon chevron */
+.topbar-profile-chevron {
+    width: 16px;
+    height: 16px;
+    margin-left: 2px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+/* Nama profile */
+.profile-name-desktop {
+    display: inline-block;
+}
+
+.profile-name-mobile {
+    display: none;
+}
+
+/* Dropdown terbuka */
+.topbar-profile-toggle.show .topbar-profile-chevron {
+    transform: rotate(180deg);
 }
 
 .navbar {
@@ -278,42 +327,233 @@
 }
 
 /* ======================================
-   MOBILE TOPBAR
+   PROFILE DROPDOWN
 ====================================== */
 
-@media (max-width: 768px) {
+.topbar-profile-toggle+.dropdown-menu {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.14);
+}
 
-    .navbar-nav {
-        gap: 4px !important;
+/* ======================================
+   MOBILE KEBAB MENU (3 DOTS) & LOGO
+====================================== */
+.topbar-mobile-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    color: #475569;
+    cursor: pointer;
+}
+
+.dark-mode .topbar-mobile-btn {
+    color: #E5E7EB;
+}
+
+.topbar-mobile-btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Titik Merah Penanda Notifikasi di Kebab Menu */
+.mobile-notification-dot {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 10px;
+    height: 10px;
+    background-color: #DC2626;
+    border-radius: 50%;
+    border: 2px solid #FFFFFF;
+}
+
+.dark-mode .mobile-notification-dot {
+    border-color: #162033;
+}
+
+/* Styling Posisi Logo di Tengah Topbar */
+.topbar-mobile-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.topbar-mobile-logo .logo-text {
+    font-size: 18px;
+    letter-spacing: 0.3px;
+}
+
+.dark-mode .topbar-mobile-logo .logo-text {
+    color: #F8FAFC !important;
+}
+
+/* ======================================
+   TOPBAR DESKTOP
+====================================== */
+@media (min-width: 576px) {
+
+    #topbarMobileMenu {
+        flex-grow: 1;
     }
 
-    .topbar-avatar,
-    .topbar-avatar-initial {
-        width: 34px;
-        height: 34px;
+    #topbarMobileMenu .topbar-mobile-content {
+        display: flex;
+        width: 100%;
     }
 
-    .nav-icon,
-    #darkModeToggle {
-        width: 34px;
-        height: 34px;
+    #topbarMobileMenu .navbar-align {
+        margin-left: auto !important;
     }
 
-    .topbar-notification-menu {
-        width: 320px;
-        max-width: calc(100vw - 20px);
+    /* Jarak antar item topbar desktop */
+    #topbarMobileMenu .navbar-align {
+        gap: 8px;
+    }
+}
+
+@media (min-width: 576px) {
+    #notificationDropdown {
+        margin-right: 6px;
     }
 
-    .topbar-notification-item {
-        padding: 14px;
+    /* Let the mobile wrapper act as non-existent structurally on desktop */
+    .topbar-mobile-header {
+        display: contents !important;
+    }
+}
+
+/* ======================================
+   RESPONSIVE NAVBAR & DROPDOWN (MOBILE)
+====================================== */
+@media (max-width: 575.98px) {
+
+    /* Tinggi topbar utama mobile */
+    .navbar {
+        min-height: auto !important;
+        padding: 0 !important;
+    }
+
+    /* Container untuk header mobile utama */
+    .topbar-mobile-header {
+        position: relative;
+        min-height: 76px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        display: flex !important;
+        align-items: center !important;
+        width: 100%;
+    }
+
+    /* Wadah utama hanya mengatur posisi dan background dasar */
+    #topbarMobileMenu {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        background-color: #FFFFFF;
+        z-index: 1040;
+        width: 100%;
+        box-shadow: 0 8px 12px -6px rgba(15, 23, 42, 0.08);
+    }
+
+    .dark-mode #topbarMobileMenu {
+        background-color: #162033;
+        box-shadow: 0 10px 20px -6px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Padding dan garis pembatas dipindah ke wadah dalam */
+    .topbar-mobile-content {
+        padding: 12px 20px;
+        border-top: 1px solid #CBD5E1;
+        border-bottom: none !important;
+        /* Hapus garis di paling bawah */
+        box-shadow: none !important;
+    }
+
+    .dark-mode .topbar-mobile-content {
+        border-top-color: #475569;
+        border-bottom: none !important;
+        /* Hapus garis di paling bawah untuk dark mode */
+        box-shadow: none !important;
+    }
+
+    /* Posisikan Ikon di Kiri dan Profil di Kanan */
+    #topbarMobileMenu .navbar-align {
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+        width: 100%;
+        margin: 0 !important;
+        gap: 16px !important;
+    }
+
+    #topbarMobileMenu .navbar-align li:last-child {
+        margin-left: auto !important;
+    }
+
+    .profile-name-desktop {
+        display: none;
+    }
+
+    .profile-name-mobile {
+        display: inline-block;
+        white-space: nowrap;
+
+        font-size: 14px;
+        font-weight: 500;
+        color: #475569;
+    }
+
+    .dark-mode .profile-name-mobile {
+        color: #E5E7EB !important;
+    }
+
+    /* ======================================
+   DROPDOWN MOBILE
+====================================== */
+
+    #topbarMobileMenu .nav-item.dropdown {
+        position: relative;
+    }
+
+
+    /* Notification dropdown - kiri */
+    #topbarMobileMenu .topbar-notification-menu {
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        right: auto !important;
+        width: 320px !important;
+        max-width: calc(100vw - 32px) !important;
+        margin-top: 8px !important;
+        border-radius: 12px !important;
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.14) !important;
+    }
+
+
+    /* Profile dropdown - kanan */
+    #topbarMobileMenu .nav-item:last-child .dropdown-menu {
+        position: absolute !important;
+        top: 100% !important;
+        left: auto !important;
+        right: 0 !important;
+        width: 200px !important;
+        min-width: 200px !important;
+        margin-top: 8px !important;
+        border-radius: 12px !important;
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.14) !important;
     }
 
     .topbar-notification-text {
         font-size: 11.5px;
     }
 
-    .topbar-notification-badge {
-        top: 0;
-        right: 0;
+    /* Perkecil ukuran visual hamburger di mobile agar seimbang dengan tombol tiga titik */
+    .topbar-mobile-header .hamburger {
+        transform: scale(0.8);
     }
 }

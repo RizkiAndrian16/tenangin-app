@@ -2,24 +2,25 @@
 @section('title', 'Detail PSS Assessment - Tenangin.')
 @section('content')
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h1 class="h3 fw-bold mb-1">Detail PSS-10 Assessment</h1>
-            <p class="text-muted mb-0">
-                Hasil pengukuran tingkat stres menggunakan PSS-10
-                @if (auth()->user()->role === 'admin')
-                    milik <strong class="text-dark">{{ $pssAssessment->user->name }}</strong>.
-                @endif
-            </p>
-        </div>
-    </div>
+    @if (auth()->user()->isMahasiswa())
+        <x-stepper :current-step="2" />
+    @endif
 
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
     <div class="card border-0 shadow-sm rounded-4 mb-4">
-        <div class="card-body p-4 pb-4">
+        <div class="card-body p-4 p-md-5">
+            <div class="text-center border-bottom pb-4 mb-4">
+                <h2 class="fw-bold mb-2">Detail PSS-10 Assessment</h2>
+                <p class="text-muted mb-0">
+                    Hasil pengukuran tingkat stres menggunakan PSS-10
+                    @if (auth()->user()->role === 'admin')
+                        milik <strong class="text-dark">{{ $pssAssessment->user->name }}</strong>.
+                    @endif
+                </p>
+            </div>
 
             @if (auth()->user()->role === 'admin')
                 {{-- =========================================================
