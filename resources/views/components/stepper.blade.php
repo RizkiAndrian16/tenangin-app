@@ -9,7 +9,7 @@
         3 => ['icon' => 'sliders', 'label' => 'Kandidat & Preferensi'],
         4 => ['icon' => 'award', 'label' => 'Final Rekomendasi'],
         5 => ['icon' => 'target', 'label' => 'Focus Mode'],
-        6 => ['icon' => 'message-square', 'label' => 'Feedback'],
+        6 => ['icon' => 'message-square', 'label' => 'Evaluasi Aktivitas'],
         ];
         @endphp
 

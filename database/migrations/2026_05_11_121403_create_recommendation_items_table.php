@@ -20,6 +20,8 @@ return new class extends Migration
 
             $table->integer('ranking')->nullable();
 
+            $table->timestamp('started_at')->nullable();
+
             $table->timestamps();
 
             $table->softDeletes();

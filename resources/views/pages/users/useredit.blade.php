@@ -1,12 +1,12 @@
 @extends('layouts.main')
-@section('title', 'Edit User - Tenangin.')
+@section('title', 'Edit Pengguna - Tenangin.')
 @section('content')
 
     <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
         <div>
-            <h1 class="h3 fw-bold mb-1">Edit User</h1>
+            <h1 class="h3 fw-bold mb-1">Edit Pengguna</h1>
             <p class="text-muted mb-0">
-                Perbarui informasi akun user dan hak akses.
+                Perbarui informasi akun dan hak akses pengguna.
             </p>
         </div>
     </div>
@@ -42,21 +42,21 @@
                 <div class="row g-4">
                     {{-- NAMA LENGKAP --}}
                     <div class="col-12">
-                        <label class="form-label text-muted fw-medium">Nama</label>
+                        <label class="form-label fw-bold">Nama Lengkap</label>
                         <input type="text" name="name" value="{{ old('name', $user->name) }}"
                             class="form-control custom-input @error('name') is-invalid @enderror" required>
                     </div>
 
                     {{-- EMAIL --}}
                     <div class="col-12">
-                        <label class="form-label text-muted fw-medium">Email</label>
+                        <label class="form-label fw-bold">Alamat Email</label>
                         <input type="hidden" name="email" value="{{ $user->email }}">
                         <input type="email" class="form-control custom-input" value="{{ $user->email }}" disabled>
                     </div>
 
                     {{-- ROLE --}}
                     <div class="col-12">
-                        <label class="form-label text-muted fw-medium">Role</label>
+                        <label class="form-label fw-bold">Role</label>
                         <select name="role" class="form-select custom-input @error('role') is-invalid @enderror"
                             required>
                             <option value="admin" {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}>Admin
@@ -68,7 +68,7 @@
 
                     {{-- PASSWORD BARU DENGAN ICON MATA --}}
                     <div class="col-12">
-                        <label class="form-label text-muted fw-medium">
+                        <label class="form-label fw-bold">
                             Password <small class="text-muted fw-normal">(Kosongkan jika tidak ingin ganti)</small>
                         </label>
                         <div class="input-group">
@@ -83,7 +83,7 @@
 
                     {{-- KONFIRMASI PASSWORD DENGAN ICON MATA --}}
                     <div class="col-12">
-                        <label class="form-label text-muted fw-medium">Konfirmasi Password</label>
+                        <label class="form-label fw-bold">Konfirmasi Password</label>
                         <div class="input-group">
                             <input type="password" name="password_confirmation" id="inputPasswordConfirm"
                                 class="form-control custom-input border-end-0">

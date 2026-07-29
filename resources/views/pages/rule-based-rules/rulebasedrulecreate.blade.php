@@ -6,7 +6,7 @@
         <div>
             <h1 class="h3 fw-bold mb-1">Tambah Aturan Rekomendasi</h1>
             <p class="text-muted mb-0">
-                Tambahkan aturan kandidat aktivitas relaksasi berdasarkan tingkat stres pengguna.
+                Masukkan informasi aturan rekomendasi berdasarkan tingkat stres.
             </p>
         </div>
     </div>

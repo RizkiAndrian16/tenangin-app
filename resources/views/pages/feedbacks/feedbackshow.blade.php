@@ -8,17 +8,21 @@
     @endphp
 
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h1 class="h3 fw-bold mb-1">
-                {{ auth()->user()->role === 'admin' ? 'Detail Evaluasi: ' . ($feedback->user->name ?? 'Mahasiswa') : 'Detail Evaluasi Aktivitas' }}
-            </h1>
-            <p class="text-muted mb-0">
-                {{ auth()->user()->role === 'admin'
-                    ? 'Rincian umpan balik mahasiswa untuk sesi relaksasi ini.'
-                    : 'Rincian umpan balik yang Anda berikan setelah sesi relaksasi.' }}
-            </p>
-        </div>
+    <div>
+        <h1 class="h3 fw-bold mb-1">
+            Detail Evaluasi Aktivitas
+        </h1>
+
+        <p class="text-muted mb-0">
+            @if (auth()->user()->role === 'admin')
+                Rincian hasil evaluasi aktivitas yang diberikan oleh
+                <strong class="text-dark">{{ $feedback->user->name ?? 'Mahasiswa' }}</strong>.
+            @else
+                Rincian hasil evaluasi aktivitas yang Anda berikan setelah sesi relaksasi.
+            @endif
+        </p>
     </div>
+</div>
 
     {{-- BUNGKUS UTAMA: GRID DALAM SATU CARD DASAR --}}
     <div class="card border-0 shadow-sm rounded-4">
@@ -177,25 +181,17 @@
 
                             @if ($feedback->is_completed)
                                 <div class="row g-3">
-                                    {{-- Fungsi Bantuan untuk Visualisasi Skor Bulat --}}
-                                    @php
-                                        $renderScore = function ($score) {
-                                            $html = '<div class="score-container">';
-                                            for ($i = 1; $i <= 5; $i++) {
-                                                $stateClass = $i == $score ? 'likert-active' : 'likert-inactive';
-                                                $html .=
-                                                    '<div class="likert-circle ' . $stateClass . '">' . $i . '</div>';
-                                            }
-                                            $html .= '</div>';
-                                            return $html;
-                                        };
-                                    @endphp
-
                                     <div class="col-12 col-md-6">
                                         <div
                                             class="p-3 rounded-4 feedback-result-box shadow-sm text-center h-100 d-flex flex-column justify-content-center">
                                             <span class="fw-medium text-dark d-block mb-1">Ketenangan Perasaan</span>
-                                            {!! $renderScore($feedback->calmness_score) !!}
+                                            <div class="score-container">
+                                                @for ($i = 1; $i <= 5; $i++)
+                                                    <div class="likert-circle {{ $i == $feedback->calmness_score ? 'likert-active' : 'likert-inactive' }}">
+                                                        {{ $i }}
+                                                    </div>
+                                                @endfor
+                                            </div>
                                         </div>
                                     </div>
 
@@ -203,7 +199,13 @@
                                         <div
                                             class="p-3 rounded-4 feedback-result-box shadow-sm text-center h-100 d-flex flex-column justify-content-center">
                                             <span class="fw-medium text-dark d-block mb-1">Kenyamanan Aktivitas</span>
-                                            {!! $renderScore($feedback->comfort_score) !!}
+                                            <div class="score-container">
+                                                @for ($i = 1; $i <= 5; $i++)
+                                                    <div class="likert-circle {{ $i == $feedback->comfort_score ? 'likert-active' : 'likert-inactive' }}">
+                                                        {{ $i }}
+                                                    </div>
+                                                @endfor
+                                            </div>
                                         </div>
                                     </div>
 
@@ -211,7 +213,13 @@
                                         <div
                                             class="p-3 rounded-4 feedback-result-box shadow-sm text-center h-100 d-flex flex-column justify-content-center">
                                             <span class="fw-medium text-dark d-block mb-1">Pengurangan Stres</span>
-                                            {!! $renderScore($feedback->stress_reduction_score) !!}
+                                            <div class="score-container">
+                                                @for ($i = 1; $i <= 5; $i++)
+                                                    <div class="likert-circle {{ $i == $feedback->stress_reduction_score ? 'likert-active' : 'likert-inactive' }}">
+                                                        {{ $i }}
+                                                    </div>
+                                                @endfor
+                                            </div>
                                         </div>
                                     </div>
 
@@ -219,7 +227,13 @@
                                         <div
                                             class="p-3 rounded-4 feedback-result-box shadow-sm text-center h-100 d-flex flex-column justify-content-center">
                                             <span class="fw-medium text-dark d-block mb-1">Kesediaan Mengulang</span>
-                                            {!! $renderScore($feedback->willingness_score) !!}
+                                            <div class="score-container">
+                                                @for ($i = 1; $i <= 5; $i++)
+                                                    <div class="likert-circle {{ $i == $feedback->willingness_score ? 'likert-active' : 'likert-inactive' }}">
+                                                        {{ $i }}
+                                                    </div>
+                                                @endfor
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

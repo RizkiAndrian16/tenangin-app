@@ -68,7 +68,20 @@ class RecommendationController extends Controller
             ->latest('id')
             ->first();
 
-        return view('pages.recommendations.recommendation', compact('pssAssessment', 'rules', 'stressLevel', 'lastPreference'));
+        // Ekstrak nilai unik untuk dropdown opsi input
+        $activityTypes = $rules->pluck('activity.activity_type')->unique();
+        $durations     = $rules->pluck('activity.duration_category')->unique();
+        $intensities   = $rules->pluck('activity.intensity_level')->unique();
+
+        return view('pages.recommendations.recommendation', compact(
+            'pssAssessment',
+            'rules',
+            'stressLevel',
+            'lastPreference',
+            'activityTypes',
+            'durations',
+            'intensities'
+        ));
     }
 
     public function processPreferences(Request $request, PssAssessment $pssAssessment)
@@ -289,7 +302,18 @@ class RecommendationController extends Controller
             }
         }
 
-        return view('pages.recommendations.final-recommendation', compact('pssAssessment', 'stressLevel', 'activePreference', 'finalRecommendations'));
+        // Ambil item rekomendasi yang sudah disimpan beserta data aktivitas terkait
+        $recommendationItems = RecommendationItem::with('activity')
+            ->where('recommendation_id', $recommendation->id)
+            ->orderBy('ranking')
+            ->get();
+
+        return view('pages.recommendations.final-recommendation', compact(
+            'pssAssessment',
+            'stressLevel',
+            'activePreference',
+            'recommendationItems'
+        ));
     }
 
     public function history()
@@ -394,7 +418,13 @@ class RecommendationController extends Controller
 
         $historyItems = $recommendation->recommendationItems->sortBy('ranking');
 
-        return view('pages.recommendations.history-detail', compact('recommendation', 'historyItems'));
+        // Cek secara efisien apakah user sudah memberikan feedback untuk riwayat sesi ini
+        $itemIds = $historyItems->pluck('id')->toArray();
+        $hasAnyFeedback = Feedback::whereIn('recommendation_item_id', $itemIds)
+            ->where('user_id', Auth::id())
+            ->exists();
+
+        return view('pages.recommendations.history-detail', compact('recommendation', 'historyItems', 'hasAnyFeedback'));
     }
 
     // ======================================

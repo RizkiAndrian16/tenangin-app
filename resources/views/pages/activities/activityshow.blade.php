@@ -6,7 +6,7 @@
         </button>
 
         <h4 class="fw-bold mb-1">Detail Aktivitas Relaksasi</h4>
-        <p class="text-muted fw-semibold small mb-4">Detail informasi aktivitas relaksasi personal</p>
+        <p class="text-muted fw-semibold small mb-4">Rincian informasi aktivitas relaksasi.</p>
 
         {{-- NAMA --}}
         <div class="card border-0 rounded-4 mb-3 score-hero-bg activity-popup-card">

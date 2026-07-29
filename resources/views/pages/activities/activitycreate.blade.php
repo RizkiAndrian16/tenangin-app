@@ -4,8 +4,8 @@
 
     <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
         <div>
-            <h1 class="h3 fw-bold mb-1">Tambah Katalog Aktivitas Relaksasi</h1>
-            <p class="text-muted mb-0">Tambahkan katalog aktivitas relaksasi baru ke dalam sistem.</p>
+            <h1 class="h3 fw-bold mb-1">Tambah Aktivitas Relaksasi</h1>
+            <p class="text-muted mb-0">Masukkan informasi aktivitas relaksasi baru ke dalam sistem.</p>
         </div>
     </div>
 

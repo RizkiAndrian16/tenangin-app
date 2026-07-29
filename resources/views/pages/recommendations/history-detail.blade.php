@@ -3,22 +3,23 @@
 @section('content')
 
     <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
-        <div>
-            <h1 class="h3 fw-bold mb-1">
-                {{ auth()->user()->role === 'admin' ? 'Detail Riwayat: ' . ($recommendation->user->name ?? 'User') : 'Detail Riwayat Rekomendasi' }}
-            </h1>
-            <p class="text-muted mb-0">
-                @if (auth()->user()->role === 'admin')
-                    Memantau snapshot hasil rekomendasi mahasiswa
-                    <strong>{{ $recommendation->user->name ?? 'User' }}</strong> pada
-                    {{ $recommendation->created_at->translatedFormat('l, d F Y') }}.
-                @else
-                    Snapshot hasil rekomendasi aktivitas pada
-                    {{ $recommendation->created_at->translatedFormat('l, d F Y') }}.
-                @endif
-            </p>
-        </div>
+    <div>
+        <h1 class="h3 fw-bold mb-1">
+            Detail Riwayat Rekomendasi
+        </h1>
+
+        <p class="text-muted mb-0">
+            @if (auth()->user()->role === 'admin')
+                Ringkasan hasil rekomendasi aktivitas milik
+                <strong class="text-dark">{{ $recommendation->user->name ?? 'Mahasiswa' }}</strong>
+                pada {{ $recommendation->created_at->translatedFormat('l, d F Y') }}.
+            @else
+                Ringkasan hasil rekomendasi aktivitas pada
+                {{ $recommendation->created_at->translatedFormat('l, d F Y') }}.
+            @endif
+        </p>
     </div>
+</div>
 
     {{-- ======================================
         CARD 1: SUMMARY (STRES & PREFERENSI)
@@ -32,7 +33,7 @@
     @endphp
 
     <div class="card border-0 shadow-sm rounded-4 mb-4">
-        <div class="card-body p-4">
+        <div class="card-body p-4 p-md-5">
             <div class="row g-4 align-items-stretch">
                 {{-- Kolom 1: Skor Stres --}}
                 <div class="col-lg-4">
@@ -48,6 +49,7 @@
                                 </div>
                             </div>
 
+                            <p class="text-muted small mb-3 custom-dark-text">Skor PSS-10</p>
                             <p class="text-muted small mb-2 custom-dark-text">
                                 {{ auth()->user()->role === 'admin' ? 'Tingkat Stres' : 'Tingkat Stres Anda' }}
                             </p>
@@ -118,26 +120,21 @@
     ====================================== --}}
     <div class="card border-0 shadow-sm rounded-4 mb-4">
         <div class="card-body p-4">
-            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 activity-item-card">
-                <div class="d-flex align-items-center gap-2 mb-3">
+
+            <div class="mb-4">
+                <div class="d-flex align-items-center gap-2 mb-2">
                     <div class="icon-box-soft icon-box-success flex-shrink-0">
                         <i data-feather="list"></i>
                     </div>
-                    <h5 class="fw-bold mb-0">Riwayat Hasil Rekomendasi</h5>
+                    <h5 class="fw-bold mb-0">Hasil Rekomendasi Aktivitas</h5>
                 </div>
-                <p class="text-muted small mb-0">Daftar aktivitas yang disarankan pada saat itu.</p>
+                <p class="text-muted small mb-0">
+                    Daftar aktivitas relaksasi yang direkomendasikan pada saat itu.
+                </p>
             </div>
 
             <div class="row g-4">
-                @php
-                    // 1. Ambil seluruh ID item rekomendasi pada sesi ini
-                    $itemIds = $historyItems->pluck('id')->toArray();
 
-                    // 2. Cek global: Apakah user sudah pernah mengisi salah satu feedback di sesi ini?
-                    $hasAnyFeedback = \App\Models\Feedback::whereIn('recommendation_item_id', $itemIds)
-                        ->where('user_id', Auth::id())
-                        ->exists();
-                @endphp
 
                 {{-- HANYA ADA SATU LOOP FORELSE DI SINI --}}
                 @forelse ($historyItems as $index => $item)
@@ -153,12 +150,13 @@
                                 <div class="mb-2 pb-2 d-flex justify-content-between align-items-start gap-3">
                                     <div>
                                         <h5 class="fw-bold mb-1 text-dark activity-item-title">
-                                            {{ $activity->title ?? 'Aktivitas Dihapus' }}</h5>
+                                            {{ $loop->iteration }}. {{ $activity->title ?? 'Aktivitas Dihapus' }}
+                                        </h5>
                                         <p class="text-muted small mb-0">{{ $activity->activity_type ?? '-' }}</p>
                                     </div>
                                     <div class="text-end flex-shrink-0">
                                         <h4 class="fw-bold text-success mb-1">{{ $percentage }}%</h4>
-                                        <p class="text-muted small mb-0">Similarity</p>
+                                        <p class="text-muted small mb-0">Kecocokan</p>
                                     </div>
                                 </div>
 
@@ -177,7 +175,7 @@
                                     </div>
                                     <div class="col-12 col-md-4">
                                         <div class="score-hero-bg rounded-3 p-3 h-100 border-soft-success">
-                                            <p class="fw-bold small mb-1">Matching Score</p>
+                                            <p class="fw-bold small mb-1">Tingkat Kecocokan</p>
                                             <p class="text-muted small mb-0">{{ $matchingScore }} / 7</p>
                                         </div>
                                     </div>

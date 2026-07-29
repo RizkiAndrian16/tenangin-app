@@ -5,12 +5,12 @@
     <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
         <div>
             <h1 class="h3 fw-bold mb-1">
-                {{ auth()->user()->role === 'admin' ? 'Data Evaluasi Feedback' : 'Riwayat Evaluasi Feedback' }}
+                {{ auth()->user()->role === 'admin' ? 'Data Evaluasi Aktivitas' : 'Evaluasi Aktivitas' }}
             </h1>
             <p class="text-muted mb-0">
                 {{ auth()->user()->role === 'admin'
-                    ? 'Pantau seluruh umpan balik (feedback) dari semua mahasiswa terhadap efektivitas aktivitas relaksasi sistem.'
-                    : 'Daftar riwayat umpan balik (feedback) dari aktivitas relaksasi yang telah Anda lakukan.' }}
+                    ? 'Pantau hasil evaluasi aktivitas relaksasi yang diberikan oleh seluruh mahasiswa.'
+                    : 'Hasil evaluasi aktivitas relaksasi yang telah Anda lakukan.' }}
             </p>
         </div>
     </div>

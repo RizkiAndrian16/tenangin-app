@@ -7,7 +7,20 @@
     @endif
 
     @if (session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
+        <div class="profile-success-alert mb-4" id="successAlert">
+            <div class="d-flex align-items-start gap-3">
+                <div class="profile-success-icon">
+                    <i data-feather="check-circle"></i>
+                </div>
+
+                <div>
+                    <h6 class="fw-bold mb-1">Sukses!</h6>
+                    <p class="mb-0">
+                        {{ session('success') }}
+                    </p>
+                </div>
+            </div>
+        </div>
     @endif
 
     {{-- ======================================
@@ -17,7 +30,7 @@
         <div class="card-body p-4 p-md-5">
             <div class="text-center border-bottom pb-4 mb-4">
                 <h2 class="fw-bold mb-2">Final Rekomendasi Aktivitas</h2>
-                <p class="text-muted mb-0">Rekomendasi aktivitas relaksasi personal berdasarkan tingkat stres dan preferensi aktivitas pengguna.</p>
+                <p class="text-muted mb-0">Rekomendasi aktivitas relaksasi yang disesuaikan dengan tingkat stres dan preferensi Anda.</p>
             </div>
             <div class="row g-4 align-items-stretch">
 
@@ -35,6 +48,7 @@
                                 </div>
                             </div>
 
+                            <p class="text-muted small mb-3 custom-dark-text">Skor PSS-10</p>
                             <p class="text-muted small mb-2 custom-dark-text">Tingkat Stres Anda</p>
 
                             <div>
@@ -65,8 +79,7 @@
                                         <h5 class="fw-bold mb-0">Preferensi Aktivitas Anda</h5>
                                     </div>
                                     <p class="text-muted small mb-0">
-                                        Sistem melakukan penyaringan aktivitas secara spesifik berdasarkan 3 kriteria yang
-                                        telah Anda tentukan.
+                                        Rekomendasi disesuaikan dengan preferensi aktivitas yang telah Anda pilih.
                                     </p>
                                 </div>
 
@@ -116,40 +129,26 @@
     <div class="card border-0 shadow-sm rounded-4 mb-4">
         <div class="card-body p-4">
 
-            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 activity-item-card">
-                {{-- Bagian Atas: Ikon dan Judul Sejajar --}}
-                <div class="d-flex align-items-center gap-2 mb-3">
+            <div class="mb-4">
+                <div class="d-flex align-items-center gap-2 mb-2">
                     <div class="icon-box-soft icon-box-success flex-shrink-0">
                         <i data-feather="award"></i>
                     </div>
-                    <h5 class="fw-bold mb-0">Final Recommendation Ranking</h5>
+                    <h5 class="fw-bold mb-0">Rekomendasi Aktivitas Terbaik</h5>
                 </div>
-
-                {{-- Bagian Bawah: Deskripsi --}}
                 <p class="text-muted small mb-0">
-                    Aktivitas relaksasi diurutkan berdasarkan similarity score tertinggi.
+                    Aktivitas diurutkan berdasarkan tingkat kecocokan dengan preferensi aktivitas Anda.
                 </p>
             </div>
 
             {{-- List Aktivitas --}}
             <div class="row g-4">
-                @forelse ($finalRecommendations as $index => $recommendation)
+                @forelse ($recommendationItems as $index => $item)
                     @php
-                        $activity = $recommendation['activity'];
-                        $similarityScore = $recommendation['similarity_score'];
-                        $matchingScore = $recommendation['matching_score'];
+                        $activity = $item->activity;
+                        $similarityScore = $item->similarity_score;
+                        $matchingScore = round($similarityScore * 7);
                         $percentage = number_format($similarityScore * 100, 0);
-
-                        // Ambil ID Recommendation Item secara dinamis untuk dimasukkan ke URL Mode Fokus
-                        $recParent = \App\Models\Recommendation::where('pss_assessment_id', $pssAssessment->id)
-                            ->where('user_id', Auth::id())
-                            ->first();
-
-                        $recItem = $recParent
-                            ? \App\Models\RecommendationItem::where('recommendation_id', $recParent->id)
-                                ->where('activity_id', $activity->id)
-                                ->first()
-                            : null;
                     @endphp
 
                     <div class="col-lg-6 {{ $index >= 2 ? 'd-none hidden-recommendation' : '' }}">
@@ -169,7 +168,7 @@
                                         <h4 class="fw-bold text-success mb-1">
                                             {{ $percentage }}%
                                         </h4>
-                                        <p class="text-muted small mb-0">Similarity</p>
+                                        <p class="text-muted small mb-0">Kecocokan</p>
                                     </div>
                                 </div>
 
@@ -195,7 +194,7 @@
 
                                     <div class="col-12 col-md-4">
                                         <div class="score-hero-bg rounded-3 p-3 h-100 border-soft-success">
-                                            <p class="fw-bold small mb-1">Matching Score</p>
+                                            <p class="fw-bold small mb-1">Tingkat Kecocokan</p>
                                             <p class="text-muted small mb-0">
                                                 {{ $matchingScore }} / 7
                                             </p>
@@ -211,8 +210,8 @@
                                 {{-- FOOTER (Mulai Aktivitas) --}}
                                 <div
                                     class="mt-auto pt-4 border-top custom-top-divider d-flex flex-column align-items-center gap-2">
-                                    @if ($recItem)
-                                        <a href="{{ route('feedbacks.focus', $recItem->id) }}"
+                                    @if ($item)
+                                        <a href="{{ route('feedbacks.focus', $item->id) }}"
                                             class="btn btn-soft-success rounded-pill px-4 py-2 force-focus-hover">
                                             Mulai Aktivitas
                                         </a>
@@ -232,9 +231,9 @@
                             <div class="mb-3 text-muted">
                                 <i data-feather="info" class="empty-state-icon"></i>
                             </div>
-                            <h5 class="fw-bold mb-2">Final Recommendation Tidak Tersedia</h5>
+                            <h5 class="fw-bold mb-2">Rekomendasi Belum Tersedia</h5>
                             <p class="text-muted mb-0">
-                                Sistem belum dapat menghasilkan rekomendasi final berdasarkan preferensi pengguna saat ini.
+                                Belum ada rekomendasi yang sesuai dengan preferensi yang dipilih. Silakan ubah preferensi Anda dan coba lagi.
                             </p>
                         </div>
                     </div>
@@ -242,7 +241,7 @@
             </div>
 
             {{-- TOMBOL LIHAT LAINNYA --}}
-            @if ($finalRecommendations->count() > 2)
+            @if ($recommendationItems->count() > 2)
                 <div class="text-center mt-4 mb-0" id="showMoreContainer">
                     <button type="button" id="btnShowMore"
                         class="btn btn-soft-secondary rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2">

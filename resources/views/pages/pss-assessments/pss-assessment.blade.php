@@ -5,13 +5,13 @@
     <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center gap-2 gap-sm-3 mb-3 mb-sm-4">
         <div>
             <h1 class="h3 fw-bold mb-1">
-                {{ auth()->user()->role === 'admin' ? 'Data PSS-10' : 'PSS-10' }}
+                {{ auth()->user()->role === 'admin' ? 'Data PSS-10 Assessment' : 'PSS-10 Assessment' }}
             </h1>
 
             <p class="text-muted mb-0">
                 {{ auth()->user()->role === 'admin'
-                    ? 'Pantau seluruh riwayat tes stres dari semua mahasiswa.'
-                    : 'Riwayat hasil PSS-10 tingkat stres anda.' }}
+                    ? 'Pantau seluruh hasil PSS-10 Assessment mahasiswa.'
+                    : 'Riwayat hasil PSS-10 Assessment Anda.' }}
             </p>
         </div>
 

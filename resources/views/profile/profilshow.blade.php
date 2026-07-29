@@ -292,8 +292,7 @@
                                 class="form-control custom-input pe-5" required>
                             <button type="button" tabindex="-1"
                                 class="btn btn-transparent border-0 shadow-none position-absolute top-50 end-0 translate-middle-y text-muted"
-                                onmousedown="event.preventDefault()"
-                                onclick="togglePassword('current_password', this)">
+                                data-password-toggle="current_password">
                                 <i data-feather="eye" class="icon-18"></i>
                             </button>
                         </div>
@@ -319,7 +318,7 @@
                         {{-- PERBAIKAN: Memanggil btn-transparent --}}
                         <button type="button" tabindex="-1"
                             class="btn btn-transparent border-0 shadow-none position-absolute top-50 end-0 translate-middle-y text-muted"
-                            onmousedown="event.preventDefault()" onclick="togglePassword('password', this)">
+                            data-password-toggle="password">
                             {{-- PERBAIKAN: Memanggil icon-18 --}}
                             <i data-feather="eye" class="icon-18"></i>
                         </button>
@@ -334,8 +333,7 @@
                         {{-- PERBAIKAN: Memanggil btn-transparent --}}
                         <button type="button" tabindex="-1"
                             class="btn btn-transparent border-0 shadow-none position-absolute top-50 end-0 translate-middle-y text-muted"
-                            onmousedown="event.preventDefault()"
-                            onclick="togglePassword('password_confirmation', this)">
+                            data-password-toggle="password_confirmation">
                             {{-- PERBAIKAN: Memanggil icon-18 --}}
                             <i data-feather="eye" class="icon-18"></i>
                         </button>

@@ -95,6 +95,59 @@ class User extends Authenticatable
         return $this->hasMany(Feedback::class);
     }
 
+    public function getTodayPendingRecommendationStatus(): array
+    {
+        if (!$this->isMahasiswa()) {
+            return ['has_pending' => false];
+        }
+
+        // 1. Ambil rekomendasi terbaru hari ini
+        $todayRec = $this->recommendations()
+            ->whereDate('created_at', today())
+            ->latest('id')
+            ->first();
+
+        if (!$todayRec) {
+            return ['has_pending' => false];
+        }
+
+        // 2. Cek apakah sudah mengisi feedback untuk salah satu aktivitas hari ini
+        $itemIds = $todayRec->recommendationItems->pluck('id')->toArray();
+        $hasFeedback = \App\Models\Feedback::whereIn('recommendation_item_id', $itemIds)->exists();
+
+        if ($hasFeedback) {
+            return ['has_pending' => false];
+        }
+
+        // 3. Cek item yang terakhir dimulai (started_at terbaru)
+        $lastStartedItem = $todayRec->recommendationItems()
+            ->whereNotNull('started_at')
+            ->latest('started_at')
+            ->first();
+
+        if ($lastStartedItem) {
+            // SKENARIO A: Sudah pernah klik Mulai Aktivitas
+            return [
+                'has_pending' => true,
+                'status' => 'started',
+                'title' => 'Lanjutkan aktivitas relaksasimu?',
+                'text' => 'Yuk selesaikan aktivitas "' . ($lastStartedItem->activity->title ?? '') . '" hari ini dan berikan umpan balik.',
+                'redirect_url' => route('feedbacks.focus', $lastStartedItem->id),
+                'action_label' => 'Mulai Aktivitas'
+            ];
+        }
+
+        // SKENARIO B: Belum pernah klik sama sekali
+        return [
+            'has_pending' => true,
+            'status' => 'not_started',
+            'title' => 'Kamu memiliki rekomendasi hari ini!',
+            'text' => 'Yuk, mulai luangkan waktu sejenak untuk rileks dan ketahui perkembangannya.',
+            'redirect_url' => route('recommendations.final', $todayRec->pss_assessment_id),
+            'action_label' => 'Lihat Rekomendasi'
+        ];
+    }
+
     public function hasCompleteProfile(): bool
     {
         if (!$this->isMahasiswa()) {

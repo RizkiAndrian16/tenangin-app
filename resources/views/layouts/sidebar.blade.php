@@ -5,7 +5,7 @@
             <span class="sidebar-brand-text">Tenangin.</span>
         </a>
         <ul class="sidebar-nav">
-            <li class="sidebar-header fw-bold">MENU</li>
+            <li class="sidebar-header fw-bold">MENU UTAMA</li>
             <li class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('dashboard') }}">
                     <i class="align-middle" data-feather="sliders"></i>
@@ -18,7 +18,7 @@
                 <li class="sidebar-item {{ request()->routeIs('users.*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('users.index') }}">
                         <i class="align-middle" data-feather="users"></i>
-                        <span class="align-middle">User</span>
+                        <span class="align-middle">Manajemen Pengguna</span>
                     </a>
                 </li>
 
@@ -36,7 +36,7 @@
                 </li>
             @endif
 
-            <li class="sidebar-header fw-bold">USERS</li>
+            <li class="sidebar-header fw-bold">LAYANAN</li>
             <li class="sidebar-item {{ request()->routeIs('profile.*') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('profile.edit') }}">
                     <i class="align-middle" data-feather="user"></i>

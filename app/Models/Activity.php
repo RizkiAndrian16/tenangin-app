@@ -21,6 +21,14 @@ class Activity extends Model
         'instruction',
     ];
 
+    public function getInstructionStepsAttribute(): array
+    {
+        if (!$this->instruction) {
+            return [];
+        }
+        return array_filter(array_map('trim', explode('.', $this->instruction)));
+    }
+
     public function ruleBasedRules()
     {
         return $this->hasMany(RuleBasedRule::class);

@@ -14,8 +14,7 @@
                     {{-- HEADER MODEL PSS --}}
                     <div class="text-center border-bottom pb-4 mb-4">
                         <h2 class="fw-bold mb-2">Evaluasi Aktivitas</h2>
-                        <p class="text-muted mb-0">Bagaimana perasaan Anda setelah melakukan aktivitas tadi? Umpan balik Anda
-                            membantu sistem kami menjadi lebih baik.</p>
+                        <p class="text-muted mb-0">Bagaimana perasaan Anda setelah melakukan aktivitas ini? Berikan evaluasi singkat di bawah ini.</p>
                     </div>
 
                     {{-- BLOK ERROR STANDAR --}}
@@ -95,8 +94,8 @@
                             <div class="profile-alert-card alert-soft-success mb-2 rounded-3 border-0 p-3">
                                 <div class="d-flex align-items-start gap-3">
                                     <div class="likert-info-text">
-                                        Berikan penilaian Anda pada skala <strong>1 (Sangat Tidak Setuju)</strong> hingga
-                                        <strong>5 (Sangat Setuju)</strong> untuk pertanyaan di bawah ini.
+                                        Berikan penilaian pada setiap pernyataan menggunakan skala <strong>1 (Sangat Tidak Setuju)</strong> hingga
+                                        <strong>5 (Sangat Setuju).</strong>
                                     </div>
                                 </div>
                             </div>

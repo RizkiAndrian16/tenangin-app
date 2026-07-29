@@ -159,7 +159,10 @@ class PssAssessmentController extends Controller
             return redirect()->route('pss-assessments.index')->with('error', 'Admin tidak dapat melakukan assessment.');
         }
 
-        return view('pages.pss-assessments.pss-assessmentcreate');
+        $questions = PssAssessment::QUESTIONS;
+        $options = PssAssessment::OPTIONS;
+
+        return view('pages.pss-assessments.pss-assessmentcreate', compact('questions', 'options'));
     }
 
     public function store(Request $request)
@@ -215,7 +218,10 @@ class PssAssessmentController extends Controller
 
         $pssAssessment->load(['user', 'answers', 'recommendations']);
 
-        return view('pages.pss-assessments.pss-assessmentshow', compact('pssAssessment'));
+        $questions = PssAssessment::QUESTIONS;
+        $options = PssAssessment::OPTIONS;
+
+        return view('pages.pss-assessments.pss-assessmentshow', compact('pssAssessment', 'questions', 'options'));
     }
 
     public function edit(PssAssessment $pssAssessment)

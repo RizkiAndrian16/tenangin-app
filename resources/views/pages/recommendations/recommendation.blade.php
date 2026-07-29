@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Rekomendasi Aktivitas - Tenangin.')
+@section('title', 'Kandidat Aktivitas Relaksasi - Tenangin.')
 @section('content')
 
     @if (auth()->user()->isMahasiswa())
@@ -17,7 +17,7 @@
         <div class="card-body p-4 p-md-5">
             <div class="text-center border-bottom pb-4 mb-4">
                 <h2 class="fw-bold mb-2">Kandidat Aktivitas Relaksasi</h2>
-                <p class="text-muted mb-0">Daftar kandidat aktivitas berdasarkan hasil pengukuran tingkat stres anda.</p>
+                <p class="text-muted mb-0">Daftar kandidat aktivitas relaksasi yang sesuai dengan hasil pengukuran tingkat stres Anda.</p>
             </div>
             <div class="row g-4 align-items-stretch">
 
@@ -36,7 +36,7 @@
                                 </div>
                             </div>
 
-                            <p class="text-muted small mb-3 custom-dark-text">Skor PSS-10 Anda</p>
+                            <p class="text-muted small mb-3 custom-dark-text">Skor PSS-10</p>
                             <p class="text-muted small mb-2 custom-dark-text">Tingkat Stres</p>
 
                             @if ($stressLevel == 'Rendah')
@@ -70,35 +70,28 @@
                                     @else icon-box-danger @endif">
                                     <i data-feather="cpu"></i>
                                 </div>
-                                <h5 class="fw-bold mb-0">Filter Rule-Based</h5>
+                                <h5 class="fw-bold mb-0">Penyaringan Aktivitas</h5>
                             </div>
 
                             @if ($stressLevel == 'Rendah')
                                 <div class="alert-soft-success rounded-3 p-3 mb-3 flex-grow-1">
                                     <h6 class="fw-bold mb-2">Kategori Aman</h6>
-                                    <p class="mb-0 small">Sistem menampilkan variasi aktivitas yang luas untuk menjaga
-                                        kondisi emosional Anda tetap stabil dan positif secara konsisten.</p>
+                                    <p class="mb-0 small">Sistem merekomendasikan aktivitas relaksasi yang aman untuk membantu
+                                        menjaga tingkat stres Anda tetap rendah dan stabil.</p>
                                 </div>
                             @elseif ($stressLevel == 'Sedang')
                                 <div class="alert-soft-warning rounded-3 p-3 mb-3 flex-grow-1">
                                     <h6 class="fw-bold mb-2">Kategori Menengah</h6>
-                                    <p class="mb-0 small">Sistem merekomendasikan aktivitas dengan intensitas ringan hingga
-                                        sedang untuk meredakan stres secara bertahap dan aman.</p>
+                                    <p class="mb-0 small">Sistem merekomendasikan aktivitas relaksasi dengan intensitas ringan hingga
+                                        sedang untuk meredakan stres sesuai dengan kondisi Anda.</p>
                                 </div>
                             @else
                                 <div class="alert-soft-danger rounded-3 p-3 mb-3 flex-grow-1">
                                     <h6 class="fw-bold mb-2">Kategori Prioritas</h6>
-                                    <p class="mb-0 small">Sistem mengunci rekomendasi hanya pada aktivitas berintensitas
-                                        ringan agar Anda merasa tenang tanpa membebani fisik/pikiran.</p>
+                                    <p class="mb-0 small">Sistem merekomendasikan aktivitas relaksasi dengan intensitas ringan agar 
+                                        lebih nyaman untuk dijalankan.</p>
                                 </div>
                             @endif
-
-                            <div class="mt-auto pt-3 border-top custom-top-divider">
-                                <p class="text-muted small mb-0 about-score-text">
-                                    Pemilihan kandidat aktivitas didasarkan sepenuhnya pada keamanan tingkat stres Anda. 🛡️
-                                </p>
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -116,18 +109,10 @@
 
                             <div class="alert-soft-success rounded-3 p-3 mb-3 flex-grow-1">
                                 <h6 class="fw-bold mb-2">1. Tinjau Kandidat</h6>
-                                <p class="mb-3 small">Lihat daftar kandidat aktivitas aman yang telah disaring di bagian
-                                    bawah.</p>
+                                <p class="mb-3 small">Lihat daftar kandidat aktivitas yang tersedia.</p>
 
                                 <h6 class="fw-bold mb-2">2. Tentukan Preferensi</h6>
-                                <p class="mb-0 small">Isi preferensi jenis, durasi, dan intensitas untuk mendapatkan
-                                    rekomendasi akhir.</p>
-                            </div>
-
-                            <div class="mt-auto pt-3 border-top custom-top-divider">
-                                <p class="text-muted small mb-0 about-score-text">
-                                    Ikuti langkah di atas agar sistem dapat mempersonalisasi hasil akhir. 🎯
-                                </p>
+                                <p class="mb-0 small">Isi preferensi jenis, durasi, dan intensitas aktivitas yang Anda sukai.</p>
                             </div>
                         </div>
                     </div>
@@ -145,7 +130,7 @@
                 <div class="icon-box-soft icon-box-success">
                     <i data-feather="list"></i>
                 </div>
-                <h5 class="fw-bold mb-0">Kandidat Aktivitas Relaksasi Yang Sesuai Dengan Tingkat Stres Anda</h5>
+                <h5 class="fw-bold mb-0">Daftar Kandidat Aktivitas Relaksasi yang Direkomendasikan</h5>
             </div>
 
             <div class="row g-4">
@@ -219,7 +204,7 @@
     =============================================== --}}
 
     <div id="preferenceAlert" class="alert-soft-danger rounded-3 p-3 mb-4">
-        Harap lengkapi semua pilihan preferensi aktivitas anda sebelum melanjutkan.
+        Harap lengkapi semua pilihan preferensi aktivitas Anda sebelum melanjutkan.
     </div>
 
     <div class="card border-0 shadow-sm rounded-4 mb-4">
@@ -231,10 +216,10 @@
                     <div class="icon-box-soft icon-box-success flex-shrink-0">
                         <i data-feather="sliders"></i>
                     </div>
-                    <h5 class="fw-bold mb-0">Preferensi Aktivitas Yang Anda Inginkan</h5>
+                    <h5 class="fw-bold mb-0">Pilih Preferensi Aktivitas</h5>
                 </div>
                 <p class="text-muted small mb-0">
-                    Pilih preferensi aktivitas yang anda sukai dan sistem akan mencarikan kecocokan terbaik.
+                    Pilih jenis, durasi, dan intensitas aktivitas yang Anda sukai.
                 </p>
             </div>
 
@@ -244,12 +229,11 @@
                 @csrf
                 <div class="row g-4">
                     {{-- Jenis Aktivitas --}}
-                    {{-- Jenis Aktivitas --}}
                     <div class="col-md-4">
                         <label class="form-label fw-bold">Jenis Aktivitas</label>
                         <select name="preferred_activity_type" class="form-select custom-input">
                             <option value="">Pilih jenis aktivitas</option>
-                            @foreach ($rules->pluck('activity.activity_type')->unique() as $type)
+                            @foreach ($activityTypes as $type)
                                 <option value="{{ $type }}"
                                     {{ isset($lastPreference) && $lastPreference->preferred_activity_type == $type ? 'selected' : '' }}>
                                     {{ $type }}
@@ -263,7 +247,7 @@
                         <label class="form-label fw-bold">Durasi Aktivitas</label>
                         <select name="preferred_duration" class="form-select custom-input">
                             <option value="">Pilih durasi aktivitas</option>
-                            @foreach ($rules->pluck('activity.duration_category')->unique() as $duration)
+                            @foreach ($durations as $duration)
                                 <option value="{{ $duration }}"
                                     {{ isset($lastPreference) && $lastPreference->preferred_duration == $duration ? 'selected' : '' }}>
                                     {{ $duration }}
@@ -277,7 +261,7 @@
                         <label class="form-label fw-bold">Intensitas Aktivitas</label>
                         <select name="preferred_intensity" class="form-select custom-input">
                             <option value="">Pilih intensitas aktivitas</option>
-                            @foreach ($rules->pluck('activity.intensity_level')->unique() as $intensity)
+                            @foreach ($intensities as $intensity)
                                 <option value="{{ $intensity }}"
                                     {{ isset($lastPreference) && $lastPreference->preferred_intensity == $intensity ? 'selected' : '' }}>
                                     {{ $intensity }}
@@ -301,7 +285,7 @@
                 {{-- AKSI: Full memanjang di HP (flex-fill), normal di PC (flex-md-grow-0) --}}
                 <button type="submit" form="preferenceForm"
                     class="btn btn-soft-success rounded-pill px-3 px-sm-4 py-2 d-flex align-items-center justify-content-center gap-2 flex-fill flex-md-grow-0 force-focus-hover">
-                    <span class="fw-medium">Proses Rekomendasi Final</span>
+                    <span class="fw-medium">Lihat Rekomendasi Final</span>
                     <i data-feather="arrow-right" class="icon-16"></i>
                 </button>
 

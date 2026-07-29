@@ -1,3 +1,5 @@
+window.ChartJS4 = window.ChartJS4 || window.Chart;
+
 document.addEventListener('DOMContentLoaded', function () {
     // 1. Terapkan warna tema global SEBELUM grafik digambar
     applyChartTheme();
@@ -139,14 +141,15 @@ function initStudentDashboardChart(animate = true) {
                 pointBorderWidth: 2,
                 pointRadius: 6,
                 pointHoverRadius: 8,
-                tension: 0.4
+                tension: 0.4,
+                clip: false // Mencegah marker terpotong di batas atas & bawah area grafik
             }]
         },
         options: {
             animation: animate ? undefined : false, // <-- SAKLAR ANIMASI
             responsive: true,
             maintainAspectRatio: false,
-            layout: { padding: { left: 15, right: 15 } },
+            layout: { padding: { left: 15, right: 15, top: 10, bottom: 10 } },
             plugins: {
                 legend: { display: false },
                 tooltip: {
@@ -183,7 +186,7 @@ function initStudentDashboardChart(animate = true) {
 // ======================================
 // UPDATE GRAFIK SAAT TOMBOL DARK MODE DITEKAN
 // ======================================
-document.getElementById('darkModeToggle')?.addEventListener('click', function() {
+document.getElementById('darkModeToggle')?.addEventListener('click', function () {
     setTimeout(() => {
 
         // 1. Perbarui warna pengaturan global

@@ -46,7 +46,7 @@
                                         <span class="score-max">/ 40</span>
                                     </div>
                                 </div>
-                                <p class="text-muted small mb-3 custom-dark-text">Total Skor PSS-10</p>
+                                <p class="text-muted small mb-3 custom-dark-text">Skor PSS-10</p>
 
                                 <p class="text-muted small mb-2 custom-dark-text">Tingkat Stres</p>
                                 @if ($pssAssessment->stress_level == 'Rendah')
@@ -139,28 +139,6 @@
                                 </div>
                                 <p class="text-muted small mb-4">Data respons mentah dari ke-10 pertanyaan PSS-10.</p>
 
-                                @php
-                                    $questions = [
-                                        1 => 'Seberapa sering kamu merasa kecewa karena sesuatu yang terjadi secara tidak terduga?',
-                                        2 => 'Seberapa sering kamu merasa tidak mampu mengendalikan hal-hal penting dalam hidupmu?',
-                                        3 => 'Seberapa sering kamu merasa gelisah dan stres?',
-                                        4 => 'Seberapa sering kamu merasa percaya diri dengan kemampuanmu untuk menyelesaikan masalah pribadi?',
-                                        5 => 'Seberapa sering kamu merasa segala sesuatu berjalan sesuai keinginanmu?',
-                                        6 => 'Seberapa sering kamu mengetahui bahwa kamu tidak bisa mengatasi hal-hal yang harus kamu lakukan?',
-                                        7 => 'Seberapa sering kamu mampu mengendalikan hal-hal yang menjengkelkan dalam hidupmu?',
-                                        8 => 'Seberapa sering kamu merasa mampu mengendalikan permasalahanmu?',
-                                        9 => 'Seberapa sering kamu marah karena hal-hal yang terjadi di luar kendalimu?',
-                                        10 => 'Seberapa sering kamu merasa tidak mampu menyelesaikan permasalahan-permasalahan yang menumpuk dalam hidupmu?',
-                                    ];
-                                    $options = [
-                                        0 => 'Tidak Pernah',
-                                        1 => 'Hampir Tidak Pernah',
-                                        2 => 'Kadang-kadang',
-                                        3 => 'Cukup Sering',
-                                        4 => 'Sangat Sering',
-                                    ];
-                                @endphp
-
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-hover align-middle mb-0">
                                         <thead class="table-light text-center">
@@ -227,7 +205,7 @@
                                 </div>
                                 <p class="text-muted small mb-3 custom-dark-text">Skor PSS-10</p>
 
-                                <p class="text-muted small mb-2 custom-dark-text">Tingkat Stres</p>
+                                <p class="text-muted small mb-2 custom-dark-text">Tingkat Stres Anda</p>
                                 @if ($pssAssessment->stress_level == 'Rendah')
                                     <span class="badge badge-soft-success rounded-pill px-3 py-2 fs-6 mb-3">😌 Rendah</span>
                                 @elseif ($pssAssessment->stress_level == 'Sedang')
@@ -236,14 +214,14 @@
                                     <span class="badge badge-soft-danger rounded-pill px-3 py-2 fs-6 mb-3">😟 Tinggi</span>
                                 @endif
 
-                                <div class="d-flex gap-4 mt-2 justify-content-center">
+                                {{-- <div class="d-flex gap-4 mt-2 justify-content-center">
                                     <div class="text-center">
                                         <p class="text-muted small mb-1">Tanggal</p>
                                         <p class="fw-bold mb-0">
                                             {{ $pssAssessment->created_at->translatedFormat('l, d F Y') }}
                                         </p>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -260,8 +238,7 @@
                                 </div>
 
                                 <p class="text-muted small mb-3 about-score-text custom-dark-text">
-                                    PSS-10 membantu mengukur tingkat stres yang dirasakan dalam kehidupan sehari-hari selama
-                                    sebulan terakhir.
+                                    Skor PSS-10 menunjukkan tingkat stres yang Anda rasakan selama satu bulan terakhir.
                                 </p>
 
                                 <div class="score-range-list">
@@ -282,7 +259,7 @@
                                     </div>
                                 </div>
 
-                                <div class="mt-auto pt-3 border-top custom-top-divider">
+                                {{-- <div class="mt-auto pt-3 border-top custom-top-divider">
                                     @if ($pssAssessment->stress_level == 'Rendah')
                                         <p class="text-muted small mb-0 about-score-text">
                                             Pertahankan terus kondisi ini. Konsistensi adalah kunci kesehatan mental jangka
@@ -299,7 +276,7 @@
                                             dari yang mudah dulu. 🌱
                                         </p>
                                     @endif
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -318,31 +295,28 @@
                                 @if ($pssAssessment->stress_level == 'Rendah')
                                     <div class="alert-soft-success rounded-3 p-3 mb-3 flex-grow-1">
                                         <h6 class="fw-bold mb-2">Tingkat Stres Rendah</h6>
-                                        <p class="mb-0 small">Stres saat ini tergolong rendah. Pertahankan kebiasaan
-                                            positif dan pola aktivitas harian yang sudah berjalan baik agar stres tetap
-                                            terkendali.</p>
+                                        <p class="mb-0 small">Stres anda saat ini tergolong rendah. Pertahankan kebiasaan
+                                            positif dan lanjutkan ke tahap berikutnya untuk melihat rekomendasi aktivitas relaksasi yang sesuai.</p>
                                     </div>
                                 @elseif ($pssAssessment->stress_level == 'Sedang')
                                     <div class="alert-soft-warning rounded-3 p-3 mb-3 flex-grow-1">
                                         <h6 class="fw-bold mb-2">Tingkat Stres Sedang</h6>
-                                        <p class="mb-0 small">Stres mulai terasa dalam aktivitas sehari-hari. Disarankan
-                                            mulai melakukan aktivitas relaksasi secara rutin agar stres tidak semakin
-                                            meningkat.</p>
+                                        <p class="mb-0 small">Stres anda mulai terasa dalam aktivitas sehari-hari. Lanjutkan ke tahap berikutnya
+                                            untuk melihat rekomendasi aktivitas relaksasi yang sesuai dengan kondisi Anda.</p>
                                     </div>
                                 @else
                                     <div class="alert-soft-danger rounded-3 p-3 mb-3 flex-grow-1">
                                         <h6 class="fw-bold mb-2">Tingkat Stres Tinggi</h6>
-                                        <p class="mb-0 small">Stres berada di tingkat yang cukup tinggi. Segera luangkan
-                                            waktu untuk beristirahat dan lakukan aktivitas relaksasi secara rutin agar stres
-                                            dapat dikelola dengan lebih baik.</p>
+                                        <p class="mb-0 small">Stres anda berada di tingkat yang cukup tinggi. Segera lanjutkan ke tahap berikutnya
+                                            untuk melihat rekomendasi aktivitas relaksasi yang dapat membantu mengelola stres.</p>
                                     </div>
                                 @endif
 
-                                <div class="mt-auto pt-3 border-top">
+                                {{-- <div class="mt-auto pt-3 border-top">
                                     <p class="text-muted small mb-0 custom-dark-text">
                                         Rekomendasi aktivitas relaksasi disesuaikan dengan tingkat stres ini. 🎯
                                     </p>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

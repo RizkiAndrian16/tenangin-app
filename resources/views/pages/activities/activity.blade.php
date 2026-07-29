@@ -5,7 +5,7 @@
     <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center gap-2 gap-sm-3 mb-3 mb-sm-4">
         <div>
             <h1 class="h3 fw-bold mb-1">Katalog Aktivitas Relaksasi</h1>
-            <p class="text-muted mb-0">Katalog aktivitas relaksasi untuk membantu mengurangi tingkat stres pengguna.</p>
+            <p class="text-muted mb-0">Kelola daftar aktivitas relaksasi yang digunakan sebagai rekomendasi dalam sistem.</p>
         </div>
 
         <div class="d-grid d-sm-block">
@@ -87,7 +87,7 @@
                                 <th>Jenis</th>
                                 <th>Durasi</th>
                                 <th>Intensitas</th>
-                                <th>Status</th>
+                                <th>Status Rekomendasi</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>

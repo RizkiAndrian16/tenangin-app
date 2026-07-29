@@ -1,20 +1,18 @@
 @extends('layouts.main')
-@section('title', 'Users - Tenangin.')
+@section('title', 'Manajemen Pengguna - Tenangin.')
 @section('content')
 
     <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center gap-2 gap-sm-3 mb-3 mb-sm-4">
         <div>
-            <h1 class="h3 fw-bold mb-1">Data User</h1>
-            <p class="text-muted mb-0">Pengelolaan data User yang terdaftar di sistem.</p>
+            <h1 class="h3 fw-bold mb-1">Manajemen Pengguna</h1>
+            <p class="text-muted mb-0">Kelola data pengguna yang terdaftar di dalam sistem.</p>
         </div>
 
         <div class="d-grid d-sm-block">
-            {{-- Ditambahkan d-inline-flex, align-items-center, justify-content-center, dan gap-2 --}}
             <a href="{{ route('users.create') }}"
                 class="btn btn-soft-success rounded-pill px-4 py-2 d-inline-flex align-items-center justify-content-center gap-2">
-                {{-- Ikon plus disembunyikan di HP (d-none) dan dimunculkan di layar sm ke atas (d-sm-block) --}}
                 <i data-feather="plus" class="icon-18 d-none d-sm-block"></i>
-                <span>Tambah Pengguna</span>
+                <span>Tambah Pengguna Baru</span>
             </a>
         </div>
     </div>
@@ -37,7 +35,6 @@
         <form id="filterForm" method="GET" action="{{ route('users.index') }}">
             <div class="card filter-card mb-2">
                 <div class="card-body">
-                    {{-- Kita panggil x-filter-table dengan Role dan Gender bernilai True --}}
                     <x-filter-table :showStressLevel="false" :showDate="false" :showStatus="false" :showIntensity="false"
                         :showRole="true" :showGender="true" :resetRoute="route('users.index')" />
                 </div>

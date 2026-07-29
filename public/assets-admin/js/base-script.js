@@ -1231,6 +1231,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Logic Toggle Password (menggunakan ulang fungsi window.togglePassword Anda)
     document.querySelectorAll('[data-password-toggle]').forEach(btn => {
+        // Mencegah input kehilangan fokus saat ikon mata ditekan
+        btn.addEventListener('mousedown', function (e) {
+            e.preventDefault();
+        });
+
         btn.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.dataset.passwordToggle;

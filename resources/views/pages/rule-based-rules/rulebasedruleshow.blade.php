@@ -7,7 +7,7 @@
 
         <h4 class="fw-bold mb-1">Detail Aturan Rekomendasi</h4>
         <p class="text-muted fw-semibold small mb-4">
-            Detail aturan kandidat aktivitas relaksasi berdasarkan tingkat stres pengguna
+            Rincian aturan rekomendasi berdasarkan tingkat stres.
         </p>
 
         {{-- TINGKAT STRES --}}

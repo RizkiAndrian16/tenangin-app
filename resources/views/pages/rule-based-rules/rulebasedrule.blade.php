@@ -6,15 +6,13 @@
         <div>
             <h1 class="h3 fw-bold mb-1">Aturan Rekomendasi</h1>
             <p class="text-muted mb-0">
-                Pengelolaan aturan kandidat aktivitas relaksasi berdasarkan tingkat stres pengguna.
+                Kelola aturan rekomendasi aktivitas relaksasi berdasarkan tingkat stres.
             </p>
         </div>
 
         <div class="d-grid d-sm-block">
-            {{-- Ditambahkan d-inline-flex, align-items-center, justify-content-center, dan gap-2 --}}
             <a href="{{ route('rule-based-rules.create') }}"
                 class="btn btn-soft-success rounded-pill px-4 py-2 d-inline-flex align-items-center justify-content-center gap-2">
-                {{-- Ikon plus disembunyikan di HP (d-none) dan dimunculkan di layar sm ke atas (d-sm-block) --}}
                 <i data-feather="plus" class="icon-18 d-none d-sm-block"></i>
                 <span>Tambah Aturan Rekomendasi</span>
             </a>

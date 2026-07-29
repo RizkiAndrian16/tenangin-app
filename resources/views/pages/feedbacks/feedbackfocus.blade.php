@@ -17,7 +17,16 @@
         <div class="card-body p-4 p-md-5">
             <div class="text-center border-bottom pb-4 mb-4">
                 <h2 class="fw-bold mb-2">Mode Fokus: Pelaksanaan</h2>
-                <p class="text-muted mb-0">Ikuti instruksi dengan tenang dan gunakan timer di bawah ini.</p>
+
+                @if (str_contains($activity->duration_category, '>'))
+                    <p class="text-muted mb-0">
+                        Ikuti panduan aktivitas dengan tenang dan lakukan sesuai kenyamanan Anda.
+                    </p>
+                @else
+                    <p class="text-muted mb-0">
+                        Ikuti instruksi dengan tenang dan gunakan timer di bawah ini.
+                    </p>
+                @endif
             </div>
 
             <div class="row g-4 align-items-stretch mb-0 mb-md-5">
@@ -121,12 +130,9 @@
                                 <h5 class="fw-bold mb-0">Tips dan Konteks Pelaksanaan</h5>
                             </div>
 
-                            @if ($activity->instruction)
-                                @php
-                                    $steps = array_filter(array_map('trim', explode('.', $activity->instruction)));
-                                @endphp
+                            @if (count($activity->instruction_steps) > 0)
                                 <div class="alert-soft-success alert-white-text rounded-4 p-4 mb-4 flex-grow-1">
-                                    @foreach ($steps as $index => $step)
+                                    @foreach ($activity->instruction_steps as $index => $step)
                                         <p class="fw-bold text-dark mb-{{ $loop->last ? '0' : '3' }} fs-6">
                                             {{ $index + 1 }}. {{ $step }}.
                                         </p>

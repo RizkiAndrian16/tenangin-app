@@ -101,6 +101,12 @@ class FeedbackController extends Controller
             abort(403);
         }
 
+        if (is_null($recommendationItem->started_at)) {
+            $recommendationItem->update([
+                'started_at' => now(),
+            ]);
+        }
+
         // Cek apakah aktivitas ini sudah pernah diberi feedback sebelumnya
         $existingFeedback = Feedback::where('recommendation_item_id', $recommendationItem->id)
             ->where('user_id', Auth::id())

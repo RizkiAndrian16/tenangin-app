@@ -27,7 +27,7 @@
                         Selamat Datang, {{ Auth::user()->name }}! 👋
                     </h4>
                     <p class="text-white mb-0 dashboard-hero-subtitle">
-                        Pantau ringkasan data pengguna, assessment, aktivitas, dan feedback di sistem Tenangin.
+                        Pantau secara menyeluruh ringkasan data pengguna, hasil PSS-10, katalog aktivitas, riwayat & aturan rekomendasi, serta feedback.
                     </p>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                                 </div>
                                 <div>
                                     <h4 class="fw-bold mb-0 text-dark">{{ $totalActivities }}</h4>
-                                    <span class="text-muted small">Total Aktivitas</span>
+                                    <span class="text-muted small">Total Katalog Aktivitas</span>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +104,7 @@
                                 </div>
                                 <div>
                                     <h4 class="fw-bold mb-0 text-dark">{{ $totalAssessments }}</h4>
-                                    <span class="text-muted small d-block mb-1">Total Assessment</span>
+                                    <span class="text-muted small d-block mb-1">Total PSS-10 Assessment</span>
                                     @if ($usersHighStress > 0)
                                         <a href="{{ route('pss-assessments.index', ['stress_level' => 'Tinggi']) }}"
                                             class="d-block small fw-medium text-decoration-underline dashboard-link-danger-text">
@@ -619,10 +619,6 @@
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <script>
-        window.ChartJS4 = window.Chart;
-    </script>
 
     <script
         src="{{ asset('assets-admin/js/dashboard.js') }}?v={{ filemtime(public_path('assets-admin/js/dashboard.js')) }}">

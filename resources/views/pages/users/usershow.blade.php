@@ -1,10 +1,10 @@
 @extends('layouts.main')
-@section('title', 'Detail User - Tenangin.')
+@section('title', 'Detail Pengguna - Tenangin.')
 @section('content')
 
     <div class="mb-4">
-        <h1 class="h3 fw-bold mb-1">Detail User</h1>
-        <p class="text-muted mb-0">Informasi lengkap data user yang terdaftar di dalam sistem.</p>
+        <h1 class="h3 fw-bold mb-1">Detail Pengguna</h1>
+        <p class="text-muted mb-0">Informasi lengkap mengenai profil dan data pribadi pengguna.</p>
     </div>
 
     {{-- CARD UTAMA --}}

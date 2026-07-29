@@ -15,11 +15,13 @@ class RecommendationItem extends Model
         'activity_id',
         'similarity_score',
         'ranking',
+        'started_at'
     ];
 
     protected $casts = [
         'similarity_score' => 'decimal:4',
         'ranking' => 'integer',
+        'started_at' => 'datetime',
     ];
 
     public function recommendation()

@@ -1,5 +1,6 @@
 @php
     $notificationCount = 0;
+    $pendingFeedbackData = null;
 
     if (auth()->user()->isMahasiswa()) {
         if (!auth()->user()->hasCompleteProfile()) {
@@ -8,6 +9,12 @@
 
         if (auth()->user()->needsPasswordSetup()) {
             $notificationCount++;
+        }
+
+        $pendingFeedbackStatus = auth()->user()->getTodayPendingRecommendationStatus();
+        if ($pendingFeedbackStatus['has_pending']) {
+            $notificationCount++;
+            $pendingFeedbackData = $pendingFeedbackStatus;
         }
     }
 @endphp
@@ -86,6 +93,19 @@
                                         </div>
                                         <div class="topbar-notification-action">Atur Password <i
                                                 data-feather="arrow-right"></i></div>
+                                    </div>
+                                </a>
+                            @endif
+                            @if ($pendingFeedbackData)
+                                <a href="{{ $pendingFeedbackData['redirect_url'] }}"
+                                    class="topbar-notification-item">
+                                    <div class="topbar-notification-icon"><i data-feather="heart"></i></div>
+                                    <div class="topbar-notification-content">
+                                        <div class="topbar-notification-title">{{ $pendingFeedbackData['title'] }}</div>
+                                        <div class="topbar-notification-text">{{ $pendingFeedbackData['text'] }}</div>
+                                        <div class="topbar-notification-action">
+                                            {{ $pendingFeedbackData['action_label'] }} <i data-feather="arrow-right"></i>
+                                        </div>
                                     </div>
                                 </a>
                             @endif
