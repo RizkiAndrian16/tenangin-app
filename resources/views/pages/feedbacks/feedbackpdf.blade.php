@@ -72,25 +72,31 @@
 
     <table class="summary-table">
         <tr>
-            <td width="25%">
+            <td width="20%">
                 <div class="summary-box">
                     <div class="summary-number">{{ $summary['total_feedback'] }}</div>
                     <div class="summary-label">Total Feedback</div>
                 </div>
             </td>
-            <td width="25%">
+            <td width="20%">
                 <div class="summary-box">
                     <div class="summary-number">{{ $summary['total_completed'] }}</div>
                     <div class="summary-label">Aktivitas Selesai</div>
                 </div>
             </td>
-            <td width="25%">
+            <td width="20%">
+                <div class="summary-box">
+                    <div class="summary-number">{{ $summary['total_uncompleted'] }}</div>
+                    <div class="summary-label">Aktivitas Tidak Selesai</div>
+                </div>
+            </td>
+            <td width="20%">
                 <div class="summary-box">
                     <div class="summary-number">{{ $summary['avg_benefit'] }} / 5</div>
                     <div class="summary-label">Rata-rata Penilaian Manfaat</div>
                 </div>
             </td>
-            <td width="25%">
+            <td width="20%">
                 <div class="summary-box">
                     <div class="summary-number">{{ $summary['avg_calmness_after'] }} / 5</div>
                     <div class="summary-label">Rata-rata Tingkat Ketenangan</div>

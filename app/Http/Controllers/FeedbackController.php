@@ -350,8 +350,9 @@ class FeedbackController extends Controller
         // 1. Total Feedback
         $totalFeedback = $feedbacks->count();
 
-        // 2. Total Aktivitas Selesai
+        // 2. Total Aktivitas Selesai & Tidak Selesai
         $totalCompleted = $feedbacks->where('is_completed', true)->count();
+        $totalUncompleted = $feedbacks->where('is_completed', false)->count();
 
         // 3. Rata-rata Penilaian Manfaat (overall_rating)
         $averageBenefit = $feedbacks->whereNotNull('overall_rating')->avg('overall_rating') ?? 0;
@@ -408,6 +409,7 @@ class FeedbackController extends Controller
         $summary = [
             'total_feedback' => $totalFeedback,
             'total_completed' => $totalCompleted,
+            'total_uncompleted' => $totalUncompleted,
             'avg_benefit' => number_format($averageBenefit, 1),
             'avg_calmness_after' => number_format($averageCalmnessAfter, 1),
             'distribution' => $distribution,
