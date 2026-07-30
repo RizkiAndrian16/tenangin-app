@@ -66,6 +66,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/feedbacks/{recommendationItem}', [FeedbackController::class, 'store'])->name('feedbacks.store');
         Route::get('/feedbacks/create/{recommendationItem}', [FeedbackController::class, 'create'])->name('feedbacks.create');
         Route::get('/feedbacks', [FeedbackController::class, 'index'])->name('feedbacks.index');
+        Route::get('/feedbacks/export/pdf', [FeedbackController::class, 'exportPdf'])->middleware('role:admin')->name('feedbacks.export.pdf');
         Route::get('/feedbacks/detail/{feedback}', [FeedbackController::class, 'show'])->name('feedbacks.show');
         Route::delete('/feedbacks/bulk-destroy', [FeedbackController::class, 'bulkDestroy'])->name('feedbacks.bulk-destroy');
         Route::delete('/feedbacks/{feedback}', [FeedbackController::class, 'destroy'])->name('feedbacks.destroy');

@@ -145,7 +145,7 @@ class PssAssessmentController extends Controller
 
         $pdf = Pdf::loadView('pages.pss-assessments.pss-assessmentpdf', compact('assessments', 'summary', 'filters'));
 
-        $pdf->setPaper('a4', 'landscape');
+        $pdf->setPaper('a4', 'portrait');
 
         $filename = 'Laporan_PSS-10_Tenangin_' . now()->format('d-m-Y') . '.pdf';
 

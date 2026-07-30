@@ -1,0 +1,263 @@
+@page {
+    margin: 25px 30px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: DejaVu Sans, sans-serif;
+    font-size: 10px;
+    color: #212529;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+}
+
+/* ======================================
+   HEADER LAPORAN
+   ====================================== */
+.report-header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.report-header h1 {
+    font-size: 19px;
+    margin: 0 0 4px 0;
+    font-weight: bold;
+    color: #212529;
+}
+
+.report-header h2 {
+    font-size: 13px;
+    margin: 0 0 5px 0;
+    font-weight: bold;
+    color: #333;
+}
+
+.report-header p {
+    font-size: 9px;
+    margin: 0;
+    color: #555;
+}
+
+.header-line {
+    border: 0;
+    border-top: 2px solid #222;
+    margin: 10px 0 15px 0;
+}
+
+/* ======================================
+   INFORMASI LAPORAN
+   ====================================== */
+.report-info {
+    width: 100%;
+    margin-bottom: 14px;
+    border-collapse: collapse;
+}
+
+.report-info td {
+    padding: 2px 0;
+    vertical-align: top;
+    font-size: 9px;
+}
+
+.report-info .label {
+    width: 120px;
+    font-weight: bold;
+}
+
+.report-info .separator {
+    width: 12px;
+    text-align: center;
+}
+
+/* ======================================
+   JUDUL SECTION
+   ====================================== */
+.section-title {
+    font-size: 11px;
+    font-weight: bold;
+    margin: 25px 0 10px 0;
+    text-transform: uppercase;
+    color: #333;
+    border-left: 3px solid #222222;
+    padding-left: 6px;
+}
+
+/* ======================================
+   SUMMARY BOXES
+   ====================================== */
+.summary-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 8px 0;
+    margin-left: -8px;
+    margin-bottom: 15px;
+}
+
+.summary-box {
+    border: 1px solid #d9d9d9;
+    padding: 8px;
+    text-align: center;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+.summary-number {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 2px;
+    color: #212529;
+}
+
+.summary-label {
+    font-size: 8.5px;
+    color: #555;
+    font-weight: bold;
+}
+
+/* ======================================
+   POPULARITY BOXES (SIDE-BY-SIDE)
+   ====================================== */
+.popularity-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 8px 0;
+    margin-left: -8px;
+    margin-bottom: 15px;
+}
+
+.popularity-box {
+    border: 1px solid #d9d9d9;
+    padding: 8px 12px;
+    background-color: #fcfcfc;
+    border-radius: 4px;
+}
+
+.popularity-title {
+    font-size: 8.5px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+
+.popularity-value {
+    font-size: 11px;
+    font-weight: bold;
+    color: #212529;
+}
+
+/* ======================================
+   DISTRIBUTION TABLE
+   ====================================== */
+.distribution-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+.distribution-table th {
+    background-color: #f0f0f0;
+    border: 1px solid #bdbdbd;
+    padding: 5px;
+    font-size: 9px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.distribution-table td {
+    border: 1px solid #d0d0d0;
+    padding: 5px;
+    font-size: 8.5px;
+    text-align: center;
+}
+
+
+/* ======================================
+   TABEL DATA DETAIL
+   ====================================== */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
+}
+
+.data-table thead {
+    display: table-header-group;
+}
+
+.data-table th {
+    background-color: #f0f0f0;
+    border: 1px solid #bdbdbd;
+    padding: 6px 4px;
+    font-size: 9px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.data-table td {
+    border: 1px solid #d0d0d0;
+    padding: 5px 4px;
+    font-size: 8.5px;
+    vertical-align: middle;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.student-name {
+    font-weight: bold;
+}
+
+.rating-stars {
+    color: #ffc107;
+    font-size: 11px;
+}
+
+/* ======================================
+   EMPTY DATA
+   ====================================== */
+.empty-data {
+    text-align: center;
+    padding: 20px !important;
+    color: #777;
+}
+
+/* ======================================
+   FOOTER
+   ====================================== */
+.report-footer {
+    margin-top: 20px;
+    border-top: 1px solid #d0d0d0;
+    padding-top: 7px;
+    font-size: 8px;
+    color: #666;
+}
+
+.report-footer-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.report-footer-table td {
+    border: none;
+    padding: 0;
+}
+
+.footer-right {
+    text-align: right;
+}
+
+/* Hindari pemotongan baris tabel */
+tr {
+    page-break-inside: avoid;
+}

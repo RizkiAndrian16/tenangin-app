@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\RecommendationItem;
 use App\Models\Feedback;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class FeedbackController extends Controller
 {
@@ -266,5 +267,165 @@ class FeedbackController extends Controller
 
         return redirect()->route('feedbacks.index')
             ->with('success', 'Data umpan balik berhasil dihapus.');
+    }
+
+    // ======================================
+    // 8. EKSPOR EVALUASI FEEDBACK KE PDF
+    // ======================================
+    public function exportPdf(Request $request)
+    {
+        if (Auth::user()->role !== 'admin') {
+            abort(403);
+        }
+
+        $query = Feedback::with([
+            'user',
+            'recommendationItem' => function ($q) {
+                $q->withTrashed()->with([
+                    'activity',
+                    'recommendation.pssAssessment'
+                ]);
+            }
+        ]);
+
+        // ======================================
+        // 1. FILTER PENCARIAN (SEARCH)
+        // ======================================
+        if ($request->filled('search')) {
+            $search = (string) $request->search;
+            $searchLower = strtolower($search);
+
+            $days = [
+                'senin' => 'Monday',
+                'selasa' => 'Tuesday',
+                'rabu' => 'Wednesday',
+                'kamis' => 'Thursday',
+                'jumat' => 'Friday',
+                'sabtu' => 'Saturday',
+                'minggu' => 'Sunday',
+            ];
+            $englishDay = $days[$searchLower] ?? null;
+
+            $query->where(function ($q) use ($search, $englishDay) {
+                $q->whereHas('recommendationItem', function ($subQ) use ($search) {
+                    $subQ->withTrashed()->whereHas('activity', function ($subQ2) use ($search) {
+                        $subQ2->where('title', 'like', "%{$search}%")
+                            ->orWhere('activity_type', 'like', "%{$search}%");
+                    });
+                })
+                    ->orWhere('created_at', 'like', "%{$search}%")
+                    ->orWhereHas('user', function ($subQ) use ($search) {
+                        $subQ->where('name', 'like', "%{$search}%");
+                    });
+
+                if ($englishDay) {
+                    $q->orWhereRaw('DAYNAME(created_at) = ?', [$englishDay]);
+                }
+            });
+        }
+
+        // ======================================
+        // 2. FILTER TANGGAL (DATE)
+        // ======================================
+        if ($request->filled('date')) {
+            $query->whereDate('created_at', $request->date);
+        }
+
+        // ======================================
+        // 3. FILTER STATUS PENYELESAIAN
+        // ======================================
+        if ($request->has('is_completed') && $request->is_completed !== null) {
+            $query->where('is_completed', $request->is_completed);
+        }
+
+        // ======================================
+        // 4. FILTER BERMANFAAT
+        // ======================================
+        if ($request->has('is_helpful') && $request->is_helpful !== null) {
+            $query->where('is_helpful', $request->is_helpful);
+        }
+
+        $feedbacks = $query->latest()->get();
+
+        // 1. Total Feedback
+        $totalFeedback = $feedbacks->count();
+
+        // 2. Total Aktivitas Selesai
+        $totalCompleted = $feedbacks->where('is_completed', true)->count();
+
+        // 3. Rata-rata Penilaian Manfaat (overall_rating)
+        $averageBenefit = $feedbacks->whereNotNull('overall_rating')->avg('overall_rating') ?? 0;
+
+        // 4. Rata-rata Tingkat Ketenangan (calmness_score)
+        $averageCalmnessAfter = $feedbacks->whereNotNull('calmness_score')->avg('calmness_score') ?? 0;
+
+        // 5. Distribusi Penilaian Manfaat (1-5 Bintang)
+        $distribution = [];
+        for ($i = 1; $i <= 5; $i++) {
+            $count = $feedbacks->where('overall_rating', $i)->count();
+            $percentage = $totalFeedback > 0 ? ($count / $totalFeedback) * 100 : 0;
+            $distribution[$i] = [
+                'count' => $count,
+                'percentage' => number_format($percentage, 1),
+            ];
+        }
+
+        // 6. Aktivitas Terpopuler (Hanya dari yang diselesaikan/is_completed = true)
+        $activityCounts = [];
+        foreach ($feedbacks->where('is_completed', true) as $fb) {
+            $actTitle = $fb->recommendationItem->activity->title ?? null;
+            if ($actTitle) {
+                $activityCounts[$actTitle] = ($activityCounts[$actTitle] ?? 0) + 1;
+            }
+        }
+        arsort($activityCounts);
+        $mostPopularActivity = key($activityCounts) ?? 'Tidak Ada Data';
+        $mostPopularCount = current($activityCounts) ?: 0;
+
+        // 7. Aktivitas dengan Rata-rata Rating Tertinggi
+        $activityRatings = [];
+        foreach ($feedbacks as $fb) {
+            $actTitle = $fb->recommendationItem->activity->title ?? null;
+            $rating = $fb->overall_rating;
+            if ($actTitle && !is_null($rating)) {
+                if (!isset($activityRatings[$actTitle])) {
+                    $activityRatings[$actTitle] = ['sum' => 0, 'count' => 0];
+                }
+                $activityRatings[$actTitle]['sum'] += $rating;
+                $activityRatings[$actTitle]['count'] += 1;
+            }
+        }
+        $highestRatedActivity = 'Tidak Ada Data';
+        $highestAverage = 0;
+        foreach ($activityRatings as $actTitle => $data) {
+            $avg = $data['sum'] / $data['count'];
+            if ($avg > $highestAverage) {
+                $highestAverage = $avg;
+                $highestRatedActivity = $actTitle;
+            }
+        }
+
+        $summary = [
+            'total_feedback' => $totalFeedback,
+            'total_completed' => $totalCompleted,
+            'avg_benefit' => number_format($averageBenefit, 1),
+            'avg_calmness_after' => number_format($averageCalmnessAfter, 1),
+            'distribution' => $distribution,
+            'popular_activity' => $mostPopularActivity !== 'Tidak Ada Data' ? $mostPopularActivity . ' (' . $mostPopularCount . ' kali)' : 'Tidak Ada Data',
+            'highest_rated_activity' => $highestRatedActivity !== 'Tidak Ada Data' ? $highestRatedActivity . ' (' . number_format($highestAverage, 1) . ' / 5)' : 'Tidak Ada Data',
+        ];
+
+        $filters = [
+            'is_completed' => $request->is_completed,
+            'is_helpful' => $request->is_helpful,
+            'date' => $request->date,
+            'search' => $request->search,
+        ];
+
+        $pdf = Pdf::loadView('pages.feedbacks.feedbackpdf', compact('feedbacks', 'summary', 'filters'));
+        $pdf->setPaper('a4', 'portrait');
+
+        $filename = 'Laporan_Evaluasi_Aktivitas_Tenangin_' . now()->format('d-m-Y') . '.pdf';
+        return $pdf->download($filename);
     }
 }

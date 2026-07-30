@@ -2,7 +2,7 @@
 @section('title', 'Feedback - Tenangin.')
 @section('content')
 
-    <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
         <div>
             <h1 class="h3 fw-bold mb-1">
                 {{ auth()->user()->role === 'admin' ? 'Data Evaluasi Aktivitas' : 'Evaluasi Aktivitas' }}
@@ -13,6 +13,21 @@
                     : 'Hasil evaluasi aktivitas relaksasi yang telah Anda lakukan.' }}
             </p>
         </div>
+
+        @if (auth()->user()->role === 'admin')
+            <div class="d-grid d-sm-block">
+                <a href="{{ route('feedbacks.export.pdf', [
+                    'is_completed' => request('is_completed'),
+                    'is_helpful' => request('is_helpful'),
+                    'date' => request('date'),
+                    'search' => request('search'),
+                ]) }}"
+                    class="btn btn-soft-danger rounded-pill px-4 py-2 d-inline-flex align-items-center justify-content-center gap-2">
+                    <i data-feather="file-text" class="icon-18"></i>
+                    <span>Export PDF</span>
+                </a>
+            </div>
+        @endif
     </div>
 
     @if (session('success'))
