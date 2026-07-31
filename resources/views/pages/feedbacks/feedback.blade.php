@@ -2,7 +2,7 @@
 @section('title', 'Feedback - Tenangin.')
 @section('content')
 
-    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+    <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center gap-2 gap-sm-3 mb-3 mb-sm-4">
         <div>
             <h1 class="h3 fw-bold mb-1">
                 {{ auth()->user()->role === 'admin' ? 'Data Evaluasi Aktivitas' : 'Evaluasi Aktivitas' }}

@@ -170,32 +170,19 @@ class RecommendationController extends Controller
         $recommendations = collect();
 
         foreach ($rules as $rule) {
-
             $activity = $rule->activity;
 
             $score = 0;
 
-            if (
-                $activity->activity_type ==
-                $activePreference->preferred_activity_type
-            ) {
-
+            if ($activity->activity_type == $activePreference->preferred_activity_type) {
                 $score += 3;
             }
 
-            if (
-                $activity->duration_category ==
-                $activePreference->preferred_duration
-            ) {
-
+            if ($activity->duration_category == $activePreference->preferred_duration) {
                 $score += 2;
             }
 
-            if (
-                $activity->intensity_level ==
-                $activePreference->preferred_intensity
-            ) {
-
+            if ($activity->intensity_level == $activePreference->preferred_intensity) {
                 $score += 2;
             }
 
