@@ -207,15 +207,15 @@ class RecommendationController extends Controller
                 ->latest()
                 ->first();
 
-            // 2. Berikan Penalti atau Hadiah berdasarkan pengalaman masa lalu
+            // 2. Berikan Penalti atau Hadiah berdasarkan pengalaman masa lalu (Robin Burke, 2002)
             if ($pastFeedback) {
-                // PENALTI Ekstrem: Jika dulu tidak mau mengulang (skor 1 atau 2)
+                // PENALTI (Critiquing): Jika dulu tidak mau mengulang (skor 1 atau 2), diberikan penalti -1.0
                 if ($pastFeedback->willingness_score == 1 || $pastFeedback->willingness_score == 2) {
-                    $finalSortingScore -= 999;
+                    $finalSortingScore -= 1.0;
                 }
-                // REWARD (Bonus): Jika dulu selesai dikerjakan DAN bermanfaat
+                // REWARD (Entry Point): Jika dulu selesai dikerjakan DAN bermanfaat, diberikan reward +1.0
                 elseif ($pastFeedback->is_completed == 1 && $pastFeedback->is_helpful == 1) {
-                    $finalSortingScore += 0.5;
+                    $finalSortingScore += 1.0;
                 }
             }
 
