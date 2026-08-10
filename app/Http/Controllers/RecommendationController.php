@@ -196,25 +196,19 @@ class RecommendationController extends Controller
             // ======================================
             // THE MAGIC FEEDBACK LOOP (REWARD/PENALTY)
             // ======================================
-            $finalSortingScore = $similarityScore; // Default awal adalah skor murni
+            $finalSortingScore = $similarityScore;
 
-            // 1. Intip buku catatan (Feedback) paling baru dari user ini untuk aktivitas ini
             $pastFeedback = Feedback::where('user_id', Auth::id())
                 ->whereHas('recommendationItem', function ($q) use ($activity) {
-                    // Gunakan withTrashed agar tetap bisa baca memori meski riwayat pernah dihapus
                     $q->withTrashed()->where('activity_id', $activity->id);
                 })
                 ->latest()
                 ->first();
 
-            // 2. Berikan Penalti atau Hadiah berdasarkan pengalaman masa lalu (Robin Burke, 2002)
             if ($pastFeedback) {
-                // PENALTI (Critiquing): Jika dulu tidak mau mengulang (skor 1 atau 2), diberikan penalti -1.0
                 if ($pastFeedback->willingness_score == 1 || $pastFeedback->willingness_score == 2) {
                     $finalSortingScore -= 1.0;
-                }
-                // REWARD (Entry Point): Jika dulu selesai dikerjakan DAN bermanfaat, diberikan reward +1.0
-                elseif ($pastFeedback->is_completed == 1 && $pastFeedback->is_helpful == 1) {
+                } elseif ($pastFeedback->is_completed == 1 && $pastFeedback->is_helpful == 1) {
                     $finalSortingScore += 1.0;
                 }
             }
@@ -226,10 +220,6 @@ class RecommendationController extends Controller
                 'final_sorting_score' => $finalSortingScore,
             ]);
         }
-
-        // ======================================
-        // SORTING RANKING
-        // ======================================
 
         $finalRecommendations = $recommendations
             ->sortByDesc('final_sorting_score')

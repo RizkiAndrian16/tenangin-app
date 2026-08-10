@@ -53,70 +53,72 @@
             <ul class="navbar-nav navbar-align d-flex flex-row align-items-center ms-auto">
 
                 <!-- MENU 1: NOTIFIKASI -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link nav-icon position-relative" href="#" id="notificationDropdown"
-                        role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Notifikasi">
-                        <i class="align-middle" data-feather="bell"></i>
-                        @if ($notificationCount > 0)
-                            <span class="topbar-notification-badge">{{ $notificationCount }}</span>
-                        @endif
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end topbar-notification-menu"
-                        aria-labelledby="notificationDropdown">
-                        <div class="topbar-notification-header">
-                            <span class="fw-semibold">Notifikasi</span>
+                @if (auth()->user()->isMahasiswa())
+                    <li class="nav-item dropdown">
+                        <a class="nav-link nav-icon position-relative" href="#" id="notificationDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Notifikasi">
+                            <i class="align-middle" data-feather="bell"></i>
                             @if ($notificationCount > 0)
-                                <span class="topbar-notification-count">{{ $notificationCount }} baru</span>
+                                <span class="topbar-notification-badge">{{ $notificationCount }}</span>
+                            @endif
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end topbar-notification-menu"
+                            aria-labelledby="notificationDropdown">
+                            <div class="topbar-notification-header">
+                                <span class="fw-semibold">Notifikasi</span>
+                                @if ($notificationCount > 0)
+                                    <span class="topbar-notification-count">{{ $notificationCount }} baru</span>
+                                @endif
+                            </div>
+                            @if ($notificationCount > 0)
+                                @if (auth()->user()->isMahasiswa() && !auth()->user()->hasCompleteProfile())
+                                    <a href="{{ route('profile.edit') }}" class="topbar-notification-item">
+                                        <div class="topbar-notification-icon"><i data-feather="user"></i></div>
+                                        <div class="topbar-notification-content">
+                                            <div class="topbar-notification-title">Lengkapi profilmu</div>
+                                            <div class="topbar-notification-text">Lengkapi data profilmu agar kamu dapat
+                                                menggunakan seluruh fitur Tenangin.</div>
+                                            <div class="topbar-notification-action">Lengkapi Profil <i
+                                                    data-feather="arrow-right"></i></div>
+                                        </div>
+                                    </a>
+                                @endif
+                                @if (auth()->user()->needsPasswordSetup())
+                                    <a href="{{ route('profile.edit', ['action' => 'password']) }}"
+                                        class="topbar-notification-item">
+                                        <div class="topbar-notification-icon"><i data-feather="key"></i></div>
+                                        <div class="topbar-notification-content">
+                                            <div class="topbar-notification-title">Atur password akunmu</div>
+                                            <div class="topbar-notification-text">Biar aksesnya makin gampang, tambahkan
+                                                password yuk! Nanti kamu jadi punya alternatif untuk login pakai email.
+                                            </div>
+                                            <div class="topbar-notification-action">Atur Password <i
+                                                    data-feather="arrow-right"></i></div>
+                                        </div>
+                                    </a>
+                                @endif
+                                @if ($pendingFeedbackData)
+                                    <a href="{{ $pendingFeedbackData['redirect_url'] }}"
+                                        class="topbar-notification-item">
+                                        <div class="topbar-notification-icon"><i data-feather="heart"></i></div>
+                                        <div class="topbar-notification-content">
+                                            <div class="topbar-notification-title">{{ $pendingFeedbackData['title'] }}</div>
+                                            <div class="topbar-notification-text">{{ $pendingFeedbackData['text'] }}</div>
+                                            <div class="topbar-notification-action">
+                                                {{ $pendingFeedbackData['action_label'] }} <i data-feather="arrow-right"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                @endif
+                            @else
+                                <div class="topbar-notification-empty">
+                                    <div class="topbar-notification-empty-icon"><i data-feather="bell"></i></div>
+                                    <span>Tidak ada notifikasi baru</span>
+                                </div>
                             @endif
                         </div>
-                        @if ($notificationCount > 0)
-                            @if (auth()->user()->isMahasiswa() && !auth()->user()->hasCompleteProfile())
-                                <a href="{{ route('profile.edit') }}" class="topbar-notification-item">
-                                    <div class="topbar-notification-icon"><i data-feather="user"></i></div>
-                                    <div class="topbar-notification-content">
-                                        <div class="topbar-notification-title">Lengkapi profilmu</div>
-                                        <div class="topbar-notification-text">Lengkapi data profilmu agar kamu dapat
-                                            menggunakan seluruh fitur Tenangin.</div>
-                                        <div class="topbar-notification-action">Lengkapi Profil <i
-                                                data-feather="arrow-right"></i></div>
-                                    </div>
-                                </a>
-                            @endif
-                            @if (auth()->user()->needsPasswordSetup())
-                                <a href="{{ route('profile.edit', ['action' => 'password']) }}"
-                                    class="topbar-notification-item">
-                                    <div class="topbar-notification-icon"><i data-feather="key"></i></div>
-                                    <div class="topbar-notification-content">
-                                        <div class="topbar-notification-title">Atur password akunmu</div>
-                                        <div class="topbar-notification-text">Biar aksesnya makin gampang, tambahkan
-                                            password yuk! Nanti kamu jadi punya alternatif untuk login pakai email.
-                                        </div>
-                                        <div class="topbar-notification-action">Atur Password <i
-                                                data-feather="arrow-right"></i></div>
-                                    </div>
-                                </a>
-                            @endif
-                            @if ($pendingFeedbackData)
-                                <a href="{{ $pendingFeedbackData['redirect_url'] }}"
-                                    class="topbar-notification-item">
-                                    <div class="topbar-notification-icon"><i data-feather="heart"></i></div>
-                                    <div class="topbar-notification-content">
-                                        <div class="topbar-notification-title">{{ $pendingFeedbackData['title'] }}</div>
-                                        <div class="topbar-notification-text">{{ $pendingFeedbackData['text'] }}</div>
-                                        <div class="topbar-notification-action">
-                                            {{ $pendingFeedbackData['action_label'] }} <i data-feather="arrow-right"></i>
-                                        </div>
-                                    </div>
-                                </a>
-                            @endif
-                        @else
-                            <div class="topbar-notification-empty">
-                                <div class="topbar-notification-empty-icon"><i data-feather="bell"></i></div>
-                                <span>Tidak ada notifikasi baru</span>
-                            </div>
-                        @endif
-                    </div>
-                </li>
+                    </li>
+                @endif
 
                 <!-- MENU 2: DARK MODE -->
                 <li class="nav-item">
