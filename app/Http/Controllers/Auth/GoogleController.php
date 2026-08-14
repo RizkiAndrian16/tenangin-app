@@ -12,19 +12,32 @@ class GoogleController extends Controller
 {
     public function redirect(): RedirectResponse
     {
-        return Socialite::driver('google')->redirect();
+        /** @var \Laravel\Socialite\Two\GoogleProvider $driver */
+        $driver = Socialite::driver('google');
+
+        return $driver->stateless()->redirect();
     }
 
     public function callback(): RedirectResponse
     {
-        $googleUser = Socialite::driver('google')->user();
+        /** @var \Laravel\Socialite\Two\GoogleProvider $driver */
+        $driver = Socialite::driver('google');
 
-        $user = User::where('google_id', $googleUser->getId())
+        $googleUser = $driver->stateless()->user();
+
+        // Cari user termasuk yang pernah di-soft-delete (withTrashed)
+        $user = User::withTrashed()
+            ->where('google_id', $googleUser->getId())
             ->orWhere('email', $googleUser->getEmail())
             ->first();
 
         if ($user) {
-            if (! $user->google_id) {
+            // Jika user pernah dihapus (soft delete), kembalikan (restore) akunnya
+            if ($user->trashed()) {
+                $user->restore();
+            }
+
+            if (!$user->google_id) {
                 $user->forceFill(['google_id' => $googleUser->getId()])->save();
             }
         } else {

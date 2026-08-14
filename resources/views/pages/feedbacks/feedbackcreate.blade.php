@@ -13,8 +13,8 @@
 
                     {{-- HEADER MODEL PSS --}}
                     <div class="text-center border-bottom pb-4 mb-4">
-                        <h2 class="fw-bold mb-2">Evaluasi Aktivitas</h2>
-                        <p class="text-muted mb-0">Bagaimana perasaan Anda setelah melakukan aktivitas ini? Berikan evaluasi singkat di bawah ini.</p>
+                        <h2 class="fw-bold mb-2">Feedback dan Evaluasi Aktivitas</h2>
+                        <p class="text-muted mb-0">Bagaimana perasaan Anda setelah melakukan aktivitas ini? Berikan feedback dan evaluasi singkat di bawah ini.</p>
                     </div>
 
                     {{-- BLOK ERROR STANDAR --}}

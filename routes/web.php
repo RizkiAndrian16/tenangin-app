@@ -30,47 +30,43 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/profile/university', [ProfileController::class, 'updateUniversity'])->name('profile.university.update');
     Route::put('/profile/photo', [ProfileController::class, 'updatePhoto'])->name('profile.photo.update');
 
+
     // ======================================
-    // Routes Requiring Complete Profile
+    // PSS ASSESSMENTS
     // ======================================
-    Route::middleware(['profile.complete'])->group(function () {
+    Route::get('/pss-assessments', [PssAssessmentController::class, 'index'])->name('pss-assessments.index');
 
-        // ======================================
-        // PSS ASSESSMENTS
-        // ======================================
-        Route::get('/pss-assessments', [PssAssessmentController::class, 'index'])->name('pss-assessments.index');
+    // ADMIN
+    Route::get('/pss-assessments/export/pdf', [PssAssessmentController::class, 'exportPdf'])->middleware('role:admin')->name('pss-assessments.export.pdf');
 
-        // ADMIN
-        Route::get('/pss-assessments/export/pdf', [PssAssessmentController::class, 'exportPdf'])->middleware('role:admin')->name('pss-assessments.export.pdf');
+    Route::get('/pss-assessments/create', [PssAssessmentController::class, 'create'])->name('pss-assessments.create');
+    Route::post('/pss-assessments', [PssAssessmentController::class, 'store'])->name('pss-assessments.store');
+    Route::get('/pss-assessments/{pssAssessment}', [PssAssessmentController::class, 'show'])->name('pss-assessments.show');
+    Route::delete('/pss-assessments', [PssAssessmentController::class, 'bulkDestroy'])->name('pss-assessments.bulk-destroy');
+    Route::delete('/pss-assessments/{pssAssessment}', [PssAssessmentController::class, 'destroy'])->name('pss-assessments.destroy');
 
-        Route::get('/pss-assessments/create', [PssAssessmentController::class, 'create'])->name('pss-assessments.create');
-        Route::post('/pss-assessments', [PssAssessmentController::class, 'store'])->name('pss-assessments.store');
-        Route::get('/pss-assessments/{pssAssessment}', [PssAssessmentController::class, 'show'])->name('pss-assessments.show');
-        Route::delete('/pss-assessments', [PssAssessmentController::class, 'bulkDestroy'])->name('pss-assessments.bulk-destroy');
-        Route::delete('/pss-assessments/{pssAssessment}', [PssAssessmentController::class, 'destroy'])->name('pss-assessments.destroy');
+    // ======================================
+    // RECOMMENDATIONS
+    // ======================================
+    Route::get('/recommendations/{pssAssessment}', [RecommendationController::class, 'index'])->name('recommendations.index');
+    Route::post('/recommendations/{pssAssessment}/preferences', [RecommendationController::class, 'processPreferences'])->name('recommendations.preferences');
+    Route::get('/recommendations/{pssAssessment}/final', [RecommendationController::class, 'generateFinalRecommendation'])->name('recommendations.final');
+    Route::get('/recommendations-history', [RecommendationController::class, 'history'])->name('recommendations.history');
+    Route::get('/recommendations/history/{recommendation}/detail', [RecommendationController::class, 'showHistory'])->name('recommendations.history.show');
+    Route::delete('/recommendations/bulk-destroy', [RecommendationController::class, 'bulkDestroy'])->name('recommendations.bulk-destroy');
 
-        // ======================================
-        // RECOMMENDATIONS
-        // ======================================
-        Route::get('/recommendations/{pssAssessment}', [RecommendationController::class, 'index'])->name('recommendations.index');
-        Route::post('/recommendations/{pssAssessment}/preferences', [RecommendationController::class, 'processPreferences'])->name('recommendations.preferences');
-        Route::get('/recommendations/{pssAssessment}/final', [RecommendationController::class, 'generateFinalRecommendation'])->name('recommendations.final');
-        Route::get('/recommendations-history', [RecommendationController::class, 'history'])->name('recommendations.history');
-        Route::get('/recommendations/history/{recommendation}/detail', [RecommendationController::class, 'showHistory'])->name('recommendations.history.show');
-        Route::delete('/recommendations/bulk-destroy', [RecommendationController::class, 'bulkDestroy'])->name('recommendations.bulk-destroy');
+    // ======================================
+    // FEEDBACK & MODE FOKUS
+    // ======================================
+    Route::get('/feedbacks/{recommendationItem}/focus', [FeedbackController::class, 'focus'])->name('feedbacks.focus');
+    Route::post('/feedbacks/{recommendationItem}', [FeedbackController::class, 'store'])->name('feedbacks.store');
+    Route::get('/feedbacks/create/{recommendationItem}', [FeedbackController::class, 'create'])->name('feedbacks.create');
+    Route::get('/feedbacks', [FeedbackController::class, 'index'])->name('feedbacks.index');
+    Route::get('/feedbacks/export/pdf', [FeedbackController::class, 'exportPdf'])->middleware('role:admin')->name('feedbacks.export.pdf');
+    Route::get('/feedbacks/detail/{feedback}', [FeedbackController::class, 'show'])->name('feedbacks.show');
+    Route::delete('/feedbacks/bulk-destroy', [FeedbackController::class, 'bulkDestroy'])->name('feedbacks.bulk-destroy');
+    Route::delete('/feedbacks/{feedback}', [FeedbackController::class, 'destroy'])->name('feedbacks.destroy');
 
-        // ======================================
-        // FEEDBACK & MODE FOKUS
-        // ======================================
-        Route::get('/feedbacks/{recommendationItem}/focus', [FeedbackController::class, 'focus'])->name('feedbacks.focus');
-        Route::post('/feedbacks/{recommendationItem}', [FeedbackController::class, 'store'])->name('feedbacks.store');
-        Route::get('/feedbacks/create/{recommendationItem}', [FeedbackController::class, 'create'])->name('feedbacks.create');
-        Route::get('/feedbacks', [FeedbackController::class, 'index'])->name('feedbacks.index');
-        Route::get('/feedbacks/export/pdf', [FeedbackController::class, 'exportPdf'])->middleware('role:admin')->name('feedbacks.export.pdf');
-        Route::get('/feedbacks/detail/{feedback}', [FeedbackController::class, 'show'])->name('feedbacks.show');
-        Route::delete('/feedbacks/bulk-destroy', [FeedbackController::class, 'bulkDestroy'])->name('feedbacks.bulk-destroy');
-        Route::delete('/feedbacks/{feedback}', [FeedbackController::class, 'destroy'])->name('feedbacks.destroy');
-    });
 
 
     // ==========================================================

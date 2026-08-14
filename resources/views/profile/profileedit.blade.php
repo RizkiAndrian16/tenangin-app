@@ -57,23 +57,30 @@
     <div class="card border-0 shadow-sm rounded-4">
         <div class="card-body p-4">
             <div class="row g-3">
-                {{-- CARD 1: STATUS KELENGKAPAN PROFIL - KHUSUS MAHASISWA --}}
+                {{-- CARD 1: STATUS PROFIL - KHUSUS MAHASISWA --}}
                 @if (auth()->user()->isMahasiswa())
+                    @php
+                        $u = auth()->user();
+                        $profileFilled = filled($u->gender)
+                            && !is_null($u->age)
+                            && filled($u->university)
+                            && filled($u->major)
+                            && !is_null($u->semester)
+                            && filled($u->residence_status);
+                    @endphp
                     <div class="col-12">
-
-                        @if (auth()->user()->hasCompleteProfile())
+                        @if ($profileFilled)
                             {{-- PROFIL SUDAH LENGKAP --}}
                             <div class="profile-alert-card profile-complete-card rounded-4 p-3 shadow-sm w-100">
                                 <div class="d-flex gap-3 align-items-start">
                                     <div class="icon-box-soft profile-complete-icon flex-shrink-0">
                                         <i data-feather="check-circle"></i>
                                     </div>
-
                                     <div>
                                         <h6 class="fw-bold mb-2">Profil Lengkap</h6>
                                         <p class="mb-0 fs-6">
-                                            Informasi profil Anda sudah lengkap dan siap digunakan untuk mendukung
-                                            pengalaman penggunaan Tenangin.
+                                            Informasi profilmu sudah lengkap. Sistem siap memberikan
+                                            pengalaman rekomendasi yang lebih personal untukmu.
                                         </p>
                                     </div>
                                 </div>
@@ -85,12 +92,11 @@
                                     <div class="icon-box-soft profile-incomplete-icon flex-shrink-0">
                                         <i data-feather="info"></i>
                                     </div>
-
                                     <div>
-                                        <h6 class="fw-bold mb-2">Informasi Penting</h6>
+                                        <h6 class="fw-bold mb-2">Profil Belum Lengkap</h6>
                                         <p class="mb-0 fs-6">
-                                            Lengkapi profil Anda agar sistem dapat mengenal lebih baik dan memberikan
-                                            pengalaman penggunaan yang lebih nyaman.
+                                            Lengkapi informasi profil agar sistem dapat mengenalmu lebih baik
+                                            dan memberikan pengalaman rekomendasi yang lebih personal.
                                         </p>
                                     </div>
                                 </div>
@@ -98,6 +104,7 @@
                         @endif
                     </div>
                 @endif
+
 
                 {{-- CARD 2: PROFILE HERO --}}
                 <div class="col-12">

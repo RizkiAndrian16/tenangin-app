@@ -3,10 +3,6 @@
     $pendingFeedbackData = null;
 
     if (auth()->user()->isMahasiswa()) {
-        if (!auth()->user()->hasCompleteProfile()) {
-            $notificationCount++;
-        }
-
         if (auth()->user()->needsPasswordSetup()) {
             $notificationCount++;
         }
@@ -71,18 +67,6 @@
                                 @endif
                             </div>
                             @if ($notificationCount > 0)
-                                @if (auth()->user()->isMahasiswa() && !auth()->user()->hasCompleteProfile())
-                                    <a href="{{ route('profile.edit') }}" class="topbar-notification-item">
-                                        <div class="topbar-notification-icon"><i data-feather="user"></i></div>
-                                        <div class="topbar-notification-content">
-                                            <div class="topbar-notification-title">Lengkapi profilmu</div>
-                                            <div class="topbar-notification-text">Lengkapi data profilmu agar kamu dapat
-                                                menggunakan seluruh fitur Tenangin.</div>
-                                            <div class="topbar-notification-action">Lengkapi Profil <i
-                                                    data-feather="arrow-right"></i></div>
-                                        </div>
-                                    </a>
-                                @endif
                                 @if (auth()->user()->needsPasswordSetup())
                                     <a href="{{ route('profile.edit', ['action' => 'password']) }}"
                                         class="topbar-notification-item">

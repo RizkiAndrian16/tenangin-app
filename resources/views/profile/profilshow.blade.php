@@ -28,6 +28,7 @@
                 <div class="col-md-6">
                     <label class="form-label fw-semibold">Jenis Kelamin</label>
                     <div class="d-flex gap-3 mt-2">
+                        <input type="hidden" name="gender" value="">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="gender" id="genderMale"
                                 value="Laki-Laki" {{ auth()->user()->gender === 'Laki-Laki' ? 'checked' : '' }}>
@@ -355,3 +356,24 @@
         </form>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const genderRadios = document.querySelectorAll('input[name="gender"][type="radio"]');
+    genderRadios.forEach(radio => {
+        if (radio.checked) {
+            radio.dataset.wasChecked = 'true';
+        }
+        radio.addEventListener('click', function() {
+            if (this.dataset.wasChecked === 'true') {
+                this.checked = false;
+                this.dataset.wasChecked = 'false';
+                genderRadios.forEach(r => r.dataset.wasChecked = 'false');
+            } else {
+                genderRadios.forEach(r => r.dataset.wasChecked = 'false');
+                this.dataset.wasChecked = 'true';
+            }
+        });
+    });
+});
+</script>

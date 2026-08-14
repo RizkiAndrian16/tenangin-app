@@ -31,12 +31,29 @@
     right: 20px;
 }
 
-.dashboard-link-success-text { color: #16A34A; }
-.dashboard-link-warning-text { color: #D97706; }
-.dashboard-link-teal-text    { color: #0D9488; }
-.dashboard-link-primary-text { color: #0284C7; }
-.dashboard-link-purple-text  { color: #7C3AED; }
-.dashboard-link-danger-text  { color: #DC2626; }
+.dashboard-link-success-text {
+    color: #16A34A;
+}
+
+.dashboard-link-warning-text {
+    color: #D97706;
+}
+
+.dashboard-link-teal-text {
+    color: #0D9488;
+}
+
+.dashboard-link-primary-text {
+    color: #0284C7;
+}
+
+.dashboard-link-purple-text {
+    color: #7C3AED;
+}
+
+.dashboard-link-danger-text {
+    color: #DC2626;
+}
 
 /* ======================================
    DASHBOARD - STAT ICON BOX
@@ -103,9 +120,17 @@
     border-radius: 50%;
 }
 
-.dashboard-legend-low    { background: #20c997; }
-.dashboard-legend-medium { background: #fd7e14; }
-.dashboard-legend-high   { background: #dc3545; }
+.dashboard-legend-low {
+    background: #20c997;
+}
+
+.dashboard-legend-medium {
+    background: #fd7e14;
+}
+
+.dashboard-legend-high {
+    background: #dc3545;
+}
 
 /* ======================================
    DASHBOARD - SCORE CIRCLE MAHASISWA (110px)
