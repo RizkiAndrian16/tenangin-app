@@ -338,6 +338,14 @@ class RecommendationController extends Controller
                             ->orWhere('preferred_intensity', 'like', "%{$search}%");
                     })
                     ->orWhere('created_at', 'like', "%{$search}%");
+
+                // Admin bisa mencari berdasarkan nama mahasiswa
+                if (Auth::user()->role === 'admin') {
+                    $q->orWhereHas('user', function ($userQuery) use ($search) {
+                        $userQuery->where('name', 'like', "%{$search}%");
+                    });
+                }
+
                 // Jika mengetik nama hari, cari berdasarkan nama harinya
                 if ($englishDay) {
                     $q->orWhereRaw('DAYNAME(created_at) = ?', [$englishDay]);

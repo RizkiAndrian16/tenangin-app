@@ -24,7 +24,7 @@
 
                 <div class="position-relative">
                     <h4 class="fw-bold text-white mb-2 mb-lg-1">
-                        Selamat Datang, {{ Auth::user()->name }}! 👋
+                        Halo, {{ Auth::user()->name }}! 👋
                     </h4>
                     <p class="text-white mb-0 dashboard-hero-subtitle">
                         Pantau secara menyeluruh ringkasan data pengguna, hasil PSS-10, katalog aktivitas, riwayat & aturan rekomendasi, serta feedback.
@@ -347,179 +347,258 @@
         </script>
     @else
         {{-- =======================================================
-             DASHBOARD MAHASISWA
+             DASHBOARD MAHASISWA (REDESIGNED - CALM & EMPATHETIC)
         ======================================================== --}}
 
-        {{-- HEADER --}}
+        {{-- =====================================================
+             SECTION 1: HERO BANNER TENANG
+        ====================================================== --}}
         <div class="mb-4">
-            <div class="position-relative overflow-hidden rounded-4 shadow-sm p-4 p-md-5 p-lg-3 dashboard-hero-banner">
+            <div class="student-hero-banner position-relative overflow-hidden rounded-4 shadow-sm">
 
-                <div class="position-absolute top-0 end-0 rounded-circle dashboard-hero-circle-top"></div>
-                <div class="position-absolute bottom-0 end-0 rounded-circle dashboard-hero-circle-bottom"></div>
+                {{-- Blob dekoratif SVG --}}
+                <div class="student-hero-blob student-hero-blob-1" aria-hidden="true"></div>
+                <div class="student-hero-blob student-hero-blob-2" aria-hidden="true"></div>
 
-                <div class="position-relative">
-                    <h4 class="fw-bold text-white mb-2 mb-lg-1">
-                        Selamat Datang, {{ Auth::user()->name }}! 👋
-                    </h4>
-                    <p class="text-white mb-0 dashboard-hero-subtitle">
-                        Pantau tingkat stres Anda dengan melakukan assessment PSS-10 dan lihat perkembangan relaksasi
-                        Anda secara berkala.
+                {{-- Konten utama --}}
+                <div class="student-hero-content position-relative">
+
+                    {{-- Sapaan empatik --}}
+                    <div class="student-hero-greeting mb-1">
+                        <h4 class="fw-bold student-hero-title mb-0">
+                            Halo, {{ Auth::user()->name }}! 👋
+                        </h4>
+                    </div>
+                    <p class="student-hero-subtitle mb-4">
+                        Ambil nafas dalam-dalam. Mari temukan kedamaian kecil untuk dirimu hari ini.
                     </p>
+
+                    {{-- Daily Calming Quote --}}
+                    <div class="student-daily-quote">
+                        <i data-feather="feather" class="student-quote-icon"></i>
+                        <p id="dailyQuoteText" class="student-quote-text mb-0">"Pikiranmu berhak mendapatkan waktu untuk tenang."</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-
-
-        {{-- =======================================================
-             BAGIAN 1: HERO CTA (Mulai Assessment)
-        ======================================================== --}}
-        <div class="row g-4 mb-1">
+        {{-- =====================================================
+             SECTION 2: PRIMARY ACTION — CEK KONDISI
+        ====================================================== --}}
+        <div class="row g-4 mb-4">
             <div class="col-12">
-                <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
-                    <div
-                        class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 p-4 rounded-4 hero-cta-card">
+                <div class="student-cta-card rounded-4 shadow-sm">
+                    <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-4">
 
-                        <div class="d-flex align-items-center gap-3">
-                            <div
-                                class="bg-success d-flex align-items-center justify-content-center flex-shrink-0 rounded-4 shadow-sm icon-box-60">
-                                <i data-feather="activity" class="icon-26 text-white"></i>
+                        {{-- Grouping Icon & Text so they stay side-by-side on mobile --}}
+                        <div class="d-flex align-items-center gap-3 flex-grow-1">
+                            {{-- Ilustrasi / Ikon --}}
+                            <div class="student-cta-icon-wrap flex-shrink-0">
+                                <div class="student-cta-icon-circle">
+                                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                                    </svg>
+                                </div>
                             </div>
-                            <div>
-                                <h5 class="fw-bold mb-1 text-dark">Mulai PSS-10 Assessment</h5>
-                                <p class="text-muted small mb-0">
-                                    Lakukan evaluasi untuk mengetahui tingkat stres Anda hari ini dan dapatkan
-                                    rekomendasi aktivitas.
+
+                            {{-- Teks --}}
+                            <div class="text-start">
+                                <h5 class="fw-bold student-cta-title mb-1">Yuk, cari tahu tingkat stresmu</h5>
+                                <p class="student-cta-subtitle mb-0">
+                                    Luangkan waktu sebentar untuk dirimu sendiri. Jawab sesuai kata hatimu, ya.
                                 </p>
                             </div>
                         </div>
 
+                        {{-- Tombol --}}
                         <a href="{{ route('pss-assessments.create') }}"
-                            class="btn btn-success rounded-pill px-4 py-2 fw-medium d-flex align-items-center justify-content-center flex-shrink-0 text-white text-nowrap">
-                            Mulai Tes Sekarang
-                            <i data-feather="chevron-right" class="ms-1 icon-18"></i>
+                            id="btn-cek-kondisi"
+                            class="student-cta-btn d-flex align-items-center gap-2 text-decoration-none flex-shrink-0">
+                            Cari Tahu Sekarang
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
 
-        {{-- =======================================================
-             BAGIAN 2 & 3: STATISTIK, STRES TERAKHIR, & PREFERENSI
-        ======================================================== --}}
-        <div class="row g-4 mb-4">
+        {{-- =====================================================
+             SECTION 3: QUICK RELIEF + STATUS KONDISI
+        ====================================================== --}}
+        <div class="student-grid-container d-flex flex-column gap-2 gap-lg-4 mb-2 mb-lg-4">
 
-            {{-- KOLOM 1: TINGKAT STRES TERAKHIR (Dipindah ke Kiri - Prioritas 1) --}}
-            <div class="col-12 col-lg-4">
+            {{-- KONDISIMU SAAT INI (order-1 on mobile) --}}
+            <div class="grid-kondisi order-1">
                 <div class="card border-0 shadow-sm rounded-4 h-100">
-                    <div
-                        class="card-body p-4 d-flex flex-column justify-content-center align-items-center text-center h-100">
+                    <div class="card-body p-4 d-flex flex-column">
 
-                        <div
-                            class="score-circle mx-auto mb-4 dashboard-score-circle {{ $lastAssessment ? 'score-circle-' . strtolower($lastAssessment->stress_level) : 'dashboard-score-circle-empty' }}">
-                            <div class="score-circle-inner">
-                                <span
-                                    class="score-number dashboard-score-number {{ $lastAssessment ? 'score-number-' . strtolower($lastAssessment->stress_level) : 'dashboard-score-number-empty' }}">
-                                    {{ $stressScore }}
-                                </span>
-                                <span
-                                    class="score-max dashboard-score-max {{ !$lastAssessment ? 'dashboard-score-max-empty' : '' }}">/40</span>
+                        <div class="d-flex align-items-center gap-2 mb-4">
+                            <div class="student-widget-icon-wrap">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                                </svg>
                             </div>
+                            <h6 class="fw-bold mb-0 student-widget-title">Kondisimu (Terakhir Dicatat)</h6>
                         </div>
 
-                        <span class="text-muted small mb-3">Tingkat Stres Terakhir</span>
-
-                        @if (!$lastAssessment)
-                            <span class="badge badge-soft-secondary rounded-pill mb-3">Belum Ada</span>
-                        @elseif ($lastAssessment->stress_level == 'Rendah')
-                            <span class="badge badge-soft-success rounded-pill px-3 py-1 fw-medium mb-3">😌 Rendah</span>
-                        @elseif ($lastAssessment->stress_level == 'Sedang')
-                            <span class="badge badge-soft-warning rounded-pill px-3 py-1 fw-medium mb-3">😐 Sedang</span>
-                        @else
-                            <span class="badge badge-soft-danger rounded-pill px-3 py-1 fw-medium mb-3">😟 Tinggi</span>
-                        @endif
-
-                        <span class="text-muted dashboard-date-text">
-                            @if ($lastAssessment)
-                                {{ $lastAssessment->created_at->format('d M Y') }}
+                        <div class="flex-grow-1 d-flex flex-column justify-content-center">
+                            @if (!$lastAssessment)
+                                {{-- Belum ada data --}}
+                                <div class="student-mood-empty text-center py-2">
+                                    <div class="student-mood-empty-emoji mb-2">🌱</div>
+                                    <p class="fw-semibold student-mood-empty-title mb-1">Belum ada data kondisi</p>
+                                    <p class="text-muted small mb-0">
+                                        Cari tahu tingkat stresmu sekarang agar kamu bisa memantau kondisimu di sini.
+                                    </p>
+                                </div>
                             @else
-                                Anda belum melakukan tes
+                                {{-- Ada data assessment --}}
+                                <div class="student-mood-display">
+
+                                    {{-- Mood Bar --}}
+                                    <div class="student-mood-bar-wrap mb-4">
+                                        <div class="student-mood-bar-track">
+                                            <div class="student-mood-bar-fill student-mood-fill-{{ strtolower($lastAssessment->stress_level) }}"
+                                                style="width: {{ round(($stressScore / 40) * 100) }}%">
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between mt-1">
+                                            <small class="student-mood-bar-label">Tenang</small>
+                                            <small class="student-mood-bar-label">Sangat Stres</small>
+                                        </div>
+                                    </div>
+
+                                    {{-- Mood Label & Deskripsi --}}
+                                    @if ($lastAssessment->stress_level == 'Rendah')
+                                        <div class="student-mood-badge student-mood-badge-low mb-3">
+                                            😌 &nbsp;Kondisimu sedang &nbsp;<strong>baik</strong>
+                                        </div>
+                                        <p class="student-mood-desc text-muted small mb-0">
+                                            Kondisimu sudah cukup baik hari ini. Pertahankan ya! Tetap jaga rutinitas relaksasimu agar pikiran selalu tenang dan produktif.
+                                        </p>
+                                    @elseif ($lastAssessment->stress_level == 'Sedang')
+                                        <div class="student-mood-badge student-mood-badge-medium mb-3">
+                                            😐 &nbsp;Kamu sedang &nbsp;<strong>sedikit lelah</strong>
+                                        </div>
+                                        <p class="student-mood-desc text-muted small mb-0">
+                                            Tidak apa-apa, wajar kok merasa lelah. Coba ambil jeda sejenak dan lakukan aktivitas relaksasi ringan agar pikiran kembali segar.
+                                        </p>
+                                    @else
+                                        <div class="student-mood-badge student-mood-badge-high mb-3">
+                                            😟 &nbsp;Kamu sedang &nbsp;<strong>butuh istirahat</strong>
+                                        </div>
+                                        <p class="student-mood-desc text-muted small mb-0">
+                                            Tarik napas dalam-dalam, kami di sini untukmu. Istirahatkan pikiranmu sejenak, lalu cobalah aktivitas relaksasi yang kami rekomendasikan.
+                                        </p>
+                                    @endif
+                                </div>
                             @endif
-                        </span>
-
-                    </div>
-                </div>
-            </div>
-
-            {{-- KOLOM 2: KARAKTERISTIK RELAKSASI AKTIF (Dipindah ke Tengah - Prioritas 2) --}}
-            <div class="col-12 col-lg-4">
-                <div class="card border-0 shadow-sm rounded-4 h-100">
-                    <div class="card-body p-4 d-flex flex-column justify-content-center">
-
-                        <div class="d-flex align-items-center gap-3 mb-4">
-                            <div class="icon-box-soft icon-box-success rounded-3 flex-shrink-0">
-                                <i data-feather="sliders"></i>
-                            </div>
-                            <h6 class="fw-bold mb-0 text-dark">Preferensi Aktivitas Relaksasi</h6>
-                        </div>
-
-                        <div class="d-flex flex-column gap-3">
-                            <div
-                                class="d-flex justify-content-between align-items-center rounded-3 p-3 border-soft-success shadow-sm bg-white">
-                                <span class="text-muted fw-medium small">Jenis Aktivitas</span>
-                                <span
-                                    class="text-dark fw-bold small text-end">{{ $activePreference->preferred_activity_type ?? '-' }}</span>
-                            </div>
-                            <div
-                                class="d-flex justify-content-between align-items-center rounded-3 p-3 border-soft-success shadow-sm bg-white">
-                                <span class="text-muted fw-medium small">Durasi Aktivitas</span>
-                                <span
-                                    class="text-dark fw-bold small text-end">{{ $activePreference->preferred_duration ?? '-' }}</span>
-                            </div>
-                            <div
-                                class="d-flex justify-content-between align-items-center rounded-3 p-3 border-soft-success shadow-sm bg-white">
-                                <span class="text-muted fw-medium small">Intensitas Aktivitas</span>
-                                <span
-                                    class="text-dark fw-bold small text-end">{{ $activePreference->preferred_intensity ?? '-' }}</span>
-                            </div>
                         </div>
 
                     </div>
                 </div>
             </div>
 
-            {{-- KOLOM 3: STATISTIK (Dipindah ke Kanan - Prioritas 3) --}}
-            <div class="col-12 col-lg-4">
+            {{-- TINGKAT STRES TERAKHIR (order-2 on mobile) --}}
+            <div class="grid-tingkat-stres order-2">
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body p-4 d-flex flex-column align-items-center text-center">
+
+                        {{-- Judul Widget --}}
+                        <div class="d-flex align-items-center gap-2 mb-4 align-self-start">
+                            <div class="student-widget-icon-wrap">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 8v4l3 3"/>
+                                </svg>
+                            </div>
+                            <h6 class="fw-bold mb-0 student-widget-title">
+                                Tingkat Stres Terakhir
+                            </h6>
+                        </div>
+
+                        {{-- Area Bulatan Skor + Kaki (Badge & Tanggal) --}}
+                        <div class="d-flex flex-column justify-content-center align-items-center flex-grow-1 w-100">
+                            
+                            {{-- Bulatan Skor --}}
+                            <div class="score-circle mx-auto mb-4 dashboard-score-circle {{ $lastAssessment ? 'score-circle-' . strtolower($lastAssessment->stress_level) : 'dashboard-score-circle-empty' }}">
+                                <div class="score-circle-inner">
+                                    <span class="score-number dashboard-score-number {{ $lastAssessment ? 'score-number-' . strtolower($lastAssessment->stress_level) : 'dashboard-score-number-empty' }}">
+                                        {{ $stressScore }}
+                                    </span>
+                                    <span class="score-max dashboard-score-max {{ !$lastAssessment ? 'dashboard-score-max-empty' : '' }}">/40</span>
+                                </div>
+                            </div>
+
+                            <span class="text-muted small mt-2 mb-3">Tingkat Stres Terakhir</span>
+
+                            {{-- Kaki Bulatan: Lencana Status (Badge) --}}
+                            @if (!$lastAssessment)
+                                <span class="badge badge-soft-secondary rounded-pill px-3 py-1.5 fw-medium mb-3">Belum Ada</span>
+                            @else
+                                @if ($lastAssessment->stress_level == 'Rendah')
+                                    <span class="badge badge-soft-success rounded-pill px-3 py-1.5 fw-medium mb-3">😌 Rendah</span>
+                                @elseif ($lastAssessment->stress_level == 'Sedang')
+                                    <span class="badge badge-soft-warning rounded-pill px-3 py-1.5 fw-medium mb-3">😐 Sedang</span>
+                                @else
+                                    <span class="badge badge-soft-danger rounded-pill px-3 py-1.5 fw-medium mb-3">😟 Tinggi</span>
+                                @endif
+                            @endif
+
+                            {{-- Kaki Bulatan: Tanggal Tes --}}
+                            <div class="d-flex align-items-center gap-2 student-mood-date">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                                </svg>
+                                <span class="small">
+                                    @if ($lastAssessment)
+                                        Terakhir diisi: {{ $lastAssessment->created_at->locale('id')->translatedFormat('d F Y') }}
+                                    @else
+                                        Belum ada riwayat
+                                    @endif
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            {{-- PREFERENSI RELAKSASI (order-3 on mobile) --}}
+            <div class="grid-preferensi order-3">
                 <div class="card border-0 shadow-sm rounded-4 h-100">
-                    <div class="card-body p-4 d-flex flex-column justify-content-center h-100">
+                    <div class="card-body p-4">
 
-                        <div class="d-flex align-items-center pb-3 mb-3 border-bottom">
-                            <div class="d-flex flex-column">
-                                <h5 class="fw-bold mb-0 text-dark">{{ $totalAssessments }}</h5>
-                                <span class="text-muted small">Total Assessment</span>
+                        <div class="d-flex align-items-center gap-2 mb-4">
+                            <div class="student-widget-icon-wrap">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/>
+                                </svg>
                             </div>
-                            <div class="icon-box-soft icon-box-success rounded-circle flex-shrink-0 ms-auto icon-48">
-                                <i data-feather="clipboard" class="icon-20"></i>
-                            </div>
+                            <h6 class="fw-bold mb-0 student-widget-title">Preferensi Aktivitas Relaksasimu</h6>
                         </div>
 
-                        <div class="d-flex align-items-center pb-3 mb-3 border-bottom">
-                            <div class="d-flex flex-column">
-                                <h5 class="fw-bold mb-0 text-dark">{{ $totalRecommendations }}</h5>
-                                <span class="text-muted small">Total Rekomendasi</span>
+                        <div class="row g-3">
+                            <div class="col-12 col-md-4">
+                                <div class="student-pref-item">
+                                    <span class="student-pref-label">Jenis Aktivitas</span>
+                                    <span class="student-pref-value">{{ $activePreference->preferred_activity_type ?? '—' }}</span>
+                                </div>
                             </div>
-                            <div class="icon-box-soft icon-box-success rounded-circle flex-shrink-0 ms-auto icon-48">
-                                <i data-feather="activity" class="icon-20"></i>
+                            <div class="col-12 col-md-4">
+                                <div class="student-pref-item">
+                                    <span class="student-pref-label">Durasi</span>
+                                    <span class="student-pref-value">{{ $activePreference->preferred_duration ?? '—' }}</span>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="d-flex align-items-center">
-                            <div class="d-flex flex-column">
-                                <h5 class="fw-bold mb-0 text-dark">{{ $totalFeedbacks }}</h5>
-                                <span class="text-muted small">Feedback</span>
-                            </div>
-                            <div class="icon-box-soft icon-box-success rounded-circle flex-shrink-0 ms-auto icon-48">
-                                <i data-feather="message-square" class="icon-20"></i>
+                            <div class="col-12 col-md-4">
+                                <div class="student-pref-item">
+                                    <span class="student-pref-label">Intensitas</span>
+                                    <span class="student-pref-value">{{ $activePreference->preferred_intensity ?? '—' }}</span>
+                                </div>
                             </div>
                         </div>
 
@@ -529,42 +608,77 @@
 
         </div>
 
-        {{-- =======================================================
-             BAGIAN 4: GRAFIK (GAYA MODERN TENANGIN)
-        ======================================================== --}}
+        {{-- =====================================================
+             SECTION 5: PERJALANANMU (GRAFIK / EMPTY STATE)
+        ====================================================== --}}
         <div class="row g-4">
             <div class="col-12">
                 <div class="card border-0 shadow-sm rounded-4 w-100">
                     <div class="card-body p-4">
-                        <div class="d-flex align-items-center mb-4">
-                            <div class="icon-box-soft icon-box-success me-3">
-                                <i data-feather="trending-up"></i>
+
+                        <div class="d-flex align-items-center gap-2 mb-4">
+                            <div class="student-widget-icon-wrap">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                                </svg>
                             </div>
-                            <h6 class="fw-bold mb-0">Grafik Perubahan Tingkat Stres</h6>
+                            <h6 class="fw-bold mb-0 student-widget-title">Grafik Perubahan Tingkat Stres</h6>
                         </div>
 
-                        {{-- KANVAS SELALU DI-RENDER --}}
-                        <div class="position-relative">
-                            <div class="chart chart-sm">
-                                <canvas id="pssTrendChart"></canvas>
-                            </div>
-                        </div>
+                        @php
+                            $hasChartData = isset($chartData) && isset($labels) && count($labels) > 0;
+                        @endphp
 
-                        {{-- KETERANGAN WARNA SELALU TAMPIL --}}
-                        <div class="d-flex justify-content-center flex-wrap gap-4 mt-4">
-                            <div class="d-flex align-items-center gap-2">
-                                <span class="dashboard-legend-dot dashboard-legend-low"></span>
-                                <small class="text-muted fw-medium">Rendah</small>
+                        @if ($hasChartData)
+                            {{-- Ada data: tampilkan grafik --}}
+                            <div class="position-relative">
+                                <div class="chart chart-sm">
+                                    <canvas id="pssTrendChart"></canvas>
+                                </div>
                             </div>
-                            <div class="d-flex align-items-center gap-2">
-                                <span class="dashboard-legend-dot dashboard-legend-medium"></span>
-                                <small class="text-muted fw-medium">Sedang</small>
+                            <div class="d-flex justify-content-center flex-wrap gap-4 mt-4">
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="dashboard-legend-dot dashboard-legend-low"></span>
+                                    <small class="text-muted fw-medium">Rendah</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="dashboard-legend-dot dashboard-legend-medium"></span>
+                                    <small class="text-muted fw-medium">Sedang</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="dashboard-legend-dot dashboard-legend-high"></span>
+                                    <small class="text-muted fw-medium">Tinggi</small>
+                                </div>
                             </div>
-                            <div class="d-flex align-items-center gap-2">
-                                <span class="dashboard-legend-dot dashboard-legend-high"></span>
-                                <small class="text-muted fw-medium">Tinggi</small>
+                        @else
+                            {{-- Belum ada data: empty state ramah --}}
+                            <div class="student-chart-empty text-center py-4">
+                                <div class="student-chart-empty-illustration mb-4">
+                                    <svg width="120" height="100" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <ellipse cx="60" cy="88" rx="48" ry="8" fill="#E8F5EE" opacity="0.6"/>
+                                        <rect x="10" y="60" width="8" height="28" rx="4" fill="#B8D8C8"/>
+                                        <rect x="26" y="45" width="8" height="43" rx="4" fill="#A5C8B5"/>
+                                        <rect x="42" y="52" width="8" height="36" rx="4" fill="#B8D8C8"/>
+                                        <rect x="58" y="35" width="8" height="53" rx="4" fill="#8FBDAA"/>
+                                        <rect x="74" y="48" width="8" height="40" rx="4" fill="#A5C8B5"/>
+                                        <rect x="90" y="38" width="8" height="50" rx="4" fill="#8FBDAA"/>
+                                        <rect x="106" y="55" width="8" height="33" rx="4" fill="#B8D8C8"/>
+                                        <circle cx="90" cy="28" r="14" fill="#D4EAE0"/>
+                                        <path d="M86 28 Q90 22 94 28" stroke="#7BAD98" stroke-width="2" stroke-linecap="round" fill="none"/>
+                                        <circle cx="87" cy="26" r="1.5" fill="#7BAD98"/>
+                                        <circle cx="93" cy="26" r="1.5" fill="#7BAD98"/>
+                                    </svg>
+                                </div>
+                                <p class="student-chart-empty-title fw-semibold mb-1">Grafik ini akan menemanimu</p>
+                                <p class="text-muted small mb-4">
+                                    Setelah pengecekan pertama, kamu bisa melihat perkembanganmu di sini. Yuk mulai langkah pertamamu hari ini!
+                                </p>
+                                <a href="{{ route('pss-assessments.create') }}" class="student-chart-empty-btn">
+                                    Mulai Langkah Pertama →
+                                </a>
                             </div>
-                        </div>
+                        @endif
+
                     </div>
                 </div>
             </div>
@@ -573,7 +687,7 @@
         {{-- =======================================================
              DATA BRIDGE + SCRIPT INISIALISASI CHART.JS
         ======================================================== --}}
-        @if (isset($chartData))
+        @if (isset($chartData) && isset($labels) && count($labels) > 0)
             <script id="dashboard-student-data" type="application/json">
                 {!! json_encode([
                     'labels' => $labels,

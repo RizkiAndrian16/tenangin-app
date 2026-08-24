@@ -50,11 +50,11 @@
                         @endforeach
 
                         {{-- TESTING BUTTON --}}
-                        <div class="mb-4 text-end">
+                        {{-- <div class="mb-4 text-end">
                             <button type="button" id="btnAutoFill" class="btn btn-soft-info rounded-pill px-4">
                                 Isi Otomatis
                             </button>
-                        </div>
+                        </div> --}}
 
                         <div class="border-top pt-4 mt-4">
                             <div class="d-flex justify-content-end justify-content-md-between gap-3">

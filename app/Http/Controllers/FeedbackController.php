@@ -51,10 +51,18 @@ class FeedbackController extends Controller
                     });
                 })->orWhere('created_at', 'like', "%{$search}%");
 
+                // Admin bisa mencari berdasarkan nama mahasiswa
+                if (Auth::user()->role === 'admin') {
+                    $q->orWhereHas('user', function ($userQuery) use ($search) {
+                        $userQuery->where('name', 'like', "%{$search}%");
+                    });
+                }
+
                 if ($englishDay) {
                     $q->orWhereRaw('DAYNAME(created_at) = ?', [$englishDay]);
                 }
             });
+
         }
 
         // ======================================

@@ -133,11 +133,11 @@
 }
 
 /* ======================================
-   DASHBOARD - SCORE CIRCLE MAHASISWA (110px)
+   DASHBOARD - SCORE CIRCLE MAHASISWA (122px)
 ====================================== */
 .dashboard-score-circle {
-    width: 110px;
-    height: 110px;
+    width: 122px;
+    height: 122px;
 }
 
 .dashboard-score-circle-empty {
@@ -145,7 +145,7 @@
 }
 
 .dashboard-score-number {
-    font-size: 2rem;
+    font-size: 2.2rem;
 }
 
 .dashboard-score-number-empty {
@@ -153,7 +153,7 @@
 }
 
 .dashboard-score-max {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
 }
 
 .dashboard-score-max-empty {
@@ -161,7 +161,7 @@
 }
 
 .dashboard-date-text {
-    font-size: 13px;
+    font-size: 13.5px;
 }
 
 /* ======================================
@@ -321,5 +321,537 @@
     .dashboard-profile-reminder-button {
         width: 100%;
         padding: 10px 16px;
+    }
+}
+
+/* ======================================================
+   STUDENT DASHBOARD REDESIGN — GREEN / EMERALD THEME
+====================================================== */
+
+/* ----------------------
+   HERO BANNER
+---------------------- */
+.student-hero-banner {
+    background: linear-gradient(135deg, #20c997 0%, #17a589 100%);
+    padding: 2.2rem 2rem 2rem;
+    min-height: 170px;
+}
+
+.student-hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(30px);
+    pointer-events: none;
+}
+
+.student-hero-blob-1 {
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.14);
+    top: -60px;
+    right: -40px;
+    animation: blobFloat1 8s ease-in-out infinite;
+}
+
+.student-hero-blob-2 {
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.10);
+    bottom: -40px;
+    right: 120px;
+    animation: blobFloat2 10s ease-in-out infinite;
+}
+
+@keyframes blobFloat1 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(-12px, 15px) scale(1.07);
+    }
+}
+
+@keyframes blobFloat2 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(10px, -10px) scale(0.95);
+    }
+}
+
+.student-hero-content {
+    z-index: 1;
+}
+
+.student-hero-greeting {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+@keyframes leafSway {
+
+    0%,
+    100% {
+        transform: rotate(-8deg);
+    }
+
+    50% {
+        transform: rotate(8deg);
+    }
+}
+
+.student-hero-title {
+    color: #ffffff;
+    font-size: 1.45rem;
+    letter-spacing: -0.3px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.student-hero-subtitle {
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.95rem;
+    line-height: 1.55;
+}
+
+.student-daily-quote {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 12px 16px;
+    backdrop-filter: blur(4px);
+    max-width: 100%;
+}
+
+.student-quote-icon {
+    width: 14px !important;
+    height: 14px !important;
+    color: rgba(255, 255, 255, 0.8);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.student-quote-text {
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 0.82rem;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+/* ----------------------
+   CTA CARD
+---------------------- */
+.student-cta-card {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border: 1.5px solid rgba(34, 197, 94, 0.3);
+    padding: 1.6rem 1.8rem;
+}
+
+.student-cta-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.student-cta-icon-circle {
+    width: 66px;
+    height: 66px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #20c997 0%, #17a589 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    box-shadow: 0 6px 20px rgba(23, 165, 137, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.student-cta-icon-circle:hover {
+    transform: scale(1.06);
+    box-shadow: 0 10px 28px rgba(23, 165, 137, 0.35);
+}
+
+.student-cta-title {
+    color: #14532d;
+    font-size: 1.05rem;
+    letter-spacing: -0.2px;
+}
+
+.student-cta-subtitle {
+    color: #166534;
+    font-size: 0.875rem;
+    line-height: 1.55;
+}
+
+.student-cta-btn {
+    background: linear-gradient(135deg, #20c997 0%, #17a589 100%);
+    color: #ffffff !important;
+    border-radius: 50px;
+    padding: 11px 24px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: none;
+    box-shadow: 0 4px 14px rgba(23, 165, 137, 0.25);
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.student-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(23, 165, 137, 0.35);
+    color: #ffffff !important;
+}
+
+/* ----------------------
+   WIDGET TITLE & ICON
+---------------------- */
+.student-widget-icon-wrap {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: rgba(34, 197, 94, 0.1);
+    color: #16a34a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.student-widget-title {
+    color: #14532d;
+    font-size: 0.9rem;
+}
+
+.student-widget-desc {
+    font-size: 0.82rem;
+    line-height: 1.55;
+}
+
+
+
+/* ----------------------
+   MOOD INDICATOR
+---------------------- */
+.student-mood-empty-emoji {
+    font-size: 2.5rem;
+}
+
+.student-mood-empty-title {
+    color: #14532d;
+    font-size: 0.9rem;
+}
+
+.student-mood-bar-wrap {
+    width: 100%;
+}
+
+.student-mood-bar-track {
+    height: 10px;
+    border-radius: 50px;
+    background: #dcfce7;
+    overflow: hidden;
+}
+
+.student-mood-bar-fill {
+    height: 100%;
+    border-radius: 50px;
+    transition: width 1.2s ease;
+}
+
+.student-mood-fill-rendah {
+    background: linear-gradient(90deg, #4ade80, #22c55e);
+}
+
+.student-mood-fill-sedang {
+    background: linear-gradient(90deg, #fde047, #f59e0b);
+}
+
+.student-mood-fill-tinggi {
+    background: linear-gradient(90deg, #f87171, #ef4444);
+}
+
+.student-mood-bar-label {
+    color: #94A3B8;
+    font-size: 0.72rem;
+}
+
+.student-mood-badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 50px;
+    padding: 8px 16px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.student-mood-badge-low {
+    background: #dcfce7;
+    color: #15803d;
+    border: 1px solid #86efac;
+}
+
+.student-mood-badge-medium {
+    background: #fefce8;
+    color: #a16207;
+    border: 1px solid #fde047;
+}
+
+.student-mood-badge-high {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fca5a5;
+}
+
+.student-mood-desc {
+    line-height: 1.6;
+    font-size: 0.85rem;
+}
+
+.student-mood-date {
+    color: #94A3B8;
+    font-size: 0.8rem;
+    margin-top: 4px;
+}
+
+.student-mood-date svg {
+    color: #86efac;
+}
+
+/* ----------------------
+   PREFERENCES
+---------------------- */
+.student-pref-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 12px;
+    padding: 14px 16px;
+    transition: background 0.2s ease;
+}
+
+.student-pref-item:hover {
+    background: #dcfce7;
+}
+
+.student-pref-label {
+    font-size: 0.75rem;
+    color: #16a34a;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.student-pref-value {
+    font-size: 0.9rem;
+    color: #14532d;
+    font-weight: 600;
+}
+
+/* ----------------------
+   CHART EMPTY STATE
+---------------------- */
+.student-chart-empty {
+    padding: 20px 0;
+}
+
+.student-chart-empty-illustration {
+    display: flex;
+    justify-content: center;
+}
+
+.student-chart-empty-title {
+    color: #14532d;
+    font-size: 0.95rem;
+}
+
+.student-chart-empty-btn {
+    display: inline-block;
+    background: transparent;
+    border: 1.5px solid rgba(22, 163, 74, 0.55);
+    color: #16a34a;
+    border-radius: 50px;
+    padding: 9px 22px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.student-chart-empty-btn:hover {
+    background: rgba(34, 197, 94, 0.08);
+    color: #14532d;
+    border-color: #22c55e;
+    transform: translateY(-1px);
+}
+
+/* ======================================================
+   STUDENT DASHBOARD — DARK MODE
+====================================================== */
+.dark-mode .student-hero-banner {
+    background: linear-gradient(135deg, #166534 0%, #14532d 100%);
+}
+
+.dark-mode .student-hero-subtitle {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.dark-mode .student-daily-quote {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.dark-mode .student-cta-card {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, rgba(22, 163, 74, 0.05) 100%);
+    border-color: rgba(34, 197, 94, 0.2);
+}
+
+.dark-mode .student-cta-title {
+    color: #86efac;
+}
+
+.dark-mode .student-cta-subtitle {
+    color: #4ade80;
+}
+
+.dark-mode .student-widget-icon-wrap {
+    background: rgba(34, 197, 94, 0.12);
+    color: #4ade80;
+}
+
+.dark-mode .student-widget-title {
+    color: #86efac;
+}
+
+
+
+.dark-mode .student-mood-bar-track {
+    background: #1E293B;
+}
+
+.dark-mode .student-mood-badge-low {
+    background: rgba(34, 197, 94, 0.1);
+    color: #86efac;
+    border-color: rgba(74, 222, 128, 0.25);
+}
+
+.dark-mode .student-mood-badge-medium {
+    background: rgba(245, 158, 11, 0.1);
+    color: #fcd34d;
+    border-color: rgba(253, 224, 71, 0.25);
+}
+
+.dark-mode .student-mood-badge-high {
+    background: rgba(239, 68, 68, 0.08);
+    color: #fca5a5;
+    border-color: rgba(248, 113, 113, 0.2);
+}
+
+.dark-mode .student-pref-item {
+    background: rgba(34, 197, 94, 0.05);
+    border-color: rgba(34, 197, 94, 0.18);
+}
+
+.dark-mode .student-pref-item:hover {
+    background: rgba(34, 197, 94, 0.1);
+}
+
+.dark-mode .student-pref-label {
+    color: #4ade80;
+}
+
+.dark-mode .student-pref-value {
+    color: #86efac;
+}
+
+.dark-mode .student-chart-empty-title {
+    color: #86efac;
+}
+
+.dark-mode .student-chart-empty-btn {
+    border-color: rgba(34, 197, 94, 0.35);
+    color: #4ade80;
+}
+
+.dark-mode .student-chart-empty-btn:hover {
+    background: rgba(34, 197, 94, 0.1);
+    color: #86efac;
+}
+
+.dark-mode .student-mood-empty-title {
+    color: #86efac;
+}
+
+/* ======================================================
+   STUDENT DASHBOARD — RESPONSIVE
+====================================================== */
+@media (max-width: 767.98px) {
+    .student-hero-banner {
+        padding: 1.6rem 1.25rem 1.4rem;
+        min-height: auto;
+    }
+
+    .student-hero-title {
+        font-size: 1.2rem;
+    }
+
+    .student-daily-quote {
+        padding: 10px 12px;
+    }
+
+    .student-cta-card {
+        padding: 1.25rem;
+    }
+
+    .student-cta-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+
+}
+
+/* ======================================================
+   STUDENT DASHBOARD — CUSTOM GRID FOR MOBILE/DESKTOP ALIGNMENT
+   ====================================================== */
+@media (min-width: 992px) {
+    .student-grid-container {
+        display: grid !important;
+        grid-template-columns: 5fr 7fr;
+        grid-template-rows: auto auto;
+        gap: 24px !important;
+        /* Matches Bootstrap g-4 */
+    }
+
+    .grid-tingkat-stres {
+        grid-column: 1 / 2;
+        grid-row: 1 / 3;
+        height: 100%;
+    }
+
+    .grid-tingkat-stres>.card {
+        height: 100% !important;
+    }
+
+    .grid-kondisi {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+
+    .grid-preferensi {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
     }
 }
