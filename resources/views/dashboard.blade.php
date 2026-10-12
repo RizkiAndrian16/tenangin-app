@@ -425,6 +425,32 @@
         </div>
 
         {{-- =====================================================
+             INFORMASI PRIVASI DATA MAHASISWA
+        ====================================================== --}}
+        <div class="mb-3 mb-lg-4">
+            <div class="student-privacy-card rounded-4 shadow-sm">
+                <div class="student-privacy-grid">
+                    <div class="student-privacy-icon-wrap flex-shrink-0">
+                        <div class="student-privacy-icon-circle">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="student-privacy-title-wrap">
+                        <h5 class="fw-bold student-privacy-title mb-0">Privasi Data Kamu</h5>
+                    </div>
+                    <div class="student-privacy-desc-wrap">
+                        <p class="student-privacy-desc mb-0">
+                            Data yang kamu isi, seperti hasil PSS-10, preferensi aktivitas, dan feedback, membantu sistem memberikan rekomendasi yang lebih sesuai untuk kamu. Informasi tersebut digunakan dengan tetap menjaga privasi kamu selama menggunakan sistem.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- =====================================================
              SECTION 3: QUICK RELIEF + STATUS KONDISI
         ====================================================== --}}
         <div class="student-grid-container d-flex flex-column gap-2 gap-lg-4 mb-2 mb-lg-4">
@@ -450,7 +476,7 @@
                                     <div class="student-mood-empty-emoji mb-2">🌱</div>
                                     <p class="fw-semibold student-mood-empty-title mb-1">Belum ada data kondisi</p>
                                     <p class="text-muted small mb-0">
-                                        Cari tahu tingkat stresmu sekarang agar kamu bisa memantau kondisimu di sini.
+                                        Cari tahu tingkat stresmu sekarang agar kamu bisa mengetahui kondisimu sekarang.
                                     </p>
                                 </div>
                             @else

@@ -255,12 +255,12 @@
             @if (auth()->user()->password)
                 <h2 class="fw-bold mb-1">Ubah Password</h2>
                 <p class="text-muted mb-0">
-                    Pastikan akun Anda menggunakan kata sandi yang kuat.
+                    Pastikan akun kamu menggunakan kata sandi yang kuat.
                 </p>
             @else
                 <h2 class="fw-bold mb-1">Atur Password</h2>
                 <p class="text-muted mb-0">
-                    Buat password agar Anda juga dapat masuk menggunakan email dan password.
+                    Buat password agar kamu juga dapat masuk menggunakan email dan password.
                 </p>
             @endif
         </div>
@@ -304,7 +304,7 @@
                         <div class="alert alert-soft-info border-0 rounded-3 mb-0 p-3">
                             <div class="d-flex align-items-start gap-2">
                                 <i data-feather="info" class="text-info flex-shrink-0 mt-1 icon-18"></i>
-                                <span class="small text-info">Kamu mendaftar pakai akun Google. Yuk, buat password di
+                                <span class="small text-info">Kamu mendaftar menggunakan akun Google. Yuk, buat password di
                                     bawah ini sebagai alternatif login-mu nanti!</span>
                             </div>
                         </div>

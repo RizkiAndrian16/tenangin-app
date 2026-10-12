@@ -34,8 +34,7 @@ class RecommendationController extends Controller
         // RULE BASED IF-THEN
         // ======================================
 
-        // IF tingkat stres = tinggi
-        // THEN rekomendasikan aktivitas intensitas ringan
+        // tingkat stres = tinggi
         if ($stressLevel == 'Tinggi') {
 
             $query->whereHas('activity', function ($query) {
@@ -44,8 +43,7 @@ class RecommendationController extends Controller
             });
         }
 
-        // IF tingkat stres = sedang
-        // THEN rekomendasikan aktivitas ringan hingga sedang
+        // tingkat stres = sedang
         elseif ($stressLevel == 'Sedang') {
 
             $query->whereHas('activity', function ($query) {
@@ -54,8 +52,7 @@ class RecommendationController extends Controller
             });
         }
 
-        // IF tingkat stres = rendah
-        // THEN rekomendasikan aktivitas dengan variasi lebih luas
+        // tingkat stres = rendah
         else {
         }
 
@@ -96,7 +93,6 @@ class RecommendationController extends Controller
             'preferred_intensity' => ['required', 'string'],
         ]);
 
-        // Cukup buat data baru, SoftDeletes akan mengurus yang lama saat riwayat dihapus
         UserPreference::create([
             'user_id' => Auth::id(),
             'preferred_activity_type' => $validated['preferred_activity_type'],
@@ -117,7 +113,6 @@ class RecommendationController extends Controller
 
         $stressLevel = $pssAssessment->stress_level;
 
-        // Ambil data tanpa filter is_active
         $activePreference = UserPreference::where('user_id', Auth::id())
             ->latest('id')
             ->first();
@@ -186,11 +181,7 @@ class RecommendationController extends Controller
                 $score += 2;
             }
 
-            // ======================================
-            // NORMALISASI SIMILARITY SCORE
             // TOTAL BOBOT = 7
-            // ======================================
-
             $similarityScore = $score / 7;
 
             // ======================================
@@ -392,7 +383,6 @@ class RecommendationController extends Controller
             abort(403);
         }
 
-        // TAMBAHKAN withTrashed DI SINI JUGA
         $recommendation->load([
             'pssAssessment' => function ($query) {
                 $query->withTrashed();
